@@ -13,8 +13,8 @@ function App() {
   return (
     <>
       <Header />
-      <Route exact path="/" component={Main} />
       <Switch>
+        <Route exact path="/" component={Main} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
