@@ -1,0 +1,10 @@
+.customContainer {
+  width: 85%;
+}
+
+/* For mobile screens */
+@media screen and (max-width: 480px) {
+  .customContainer {
+    width: 100%;
+  }
+}

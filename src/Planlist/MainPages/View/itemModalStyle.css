@@ -1,0 +1,13 @@
+.modal__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.5em;
+  width: 100%;
+}
+
+.modal__description__info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

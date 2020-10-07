@@ -1,0 +1,30 @@
+.todo {
+}
+.todo__item {
+  opacity: 1;
+  display: block;
+  z-index: 100;
+  /* 속도 */
+  transition: 0.8s;
+  cursor: pointer;
+}
+
+.todo__subitem {
+  position: absolute;
+  margin: 1em;
+  right: 0;
+  z-index: 10;
+  /* 투명도 */
+  opacity: 0;
+  /* 속도 */
+  transition: 0.8s;
+}
+
+/* 마우스 위치시 투명도를 조절하여 보이도록함! */
+.todo:hover > .todo__item {
+  opacity: 0.75;
+}
+
+.todo:hover > .todo__subitem {
+  opacity: 0.95;
+}
