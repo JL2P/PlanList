@@ -1,9 +1,15 @@
 import React from "react";
-import MainPageContainer from "./Container/MainPageContainer";
+import MainListContainer from "./Container/MainListContainer";
+import MainFormContainer from "./Container/MainFormContainer";
 
 //rsf hook
 const MainPage = () => {
-  return <MainPageContainer />;
+  return (
+    <>
+      <MainFormContainer />
+      <MainListContainer />
+    </>
+  );
 };
 
 export default MainPage;
