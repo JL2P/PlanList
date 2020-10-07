@@ -1,7 +1,6 @@
 export { default as Header } from "./Header/HeaderPage";
 export { default as Main } from "./Main/MainPage";
-export { default as SignIn } from "./Sign/Signin/SigninPage";
-export { default as SignUp } from "./Sign/Singup/SignupPage";
+export { default as SignIn } from "./Sign/SignPage";
 //todo 추가
 export { default as Todo } from  "./todo/TodoPage";
 
