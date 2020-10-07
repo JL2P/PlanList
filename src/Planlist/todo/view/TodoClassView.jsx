@@ -13,14 +13,14 @@ class TodoClassView extends Component {
   };
 
   render() {
-    const { todoSave } = this.props;
-
+    const {todoAdd ,todoUpdate, todoDelete, todoSave } = this.props;
+    
     return (
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button>Show Modal</Button>}
+        trigger={<Button>편집</Button>}
       >
         <Modal.Header>Select a Photo</Modal.Header>
         <Modal.Content image>
@@ -35,7 +35,10 @@ class TodoClassView extends Component {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={() => todoSave()}>SAVE</Button>
+          <Button onClick={() => todoAdd()}>Add</Button>   
+          <Button onClick={() => todoUpdate()}>Update</Button> 
+          <Button onClick={() => todoDelete()}>Delete</Button>
+          <Button onClick={() => todoSave()}>Save</Button>
           <Button color="black" onClick={() => setOpen(false)}>
             Nope
           </Button>
