@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProfileTodoCardListView from "../view/ProfileTodoCardListView";
+import ProfileTodoCardListView from "../view/ProfileManageItem/ProfileTodoCardListView";
 
 class ProfileTodoListContainer extends Component {
   render() {
