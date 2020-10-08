@@ -1,5 +1,6 @@
 import { observable, computed, action } from "mobx";
 import data from "../../Sample/Data/Sign_Account_Data";
+import AccountSignupModel from "../../Api/model/AccountSignupModel";
 
 export default class AccountStore {
   constructor(root) {
@@ -12,6 +13,8 @@ export default class AccountStore {
 
   @action
   signup = (account) => {
+    const signupModel = AccountSignupModel(account);
+
     if (account.email === data.email) {
       console.log("중복된 아이디입니다.");
     } else {
