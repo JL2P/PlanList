@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Header, Image, Modal } from "semantic-ui-react";
 
 class TodoClassView extends Component {
   constructor(props) {
@@ -13,7 +14,10 @@ class TodoClassView extends Component {
   };
 
   render() {
-    const {todoAdd ,todoUpdate, todoDelete, todoSave } = this.props;
+    const {todoAdd} = this.props.todoAdd;
+    const {todoUpdate} = this.props.todoUpdate;
+    const {todoDelete} = this.props.todoDelete;
+    const {todoSave} = this.props.todoSave;
     
     return (
       <Modal
