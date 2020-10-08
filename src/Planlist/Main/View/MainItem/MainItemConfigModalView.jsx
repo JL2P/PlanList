@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Header, Icon, Modal, Segment } from "semantic-ui-react";
+import { Button, Header, Icon, Modal } from "semantic-ui-react";
 
 const MainItemConfigModalView = ({ open, onModal }) => {
   return (
