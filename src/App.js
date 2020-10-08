@@ -18,10 +18,10 @@ const App = withRouter(({ location }) => {
       )}
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/account" component={Account} />
-        <Route path="/todo" component={Todo} />
+        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/account" component={Account} />
+        <Route exact path="/todo" component={Todo} />
         <Redirect path="*" to="/" />
       </Switch>
       {location.pathname !== "/signin" && location.pathname !== "/signup" && (

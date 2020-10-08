@@ -8,6 +8,7 @@ import {
     sign_submitBtn 
 } from "../../style/Btn";
 
+
 const SignupView = () => {
   const sign_move = {
     float: "right",
