@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
-import { 
-    sign_move_text, 
-    sign_IconBtn ,
-    sign_submitBtn 
-} from "../../style/Btn";
-
+import { sign_move_text, sign_IconBtn, sign_submitBtn } from "../../style/Btn";
 
 const SignupView = () => {
+  //승훈 추가 나중에 주석은 지워도되요!
+  //입력받기위한 state생성
+  const [accountId, setAccountId] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [birth, setBirth] = useState("");
+
   const sign_move = {
     float: "right",
     padding: "0",
