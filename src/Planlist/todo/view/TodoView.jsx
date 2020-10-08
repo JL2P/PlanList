@@ -1,12 +1,16 @@
 import React from "react";
-import { Button, Header, Image, Modal } from "semantic-ui-react";
+import { Button, Header, Image, Modal} from "semantic-ui-react";
+import "./TodoView.scss";
+
 //rsc
-const TodoView = ({ todoSave, todoAdd, todoUpdate, todoDelete }) => {
+const TodoView = ({ todoEdit}) => {
   const [open, setOpen] = React.useState(false);
 
 
 
   return (
+    <div>
+      <div>
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
@@ -26,10 +30,8 @@ const TodoView = ({ todoSave, todoAdd, todoUpdate, todoDelete }) => {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() => todoAdd()}>Add</Button>
-        <Button onClick={() => todoUpdate()}>Update</Button>
-        <Button onClick={() => todoDelete()}>Delete</Button>
-        <Button onClick={() => todoSave()}>SAsVE</Button>
+     
+        <Button onClick={() => todoEdit()}>설정</Button>
         
         <Button color="black" onClick={() => setOpen(false)}>
           Nope
@@ -43,6 +45,28 @@ const TodoView = ({ todoSave, todoAdd, todoUpdate, todoDelete }) => {
         />
       </Modal.Actions>
     </Modal>
+
+    </div>
+      <div className="todo__page">
+        <div className="todo__innerpage">
+          <table className="todo__table">
+            <form id="todo__title" input="text" method="post" action="">
+              <tr>
+                <td>제목</td>
+                <td><input type="text" name="title"/></td>
+              </tr>
+              <tr>
+                <td>오늘 할 일</td>
+                <td><input type="text" name="todaytodo"/></td>
+              </tr>
+        
+            </form>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
   );
 };
 
