@@ -2,11 +2,7 @@ import React from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
-import { 
-    sign_move_text, 
-    sign_IconBtn ,
-    sign_submitBtn 
-} from "../../common/Btn";
+import { sign_move_text, sign_IconBtn, sign_submitBtn } from "../../common/Btn";
 
 const SignupView = () => {
   const sign_move = {

@@ -8,11 +8,12 @@ import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter } from "react-router-dom";
 //mobx Store적용
 import { Provider } from "mobx-react";
-import TodoStore from "./Planlist/Main/Store/TodoStore";
+
+import RootStore from "./Planlist/Store/RootStore";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider Store={TodoStore}>
+    <Provider Store={RootStore}>
       <App />
     </Provider>
   </BrowserRouter>,
