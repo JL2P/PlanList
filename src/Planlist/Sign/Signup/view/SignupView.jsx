@@ -2,7 +2,12 @@ import React from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
-import { sign_move_text, sign_IconBtn, sign_submitBtn } from "../../common/Btn";
+import { 
+    sign_move_text, 
+    sign_IconBtn ,
+    sign_submitBtn 
+} from "../../style/Btn";
+
 
 const SignupView = () => {
   const sign_move = {
@@ -12,7 +17,7 @@ const SignupView = () => {
   };
 
   return (
-    <AuthTemplate>
+    <AuthTemplate name="Sign up">
       <Form>
         <div style={sign_IconBtn}>
           <Button color="facebook">
@@ -59,7 +64,7 @@ const SignupView = () => {
           Sign Up
         </Button>
         <Button color="yellow" style={sign_move}>
-          <Link to="signIN" style={sign_move_text}>
+          <Link to="signin" style={sign_move_text}>
             Sign In Page
           </Link>
         </Button>
