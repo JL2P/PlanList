@@ -1,58 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
 import { Container, Header, Image, Grid, Item } from "semantic-ui-react";
 
 const ProfileManageView = () => {
+  let pHeight = "20px";
+  let pText = "20px";
+
   return (
-    <Container text style={{ marginTop: "5em" }}>
-      <Item.Group>
-        <Item>
-          <Item.Image
-            size="small"
-            circular
-            src="https://react.semantic-ui.com/images/wireframe/image.png"
-          />
-
-          <Item.Content>
-            <Item.Header as="a">Header</Item.Header>
-            <Item.Meta>Description</Item.Meta>
-            <Item.Description>
-              <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-            </Item.Description>
-            <Item.Extra>Additional Details</Item.Extra>
-          </Item.Content>
-        </Item>
-      </Item.Group>
-
-      <Grid columns={4} style={{ marginTop: "7em" }}>
-        <Grid.Row stretched>
-          <Grid.Column>
-            <Image
-              src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-              size="medium"
-              circular
-            />
+    <Container text style={{ marginTop: "3em" }}>
+      <Grid celled="internally" stackable>
+        <Grid.Row>
+          <Grid.Column width={5}>
+            <Image src="/profiles/hungry.png" size="medium" bordered circular />
           </Grid.Column>
-          <Grid.Column>
-            <p>유저 아이디</p>
-            <p>todo 몇개</p>
+          <Grid.Column width={5}>
+            <Grid.Row style={{ fontSize: "30px" }}> eunsongsong</Grid.Row>
+            <div style={{ fontSize: pText }}>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+            </div>
           </Grid.Column>
-          <Grid.Column>
-            <p>내 정보 수정</p>
-            <p>팔로워</p>
+          <Grid.Column width={3}>
+            <Grid.Row style={{ fontSize: "30px" }}>&nbsp;</Grid.Row>
+            <div style={{ fontSize: pText }}>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+            </div>
           </Grid.Column>
-          <Grid.Column>
-            <p>설정?</p>
-            <p>팔로우</p>
+          <Grid.Column width={3}>
+            <Grid.Row style={{ fontSize: "30px" }}>&nbsp;</Grid.Row>
+            <div style={{ fontSize: pText }}>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-
-      {/* <Header as="h1">This is ProfileManageView</Header>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>
-        A text container is used for the main container, which is useful for
-        single column layouts.
-      </p> */}
     </Container>
   );
 };
