@@ -8,58 +8,63 @@ import {
     sign_submitBtn 
 } from "../../common/Btn";
 
-const SigninView = () => {
+const SignupView = () => {
   const sign_move = {
     float: "right",
     padding: "0",
+    marginTop: "2rem",
   };
-  const sign_forgetPassword = {
-    display: "block",
-    margin: "1rem 0",
-    textAlign: "center",
-    color: "#000000",
-    textDecoration: "underline",
-    textUnderlinePosition: "under",
-    fontWeight: "bold",
-  };
+
   return (
     <AuthTemplate>
       <Form>
         <div style={sign_IconBtn}>
           <Button color="facebook">
             <Icon name="facebook" />
-            Log in with Facebook
+            Sign Up with Facebook
           </Button>
           <Button color="google plus">
             <Icon name="google plus" />
-            Log in with Google
+            Sign Up with Google
           </Button>
         </div>
-
         <Form.Field>
           <label>e-mail</label>
-          <input type="email" placeholder="Please enter a e-mail" required />
+          <input type="email" placeholder="planList@gmail.com" required />
+        </Form.Field>
+        <Form.Field>
+          <label>Nickname</label>
+          <input
+            type="email"
+            placeholder="Please enter your Nickname"
+            required
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>User Name</label>
+          <input placeholder="Please enter your User Name" required />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
           <input
             type="password"
-            placeholder="Please enter a password"
+            placeholder="Please enter your password"
             required
           />
         </Form.Field>
         <Form.Field>
-          <Checkbox label="I agree to the Terms and Conditions" />
+          <label>date of birth</label>
+          <input type="date" required />
+        </Form.Field>
+        <Form.Field>
+          <Checkbox label="Plan List의 약관, 데이터 정책 및 쿠키 정책에 동의하게 됩니다." />
         </Form.Field>
         <Button type="submit" style={sign_submitBtn}>
-          Log In
+          Sign Up
         </Button>
-        <Link to="/" style={sign_forgetPassword}>
-          Forgot Password?
-        </Link>
         <Button color="yellow" style={sign_move}>
-          <Link to="signup" style={sign_move_text}>
-            Sign Up Page
+          <Link to="signIN" style={sign_move_text}>
+            Sign In Page
           </Link>
         </Button>
       </Form>
@@ -67,4 +72,4 @@ const SigninView = () => {
   );
 };
 
-export default SigninView;
+export default SignupView;

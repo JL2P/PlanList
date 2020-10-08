@@ -22,14 +22,14 @@ const WhiteBox = styled.div`
     padding-bottom: 2rem;
     text-align: center;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
   }
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.4),
-    0px 0px 8px rgba(255, 255, 255, 0.4);
-  padding: 2rem;
+  box-shadow: 0px 0px 8px rgba(230,144,73,0.4),
+    0px 0px 8px rgba(230,144,73,0.4);
+  padding: 3rem 2rem;
   width: 500px;
-  height:500px;
-  background: rgba(0,0,0,0.2);
+  ovarflow:hidden;
+  background: rgba(255,255,255,0.4);
   border-radius: 10px;
 `;
 
@@ -38,7 +38,8 @@ const AuthTemplate = ({ children }) => {
       <AuthTemplateBlock>
         <WhiteBox>
           <div className="logo-area">
-            HI HI
+            <h2>HI, THERE</h2>
+            <p>You can log in to your PlanList account here.</p>
           </div>
           {children}
         </WhiteBox>
