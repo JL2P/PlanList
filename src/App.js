@@ -1,11 +1,21 @@
 import React from "react";
-import { Route, Switch, Redirect,withRouter } from "react-router-dom";
-import { Header, Footer, Main, Account, SignIn, SignUp, Todo } from "./Planlist/PlanlistRoutes";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import {
+  Header,
+  Footer,
+  Main,
+  Account,
+  SignIn,
+  SignUp,
+  Todo,
+} from "./Planlist/PlanlistRoutes";
 
 const App = withRouter(({ location }) => {
   return (
     <>
-      {location.pathname !== "/signin" && <Header />}
+      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
+        <Header />
+      )}
       <Switch>
         <Route exact path="/" component={Main} />
         <Route path="/signin" component={SignIn} />
@@ -14,7 +24,9 @@ const App = withRouter(({ location }) => {
         <Route path="/todo" component={Todo} />
         <Redirect path="*" to="/" />
       </Switch>
-      {location.pathname !== "/signin" && <Footer />}
+      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
+        <Footer />
+      )}
     </>
   );
 });
