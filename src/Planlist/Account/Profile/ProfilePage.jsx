@@ -1,12 +1,12 @@
 import React from "react";
-import PofileMangeContainer from "./container/PofileMangeContainer";
+import ProfileMangeContainer from "./container/ProfileMangeContainer";
 import ProfileTodoContainer from "./container/ProfileTodoContainer";
 import { Container } from "semantic-ui-react";
 
 const ProfilePage = () => {
   return (
     <div>
-      <PofileMangeContainer />
+      <ProfileMangeContainer />
       <ProfileTodoContainer />
     </div>
   );

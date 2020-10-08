@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Menu, Segment, Image, Container } from "semantic-ui-react";
+import MainListContainer from "../../../Main/Container/MainListContainer";
+import ProfileTodoListContainer from "../container/ProfileTodoListContainer";
+import ProfileTodoCardView from "./ProfileTodoCardView";
 
 class ProfileTodoView extends Component {
-  state = { activeItem: "home" };
+  state = { activeItem: "From Now" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -10,31 +13,35 @@ class ProfileTodoView extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Container style={{ width: "900px" }}>
+      <Container style={{ width: "900px", marginTop: "2em" }}>
         <Menu pointing secondary>
           <Menu.Item
-            name="home"
-            active={activeItem === "home"}
+            name="From Now"
+            active={activeItem === "From Now"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="messages"
-            active={activeItem === "messages"}
+            name="Past"
+            active={activeItem === "Past"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="friends"
-            active={activeItem === "friends"}
+            name="Not yet"
+            active={activeItem === "Not yet"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="Completed"
+            active={activeItem === "Completed"}
             onClick={this.handleItemClick}
           />
         </Menu>
 
         <div>
-          {activeItem === "home" && <h1>WELLCOME!</h1>}
-          {activeItem === "messages" && (
-            <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-          )}
-          {activeItem === "friends" && <h1>HELLO!</h1>}
+          {activeItem === "From Now" && <ProfileTodoListContainer />}
+          {activeItem === "Past" && <MainListContainer />}
+          {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
+          {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}
         </div>
       </Container>
     );

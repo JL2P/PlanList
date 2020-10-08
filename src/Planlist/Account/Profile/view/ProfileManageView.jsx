@@ -1,43 +1,57 @@
 import React, { Component } from "react";
-import { Container, Header, Image, Grid, Item } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Image,
+  Grid,
+  Item,
+  Button,
+  Icon,
+} from "semantic-ui-react";
 
 const ProfileManageView = () => {
-  let pHeight = "20px";
-  let pText = "20px";
+  let pHeight = "25px"; // Row 간격
+  let pText1 = "30px"; // 첫 번째 Row fontSize
+  let pText2 = "20px"; // 두 번째 Row fontSize
 
   return (
     <Container text style={{ marginTop: "3em" }}>
-      <Grid celled="internally" stackable>
+      <Grid stackable>
         <Grid.Row>
-          <Grid.Column width={5}>
-            <Image src="/profiles/hungry.png" size="medium" bordered circular />
+          {/* 프로필 이미지 */}
+          <Grid.Column width={4}>
+            <Image src="/profiles/hungry.png" size="small" bordered circular />
           </Grid.Column>
-          <Grid.Column width={5}>
-            <Grid.Row style={{ fontSize: "30px" }}> eunsongsong</Grid.Row>
-            <div style={{ fontSize: pText }}>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
+          {/* 아이디, 오늘 할 일 */}
+          <Grid.Column width={4} style={{ paddingTop: pHeight }}>
+            <Grid.Row style={{ fontSize: pText1 }}>chulchul_2</Grid.Row>
+            <div style={{ fontSize: pText2 }}>
+              <Grid.Row style={{ paddingTop: pHeight }}>
+                오늘 할 일 &nbsp; 2
+              </Grid.Row>
             </div>
           </Grid.Column>
-          <Grid.Column width={3}>
-            <Grid.Row style={{ fontSize: "30px" }}>&nbsp;</Grid.Row>
-            <div style={{ fontSize: pText }}>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-            </div>
+          {/* 팔로워 */}
+          <Grid.Column width={4} style={{ paddingTop: pHeight }}>
+            <Grid.Row style={{ fontSize: pText1 }}>&nbsp;</Grid.Row>
+            <Grid.Row style={{ paddingTop: pHeight, fontSize: pText2 }}>
+              팔로워 &nbsp; 10
+            </Grid.Row>
           </Grid.Column>
-          <Grid.Column width={3}>
-            <Grid.Row style={{ fontSize: "30px" }}>&nbsp;</Grid.Row>
-            <div style={{ fontSize: pText }}>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-              <Grid.Row style={{ paddingTop: pHeight }}>hello</Grid.Row>
-            </div>
+          {/* 셋팅, 팔로우 */}
+          <Grid.Column width={4} style={{ paddingTop: pHeight }}>
+            <Grid.Row style={{ fontSize: pText1 }}>
+              <Icon name="setting" onClick />
+            </Grid.Row>
+            <Grid.Row style={{ paddingTop: pHeight, fontSize: pText2 }}>
+              팔로우 &nbsp; 12
+            </Grid.Row>
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <p style={{ paddingTop: "1em" }}>
+        소개글 블라블라 어쩌구 저쩌구 ~~~~~~~~~~
+      </p>
     </Container>
   );
 };
