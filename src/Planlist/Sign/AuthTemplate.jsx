@@ -31,15 +31,20 @@ const WhiteBox = styled.div`
   ovarflow:hidden;
   background: rgba(255,255,255,0.4);
   border-radius: 10px;
+
+  @media only screen and (max-width: 767px) {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
 `;
 
-const AuthTemplate = ({ children }) => {
+const AuthTemplate = ({ children,name }) => {
     return (
       <AuthTemplateBlock>
         <WhiteBox>
           <div className="logo-area">
             <h2>HI, THERE</h2>
-            <p>You can log in to your PlanList account here.</p>
+            <p>You can {name} to your PlanList account here.</p>
           </div>
           {children}
         </WhiteBox>
