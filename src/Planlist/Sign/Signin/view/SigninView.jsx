@@ -6,7 +6,7 @@ import {
     sign_move_text, 
     sign_IconBtn ,
     sign_submitBtn 
-} from "../../common/Btn";
+} from "../../style/Btn";
 
 const SigninView = () => {
   const sign_move = {
@@ -23,7 +23,7 @@ const SigninView = () => {
     fontWeight: "bold",
   };
   return (
-    <AuthTemplate>
+    <AuthTemplate name = "Log In">
       <Form>
         <div style={sign_IconBtn}>
           <Button color="facebook">
