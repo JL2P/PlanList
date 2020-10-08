@@ -1,22 +1,31 @@
 import React from "react";
 import { Card, Image, Icon, Label, Button } from "semantic-ui-react";
-import MainItemModelView from "./MainItemModelView";
 import "./itemStyle.css";
+import MainItemInfoModalView from "./MainItemInfoModalView";
+import MainItemConfigModalView from "./MainItemConfigModalView";
 
 const MainItemView = ({ item }) => {
-  const [open, setOpen] = React.useState(false);
+  // Item 정보 모달
+  const [itemInfoOpen, setItemInfoOpen] = React.useState(false);
+  // Item 설정 모달
+  const [itemConfigOpen, setItemConfigOpen] = React.useState(false);
 
-  const onSelected = () => {
-    setOpen(true);
+  const onInfoModal = (trigger) => {
+    setItemInfoOpen(trigger);
   };
 
-  const onModal = (trigger) => {
-    setOpen(trigger);
+  const onCofigModal = (trigger) => {
+    setItemConfigOpen(trigger);
   };
 
   return (
     <div>
-      <MainItemModelView item={item} open={open} onModal={onModal} />
+      <MainItemConfigModalView open={itemConfigOpen} onModal={onCofigModal} />
+      <MainItemInfoModalView
+        item={item}
+        open={itemInfoOpen}
+        onModal={onInfoModal}
+      />
       <div className="todo">
         <div className="todo__subitem">
           <Button style={{ padding: "1em", pointerEvents: "none" }}>
@@ -26,7 +35,7 @@ const MainItemView = ({ item }) => {
           <Button
             style={{ padding: "1em" }}
             onClick={() => {
-              alert("point up click evnet");
+              onCofigModal(true);
             }}
           >
             <Icon
@@ -36,7 +45,7 @@ const MainItemView = ({ item }) => {
           </Button>
         </div>
         {/* div로 감싼 이유는 시멘틱의Card에서 onClick을 주면 카드가 움직이기 때문! */}
-        <div className="todo__item" onClick={() => onSelected()}>
+        <div className="todo__item" onClick={() => onInfoModal(true)}>
           <Card style={{ width: "100%", marginTop: "1em" }} raised>
             <Image src={item.imgUrl} wrapped ui={false} />
             <Card.Content>
