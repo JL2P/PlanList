@@ -1,11 +1,26 @@
-.todo__page{
-  width: 100%;
-  height: 100%;
+aside{
+    font-weight: 600;
+    line-height: 18px;
+    margin-top: 6px;
 }
 
 
+div
+    .todo__updatePage {
+        
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        margin:0 auto; 
+        margin-top:3rem;
+        margin-left:10rem;
+   
+    }
+div
+    .todo__content{
+        display: inline-block;
+        vertical-align: middle;
 
-.todo__innerpage{
-  width: 100%;
-  height: 100%;
-}
+    }
