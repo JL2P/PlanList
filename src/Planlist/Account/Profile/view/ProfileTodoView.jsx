@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Menu, Segment, Image, Container } from "semantic-ui-react";
 import MainListContainer from "../../../Main/Container/MainListContainer";
 import ProfileTodoListContainer from "../container/ProfileTodoListContainer";
-import ProfileTodoCardView from "./ProfileTodoCardView";
 
 class ProfileTodoView extends Component {
   state = { activeItem: "From Now" };
