@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TodoView from "../view/TodoView";
+import TodoUpdateView from "../view/TodoUpdateView";
 
 class TodoContainer extends Component {
    
@@ -9,7 +9,7 @@ class TodoContainer extends Component {
 
   render() {
     return (
-    <TodoView todoEdit={this.todoEdit}
+    <TodoUpdateView todoEdit={this.todoEdit}
              />
     )
         
