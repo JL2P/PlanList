@@ -1,24 +1,30 @@
 import { observable, computed, action } from "mobx";
 import data from "../../Sample/Data/Sign_Account_Data";
-import AccountSignupModel from "../../Api/model/AccountSignupModel";
+import AccountModel from "../../Api/model/AccountModel";
+import AccountRepository from "../../Api/Repository/AccountRepository"
 
 export default class AccountStore {
   constructor(root) {
     this.root = root;
+    this.accountRepository = new AccountRepository();
   }
 
   //모델 정의
   @observable account = {};
   @observable accounts = [];
 
-  @action
-  signup = (account) => {
-    const signupModel = AccountSignupModel(account);
+  @computed getAccount=()=>{
+    return this.account
+  }
 
-    if (account.email === data.email) {
-      console.log("중복된 아이디입니다.");
-    } else {
-      console.log("회원가입에 성공했습니다.");
-    }
+  @computed getAccounts=()=>{
+    return this.accounts
+  }
+
+  @action
+  async signup(account){
+    const accountModel = new AccountModel(account);
+    const result = await this.accountRepository.accountCreate(accountModel);
+    console.log(result)
   };
 }
