@@ -9,16 +9,14 @@ class SignupContainer extends Component {
   onSignup = (e, accountObj) => {
     // e 새로고침 방지 추가
     e.preventDefault();
-
     // Store에서 account Store가져오기
     const { account } = this.props.Store;
-
     //회원가입 실행
     account.signup(accountObj);
   };
 
   render() {
-    return <SignupView />;
+    return <SignupView onSignup={this.onSignup} />;
   }
 }
 

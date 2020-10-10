@@ -1,18 +1,30 @@
 // Account 모델
 /*
 Account 데이터를 담는 클래스
+백엔드 서버에서 정의한 Entity클래스와 맞게 작성한다.
+--------------------------------------------------
+# accountId : 유저 고유아이디
+# email     : 이메일
+# age       : 나이
+# gender    : 성별
+# address   : 주소
+# phone     : 전화번호
+# introduce : 소개
+# rating    : 유저 점수
+# displayAt : 글 조회 조건
+---------------------------------------------------
 */
 export default class AccountModel {
   constructor(accountObj) {
-    this.accountId = accountObj.accountId; //Account ID
-    this.email = accountObj.email; // 이메일
-    this.name = accountObj.name; // 실명
-    this.age = accountObj.age; // 나이
-    this.gender = accountObj.gender; // 성별
-    this.address = accountObj.address; // 주소
-    this.phone = accountObj.phone; // 전화번호
-    this.introduce = accountObj.introduce; // 소개
-    this.rating = accountObj.rating; //점수
-    this.displayAt = accountObj.displayAt; // 메인페이지 조회되는 조건
+    this.accountId = accountObj.accountId; 
+    this.email = accountObj.email; 
+    this.name = accountObj.name;
+    this.birth = accountObj.birth; 
+    this.gender = accountObj.gender; 
+    this.address = accountObj.address; 
+    this.phone = accountObj.phone; 
+    this.introduce = accountObj.introduce; 
+    this.rating = accountObj.rating; 
+    this.displayAt = accountObj.displayAt || "ALL";
   }
 }
