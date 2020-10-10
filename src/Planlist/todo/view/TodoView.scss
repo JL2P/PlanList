@@ -2,6 +2,7 @@ aside{
     font-weight: 600;
     line-height: 18px;
     margin-top: 6px;
+    
 }
 
 
@@ -9,14 +10,13 @@ div
     .todo__updatePage {
         
         text-align: center;
-        width: 100%;
-        height: 100%;
-        top: 0;
+        width: "900px";
+        
         left: 0;
         margin:0 auto; 
-        margin-top:3rem;
-        margin-left:10rem;
-   
+        margin-top:10rem;
+        margin-left:20rem;
+        margin-bottom:10rem;
     }
 div
     .todo__content{
@@ -24,3 +24,11 @@ div
         vertical-align: middle;
 
     }
+    .todo__checkbox_success{
+        float:right;
+    }
+    .todo__button_save{
+        float:right;
+
+    }
+    
