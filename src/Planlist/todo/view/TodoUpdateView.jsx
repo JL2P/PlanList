@@ -9,7 +9,9 @@ import {
     Select,
     TextArea,
     Label,
-    Grid
+    Grid,
+    Container,
+    GridColumn
   } from 'semantic-ui-react'
 import TodoView from './TodoView';
   /* 카테고리 */
@@ -26,6 +28,7 @@ class TodoUpdateView extends Component {
   render() {
     const { value } = this.state
     return (
+     <Container fluid>
       <div className="todo__updatePage">
         <div className="todo__content">
       <Form>
@@ -80,7 +83,7 @@ class TodoUpdateView extends Component {
           </aside>
           </Grid.Column>
           <Grid.Column>
-        <div className="todo__checkbox">  
+        <div className="todo__checkbox_success">  
         <Form.Field
           control={Checkbox}
           label='완료'
@@ -88,13 +91,22 @@ class TodoUpdateView extends Component {
         </div> 
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-        <Form.Field control={Button}>저장</Form.Field>
+        <Grid.Row columns={2}>
+          <Grid.Column width={1}>
+          <Grid.Column>
+          </Grid.Column>
+          <div className="todo__button_save">
+        <Form.Field 
+          control={Button}>저장
+        </Form.Field>
+         </div>
+        </Grid.Column>
         </Grid.Row>
         </Grid>  
       </Form>
       </div>
       </div>
+      </Container>
     )
   }
 }
