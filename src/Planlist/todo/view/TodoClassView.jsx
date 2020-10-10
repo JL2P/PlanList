@@ -14,16 +14,17 @@ class TodoClassView extends Component {
   };
 
   render() {
-    const {todoAdd} = this.props.todoAdd;
-    const {todoUpdate} = this.props.todoUpdate;
-    const {todoDelete} = this.props.todoDelete;
-    const {todoSave} = this.props.todoSave;
-    
+    const { todoAdd } = this.props.todoAdd;
+    const { todoUpdate } = this.props.todoUpdate;
+    const { todoDelete } = this.props.todoDelete;
+    const { todoSave } = this.props.todoSave;
+
     return (
       <Modal
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        open={open}
+        // Class내에 선언한 함수는 밑에서 사용할때 this를 붙여야함
+        onClose={() => this.setOpen(false)}
+        onOpen={() => this.setOpen(true)}
+        open={this.state.open}
         trigger={<Button>편집</Button>}
       >
         <Modal.Header>Select a Photo</Modal.Header>
@@ -39,18 +40,18 @@ class TodoClassView extends Component {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={() => todoAdd()}>Add</Button>   
-          <Button onClick={() => todoUpdate()}>Update</Button> 
+          <Button onClick={() => todoAdd()}>Add</Button>
+          <Button onClick={() => todoUpdate()}>Update</Button>
           <Button onClick={() => todoDelete()}>Delete</Button>
           <Button onClick={() => todoSave()}>Save</Button>
-          <Button color="black" onClick={() => setOpen(false)}>
+          <Button color="black" onClick={() => this.setOpen(false)}>
             Nope
           </Button>
           <Button
             content="Yep, that's me"
             labelPosition="right"
             icon="checkmark"
-            onClick={() => setOpen(false)}
+            onClick={() => this.setOpen(false)}
             positive
           />
         </Modal.Actions>
