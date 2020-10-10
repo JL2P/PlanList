@@ -1,34 +1,27 @@
-aside{
-    font-weight: 600;
-    line-height: 18px;
-    margin-top: 6px;
-    
+aside {
+  font-weight: 600;
+  line-height: 18px;
+  margin-top: 6px;
+  text-align: right;
 }
 
+div .todo__updatePage {
+  text-align: center;
+  width: "900px";
 
-div
-    .todo__updatePage {
-        
-        text-align: center;
-        width: "900px";
-        
-        left: 0;
-        margin:0 auto; 
-        margin-top:10rem;
-        margin-left:20rem;
-        margin-bottom:10rem;
-    }
-div
-    .todo__content{
-        display: inline-block;
-        vertical-align: middle;
-
-    }
-    .todo__checkbox_success{
-        float:right;
-    }
-    .todo__button_save{
-        float:right;
-
-    }
-    
+  left: 0;
+  margin: 0 auto;
+  margin-top: 10rem;
+  margin-left: 20rem;
+  margin-bottom: 10rem;
+}
+div .todo__content {
+  display: inline-block;
+  vertical-align: middle;
+}
+.todo__checkbox_success {
+  float: right;
+}
+.todo__button_save {
+  float: right;
+}
