@@ -18,6 +18,7 @@ export default class AccountModel {
     this.accountId = accountObj.accountId; 
     this.email = accountObj.email; 
     this.name = accountObj.name;
+    this.password = accountObj.password;
     this.birth = accountObj.birth; 
     this.gender = accountObj.gender; 
     this.address = accountObj.address; 

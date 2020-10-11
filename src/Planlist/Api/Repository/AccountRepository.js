@@ -20,7 +20,7 @@ export default class AccountRepository{
     // account 추가
     // POST /api/account/
     accountCreate = (AccountModel)=>{
-        return axios.post(this.URL+"signup/",AccountModel).then(requuest=>requuest.data||{})
+        return axios.post(this.URL+"signup/", AccountModel).then(requuest=>requuest.data||{})
     }
 
     // account 수정
@@ -33,5 +33,11 @@ export default class AccountRepository{
     // DELETE /api/account/{accountId}/
     accountDelete = (accountId)=>{
         return axios.delete(this.URL+`signout/${accountId}/`).then(requuest=>requuest.data||null)
+    }
+
+    //로그인
+    // POST /api/account/
+    accountSignin = (AccountModel) => {
+        return axios.post(this.URL+"signin/",AccountModel).then(requuest=>requuest.data||{});
     }
 }

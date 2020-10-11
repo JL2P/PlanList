@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
@@ -8,7 +8,14 @@ import {
     sign_submitBtn 
 } from "../../style/Btn";
 
-const SigninView = () => {
+const SigninView = ({onSignin}) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onEmail = e => setEmail(e.target.value);
+  const onPassword = e => setPassword(e.target.value);
+
   const sign_move = {
     float: "right",
     padding: "0",
@@ -24,7 +31,11 @@ const SigninView = () => {
   };
   return (
     <AuthTemplate name = "Log In">
-      <Form>
+      <Form 
+        onSubmit={(e) => {
+          onSignin(e,{email,password}
+        )}}
+      >
         <div style={sign_IconBtn}>
           <Button color="facebook">
             <Icon name="facebook" />
@@ -38,14 +49,22 @@ const SigninView = () => {
 
         <Form.Field>
           <label>e-mail</label>
-          <input type="email" placeholder="Please enter a e-mail" required />
+          <input 
+            onChange={onEmail} 
+            type="email" 
+            placeholder="Please enter a e-mail" 
+            required
+            value={email}
+          />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
           <input
+            onChange={onPassword}
             type="password"
             placeholder="Please enter a password"
             required
+            value={password}
           />
         </Form.Field>
         <Form.Field>

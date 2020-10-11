@@ -20,11 +20,23 @@ export default class AccountStore {
   @computed getAccounts=()=>{
     return this.accounts
   }
-
+  
+  //회원가입
   @action
   async signup(account){
     const accountModel = new AccountModel(account);
     const result = await this.accountRepository.accountCreate(accountModel);
     console.log(result)
   };
+
+  //로그인
+  @action
+  async signin(account){
+  const accountModel = new AccountModel(account);
+  const result = await this.accountRepository.accountSignin(accountModel);
+    if(account.email === result.email && account.password === result.password){
+      console.log("로그인이 완료되었습니다. mobx store에서 history를 사용하기 위해서는 라이브러리를 설치해야하나?")
+      // this.history.push("/");
+    }
+  }
 }
