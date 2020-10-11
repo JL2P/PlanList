@@ -11,15 +11,24 @@ export default class AccountStore {
   }
 
   //모델 정의
-  @observable account = {};
-  @observable accounts = [];
+  @observable
+  account = {};
+  
+  @observable
+  accounts = [];
 
-  @computed getAccount=()=>{
-    return this.account
+  @computed 
+  get getAccount(){
+    return this.account ? {...this.account} : {};
   }
 
-  @computed getAccounts=()=>{
-    return this.accounts
+  @computed get getAccounts(){
+    return this.accounts;
+  }
+
+  @action
+  changeTest(){
+    this.account={A:"123"};
   }
   
   //회원가입
@@ -43,11 +52,18 @@ export default class AccountStore {
   
   @action
   async selectUser(accountId){
+    console.log(">>",this.account)
+    console.log(accountId);
     this.account = await this.accountRepository.accountDetail(accountId);
+    this.account = new AccountModel(this.account);
+    console.log(">>",this.account);
+    console.log(">>",this.account.email);
+    console.log(">>",this.getAccount.email);
   }
 
   @action
   async selectAll() {
     this.accounts = await this.accountRepository.accountList();
+    console.log(">>", this.accounts);
   }
 }
