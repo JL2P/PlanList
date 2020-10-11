@@ -6,11 +6,19 @@ import { inject, observer } from "mobx-react";
 @observer
 class SigninContainer extends Component {
 
+    constructor(props){
+        super(props)
+    }
+
     onSignin = (e, accountObj) =>{
         e.preventDefault();
         console.log(accountObj)
         const { account } = this.props.Store;
-        account.signin(accountObj);
+        account.signin(accountObj).then((req)=>{
+            if(account.logCheck == true){
+                this.props.history.push('/auth');
+            }   
+        });
     }
 
     render() {
