@@ -4,6 +4,7 @@ import AccountModel from "../../Api/model/AccountModel";
 import AccountRepository from "../../Api/Repository/AccountRepository"
 
 export default class AccountStore {
+  
   constructor(root) {
     this.root = root;
     this.accountRepository = new AccountRepository();
@@ -27,4 +28,14 @@ export default class AccountStore {
     const result = await this.accountRepository.accountCreate(accountModel);
     console.log(result)
   };
+
+  @action
+  async selectUser(accountId){
+    this.account = await this.accountRepository.accountDetail(accountId);
+  }
+
+  @action
+  async selectAll() {
+    this.accounts = await this.accountRepository.accountList();
+  }
 }
