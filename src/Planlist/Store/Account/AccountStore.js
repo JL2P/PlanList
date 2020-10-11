@@ -4,6 +4,7 @@ import AccountModel from "../../Api/model/AccountModel";
 import AccountRepository from "../../Api/Repository/AccountRepository"
 
 export default class AccountStore {
+  
   constructor(root) {
     this.root = root;
     this.accountRepository = new AccountRepository();
@@ -38,5 +39,13 @@ export default class AccountStore {
       console.log("로그인이 완료되었습니다. mobx store에서 history를 사용하기 위해서는 라이브러리를 설치해야하나?")
       // this.history.push("/");
     }
+  @action
+  async selectUser(accountId){
+    this.account = await this.accountRepository.accountDetail(accountId);
+  }
+
+  @action
+  async selectAll() {
+    this.accounts = await this.accountRepository.accountList();
   }
 }
