@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Container, Image, Grid, Icon, Segment } from "semantic-ui-react";
 import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
+import { inject, observer } from "mobx-react";
 
-const ProfileManageView = (account) => {
+const ProfileManageView = ({account}) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
+  
+  console.log(account)
   // modal open 상태 관리 (true: open, false: hide)
   const [open, setOpen] = React.useState(false);
 
@@ -33,7 +36,7 @@ const ProfileManageView = (account) => {
               <Grid stackable>
                 {/* 사용자 아이디 */}
                 <Grid.Column width={13} style={{ fontSize: pText1 }}>
-                  아이디
+                  {account?account.accountId:""}
                 </Grid.Column>
                 {/* setting */}
                 <Grid.Column width={2} style={{ fontSize: pText1 }}>
@@ -62,4 +65,4 @@ const ProfileManageView = (account) => {
   );
 };
 
-export default ProfileManageView;
+export default inject("Store")(observer(ProfileManageView));

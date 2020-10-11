@@ -1,4 +1,3 @@
-
 import AccountModel from "./AccountModel"
 const dateParse= (date=null)=> {
     let d = date?new Date(date): new Date();
@@ -10,11 +9,12 @@ const dateParse= (date=null)=> {
     return year + '-' + month + '-' + day;
 }
 
-export default class TodoModel{
+export default class TodoAddModel{
     constructor(todoObj){
-
+        this.accountId = "song";
         this.title=todoObj.title;
         this.description=todoObj.description;
+        this.category=todoObj.category;
         this.startTime=dateParse();
         this.endTime=todoObj.endTime;
         this.completed=todoObj.completed||"N";
