@@ -11,7 +11,6 @@ class ProfileMangeContainer extends Component {
     console.log("componentDidMount")
     const { account } = this.props.Store;
     account.selectUser("song");
-    console.log(account.account)
   }
 
   render() {
@@ -20,9 +19,10 @@ class ProfileMangeContainer extends Component {
     // const account = data[0];
     console.log("render");
     const { account } = this.props.Store;
-    console.log(account.account)
+    console.log("??",account);
+    // console.log(account.accountDetail);
 
-    return <ProfileManageView account={account.accountDetail}  />;
+    return <ProfileManageView account={account.getAccount}  />;
   }
 }
 

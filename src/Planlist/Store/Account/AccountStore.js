@@ -52,18 +52,13 @@ export default class AccountStore {
   
   @action
   async selectUser(accountId){
-    console.log(">>",this.account)
     console.log(accountId);
-    this.account = await this.accountRepository.accountDetail(accountId);
-    this.account = new AccountModel(this.account);
-    console.log(">>",this.account);
-    console.log(">>",this.account.email);
-    console.log(">>",this.getAccount.email);
+    const account = await this.accountRepository.accountDetail(accountId);
+    this.account = new AccountModel(account);
   }
 
   @action
   async selectAll() {
     this.accounts = await this.accountRepository.accountList();
-    console.log(">>", this.accounts);
   }
 }

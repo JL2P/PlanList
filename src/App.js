@@ -20,9 +20,9 @@ const App = withRouter(({ location }) => {
         <Route exact path="/" component={Main} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/account" component={Account} />
+        <Route path="/account" component={Account} />
         <Route exact path="/todo" component={Todo} />
-        <Redirect path="*" to="/" />
+ 
       </Switch>
       {location.pathname !== "/signin" && location.pathname !== "/signup" && (
         <Footer />
