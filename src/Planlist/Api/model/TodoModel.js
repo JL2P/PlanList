@@ -1,4 +1,5 @@
 
+import AccountModel from "./AccountModel"
 const dateParse= (date=null)=> {
     let d = date?new Date(date): new Date();
     let year = d.getFullYear();
@@ -11,9 +12,10 @@ const dateParse= (date=null)=> {
 
 export default class TodoModel{
     constructor(todoObj){
+        // this.account_id = new AccountModel(todoObj.account);
         this.title=todoObj.title;
         this.description=todoObj.description;
-        this.category=todoObj.category;
+        // this.category=todoObj.category;
         this.startTime=dateParse();
         this.endTime=todoObj.endTime;
         this.completed=todoObj.completed||"N";
