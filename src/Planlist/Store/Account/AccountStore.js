@@ -10,15 +10,18 @@ export default class AccountStore {
     this.accountRepository = new AccountRepository();
   }
 
+  // this.root.todo.
+
   //모델 정의
   @observable account = {};
   @observable accounts = [];
+  @observable logCheck = false;
 
-  @computed getAccount=()=>{
+  @computed get getAccount(){
     return this.account
   }
 
-  @computed getAccounts=()=>{
+  @computed get getAccounts(){
     return this.accounts
   }
   
@@ -36,9 +39,26 @@ export default class AccountStore {
   const accountModel = new AccountModel(account);
   const result = await this.accountRepository.accountSignin(accountModel);
     if(account.email === result.email && account.password === result.password){
-      console.log("로그인이 완료되었습니다. mobx store에서 history를 사용하기 위해서는 라이브러리를 설치해야하나?")
-      // this.history.push("/");
+      this.logCheck = true;
+      this.account = result;
+      console.log(result)
+      console.log("로그인이 완료되었습니다.")
     }
+  }
+  //auth
+  @action
+  async auth(account){
+    const accountModel = new AccountModel(account);
+    const result = await this.accountRepository.accountAuth(accountModel);
+    const check = {};
+    if(check == result){
+      this.logCheck = false;
+    }
+  }
+  //authRemove
+  @action
+  async userRemove(accountId){
+    const result = await this.accountRepository.accountDelete(accountId);
   }
   
   @action
