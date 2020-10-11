@@ -33,7 +33,7 @@ const ProfileManageView = (account) => {
               <Grid stackable>
                 {/* 사용자 아이디 */}
                 <Grid.Column width={13} style={{ fontSize: pText1 }}>
-                  {account.accountId}
+                  아이디
                 </Grid.Column>
                 {/* setting */}
                 <Grid.Column width={2} style={{ fontSize: pText1 }}>
