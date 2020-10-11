@@ -7,13 +7,14 @@ import {
   Account,
   SignIn,
   SignUp,
+  Auth,
   Todo,
 } from "./Planlist/PlanlistRoutes";
 
 const App = withRouter(({ location }) => {
   return (
     <>
-      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
+      {location.pathname !== "/signin" && location.pathname !== "/signup" && location.pathname !== "/auth" &&(
         <Header />
       )}
       <Switch>
@@ -21,10 +22,11 @@ const App = withRouter(({ location }) => {
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
+        <Route exact path="/auth" component={Auth} />
         <Route exact path="/todo" component={Todo} />
  
       </Switch>
-      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
+      {location.pathname !== "/signin" && location.pathname !== "/signup" && location.pathname !== "/auth" &&(
         <Footer />
       )}
     </>

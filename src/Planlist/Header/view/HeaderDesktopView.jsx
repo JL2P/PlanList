@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   Button,
   Container,
@@ -36,7 +38,9 @@ const HeaderDesktopView = ({ Media }) => {
             <Container>
               <Menu.Item position="right">
                 <Button as="a" inverted={!fixed}>
-                  Log in
+                  <Link to ="signin" style={{color:"#fff"}}>
+                    Log in
+                  </Link>
                 </Button>
                 <Button
                   as="a"
@@ -44,7 +48,10 @@ const HeaderDesktopView = ({ Media }) => {
                   primary={fixed}
                   style={{ marginLeft: "0.5em" }}
                 >
-                  Sign Up
+                  <Link to ="signup" style={{color:"#fff"}}>
+                    Sign Up
+                  </Link>
+                  
                 </Button>
               </Menu.Item>
             </Container>
