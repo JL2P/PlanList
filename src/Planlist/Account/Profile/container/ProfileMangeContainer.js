@@ -9,9 +9,9 @@ class ProfileMangeContainer extends Component {
   
   componentDidMount() {
     console.log("componentDidMount")
-    const { accountStore } = this.props.Store;
-    accountStore.selectUser("song");
-    console.log(accountStore.account)
+    const { account } = this.props.Store;
+    account.selectUser("song");
+    console.log(account.account)
   }
 
   render() {
@@ -19,11 +19,10 @@ class ProfileMangeContainer extends Component {
     // Store에서 account Store가져오기
     // const account = data[0];
     console.log("render");
-    const { accountStore } = this.props.Store;
-    console.log(accountStore.accountDetail)
-    console.log(accountStore.account)
+    const { account } = this.props.Store;
+    console.log(account.account)
 
-    return <ProfileManageView account={accountStore.accountDetail}  />;
+    return <ProfileManageView account={account.accountDetail}  />;
   }
 }
 
