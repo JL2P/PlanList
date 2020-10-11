@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Image, Grid, Icon, Segment } from "semantic-ui-react";
 import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 
-const ProfileManageView = () => {
+const ProfileManageView = (account) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
@@ -33,7 +33,7 @@ const ProfileManageView = () => {
               <Grid stackable>
                 {/* 사용자 아이디 */}
                 <Grid.Column width={13} style={{ fontSize: pText1 }}>
-                  chulchul_2
+                  {account.accountId}
                 </Grid.Column>
                 {/* setting */}
                 <Grid.Column width={2} style={{ fontSize: pText1 }}>
