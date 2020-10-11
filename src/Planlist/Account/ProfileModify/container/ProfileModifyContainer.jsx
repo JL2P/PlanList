@@ -1,10 +1,20 @@
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import ProfileManagerView from "../view/ProfileManagerView";
+import ProfileModifyView from "../view/ProfileModifyView";
 
+@inject("Store")
+@observer
 class ProfileModifyContainer extends Component {
-  render() {
 
-    return <ProfileManagerView />;
+  componentDidMount() {
+    const { account } = this.props.Store;
+    account.selectUser("song");
+  }
+
+  render() {
+    const { account } = this.props.Store;
+
+    return <ProfileModifyView account={account.getAccount} />;
   }
 }
 
