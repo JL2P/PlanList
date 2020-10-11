@@ -21,14 +21,10 @@ export default class TodoRepository{
 
     //todo 추가
     // POST /api/todo/
-    todoCreate = (TodoModel,accountModel)=>{
-
-        const data={
-            todo:TodoModel,
-            account:accountModel,
-        }
-        return axios.post(this.URL,data).then(request=>request.data||{})
+    todoCreate = (TodoModel)=>{
+        return axios.post(this.URL,TodoModel).then(request=>request.data||{})
     }
+
      // account 수정
     // PUT /api/account/
     todoUpdate = (TodoModel)=>{
