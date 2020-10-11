@@ -1,8 +1,11 @@
 import { observable, computed, action } from "mobx";
-
+import AccountModel from "../../Api/model/AccountModel";
+import TodoModel from "../../Api/model/TodoModel";
+import TodoRepository from "../../Api/Repository/TodoRepository"
 export default class TodoStore {
   constructor(root) {
     this.root = root;
+    this.todoRepository = new TodoRepository();
   }
 
   //모델 정의
@@ -18,7 +21,19 @@ export default class TodoStore {
   }
 
   @action
-  async writeTodo(){
-    
-  }
+  async editTodo(todoObj){
+    const todoModel = new TodoModel(todoObj);
+    const result = await this.todoRepository.todoUpdate(todoModel);
+    console.log(result);
+  };
+
+  @action
+  async saveTodo(todoObj,accountObj){
+    console.log(todoObj,accountObj)
+    const accountModel = new AccountModel(accountObj);
+    const todoModel = new TodoModel(todoObj);
+    console.log(todoModel)
+    const result = await this.todoRepository.todoCreate(todoModel,accountModel);
+    console.log(result);
+  };
 }
