@@ -32,11 +32,11 @@ const ProfileManageView = ({account}) => {
           {/* 프로필 정보 */}
           <Grid.Column width={12}>
             {/* 첫 번째 행 */}
-            <Segment basic>
+            <Segment basic >
               <Grid stackable>
                 {/* 사용자 아이디 */}
                 <Grid.Column width={13} style={{ fontSize: pText1 }}>
-                  {account?account.accountId:""}
+                  {account.accountId}
                 </Grid.Column>
                 {/* setting */}
                 <Grid.Column width={2} style={{ fontSize: pText1 }}>
@@ -59,7 +59,7 @@ const ProfileManageView = ({account}) => {
         </Grid.Row>
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
-        소개글 블라블라 어쩌구 저쩌구 ~~~~~~~~~~
+        {account.introduce?account.introduce:"소개글 블라블라 어쩌구 ~~~~~~~~~~~"}
       </Segment>
     </Container>
   );
