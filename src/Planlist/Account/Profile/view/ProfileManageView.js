@@ -18,10 +18,16 @@ const ProfileManageView = ({account}) => {
     setOpen(trigger);
   };
 
+  const [activeItem, setActiveItem] = React.useState("내정보 관리");
+  const handleItemClick=(activeItem)=>{
+    setActiveItem(activeItem);
+  }
+
+
   return (
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
-      <ProfileSettingModalView open={open} onOpen={onOpen} />
+      <ProfileSettingModalView account={account} open={open} onOpen={onOpen} activeItem={activeItem} handleItemClick={handleItemClick} />
 
       <Grid stackable>
         <Grid.Row>
