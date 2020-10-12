@@ -20,14 +20,19 @@ export default class AccountStore {
   accounts = [];
     
   @observable logCheck = false;
+  @observable authModifymove = true;
     
   @computed 
   get getAccount(){
-    return this.account ? {...this.account} : {};
+    return this.account;
   }
 
   @computed get getAccounts(){
     return this.accounts;
+  }
+
+  @computed get getAuthModifymove(){
+    return this.authModifymove;
   }
 
   @action
@@ -46,8 +51,11 @@ export default class AccountStore {
   //로그인
   @action
   async signin(account){
+  this.logCheck = false;
   const accountModel = new AccountModel(account);
   const result = await this.accountRepository.accountSignin(accountModel);
+  console.log(account);
+  console.log(result)
     if(account.email === result.email && account.password === result.password){
       this.logCheck = true;
       this.account = result;
@@ -71,6 +79,21 @@ export default class AccountStore {
     await this.accountRepository.accountDelete(accountId);
     console.log("아이디 삭제 완료");
   }
+  //auth move
+  @action
+  btn_change(){
+    this.authModifymove = false
+    console.log(this.authModifymove)
+  }
+
+  //UserModify
+  @action
+  async userModify(account){
+    const accountModel = new AccountModel(account)
+    const result = await this.accountRepository.accountModify(accountModel);
+    console.log(result);
+  }
+
   
   @action
   async selectUser(accountId){
