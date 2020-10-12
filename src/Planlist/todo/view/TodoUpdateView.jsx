@@ -17,9 +17,9 @@ import {
 import TodoView from "./TodoView";
 /* 카테고리 */
 const options = [
-  { key: "m", text: "Male", value: "male" },
-  { key: "f", text: "Female", value: "female" },
-  { key: "o", text: "Other", value: "other" },
+  { key: "e", text: "운동", value: "exercise" },
+  { key: "s", text: "공부", value: "study" },
+  { key: "o", text: "기타등등", value: "other" },
 ];
 
 class TodoUpdateView extends Component {

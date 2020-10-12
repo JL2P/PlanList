@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import Todo from "../../../PlanlistRoutes/Todo";
+
 const MainItemConfigModalView = ({ open, onModal, onTodoUpdateModal }) => {
   return (
+
     <Modal
       basic
       onClose={() => onModal(false)}
