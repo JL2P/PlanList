@@ -1,12 +1,8 @@
 import React, {useState} from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
-import  {Link} from 'react-router-dom';
 import Todo from "../../../PlanlistRoutes/Todo";
 
-const MainItemConfigModalView = ({ open, onModal }) => {
-  
-  const [comp, setComp] = useState(Todo)
-
+const MainItemConfigModalView = ({ open, onModal, onTodoUpdateModal }) => {
   return (
 
     <Modal
@@ -29,13 +25,14 @@ const MainItemConfigModalView = ({ open, onModal }) => {
         >
           <Icon name="star" /> 추천하기
         </Button>
+
         <Button
           fluid
           basic
           inverted
           color="green"
           style={{ marginBottom: "1em" }}
-          
+          onClick={onTodoUpdateModal}
         >
           <Icon name="configure" /> 글 수정
         </Button>
