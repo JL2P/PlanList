@@ -12,7 +12,7 @@ import {
   Grid,
   Container,
   GridColumn,
-  Segment
+  Segment,
 } from "semantic-ui-react";
 import TodoView from "./TodoView";
 /* 카테고리 */
@@ -40,9 +40,9 @@ class TodoUpdateView extends Component {
   onCategoryChange = (e) => this.setState({ category: e.target.value });
   onEndTimeChange = (e) => this.setState({ endTime: e.target.value });
   onCompletedChange = (e) => this.setState({ completed: e.target.value });
-  
+
   render() {
-    const {onSaveTodo} = this.props;
+    const { onSaveTodo } = this.props;
 
     return (
       <div className="todo__updatePage">
@@ -122,14 +122,17 @@ class TodoUpdateView extends Component {
                 <Grid.Column width={2}></Grid.Column>
                 <Grid.Column>
                   <div className="todo__button_save">
-
                     <aside>
-                    <Button  basic color='black' onClick={(e)=>{
-                      onSaveTodo(e, {...this.state})
-                    }} 
-                    >저장</Button>
+                      <Button
+                        basic
+                        color="black"
+                        onClick={(e) => {
+                          onSaveTodo(e, { ...this.state });
+                        }}
+                      >
+                        저장
+                      </Button>
                     </aside>
-                  
                   </div>
                 </Grid.Column>
               </Grid.Row>

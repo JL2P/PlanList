@@ -3,12 +3,14 @@ import { Card, Image, Icon, Label, Button } from "semantic-ui-react";
 import "./itemStyle.css";
 import MainItemInfoModalView from "./MainItemInfoModalView";
 import MainItemConfigModalView from "./MainItemConfigModalView";
-
+import TodoUpdateModalView from "../../../todo/view/TodoUpdateModalView";
 const MainItemView = ({ item }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = React.useState(false);
   // Item 설정 모달
   const [itemConfigOpen, setItemConfigOpen] = React.useState(false);
+  // todoUpdate 모달
+  const [todoUpdateOpen, setTodoUpdateOpen] = React.useState(false);
 
   const onInfoModal = (trigger) => {
     setItemInfoOpen(trigger);
@@ -18,9 +20,21 @@ const MainItemView = ({ item }) => {
     setItemConfigOpen(trigger);
   };
 
+  const onTodoUpdateModal = (trigger) => {
+    // 이전에 열려있는 모달 닫기
+    setItemConfigOpen(false);
+    // todoUpdate 모달 열기
+    setTodoUpdateOpen(trigger);
+  };
+
   return (
     <div>
-      <MainItemConfigModalView open={itemConfigOpen} onModal={onCofigModal} />
+      <TodoUpdateModalView open={todoUpdateOpen} onModal={onTodoUpdateModal} />
+      <MainItemConfigModalView
+        open={itemConfigOpen}
+        onModal={onCofigModal}
+        onTodoUpdateModal={onTodoUpdateModal}
+      />
       <MainItemInfoModalView
         item={item}
         open={itemInfoOpen}
