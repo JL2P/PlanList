@@ -18,7 +18,7 @@ const ProfileManageView = ({account}) => {
     setOpen(trigger);
   };
 
-  const [activeItem, setActiveItem] = React.useState("프로필 수정");
+  const [activeItem, setActiveItem] = React.useState("내정보 관리");
   const handleItemClick=(activeItem)=>{
     setActiveItem(activeItem);
   }

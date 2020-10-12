@@ -9,8 +9,7 @@ import {
   Icon,
 } from "semantic-ui-react";
 import ProfileModifyView from "../../../ProfileModify/view/ProfileModifyView";
-import ProfileManageView from "../ProfileManageView";
-import "../../../ProfileModify/view/ProfileModifyView.scss";
+import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
 
 const ProfileSettingModalView = ({
   open,
@@ -31,44 +30,41 @@ const ProfileSettingModalView = ({
           <Grid.Column width={3}>
             <Menu vertical tabular pointing secondary>
               <Menu.Item
-                name="프로필 수정"
-                active={activeItem === "프로필 수정"}
-                // onClick={handleItemClick}
-                onClick={() => handleItemClick("프로필 수정")}
+                name="내정보 관리"
+                active={activeItem === "내정보 관리"}
+                onClick={() => handleItemClick("내정보 관리")}
               />
               <Menu.Item
                 name="비밀번호 변경"
                 active={activeItem === "비밀번호 변경"}
-                // onClick={handleItemClick}
                 onClick={() => handleItemClick("비밀번호 변경")}
               />
               <Menu.Item
-                name="공개 범위 설정"
-                active={activeItem === "공개 범위 설정"}
-                // onClick={handleItemClick}
-                onClick={() => handleItemClick("공개 범위 설정")}
-              />
-
-              {/* <Menu.Item
-                name="companies"
-                active={activeItem === "companies"}
-                onClick={handleItemClick}
+                name="소개글 수정"
+                active={activeItem === "소개글 수정"}
+                onClick={() => handleItemClick("소개글 수정")}
               />
               <Menu.Item
-                name="links"
-                active={activeItem === "links"}
-                onClick={handleItemClick}
-              /> */}
+                name="공개 범위"
+                active={activeItem === "공개 범위 설정"}
+                onClick={() => handleItemClick("공개 범위 설정")}
+              />
             </Menu>
           </Grid.Column>
 
-          <Grid.Column stretched width={12}>
+          <Grid.Column stretched width={13}>
             <div>
-              {activeItem === "프로필 수정" && (
+              {activeItem === "내정보 관리" && (
                 <ProfileModifyView account={account} />
               )}
               {activeItem === "비밀번호 변경" && (
                 <ProfileModifyView account={account} />
+              )}
+              {activeItem === "소개글 수정" && (
+                <p>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;소개글
+                  수정
+                </p>
               )}
               {activeItem === "공개 범위 설정" && (
                 <p>
@@ -79,15 +75,6 @@ const ProfileSettingModalView = ({
             </div>
           </Grid.Column>
         </Grid>
-
-        {/* <Modal.Description>
-          <Segment textAlign="center">프로필 수정</Segment>
-          <Segment textAlign="center">비밀번호 변경</Segment>
-          <Segment textAlign="center">할 일 공개 범위 설정</Segment>
-          <Segment textAlign="center" onClick={() => onOpen(false)} primary>
-            취소
-          </Segment>
-        </Modal.Description> */}
       </Modal.Content>
       <Modal.Actions>
         <Button basic color="red" onClick={() => onOpen(false)}>
