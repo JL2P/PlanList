@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import  {Link} from 'react-router-dom';
+import Todo from "../../../PlanlistRoutes/Todo";
 
 const MainItemConfigModalView = ({ open, onModal }) => {
+  
+  const [comp, setComp] = useState(Todo)
+
   return (
+
     <Modal
       basic
       onClose={() => onModal(false)}
@@ -29,6 +35,7 @@ const MainItemConfigModalView = ({ open, onModal }) => {
           inverted
           color="green"
           style={{ marginBottom: "1em" }}
+          
         >
           <Icon name="configure" /> 글 수정
         </Button>
