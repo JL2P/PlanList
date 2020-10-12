@@ -109,11 +109,14 @@ class TodoUpdateView extends Component {
                 <Grid.Column width={2}></Grid.Column>
                 <Grid.Column>
                   <div className="todo__checkbox_success">
-                    <Form.Field
-                      control={Checkbox}
+                    
+                    <Checkbox style={{background:"white"}}
+           
+       
                       label="완료여부"
+                     
                       onChange={this.onCompletedChange}
-                    />
+                   />
                   </div>
                 </Grid.Column>
               </Grid.Row>
