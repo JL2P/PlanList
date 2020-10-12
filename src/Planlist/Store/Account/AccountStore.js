@@ -68,7 +68,8 @@ export default class AccountStore {
   //authRemove
   @action
   async userRemove(accountId){
-    const result = await this.accountRepository.accountDelete(accountId);
+    await this.accountRepository.accountDelete(accountId);
+    console.log("아이디 삭제 완료");
   }
   
   @action
