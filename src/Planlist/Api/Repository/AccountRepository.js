@@ -45,5 +45,9 @@ export default class AccountRepository{
     accountAuth = (AccountModel) => {
         return axios.post(this.URL+"auth/",AccountModel).then(request=>request.data||{});
     }
+    //내 정보 수정
+    accountUserModify = (AccountModel) => {
+        return axios.put(this.URL+"userModify/",AccountModel).then(request => request.data || {});
+    }
 
 }

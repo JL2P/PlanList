@@ -12,12 +12,13 @@ class SigninContainer extends Component {
 
     onSignin = (e, accountObj) =>{
         e.preventDefault();
-        console.log(accountObj)
         const { account } = this.props.Store;
         account.signin(accountObj).then((req)=>{
             if(account.logCheck == true){
                 this.props.history.push('/auth');
-            }   
+            }else{
+                alert("회원 정보를 확인해 주세요.")
+            }
         });
     }
 
