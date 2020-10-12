@@ -29,6 +29,7 @@ const MainItemConfigModalView = ({ open, onModal, onTodoUpdateModal }) => {
           inverted
           color="green"
           style={{ marginBottom: "1em" }}
+          onClick={onTodoUpdateModal}
         >
           <Icon name="configure" /> 글 수정
         </Button>
@@ -38,6 +39,7 @@ const MainItemConfigModalView = ({ open, onModal, onTodoUpdateModal }) => {
           inverted
           color="red"
           style={{ marginBottom: "1em" }}
+          
         >
           <Icon name="remove" /> 글 삭제
         </Button>
