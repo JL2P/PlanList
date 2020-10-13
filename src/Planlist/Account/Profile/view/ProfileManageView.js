@@ -4,7 +4,7 @@ import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import { inject, observer } from "mobx-react";
 
-const ProfileManageView = ({account}) => {
+const ProfileManageView = ({account, onModifyAccount}) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
@@ -27,7 +27,7 @@ const ProfileManageView = ({account}) => {
   return (
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
-      <ProfileSettingModalView account={account} open={open} onOpen={onOpen} activeItem={activeItem} handleItemClick={handleItemClick} />
+      <ProfileSettingModalView onModifyAccount={onModifyAccount} account={account} open={open} onOpen={onOpen} activeItem={activeItem} handleItemClick={handleItemClick} />
 
       <Grid stackable>
         <Grid.Row>

@@ -17,9 +17,8 @@ const ProfileSettingModalView = ({
   activeItem,
   handleItemClick,
   account,
+  onModifyAccount,
 }) => {
-  // const handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
   return (
     <Modal open={open} height={10}>
       <Modal.Header>
@@ -55,10 +54,16 @@ const ProfileSettingModalView = ({
           <Grid.Column stretched width={13}>
             <div>
               {activeItem === "내정보 관리" && (
-                <ProfileModifyView account={account} />
+                <ProfileAccountModifyView
+                  account={account}
+                  onModifyAccount={onModifyAccount}
+                />
               )}
               {activeItem === "비밀번호 변경" && (
-                <ProfileModifyView account={account} />
+                <ProfileModifyView
+                  account={account}
+                  onModifyAccount={onModifyAccount}
+                />
               )}
               {activeItem === "소개글 수정" && (
                 <p>
