@@ -1,6 +1,7 @@
 import { observable, computed, action } from "mobx";
 import data from "../../Sample/Data/Sign_Account_Data";
 import AccountModel from "../../Api/model/AccountModel";
+import AccountAddModel from "../../Api/model/AccountAddModel";
 import AccountRepository from "../../Api/Repository/AccountRepository"
 
 export default class AccountStore {
@@ -43,9 +44,12 @@ export default class AccountStore {
   //회원가입
   @action
   async signup(account){
-    const accountModel = new AccountModel(account);
+    console.log(account);
+    const accountModel = new AccountAddModel(account);
+    console.log(accountModel);
     const result = await this.accountRepository.accountCreate(accountModel);
     console.log(result)
+    alert('대시')
   };
 
   //로그인
