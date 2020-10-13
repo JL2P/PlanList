@@ -13,16 +13,19 @@ class ProfileMangeContainer extends Component {
     account.selectUser("song");
   }
 
+  onModifyAccount = () => {
+    const {account} = this.props.Store;
+    account.userModify(account);
+  };
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
-    // const account = data[0];
     console.log("render");
     const { account } = this.props.Store;
     console.log("??",account);
     // console.log(account.accountDetail);
 
-    return <ProfileManageView account={account.getAccount}  />;
+    return <ProfileManageView account={account.getAccount} onModifyAccount={this.onModifyAccount} />;
   }
 }
 

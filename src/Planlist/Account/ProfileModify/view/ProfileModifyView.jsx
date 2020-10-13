@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Card, Form, Grid, Input, Segment } from "semantic-ui-react";
-import "./ProfileModifyView.scss";
+import { Button, Card, Form, Grid, Input, Segment } from "semantic-ui-react";
 
 const ProfileModifyView = ({ account }) => {
   /**
@@ -108,6 +107,7 @@ const ProfileModifyView = ({ account }) => {
             <Input fluid placeholder={account.introduce} />
           </Grid.Column>
         </Grid.Row>
+        
       </Grid>
     </Form>
   );
