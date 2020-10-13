@@ -5,14 +5,11 @@ import {
   Checkbox,
   Form,
   Input,
-  Radio,
   Select,
   TextArea,
-  Label,
   Grid,
-  Container,
-  GridColumn,
-  Segment,
+  Modal
+  
 } from "semantic-ui-react";
 import TodoView from "./TodoView";
 /* 카테고리 */
@@ -31,9 +28,10 @@ class TodoUpdateView extends Component {
       description: "",
       category: "",
       endTime: "",
-      completed: "",
+      completed: "", 
     };
   }
+
 
   onTitleChange = (e) => this.setState({ title: e.target.value });
   onDescriptionChange = (e) => this.setState({ description: e.target.value });
@@ -41,10 +39,19 @@ class TodoUpdateView extends Component {
   onEndTimeChange = (e) => this.setState({ endTime: e.target.value });
   onCompletedChange = (e) => this.setState({ completed: e.target.value });
 
-  render() {
-    const { onSaveTodo } = this.props;
+  // setOpen= (flag)=>{this.setState({open:flag})}
 
+  render() {
+    const { onSaveTodo ,open, onModal } = this.props;
+  
     return (
+      <Modal
+      onClose={() => onModal(false)}
+      onOpen={() => onModal(true)}
+      open={open}
+     
+    > 
+      
       <div className="todo__updatePage">
         <div className="todo__content">
           <Form>
@@ -108,13 +115,15 @@ class TodoUpdateView extends Component {
               <Grid.Row columns={2}>
                 <Grid.Column width={2}></Grid.Column>
                 <Grid.Column>
+                   <aside>
+                    <label>완료여부</label>
+          
+                    </aside> <br/>
+
                   <div className="todo__checkbox_success">
                     
                     <Checkbox style={{background:"white"}}
-           
-       
-                      label="완료여부"
-                     
+      
                       onChange={this.onCompletedChange}
                    />
                   </div>
@@ -122,27 +131,41 @@ class TodoUpdateView extends Component {
               </Grid.Row>
 
               <Grid.Row columns={2}>
-                <Grid.Column width={2}></Grid.Column>
+                <Grid.Column width={2}>
+                
+                </Grid.Column>
                 <Grid.Column>
-                  <div className="todo__button_save">
-                    <aside>
-                      <Button
-                        basic
-                        color="black"
-                        onClick={(e) => {
-                          onSaveTodo(e, { ...this.state });
-                        }}
-                      >
-                        저장
-                      </Button>
-                    </aside>
+                <div className="todo__button_exit">
+                <aside>
+                    <Button background="white"
+                     onClick={() => onModal(false)}>
+                      닫기
+                      
+                    </Button>
+                  </aside>
                   </div>
+                <div className="todo__button_save">
+                    <aside>
+                    <Button background="white"
+                     
+                      color="white"
+                      onClick={(e) => {
+                        onSaveTodo(e, { ...this.state });
+                      }}
+                    >
+                      저장
+                    </Button>
+                    </aside>
+                </div>
+              
+                  
                 </Grid.Column>
               </Grid.Row>
             </Grid>
           </Form>
         </div>
       </div>
+      </Modal>
     );
   }
 }

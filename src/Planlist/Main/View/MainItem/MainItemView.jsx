@@ -3,7 +3,7 @@ import { Card, Image, Icon, Label, Button } from "semantic-ui-react";
 import "./itemStyle.css";
 import MainItemInfoModalView from "./MainItemInfoModalView";
 import MainItemConfigModalView from "./MainItemConfigModalView";
-import TodoUpdateModalView from "../../../todo/view/TodoUpdateModalView";
+import TodoUpdateView from "../../../todo/view/TodoUpdateView";
 const MainItemView = ({ item }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = React.useState(false);
@@ -29,7 +29,7 @@ const MainItemView = ({ item }) => {
 
   return (
     <div>
-      <TodoUpdateModalView open={todoUpdateOpen} onModal={onTodoUpdateModal} />
+      <TodoUpdateView open={todoUpdateOpen} onModal={onTodoUpdateModal} />
       <MainItemConfigModalView
         open={itemConfigOpen}
         onModal={onCofigModal}
