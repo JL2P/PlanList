@@ -1,6 +1,6 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState} from "react";
 import { Container, Image, Grid, Icon, Segment } from "semantic-ui-react";
-import TestModal from "./TestModal";
+// import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import { inject, observer } from "mobx-react";
 
@@ -11,14 +11,14 @@ const ProfileManageView = ({account, onModifyAccount}) => {
   
   console.log(account)
   // modal open 상태 관리 (true: open, false: hide)
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   // 하위 컴포넌트인 modal에서 상위컴포넌트인 ProfileManageView의 스테이트를 변경하기 위함
   const onOpen = (trigger) => {
     setOpen(trigger);
   };
 
-  const [activeItem, setActiveItem] = React.useState("내정보 관리");
+  const [activeItem, setActiveItem] = useState("내정보 관리");
   const handleItemClick=(activeItem)=>{
     setActiveItem(activeItem);
   }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import exampleDataset from "../../Sample/Data/MainPage_List_Data";
 import MainListView from "../View/MainListView";
 import MainItemGroupView from "../View/MainItem/MainItemGroupView";
 import MainItemView from "../View/MainItem/MainItemView";

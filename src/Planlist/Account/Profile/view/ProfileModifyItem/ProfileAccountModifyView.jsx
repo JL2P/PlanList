@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Card, Form, Grid, Input, Segment } from "semantic-ui-react";
+import React from "react";
+import { Form, Grid, Input } from "semantic-ui-react";
 
 const ProfileAccountModifyView = ({ account }) => {
   const colWidth = 4;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Segment, Image, Container } from "semantic-ui-react";
+import { Menu, Container } from "semantic-ui-react";
 import MainListContainer from "../../../Main/Container/MainListContainer";
 import ProfileTodoListContainer from "../container/ProfileTodoListContainer";
 

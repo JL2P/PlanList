@@ -1,5 +1,5 @@
 import { observable, computed, action } from "mobx";
-import AccountModel from "../../Api/model/AccountModel";
+// import AccountModel from "../../Api/model/AccountModel";
 import TodoAddModel from '../../Api/model/TodoAddModel';
 import TodoModel from "../../Api/model/TodoModel";
 import TodoRepository from "../../Api/Repository/TodoRepository"
@@ -67,7 +67,7 @@ export default class TodoStore {
   @action
   async saveTodo(todoObj){
     const todoModel = new TodoAddModel(todoObj);
-    const result = await this.todoRepository.todoCreate(todoModel);
+    await this.todoRepository.todoCreate(todoModel);
 
   };
 }
