@@ -8,41 +8,74 @@ import MainItemView from "../View/MainItem/MainItemView";
 @inject("Store")
 @observer
 class MainPageContainer extends Component {
-  getRandomIntInclusive = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  constructor(props) {
+    super(props);
 
-  divisonToItemGroup = (MainItemViewList, n) => {
-    const temp = [];
-    for (var i = 0; i < MainItemViewList.length; i++) {
-      temp.push(
-        <MainItemGroupView key={i} items={MainItemViewList.splice(0, n)} />
-      );
+    //메인화면 조회되는 컬럼 수
+    this.COLUMN_COUNT = 3;
+    //각 Columne의 높이값을 비교하기위한 ref
+
+    this.columns = [...Array(this.COLUMN_COUNT).keys()].map((_) =>
+      React.createRef()
+    );
+  }
+
+  componentDidMount() {
+    this.props.Store.todo.getApiTodo(this.COLUMN_COUNT);
+  }
+
+  componentDidUpdate() {
+    const { todo } = this.props.Store;
+
+    const columnHeights = this.columns.map((item) => item.current.clientHeight);
+
+    const MaxValue = Math.max.apply(null, columnHeights);
+    const MinValue = Math.min.apply(null, columnHeights);
+
+    const maxIndex = columnHeights.indexOf(MaxValue);
+    const minIndex = columnHeights.indexOf(MinValue);
+
+    //각 div를 비교했을때, 최대높이와 최소높이의 차이가 150이상일 경우
+    if (MaxValue - MinValue > 150) {
+      let changeTodoList = todo.getMainTodos;
+      //최대높이의 item을 최소 높이의 아이템 배열에 넣어준다.
+      changeTodoList[minIndex].push(changeTodoList[maxIndex].pop());
+
+      //MainTodos변경
+      todo.setMainTodos(changeTodoList);
     }
-    return temp;
+  }
+
+  divisonToItemGroup = (data, n) => {
+    const MainItemGroupList = [];
+
+    //데이터를 이용하여 메인 아이템 리스트 생성
+    const MainItemViewList = data.map((column) =>
+      column.map((item, idx) => <MainItemView key={idx} item={item} />)
+    );
+
+    //각 column을 itemGroup으로 만들어주기
+    for (let i = 0; i < n; i++)
+      MainItemGroupList.push(
+        <MainItemGroupView
+          key={i}
+          items={MainItemViewList[i]}
+          columnRef={this.columns[i]}
+        />
+      );
+
+    return MainItemGroupList;
   };
 
   render() {
-    //메인화면 조회되는 Card 컬럼 수
-    const COLUMN_COUNT = 3;
-    //테스트용 데이터
-    const dataset = exampleDataset;
-    const test_arr = ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"];
-
-    //데이터를 이용하여 메인 아이템 리스트 생성
-    const MainItemViewList = test_arr.map((_, index) => (
-      <MainItemView
-        key={index}
-        item={dataset[this.getRandomIntInclusive(0, 99)]}
-      />
-    ));
+    //테스트용 데이터셋
+    const { todo } = this.props.Store;
+    const sampleData = todo.getMainTodos;
 
     //메인 아이템 리스트를 각 화면 커럼에 순서대로 배치
     const MainItemGroupListView = this.divisonToItemGroup(
-      MainItemViewList,
-      COLUMN_COUNT
+      sampleData,
+      this.COLUMN_COUNT
     );
 
     return <MainListView itemList={MainItemGroupListView} />;
