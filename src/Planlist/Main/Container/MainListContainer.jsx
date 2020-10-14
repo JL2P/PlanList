@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import exampleDataset from "../../Sample/Data/MainPage_List_Data";
 import MainListView from "../View/MainListView";
+import MainItemGroupView from "../View/MainItem/MainItemGroupView";
 import MainItemView from "../View/MainItem/MainItemView";
 
 @inject("Store")
@@ -13,42 +14,38 @@ class MainPageContainer extends Component {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  divisonToItemGroup = (MainItemViewList, n) => {
+    const temp = [];
+    for (var i = 0; i < MainItemViewList.length; i++) {
+      temp.push(
+        <MainItemGroupView key={i} items={MainItemViewList.splice(0, n)} />
+      );
+    }
+    return temp;
+  };
+
   render() {
-    const test_arr = ["*", "*", "*", "*", "*"];
+    //메인화면 조회되는 Card 컬럼 수
+    const COLUMN_COUNT = 3;
+    //테스트용 데이터
     const dataset = exampleDataset;
-    const exampleItemComponent_1 = test_arr.map((_, index) => (
-      <MainItemView
-        key={index}
-        item={dataset[this.getRandomIntInclusive(0, 99)]}
-      />
-    ));
-    const exampleItemComponent_2 = test_arr.map((_, index) => (
-      <MainItemView
-        key={index}
-        item={dataset[this.getRandomIntInclusive(0, 99)]}
-      />
-    ));
-    const exampleItemComponent_3 = test_arr.map((_, index) => (
-      <MainItemView
-        key={index}
-        item={dataset[this.getRandomIntInclusive(0, 99)]}
-      />
-    ));
-    const exampleItemComponent_4 = test_arr.map((_, index) => (
+    const test_arr = ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"];
+
+    //데이터를 이용하여 메인 아이템 리스트 생성
+    const MainItemViewList = test_arr.map((_, index) => (
       <MainItemView
         key={index}
         item={dataset[this.getRandomIntInclusive(0, 99)]}
       />
     ));
 
-    return (
-      <MainListView
-        exampleItemComponent_1={exampleItemComponent_1}
-        exampleItemComponent_2={exampleItemComponent_2}
-        exampleItemComponent_3={exampleItemComponent_3}
-        exampleItemComponent_4={exampleItemComponent_4}
-      />
+    //메인 아이템 리스트를 각 화면 커럼에 순서대로 배치
+    const MainItemGroupListView = this.divisonToItemGroup(
+      MainItemViewList,
+      COLUMN_COUNT
     );
+
+    return <MainListView itemList={MainItemGroupListView} />;
   }
 }
 
