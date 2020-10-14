@@ -35,7 +35,8 @@ class MainPageContainer extends Component {
     const minIndex = columnHeights.indexOf(MinValue);
 
     //각 div를 비교했을때, 최대높이와 최소높이의 차이가 150이상일 경우
-    if (MaxValue - MinValue > 150) {
+    console.log(MaxValue - MinValue);
+    if (MaxValue - MinValue > 210) {
       let changeTodoList = todo.getMainTodos;
       //최대높이의 item을 최소 높이의 아이템 배열에 넣어준다.
       changeTodoList[minIndex].push(changeTodoList[maxIndex].pop());
