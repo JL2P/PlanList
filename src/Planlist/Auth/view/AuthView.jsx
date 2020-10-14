@@ -81,7 +81,7 @@ const AuthView = ({
       <Button onClick={(e) => onBtn_change(e)} color="yellow" style={{color:"#000"}}>
         수정
       </Button>
-      <Button onClick={() => onUserRemove(getAccount.accountId)} color="yellow" style={{color:"#000"}}>
+      <Button onClick={(e) => onUserRemove(e,getAccount.accountId)} color="yellow" style={{color:"#000"}}>
         삭제
       </Button>
     </Form>
