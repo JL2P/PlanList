@@ -15,7 +15,8 @@ class AuthContainer extends Component {
         } 
     }
     //유저 제거
-    onUserRemove = (accountId) => {
+    onUserRemove = (e,accountId) => {
+        e.preventDefault();
         const { account } = this.props.Store;
             const returnValue = window.confirm("정말로 삭제하겠습니까?")
             if(returnValue){

@@ -4,6 +4,8 @@ Account 데이터를 담는 클래스
 --------------------------------------------------
 # accountId : 유저 고유아이디
 # email     : 이메일
+# name      : 이름
+# password  : 비밀번호
 # age       : 나이
 # gender    : 성별
 # address   : 주소

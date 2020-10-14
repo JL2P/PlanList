@@ -14,7 +14,7 @@ class SignupContainer extends Component {
     //회원가입 실행
     account.signup(accountObj);
     alert("회원가입이 완료되었습니다.");
-    // window.location.replace("signin") ;
+    window.location.replace("signin") ;
   };
 
   render() {
