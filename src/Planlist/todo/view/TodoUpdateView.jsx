@@ -51,7 +51,7 @@ class TodoUpdateView extends Component {
         <div className="todo__updatePage">
           <div className="todo__content">
             <Form>
-              <Grid stackable>
+              <Grid.Row stackable>
                 <Grid.Row columns={2}>
                   <Grid.Column width={2}>
                     <aside>
@@ -133,19 +133,12 @@ class TodoUpdateView extends Component {
                   <Grid.Column>
                     <div className="todo__button_exit">
                       <aside>
-                        <Button
-                          background="white"
-                          onClick={() => onModal(false)}
-                        >
-                          닫기
-                        </Button>
+                        <Button onClick={() => onModal(false)}>닫기</Button>
                       </aside>
                     </div>
                     <div className="todo__button_save">
                       <aside>
                         <Button
-                          background="white"
-                          color="white"
                           onClick={(e) => {
                             onSaveTodo(e, { ...this.state });
                           }}
@@ -156,7 +149,7 @@ class TodoUpdateView extends Component {
                     </div>
                   </Grid.Column>
                 </Grid.Row>
-              </Grid>
+              </Grid.Row>
             </Form>
           </div>
         </div>
