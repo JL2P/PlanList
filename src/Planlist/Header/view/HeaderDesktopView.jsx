@@ -37,21 +37,19 @@ const HeaderDesktopView = ({ Media }) => {
           >
             <Container>
               <Menu.Item position="right">
-                <Button as="a" inverted={!fixed}>
-                  <Link to ="signin" style={{color:"#fff"}}>
+                <Button inverted={!fixed}>
+                  <Link to="signin" style={{ color: "#fff" }}>
                     Log in
                   </Link>
                 </Button>
                 <Button
-                  as="a"
                   inverted={!fixed}
                   primary={fixed}
                   style={{ marginLeft: "0.5em" }}
                 >
-                  <Link to ="signup" style={{color:"#fff"}}>
+                  <Link to="signup" style={{ color: "#fff" }}>
                     Sign Up
                   </Link>
-                  
                 </Button>
               </Menu.Item>
             </Container>

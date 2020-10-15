@@ -1,5 +1,5 @@
 import { observable, computed, action } from "mobx";
-import data from "../../Sample/Data/Sign_Account_Data";
+// import data from "../../Sample/Data/Sign_Account_Data";
 import AccountModel from "../../Api/model/AccountModel";
 import AccountAddModel from "../../Api/model/AccountAddModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
@@ -74,7 +74,7 @@ export default class AccountStore {
     const accountModel = new AccountSigninModel(account);
     const result = await this.accountRepository.accountAuth(accountModel);
     const check = {};
-    if(check == result){
+    if(check === result){
       this.logCheck = false;
     }
   }

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Modal,
-  Segment,
-  Menu,
-  Grid,
-  Button,
-  Icon,
-} from "semantic-ui-react";
+import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
 import ProfileModifyView from "../../../ProfileModify/view/ProfileModifyView";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Header, Icon, Image, Modal } from "semantic-ui-react";
+import { Button, Icon, Image, Modal } from "semantic-ui-react";
 
 // 모달창이 열렸을때 보여지는 페이지
 const TestModal = ({ open, onOpen }) => {
