@@ -13,18 +13,25 @@ class AuthContainer extends Component {
       this.props.history.push("/signin");
       account.account = "";
     }
-  };
-  //유저 제거
-  onUserRemove = (accountId) => {
-    const { account } = this.props.Store;
-    const returnValue = window.confirm("정말로 삭제하겠습니까?");
-    if (returnValue) {
-      console.log("아이디 삭제");
-      account.userRemove(accountId);
-      alert("아이디가 삭제되었습니다.");
-      this.props.history.push("/signin");
-    } else {
-      console.log("삭제 취소");
+
+    //유저 제거
+    onUserRemove = (e,accountId) => {
+        e.preventDefault();
+        const { account } = this.props.Store;
+            const returnValue = window.confirm("정말로 삭제하겠습니까?")
+            if(returnValue){
+                console.log("아이디 삭제")
+                account.userRemove(accountId)
+                alert("아이디가 삭제되었습니다.")
+                this.props.history.push('/signin');
+            }else{
+                console.log("삭제 취소")
+            }
+    }
+    onBtn_change = (e) => {
+        e.preventDefault();
+        const { account } = this.props.Store;
+        account.btn_change();
     }
   };
   onBtn_change = (e) => {

@@ -2,7 +2,8 @@ import { observable, computed, action } from "mobx";
 // import data from "../../Sample/Data/Sign_Account_Data";
 import AccountModel from "../../Api/model/AccountModel";
 import AccountAddModel from "../../Api/model/AccountAddModel";
-import AccountRepository from "../../Api/Repository/AccountRepository"
+import AccountSigninModel from "../../Api/model/AccountSigninModel";
+import AccountRepository from "../../Api/Repository/AccountRepository";
 
 export default class AccountStore {
   
@@ -70,7 +71,7 @@ export default class AccountStore {
   //auth
   @action
   async auth(account){
-    const accountModel = new AccountModel(account);
+    const accountModel = new AccountSigninModel(account);
     const result = await this.accountRepository.accountAuth(accountModel);
     const check = {};
     if(check === result){
@@ -93,7 +94,7 @@ export default class AccountStore {
   //UserModify
   @action
   async userModify(account){
-    const accountModel = new AccountModel(account)
+    const accountModel = new AccountAddModel(account)
     const result = await this.accountRepository.accountModify(accountModel);
     console.log(result);
   }
