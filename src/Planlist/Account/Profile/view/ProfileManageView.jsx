@@ -1,15 +1,14 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Container, Image, Grid, Icon, Segment } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import { inject, observer } from "mobx-react";
 
-const ProfileManageView = ({account, onModifyAccount}) => {
+const ProfileManageView = ({ account, onModifyAccount }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
-  
-  console.log(account)
+  console.log(account);
   // modal open 상태 관리 (true: open, false: hide)
   const [open, setOpen] = useState(false);
 
@@ -19,15 +18,21 @@ const ProfileManageView = ({account, onModifyAccount}) => {
   };
 
   const [activeItem, setActiveItem] = useState("내정보 관리");
-  const handleItemClick=(activeItem)=>{
+  const handleItemClick = (activeItem) => {
     setActiveItem(activeItem);
-  }
-
+  };
 
   return (
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
-      <ProfileSettingModalView onModifyAccount={onModifyAccount} account={account} open={open} onOpen={onOpen} activeItem={activeItem} handleItemClick={handleItemClick} />
+      <ProfileSettingModalView
+        onModifyAccount={onModifyAccount}
+        account={account}
+        open={open}
+        onOpen={onOpen}
+        activeItem={activeItem}
+        handleItemClick={handleItemClick}
+      />
 
       <Grid stackable>
         <Grid.Row>
@@ -38,7 +43,7 @@ const ProfileManageView = ({account, onModifyAccount}) => {
           {/* 프로필 정보 */}
           <Grid.Column width={12}>
             {/* 첫 번째 행 */}
-            <Segment basic >
+            <Segment basic>
               <Grid stackable>
                 {/* 사용자 아이디 */}
                 <Grid.Column width={13} style={{ fontSize: pText1 }}>
@@ -65,10 +70,14 @@ const ProfileManageView = ({account, onModifyAccount}) => {
         </Grid.Row>
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
-        {account.introduce?account.introduce:"소개글 블라블라 어쩌구 ~~~~~~~~~~~"}
+        {account.introduce
+          ? account.introduce
+          : "소개글 블라블라 어쩌구 ~~~~~~~~~~~"}
       </Segment>
     </Container>
   );
 };
 
-export default inject("Store")(observer(ProfileManageView));
+// export default inject("Store")(observer(ProfileManageView));
+
+export default ProfileManageView;
