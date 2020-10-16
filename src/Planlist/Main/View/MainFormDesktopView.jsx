@@ -13,7 +13,7 @@ const MainFormDesktopView = ({ Media }) => {
         >
           <Header
             as="h1"
-            content="The Plan List."
+            content="The Plan It"
             style={{
               fontSize: "4em",
               fontWeight: "normal",
