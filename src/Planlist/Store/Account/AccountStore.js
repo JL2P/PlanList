@@ -57,7 +57,7 @@ export default class AccountStore {
   @action
   async signin(account){
   this.logCheck = false;
-  const accountModel = new AccountModel(account);
+  const accountModel = new AccountSigninModel(account);
   const result = await this.accountRepository.accountSignin(accountModel);
   console.log(account);
   console.log(result)
@@ -71,7 +71,7 @@ export default class AccountStore {
   //auth
   @action
   async auth(account){
-    const accountModel = new AccountSigninModel(account);
+    const accountModel = new AccountAddModel(account);
     const result = await this.accountRepository.accountAuth(accountModel);
     const check = {};
     if(check === result){
