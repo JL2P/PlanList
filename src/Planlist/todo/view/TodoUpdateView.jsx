@@ -47,11 +47,12 @@ class TodoUpdateView extends Component {
         onClose={() => onModal(false)}
         onOpen={() => onModal(true)}
         open={open}
+        size="large"
       >
         <div className="todo__updatePage">
           <div className="todo__content">
             <Form>
-              <Grid.Row stackable>
+              <Grid stackable>
                 <Grid.Row columns={2}>
                   <Grid.Column width={2}>
                     <aside>
@@ -149,7 +150,7 @@ class TodoUpdateView extends Component {
                     </div>
                   </Grid.Column>
                 </Grid.Row>
-              </Grid.Row>
+              </Grid>
             </Form>
           </div>
         </div>
