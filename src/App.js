@@ -9,6 +9,7 @@ import {
   SignUp,
   Auth,
   Todo,
+  Group
 } from "./Planlist/PlanlistRoutes";
 
 const App = withRouter(({ location }) => {
@@ -24,6 +25,7 @@ const App = withRouter(({ location }) => {
         <Route path="/account" component={Account} />
         <Route exact path="/auth" component={Auth} />
         <Route exact path="/todo" component={Todo} />
+        <Route exact path="/group" component={Group} />
  
       </Switch>
       {location.pathname !== "/signin" && location.pathname !== "/signup" && location.pathname !== "/auth" &&(
