@@ -1,0 +1,9 @@
+.MyGroup_img {
+  height: 160px;
+  object-fit: cover;
+}
+.slick-slide{
+    & + &{
+        padding-right:1rem;
+    }
+}

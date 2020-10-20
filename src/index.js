@@ -10,6 +10,9 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "mobx-react";
 
 import RootStore from "./Planlist/Store/RootStore";
+//react slick 적용
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 ReactDOM.render(
   <BrowserRouter>
