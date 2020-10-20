@@ -1,11 +1,11 @@
 import React from 'react';
 
-const GroupView = () => {
+const BestGroupView = () => {
     return (
         <div>
-            gdgdgdg
+            
         </div>
     );
 };
 
-export default GroupView;
+export default BestGroupView;
