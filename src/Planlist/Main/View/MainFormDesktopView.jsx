@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Container, Header, Input } from "semantic-ui-react";
 
 const MainFormDesktopView = ({ Media }) => {
@@ -11,15 +10,6 @@ const MainFormDesktopView = ({ Media }) => {
           textAlign="center"
           style={{ paddingTop: "1em", paddingBottom: "3.5em" }}
         >
-          <Header
-            as="h1"
-            content="The Plan It"
-            style={{
-              fontSize: "4em",
-              fontWeight: "normal",
-              color: "white",
-            }}
-          />
           <Header
             as="h5"
             content="Put your plan into action."

@@ -12,15 +12,6 @@ const MainFormMobileView = ({ Media }) => {
         >
           <Header
             as="h1"
-            content="The Plan List."
-            style={{
-              fontSize: "2em",
-              fontWeight: "normal",
-              color: "white",
-            }}
-          />
-          <Header
-            as="h1"
             content="Put your plan into action."
             style={{
               fontSize: "1.5em",
