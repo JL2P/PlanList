@@ -13,15 +13,7 @@ const FileUploadFormView = ({ images, onChangeImages, maxNumber }) => {
       maxNumber={maxNumber}
       dataURLKey="data_url"
     >
-      {({
-        imageList,
-        onImageUpload,
-        // onImageRemoveAll,
-        // onImageUpdate,
-        onImageRemove,
-        isDragging,
-        dragProps,
-      }) => (
+      {({ imageList, onImageUpload, onImageRemove, isDragging, dragProps }) => (
         // write your building UI
         <div className="upload__image-wrapper">
           {imageList.map((image, index) => (
