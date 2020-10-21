@@ -1,9 +1,35 @@
-import React from "react";
-import { Container, Header, Input } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Container, Header } from "semantic-ui-react";
+import MainCreateTodoFormView from "./MainCreateTodoFormView";
+import TodoFormView from "../../todo/view/TodoFormView";
 
 const MainFormDesktopView = ({ Media }) => {
+  // todoUpdate 모달
+  const [todoCreateOpen, setTodoCreateOpen] = useState(false);
+  const [todoTitle, setTodoTitle] = useState("");
+
+  const onCreateTodoModal = (trigger) => {
+    // todoUpdate 모달 열기
+    setTodoCreateOpen(trigger);
+  };
+  const onEnterCreateTodoModal = (e) => {
+    if (e.key === "Enter") {
+      // todoUpdate 모달 열기
+      setTodoCreateOpen(true);
+    }
+  };
+
+  //메인화면에서 title바꾼거 state에 저장하기
+  const onChangeTitle = (e) => setTodoTitle(e.target.value);
+
   return (
     <div style={{ background: "#1b1c1d" }}>
+      <TodoFormView
+        open={todoCreateOpen}
+        onModal={onCreateTodoModal}
+        todoTitle={todoTitle}
+        onChangeTitle={onChangeTitle}
+      />
       <Media greaterThan="mobile">
         <Container
           text
@@ -19,7 +45,13 @@ const MainFormDesktopView = ({ Media }) => {
               color: "white",
             }}
           />
-          <Input fluid icon="write" placeholder="Write what to do today" />
+
+          <MainCreateTodoFormView
+            todoTitle={todoTitle}
+            onChangeTitle={onChangeTitle}
+            onCreateTodoModal={onCreateTodoModal}
+            onEnterCreateTodoModal={onEnterCreateTodoModal}
+          />
         </Container>
       </Media>
     </div>

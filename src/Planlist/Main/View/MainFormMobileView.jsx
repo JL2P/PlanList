@@ -1,9 +1,18 @@
 import React from "react";
-import { Container, Header, Input } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
+import MainCreateTodoFormView from "./MainCreateTodoFormView";
+import TodoUpdateView from "../../todo/view/TodoUpdateView";
 
 const MainFormMobileView = ({ Media }) => {
+  // todoUpdate 모달
+  const [todoUpdateOpen, setTodoUpdateOpen] = React.useState(false);
+  const onTodoUpdateModal = (trigger) => {
+    // todoUpdate 모달 열기
+    setTodoUpdateOpen(trigger);
+  };
   return (
     <div style={{ background: "#1b1c1d" }}>
+      <TodoUpdateView open={todoUpdateOpen} onModal={onTodoUpdateModal} />
       <Media at="mobile">
         <Container
           text
@@ -19,7 +28,8 @@ const MainFormMobileView = ({ Media }) => {
               color: "white",
             }}
           />
-          <Input fluid icon="write" placeholder="Write what to do today" />
+
+          <MainCreateTodoFormView />
         </Container>
       </Media>
     </div>
