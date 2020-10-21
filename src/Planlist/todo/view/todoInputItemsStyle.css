@@ -1,0 +1,19 @@
+.message__place {
+  width: 100%;
+}
+
+.message__on {
+  margin-top: 1em;
+  display: block;
+}
+
+.message__off {
+  display: none;
+}
+
+aside {
+  font-weight: 600;
+  line-height: 18px;
+  margin-top: 6px;
+  text-align: right;
+}

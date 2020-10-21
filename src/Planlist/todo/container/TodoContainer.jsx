@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TodoUpdateView from "../view/TodoUpdateView";
+import TodoUpdateModalView from "../view/TodoUpdateModalView";
 import { inject, observer } from "mobx-react";
 
 @inject("Store")
@@ -22,7 +22,7 @@ class TodoContainer extends Component {
   };
 
   render() {
-    return <TodoUpdateView onSaveTodo={this.onSaveTodo} />;
+    return <TodoUpdateModalView onSaveTodo={this.onSaveTodo} />;
   }
 }
 

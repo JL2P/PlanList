@@ -19,6 +19,11 @@ class MainPageContainer extends Component {
     );
   }
 
+  //Todo를 업데이트 하는 함수
+  onUpdateTodo = (e, todoUpdateModel) => {
+    console.log(todoUpdateModel);
+  };
+
   componentDidMount() {
     this.props.Store.todo.getApiTodo(this.COLUMN_COUNT);
   }
@@ -35,8 +40,8 @@ class MainPageContainer extends Component {
     const minIndex = columnHeights.indexOf(MinValue);
 
     //각 div를 비교했을때, 최대높이와 최소높이의 차이가 150이상일 경우
-    console.log(MaxValue - MinValue);
-    if (MaxValue - MinValue > 230) {
+
+    if (MaxValue - MinValue > 300) {
       let changeTodoList = todo.getMainTodos;
       //최대높이의 item을 최소 높이의 아이템 배열에 넣어준다.
       changeTodoList[minIndex].push(changeTodoList[maxIndex].pop());
@@ -51,7 +56,13 @@ class MainPageContainer extends Component {
 
     //데이터를 이용하여 메인 아이템 리스트 생성
     const MainItemViewList = data.map((column) =>
-      column.map((item, idx) => <MainItemView key={idx} item={item} />)
+      column.map((todoModel, idx) => (
+        <MainItemView
+          key={idx}
+          todoModel={todoModel}
+          onUpdateTodo={this.onUpdateTodo}
+        />
+      ))
     );
 
     //각 column을 itemGroup으로 만들어주기

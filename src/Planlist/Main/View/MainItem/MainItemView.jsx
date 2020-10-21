@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Image, Icon, Label, Button } from "semantic-ui-react";
 import "./itemStyle.css";
 import MainItemInfoModalView from "./MainItemInfoModalView";
 import MainItemConfigModalView from "./MainItemConfigModalView";
-import TodoUpdateView from "../../../todo/view/TodoUpdateView";
-const MainItemView = ({ item }) => {
+import TodoUpdateModalView from "../../../todo/view/TodoUpdateModalView";
+const MainItemView = ({ todoModel, onUpdateTodo }) => {
   // Item 정보 모달
-  const [itemInfoOpen, setItemInfoOpen] = React.useState(false);
+  const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
-  const [itemConfigOpen, setItemConfigOpen] = React.useState(false);
+  const [itemConfigOpen, setItemConfigOpen] = useState(false);
   // todoUpdate 모달
-  const [todoUpdateOpen, setTodoUpdateOpen] = React.useState(false);
+  const [todoUpdateOpen, setTodoUpdateOpen] = useState(false);
 
   const onInfoModal = (trigger) => {
     setItemInfoOpen(trigger);
@@ -22,21 +22,30 @@ const MainItemView = ({ item }) => {
 
   const onTodoUpdateModal = (trigger) => {
     // 이전에 열려있는 모달 닫기
-    setItemConfigOpen(false);
-    // todoUpdate 모달 열기
-    setTodoUpdateOpen(trigger);
+    if (itemConfigOpen) {
+      setItemConfigOpen(false);
+      // todoUpdate 모달 열기
+      setTodoUpdateOpen(true);
+    } else {
+      setTodoUpdateOpen(trigger);
+    }
   };
 
   return (
     <div>
-      <TodoUpdateView open={todoUpdateOpen} onModal={onTodoUpdateModal} />
+      <TodoUpdateModalView
+        open={todoUpdateOpen}
+        onModal={onTodoUpdateModal}
+        onUpdateTodo={onUpdateTodo}
+        todo={todoModel}
+      />
       <MainItemConfigModalView
         open={itemConfigOpen}
         onModal={onCofigModal}
         onTodoUpdateModal={onTodoUpdateModal}
       />
       <MainItemInfoModalView
-        item={item}
+        item={todoModel}
         open={itemInfoOpen}
         onModal={onInfoModal}
       />
@@ -44,7 +53,7 @@ const MainItemView = ({ item }) => {
         <div className="todo__subitem">
           <Button style={{ padding: "1em", pointerEvents: "none" }}>
             <Icon name="star" color="yellow" />
-            <b style={{ fontSize: "14px" }}>{item.rating}</b>
+            <b style={{ fontSize: "14px" }}>{todoModel.rating}</b>
           </Button>
           <Button
             style={{ padding: "1em" }}
@@ -61,10 +70,10 @@ const MainItemView = ({ item }) => {
         {/* div로 감싼 이유는 시멘틱의Card에서 onClick을 주면 카드가 움직이기 때문! */}
         <div className="todo__item" onClick={() => onInfoModal(true)}>
           <Card style={{ width: "100%", marginTop: "1em" }} raised>
-            <Image src={item.imgUrl} wrapped ui={false} />
+            <Image src={todoModel.imgUrl} wrapped ui={false} />
             <Card.Content>
-              <Card.Header>{item.title}</Card.Header>
-              <Card.Description>{item.description}</Card.Description>
+              <Card.Header>{todoModel.title}</Card.Header>
+              <Card.Description>{todoModel.description}</Card.Description>
             </Card.Content>
             <Card.Content extra>
               <div
@@ -76,7 +85,7 @@ const MainItemView = ({ item }) => {
               >
                 <div style={{ marginLeft: "0.5em" }}>
                   <Icon name="user" />
-                  {item.name}
+                  {todoModel.name}
                 </div>
                 <div
                   style={{
@@ -89,7 +98,7 @@ const MainItemView = ({ item }) => {
                         name="clock outline"
                         style={{ marginRight: "0.5em" }}
                       />
-                      {item.start_time}
+                      {todoModel.startTime}
                     </Label>
 
                     <Label basic color="red">
@@ -97,7 +106,7 @@ const MainItemView = ({ item }) => {
                         name="clock outline"
                         style={{ marginRight: "0.5em" }}
                       />
-                      {item.end_time}
+                      {todoModel.endTime}
                     </Label>
                   </Card.Meta>
                 </div>

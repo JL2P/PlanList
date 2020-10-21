@@ -43,11 +43,13 @@ const HeaderIconsView = () => {
           style={iconStyle}
           alt="heart_white"
         />
-        <img
-          src="/images/button/ufo_white.png"
-          style={iconStyle}
-          alt="ufo_white"
-        />
+        <Link to={"/group/"}>
+          <img
+            src="/images/button/ufo_white.png"
+            style={iconStyle}
+            alt="ufo_white"
+          />
+        </Link>
         <Link to={"/account/"}>
           <img
             src="/images/button/user_white.png"

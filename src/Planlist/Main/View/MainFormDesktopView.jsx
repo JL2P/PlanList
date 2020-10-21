@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Container, Header } from "semantic-ui-react";
 import MainCreateTodoFormView from "./MainCreateTodoFormView";
-import TodoFormView from "../../todo/view/TodoFormView";
+import TodoCreateModalView from "../../todo/view/TodoCreateModalView";
 
-const MainFormDesktopView = ({ Media }) => {
-  // todoUpdate 모달
+const MainFormDesktopView = ({ Media, onSaveTodo }) => {
+  // todo 모달
   const [todoCreateOpen, setTodoCreateOpen] = useState(false);
   const [todoTitle, setTodoTitle] = useState("");
 
   const onCreateTodoModal = (trigger) => {
-    // todoUpdate 모달 열기
+    // todo 모달 열기
     setTodoCreateOpen(trigger);
   };
   const onEnterCreateTodoModal = (e) => {
     if (e.key === "Enter") {
-      // todoUpdate 모달 열기
+      // todo 모달 열기
       setTodoCreateOpen(true);
     }
   };
@@ -24,11 +24,12 @@ const MainFormDesktopView = ({ Media }) => {
 
   return (
     <div style={{ background: "#1b1c1d" }}>
-      <TodoFormView
+      <TodoCreateModalView
         open={todoCreateOpen}
         onModal={onCreateTodoModal}
-        todoTitle={todoTitle}
-        onChangeTitle={onChangeTitle}
+        mainTodoTitle={todoTitle}
+        onChangeMainTodoTitle={onChangeTitle}
+        onSaveTodo={onSaveTodo}
       />
       <Media greaterThan="mobile">
         <Container
@@ -38,7 +39,7 @@ const MainFormDesktopView = ({ Media }) => {
         >
           <Header
             as="h5"
-            content="Put your plan into action."
+            content="어떤 계획을 생각하고 계신가요?"
             style={{
               fontSize: "1.5em",
               fontWeight: "normal",
@@ -47,8 +48,8 @@ const MainFormDesktopView = ({ Media }) => {
           />
 
           <MainCreateTodoFormView
-            todoTitle={todoTitle}
-            onChangeTitle={onChangeTitle}
+            mainTodoTitle={todoTitle}
+            onChangeMainTodoTitle={onChangeTitle}
             onCreateTodoModal={onCreateTodoModal}
             onEnterCreateTodoModal={onEnterCreateTodoModal}
           />

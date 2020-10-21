@@ -1,26 +1,62 @@
 import React from "react";
-import "react-dropzone-uploader/dist/styles.css";
-import Dropzone from "react-dropzone-uploader";
+import { Button, Image } from "semantic-ui-react";
+import ImageUploading from "react-images-uploading";
+import "./fileUploadFormStyle.css";
 
-const fileUploadFormView = () => {
-  // called every time a file's `status` changes
-  const handleChangeStatus = ({ meta, file }, status) => {
-    console.log(status, meta, file);
-  };
-
-  // receives array of files that are done uploading when submit button is clicked
-  const handleSubmit = (files, allFiles) => {
-    console.log(files.map((f) => f.meta));
-    allFiles.forEach((f) => f.remove());
-  };
-
+//이미지 업로드 폼
+const FileUploadFormView = ({ images, onChangeImages, maxNumber }) => {
   return (
-    <Dropzone
-      onChangeStatus={handleChangeStatus}
-      onSubmit={handleSubmit}
-      accept="image/*,audio/*,video/*"
-    />
+    <ImageUploading
+      multiple
+      value={images}
+      onChange={onChangeImages}
+      maxNumber={maxNumber}
+      dataURLKey="data_url"
+    >
+      {({
+        imageList,
+        onImageUpload,
+        // onImageRemoveAll,
+        // onImageUpdate,
+        onImageRemove,
+        isDragging,
+        dragProps,
+      }) => (
+        // write your building UI
+        <div className="upload__image-wrapper">
+          {imageList.map((image, index) => (
+            <div key={index} className="image-item">
+              <div className="image-item__btn-wrapper">
+                <Button icon="x" onClick={() => onImageRemove(index)} />
+              </div>
+
+              <Image
+                src={image.data_url}
+                alt=""
+                style={{ width: "100%" }}
+                size="large"
+              />
+            </div>
+          ))}
+          <div
+            className={`ui ${isDragging ? "red" : ""} button`}
+            style={{
+              width: "100%",
+              height: "80px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              background: "#FFF0CD",
+            }}
+            onClick={onImageUpload}
+            {...dragProps}
+          >
+            <b>클릭 또는 드래그하여 이미지를 업로드 해주세요</b>
+          </div>
+        </div>
+      )}
+    </ImageUploading>
   );
 };
 
-export default fileUploadFormView;
+export default FileUploadFormView;
