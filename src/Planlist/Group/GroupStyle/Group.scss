@@ -118,3 +118,33 @@ $breakpoint-desktop: 1024px;
   padding:0 0.5rem 1rem!important;
 }
 
+//NewGroup
+.Newgroup_card{
+  position: relative;
+  height:253px;
+}
+.Newgroup_circle{
+  display: flex!important;
+  justify-content: center;
+  align-items: center;
+  width:100%!important;
+  height:100%!important;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px!important;
+  color:#ffb509;
+  &:hover{
+    color: #ffce5c!important;
+  }
+}
+
+.Newgroup_card .group_Card_header{
+  position: absolute;
+  bottom:15%;
+  left: 50%;
+  transform: translate(-50%,0);
+  color:rgba(0,0,0,.85);
+  font-weight: bold;
+}
