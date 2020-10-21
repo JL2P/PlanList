@@ -23,7 +23,7 @@ class TodoUpdateView extends Component {
     super(props);
 
     this.state = {
-      title: "",
+      title: this.props.todoTitle !== null ? this.props.todoTitle : "",
       description: "",
       category: "",
       endTime: "",
@@ -40,8 +40,8 @@ class TodoUpdateView extends Component {
   // setOpen= (flag)=>{this.setState({open:flag})}
 
   render() {
-    const { onSaveTodo, open, onModal } = this.props;
-
+    const { onSaveTodo, open, onModal, todoTitle } = this.props;
+    console.log(this.state.title);
     return (
       <Modal
         onClose={() => onModal(false)}
@@ -61,6 +61,7 @@ class TodoUpdateView extends Component {
                   </Grid.Column>
                   <Grid.Column>
                     <Form.Field
+                      value={this.state.title}
                       control={Input}
                       placeholder="글 제목"
                       onChange={this.onTitleChange}
