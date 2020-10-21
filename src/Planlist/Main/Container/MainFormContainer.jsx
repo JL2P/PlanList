@@ -4,6 +4,13 @@ import MainFormDesktopView from "../View/MainFormDesktopView";
 import MainFormMobileView from "../View/MainFormMobileView";
 
 class MainFormContainer extends Component {
+  onSaveTodo = (e, todoObj) => {
+    console.log("저장되었습니다.");
+    // const { todo } = this.props.Store;
+    //todo추가 실행
+    // todo.saveTodo(todoObj);
+  };
+
   render() {
     const { MediaContextProvider, Media } = createMedia({
       breakpoints: {
@@ -15,8 +22,8 @@ class MainFormContainer extends Component {
 
     return (
       <MediaContextProvider>
-        <MainFormDesktopView Media={Media} />
-        <MainFormMobileView Media={Media} />
+        <MainFormDesktopView Media={Media} onSaveTodo={this.onSaveTodo} />
+        <MainFormMobileView Media={Media} onSaveTodo={this.onSaveTodo} />
       </MediaContextProvider>
     );
   }

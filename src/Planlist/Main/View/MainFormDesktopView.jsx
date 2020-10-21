@@ -3,7 +3,7 @@ import { Container, Header } from "semantic-ui-react";
 import MainCreateTodoFormView from "./MainCreateTodoFormView";
 import TodoFormView from "../../todo/view/TodoFormView";
 
-const MainFormDesktopView = ({ Media }) => {
+const MainFormDesktopView = ({ Media, onSaveTodo }) => {
   // todoUpdate 모달
   const [todoCreateOpen, setTodoCreateOpen] = useState(false);
   const [todoTitle, setTodoTitle] = useState("");
@@ -29,6 +29,7 @@ const MainFormDesktopView = ({ Media }) => {
         onModal={onCreateTodoModal}
         mainTodoTitle={todoTitle}
         onChangeMainTodoTitle={onChangeTitle}
+        onSaveTodo={onSaveTodo}
       />
       <Media greaterThan="mobile">
         <Container
@@ -38,7 +39,7 @@ const MainFormDesktopView = ({ Media }) => {
         >
           <Header
             as="h5"
-            content="Put your plan into action."
+            content="어떤 계획을 생각하고 계신가요?"
             style={{
               fontSize: "1.5em",
               fontWeight: "normal",

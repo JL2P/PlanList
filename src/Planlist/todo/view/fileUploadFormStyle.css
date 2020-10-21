@@ -4,6 +4,6 @@
 .image-item__btn-wrapper {
   position: absolute;
   padding: 0.5em;
-  right: 3em;
+  right: 0;
   z-index: 10;
 }

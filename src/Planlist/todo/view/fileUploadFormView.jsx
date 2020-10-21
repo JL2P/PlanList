@@ -39,18 +39,19 @@ const FileUploadFormView = ({ images, onChangeImages, maxNumber }) => {
             </div>
           ))}
           <div
-            className={`ui ${isDragging ? "red" : "orange"}  basic button`}
+            className={`ui ${isDragging ? "red" : ""} button`}
             style={{
               width: "100%",
               height: "80px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              background: "#FFF0CD",
             }}
             onClick={onImageUpload}
             {...dragProps}
           >
-            클릭 또는 드래그하여 이미지를 업로드 해주세요
+            <b>클릭 또는 드래그하여 이미지를 업로드 해주세요</b>
           </div>
         </div>
       )}

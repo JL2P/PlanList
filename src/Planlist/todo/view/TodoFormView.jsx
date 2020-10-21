@@ -10,6 +10,7 @@ import {
   Select,
   TextArea,
   Grid,
+  Button,
 } from "semantic-ui-react";
 import FileUploadFormView from "./FileUploadFormView";
 
@@ -20,13 +21,14 @@ const TodoFormView = ({
   onModal,
   mainTodoTitle,
   onChangeMainTodoTitle,
+  onSaveTodo,
 }) => {
   const [images, setImages] = useState([]);
 
-  const [category, setCategory] = useState([]);
-  const [title, setTitle] = useState([]);
-  const [description, setDescription] = useState([]);
-  const [endTime, setEndTime] = useState([]);
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   //그리드 사이즈 지정
   const GRID_LEFT = 3;
@@ -137,16 +139,35 @@ const TodoFormView = ({
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-          </Form>
 
-          {/* 이미지 업로드 부분 */}
-          <div style={{ marginTop: "1em" }}>
-            <FileUploadFormView
-              images={images}
-              onChangeImages={onChangeImages}
-              maxNumber={maxNumber}
-            />
-          </div>
+            {/* 이미지 업로드 부분 */}
+            <div style={{ marginTop: "1em" }}>
+              <FileUploadFormView
+                images={images}
+                onChangeImages={onChangeImages}
+                maxNumber={maxNumber}
+              />
+            </div>
+
+            <Button
+              fluid
+              style={{
+                marginTop: "1em",
+                background: "#FFB517",
+                color: "#ffffff",
+              }}
+              onClick={(e) => {
+                onSaveTodo(e, {
+                  category: category,
+                  title: title,
+                  description: description,
+                  endTime: endTime,
+                });
+              }}
+            >
+              저장
+            </Button>
+          </Form>
         </div>
       </Container>
     </Modal>
