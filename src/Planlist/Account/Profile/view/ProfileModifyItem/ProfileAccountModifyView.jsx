@@ -1,18 +1,25 @@
 import React from "react";
-import { Form, Grid, Input } from "semantic-ui-react";
+import { Form, Grid, Input, Image } from "semantic-ui-react";
+import "./ProfileModify.scss";
 
 const ProfileAccountModifyView = ({ account }) => {
   const colWidth = 4;
   return (
-    <Form>
+    <Form style={{ width: "95%" }}>
       <Grid stackable>
+        <Grid.Row columns={2}>
+          <Grid.Column width={colWidth}>
+            <Image src="/profiles/hungry.png" size="tiny" bordered circular />
+          </Grid.Column>
+          <Grid.Column>{account.accountId}</Grid.Column>
+        </Grid.Row>
         <Grid.Row columns={2}>
           <Grid.Column width={colWidth}>
             <aside>
               <label>아이디</label>
             </aside>
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={10}>
             <Input fluid placeholder={account.accountId} />
           </Grid.Column>
         </Grid.Row>
