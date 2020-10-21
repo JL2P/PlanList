@@ -1,28 +1,28 @@
 import React from "react";
-import BestGroupItem from "./GroupItem/BestGroupItem";
-import { Container} from "semantic-ui-react";
+import CategoryGroupItem from "./GroupItem/CategoryGroupItem";
+import { Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "../GroupStyle/Group.scss";
 
-const BestGroupView = ({ sampleData }) => {
+const CategoryGroupView = ({sampleData}) => {
   const Groupitem = sampleData.map((item, index) => (
-    <BestGroupItem key={index} item={item} />
+    <CategoryGroupItem key={index} item={item} />
   ));
 
   var settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 7,
+    slidesToScroll: 7,
     initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 5,
+          slidesToScroll: 5,
           infinite: true,
           dots: true
         }
@@ -30,26 +30,27 @@ const BestGroupView = ({ sampleData }) => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          initialSlide: 4
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToShow: 3,
+          slidesToScroll: 3
         }
       }
     ]
   };
+
   return (
     <div className="bestGroup_wrap">
         <Container className="group_container_border">
             <div className="group_header_text">
-                <p className="group_header_headerText">인기 그룹</p>
-                <p className="group_header_contents">많은 사람들이 참여중인 그룹입니다.</p>
+                <p className="group_header_headerText">카테고리</p>
+                <p className="group_header_contents">원하시는 카테고리를 둘러보고 그룹을 찾아보세요!</p>
                 <Link to="/" className="group_allView">모두 보기</Link>
             </div>
             <Slider {...settings}>
@@ -60,4 +61,4 @@ const BestGroupView = ({ sampleData }) => {
   );
 };
 
-export default BestGroupView;
+export default CategoryGroupView;

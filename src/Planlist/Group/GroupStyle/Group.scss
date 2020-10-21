@@ -1,0 +1,120 @@
+//반응형 사이즈
+$breakpoint-mobile: 500px;
+$breakpoint-tablet: 758px;
+$breakpoint-desktop: 1024px;
+
+//GroupView 공통
+.group_header_text{
+  padding:0 0.5rem;
+}
+.group_header_headerText{
+  font-size: 1.2rem!important;
+  font-weight: bold;
+  margin-bottom: 0.4rem!important;
+}
+.group_header_contents{display: inline-block;}
+
+.group_allView{float:right;}
+
+.group_container_border{
+  border-bottom: 2px solid #f2f2f2;
+  padding:60px 0;
+}
+.Group_img {
+  height: 160px!important;
+  object-fit: cover!important;
+}
+
+//slick
+.slick-slide{
+  padding:0 0.5rem!important;
+}
+
+.slick-prev{left:-35px!important;}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #666!important;
+  font-size:30px!important;
+}
+.slick-dots{bottom:-40px!important;}
+
+@media(max-width: #{$breakpoint-mobile}){
+  .slick-prev{
+    left:-10px!important;
+    z-index: 1;
+  }
+  .slick-next{
+    right:0!important;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    color:rgba($color: #ffb509, $alpha: 1.0)!important;
+    font-size:30px!important;
+}
+}
+
+//Group_Item 공통
+.group_card{
+  float: left!important;
+  border:1px solid #d9d9d9!important;
+}
+.group_Card_header{
+  font-size: 1.1rem!important;
+  height:40px!important;
+  overflow: hidden!important;
+}
+
+
+//MyGroupView
+.myGroup_wrap{
+  width:100%!important;
+  background-color: #f2f2f2!important;
+  padding:60px 0!important;
+}
+
+//bestGroupView
+.bestGroup_wrap{
+  width:100%!important;
+}
+//카테고리
+.categoryGroup_header{
+  position: absolute;
+  left:10px;
+  bottom: 10px;
+  padding:0!important;
+  .group_Card_header{
+    color: #fff!important;
+    height:auto!important;
+  }
+}
+.categoryGroup_card:after{
+  content:"";
+  display: block;
+  padding-bottom:100%;
+}
+.categoryGroup_img{
+  position: absolute!important;
+  top:0;
+  left: 0;
+  height:100%;
+  width:100%;
+  object-fit: cover!important;
+}
+.categoryGroup_caption{
+  position: absolute!important;
+  top:0;
+  left: 0;
+  width:100%;
+  height:100%;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+}
+
+//RecommentGroup
+
+//RecommentGroupItem
+.recommendGroup_column{
+  box-shadow: none!important;
+  padding:0 0.5rem 1rem!important;
+}
+

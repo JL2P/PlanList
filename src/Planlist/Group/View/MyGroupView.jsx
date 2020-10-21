@@ -1,36 +1,61 @@
 import React from "react";
 import MyGroupItem from "./GroupItem/MyGroupItem";
-import { Container, Header, Menu, Card, Grid } from "semantic-ui-react";
+import NewGroupItem from "./GroupItem/NewGroupItem";
+import { Container} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import '../GroupStyle/MyGroup.scss';
+import '../GroupStyle/Group.scss';
 
 const MyGroupView = ({ sampleData }) => {
   const Groupitem = sampleData.map((item, index) => (
     <MyGroupItem key={index} item={item} />
   ));
 
-  const settings = {
+  var settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      }
+    ]
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        background: "#f2f2f2",
-        padding: "80px 0",
-      }}
-    >
+    <div className="myGroup_wrap">
       <Container>
-        <p><b style={{display:"block", fontSize:"1.2rem"}}>내 그룹</b></p>
-        <p style={{display:"inline-block"}}>내가 가입한 그룹 목록입니다.</p>
-        <Link to="/" style={{float:"right"}}>모두 보기</Link>
-          <Slider {...settings} className="test">
+        <div className="group_header_text">
+          <p className="group_header_headerText">내 그룹</p>
+          <p className="group_header_contents">내가 가입한 그룹 목록입니다.</p>
+          <Link to="/" className="group_allView">모두 보기</Link>
+        </div>
+          <Slider {...settings}>
+            <NewGroupItem />
             {Groupitem}
           </Slider>
       </Container>
