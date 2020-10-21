@@ -6,7 +6,7 @@ export default class TodoMainTestModel{
         this.description=todoObj.description
         this.writer=todoObj.writer
         this.rating=todoObj.rating
-        this.start_time=todoObj.start_time
-        this.end_time=todoObj.end_time
+        this.startTime=todoObj.start_time
+        this.endTime=todoObj.end_time
     }
 }

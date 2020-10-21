@@ -19,6 +19,7 @@ class MainPageContainer extends Component {
     );
   }
 
+  //Todo를 업데이트 하는 함수
   onUpdateTodo = (e, todoUpdateModel) => {
     console.log(todoUpdateModel);
   };
@@ -55,8 +56,12 @@ class MainPageContainer extends Component {
 
     //데이터를 이용하여 메인 아이템 리스트 생성
     const MainItemViewList = data.map((column) =>
-      column.map((item, idx) => (
-        <MainItemView key={idx} item={item} onUpdateTodo={this.onUpdateTodo} />
+      column.map((todoModel, idx) => (
+        <MainItemView
+          key={idx}
+          todoModel={todoModel}
+          onUpdateTodo={this.onUpdateTodo}
+        />
       ))
     );
 

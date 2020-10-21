@@ -16,17 +16,12 @@ import FileUploadFormView from "./FileUploadFormView";
 
 import "./todoInputItemsStyle.css";
 
-const TodoFormView = ({
-  open,
-  onModal,
-  mainTodoTitle,
-  onChangeMainTodoTitle,
-  onSaveTodo,
-}) => {
+const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const [category, setCategory] = useState(todo.category);
+  const [title, setTitle] = useState(todo.title);
+  const [description, setDescription] = useState(todo.description);
+  const [endTime, setEndTime] = useState(todo.endTime);
 
   //그리드 사이즈 지정
   const GRID_LEFT = 3;
@@ -42,8 +37,10 @@ const TodoFormView = ({
 
   const onChangeImages = (imageList) => setImages(imageList);
   const onChangeCategory = (e) => setCategory(e.target.value);
+  const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
+
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -60,7 +57,7 @@ const TodoFormView = ({
               alignItems: "center",
             }}
           >
-            <Header as="h2" content="Todo 작성" />
+            <Header as="h2" content="Todo 수정" />
             <Icon
               name="x"
               size="big"
@@ -84,9 +81,10 @@ const TodoFormView = ({
                 <Grid.Column width={GRID_RIGHT}>
                   <Form.Field
                     control={Select}
+                    value={category}
                     options={options}
-                    placeholder="카테고리"
                     onChange={onChangeCategory}
+                    placeholder="카테고리"
                   />
                 </Grid.Column>
               </Grid.Row>
@@ -98,10 +96,10 @@ const TodoFormView = ({
                 </Grid.Column>
                 <Grid.Column width={GRID_RIGHT}>
                   <Form.Field
-                    value={mainTodoTitle}
+                    value={title}
                     control={Input}
+                    onChange={onChangeTitle}
                     placeholder="계획을 한마디로 표현해보세요."
-                    onChange={onChangeMainTodoTitle}
                   />
                 </Grid.Column>
               </Grid.Row>
@@ -115,9 +113,10 @@ const TodoFormView = ({
                 <Grid.Column width={GRID_RIGHT}>
                   <Form.Field
                     control={TextArea}
+                    value={description}
+                    onChange={onChangeDescription}
                     placeholder="오늘은 어떤 계획을 생각하고 계십니까?"
                     style={{ minHeight: 100 }}
-                    onChange={onChangeDescription}
                   />
                 </Grid.Column>
               </Grid.Row>
@@ -130,7 +129,12 @@ const TodoFormView = ({
                   </aside>
                 </Grid.Column>
                 <Grid.Column width={GRID_RIGHT}>
-                  <input type="date" required onChange={onChangeEndTime} />
+                  <input
+                    type="date"
+                    required
+                    value={endTime}
+                    onChange={onChangeEndTime}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -152,9 +156,9 @@ const TodoFormView = ({
                 color: "#ffffff",
               }}
               onClick={(e) => {
-                onSaveTodo(e, {
+                onUpdateTodo(e, {
                   category: category,
-                  title: mainTodoTitle,
+                  title: title,
                   description: description,
                   endTime: endTime,
                 });
@@ -169,4 +173,4 @@ const TodoFormView = ({
   );
 };
 
-export default TodoFormView;
+export default TodoUpdateModalView;

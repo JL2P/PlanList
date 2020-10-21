@@ -3,7 +3,7 @@
   display: block;
   z-index: 100;
   /* 속도 */
-  transition: 0.8s;
+  transition: 0.5s;
   cursor: pointer;
 }
 
@@ -15,7 +15,7 @@
   /* 투명도 */
   opacity: 0;
   /* 속도 */
-  transition: 0.8s;
+  transition: 0.5s;
 }
 
 /* 마우스 위치시 투명도를 조절하여 보이도록함! */

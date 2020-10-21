@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Header } from "semantic-ui-react";
 import MainCreateTodoFormView from "./MainCreateTodoFormView";
-import TodoFormView from "../../todo/view/TodoFormView";
+import TodoCreateModalView from "../../todo/view/TodoCreateModalView";
 
 const MainFormMobileView = ({ Media, onSaveTodo }) => {
   // todo 모달
@@ -24,7 +24,7 @@ const MainFormMobileView = ({ Media, onSaveTodo }) => {
 
   return (
     <div style={{ background: "#1b1c1d" }}>
-      <TodoFormView
+      <TodoCreateModalView
         open={todoCreateOpen}
         onModal={onCreateTodoModal}
         mainTodoTitle={todoTitle}

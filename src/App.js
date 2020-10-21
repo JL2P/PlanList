@@ -8,7 +8,6 @@ import {
   SignIn,
   SignUp,
   Auth,
-  Todo,
   Group
 } from "./Planlist/PlanlistRoutes";
 
@@ -24,7 +23,7 @@ const App = withRouter(({ location }) => {
         <Route exact path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
         <Route exact path="/auth" component={Auth} />
-        <Route exact path="/todo" component={Todo} />
+        {/* <Route exact path="/todo" component={Todo} /> */}
         <Route exact path="/group" component={Group} />
  
       </Switch>
