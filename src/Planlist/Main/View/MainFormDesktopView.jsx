@@ -27,8 +27,8 @@ const MainFormDesktopView = ({ Media }) => {
       <TodoFormView
         open={todoCreateOpen}
         onModal={onCreateTodoModal}
-        todoTitle={todoTitle}
-        onChangeTitle={onChangeTitle}
+        mainTodoTitle={todoTitle}
+        onChangeMainTodoTitle={onChangeTitle}
       />
       <Media greaterThan="mobile">
         <Container
@@ -47,8 +47,8 @@ const MainFormDesktopView = ({ Media }) => {
           />
 
           <MainCreateTodoFormView
-            todoTitle={todoTitle}
-            onChangeTitle={onChangeTitle}
+            mainTodoTitle={todoTitle}
+            onChangeMainTodoTitle={onChangeTitle}
             onCreateTodoModal={onCreateTodoModal}
             onEnterCreateTodoModal={onEnterCreateTodoModal}
           />

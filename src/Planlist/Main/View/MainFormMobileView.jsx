@@ -29,7 +29,12 @@ const MainFormMobileView = ({ Media }) => {
             }}
           />
 
-          <MainCreateTodoFormView />
+          <MainCreateTodoFormView
+          // mainTodoTitle={todoTitle}
+          // onChangeMainTodoTitle={onChangeTitle}
+          // onCreateTodoModal={onCreateTodoModal}
+          // onEnterCreateTodoModal={onEnterCreateTodoModal}
+          />
         </Container>
       </Media>
     </div>

@@ -1,0 +1,12 @@
+.message__place {
+  width: 100%;
+}
+
+.message__on {
+  margin-top: 1em;
+  display: block;
+}
+
+.message__off {
+  display: none;
+}

@@ -1,8 +1,8 @@
 import React from "react";
 
 const MainCreateTodoFormView = ({
-  todoTitle,
-  onChangeTitle,
+  mainTodoTitle,
+  onChangeMainTodoTitle,
   onCreateTodoModal,
   onEnterCreateTodoModal,
 }) => {
@@ -11,8 +11,8 @@ const MainCreateTodoFormView = ({
       <input
         type="text"
         placeholder="오늘 할일을 적어보세요"
-        value={todoTitle}
-        onChange={onChangeTitle}
+        value={mainTodoTitle}
+        onChange={onChangeMainTodoTitle}
         onKeyPress={onEnterCreateTodoModal}
       />
       <button
