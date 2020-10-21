@@ -42,5 +42,15 @@ export default [
         rating: 145,
         start_time: "2020-10-02",
         end_time: "2020-10-02",
+      },{
+        imgUrl: "/posts/test_img_22.jpg",
+        name: "배민서",
+        title: "Cumque dicta officiis officia ullam id ea sunt.",
+        description:
+          "Sed fugiat odio unde ad voluptatum. Praesentium dolores ipsa laudantium magnam. Facere repudiandae dolores necessitatibus commodi porro culpa unde.",
+        writer: "이순자",
+        rating: 30,
+        start_time: "2020-10-02",
+        end_time: "2020-10-02",
       },
 ]

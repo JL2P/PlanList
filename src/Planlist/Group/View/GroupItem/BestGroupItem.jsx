@@ -1,15 +1,15 @@
 import React from "react";
-import { Card ,Image } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import '../../GroupStyle/Group.scss';
+import { Card, Image} from "semantic-ui-react";
+import { Link} from "react-router-dom";
+import "../../GroupStyle/Group.scss";
 
-const MyGroupItem = ({item}) => {
-  
+const BestGroupItem = ({ item }) => {
+
   return (
-    <Link to ="/">
+    <Link to="/">
       <Card className="group_card" raised>
         <Image src={item.imgUrl} className="Group_img" />
-        <Card.Content >
+        <Card.Content>
           <Card.Header className="group_Card_header">
             {item.title}
           </Card.Header>
@@ -20,4 +20,4 @@ const MyGroupItem = ({item}) => {
   );
 };
 
-export default MyGroupItem;
+export default BestGroupItem;
