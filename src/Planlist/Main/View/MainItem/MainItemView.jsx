@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Image, Icon, Label, Button } from "semantic-ui-react";
 import "./itemStyle.css";
 import MainItemInfoModalView from "./MainItemInfoModalView";
 import MainItemConfigModalView from "./MainItemConfigModalView";
 import TodoUpdateView from "../../../todo/view/TodoUpdateView";
-const MainItemView = ({ item }) => {
+const MainItemView = ({ item, onUpdateTodo }) => {
   // Item 정보 모달
-  const [itemInfoOpen, setItemInfoOpen] = React.useState(false);
+  const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
-  const [itemConfigOpen, setItemConfigOpen] = React.useState(false);
+  const [itemConfigOpen, setItemConfigOpen] = useState(false);
   // todoUpdate 모달
-  const [todoUpdateOpen, setTodoUpdateOpen] = React.useState(false);
+  const [todoUpdateOpen, setTodoUpdateOpen] = useState(false);
 
   const onInfoModal = (trigger) => {
     setItemInfoOpen(trigger);
@@ -22,14 +22,22 @@ const MainItemView = ({ item }) => {
 
   const onTodoUpdateModal = (trigger) => {
     // 이전에 열려있는 모달 닫기
-    setItemConfigOpen(false);
-    // todoUpdate 모달 열기
-    setTodoUpdateOpen(trigger);
+    if (itemConfigOpen) {
+      setItemConfigOpen(false);
+      // todoUpdate 모달 열기
+      setTodoUpdateOpen(true);
+    } else {
+      setTodoUpdateOpen(trigger);
+    }
   };
 
   return (
     <div>
-      <TodoUpdateView open={todoUpdateOpen} onModal={onTodoUpdateModal} />
+      <TodoUpdateView
+        open={todoUpdateOpen}
+        onModal={onTodoUpdateModal}
+        onUpdateTodo={onUpdateTodo}
+      />
       <MainItemConfigModalView
         open={itemConfigOpen}
         onModal={onCofigModal}

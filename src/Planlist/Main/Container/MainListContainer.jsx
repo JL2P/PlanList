@@ -19,6 +19,10 @@ class MainPageContainer extends Component {
     );
   }
 
+  onUpdateTodo = (e, todoUpdateModel) => {
+    console.log(todoUpdateModel);
+  };
+
   componentDidMount() {
     this.props.Store.todo.getApiTodo(this.COLUMN_COUNT);
   }
@@ -51,7 +55,9 @@ class MainPageContainer extends Component {
 
     //데이터를 이용하여 메인 아이템 리스트 생성
     const MainItemViewList = data.map((column) =>
-      column.map((item, idx) => <MainItemView key={idx} item={item} />)
+      column.map((item, idx) => (
+        <MainItemView key={idx} item={item} onUpdateTodo={this.onUpdateTodo} />
+      ))
     );
 
     //각 column을 itemGroup으로 만들어주기

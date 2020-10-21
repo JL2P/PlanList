@@ -24,9 +24,7 @@ const TodoFormView = ({
   onSaveTodo,
 }) => {
   const [images, setImages] = useState([]);
-
   const [category, setCategory] = useState("");
-  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
 
@@ -42,11 +40,8 @@ const TodoFormView = ({
     { key: "o", text: "기타등등", value: "other" },
   ];
 
-  const onChangeImages = (imageList) => {
-    setImages(imageList);
-  };
+  const onChangeImages = (imageList) => setImages(imageList);
   const onChangeCategory = (e) => setCategory(e.target.value);
-  const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
   return (
@@ -159,7 +154,7 @@ const TodoFormView = ({
               onClick={(e) => {
                 onSaveTodo(e, {
                   category: category,
-                  title: title,
+                  title: mainTodoTitle,
                   description: description,
                   endTime: endTime,
                 });

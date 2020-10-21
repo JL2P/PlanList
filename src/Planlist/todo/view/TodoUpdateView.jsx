@@ -1,163 +1,169 @@
-import React, { Component } from "react";
-import "./TodoView.scss";
+import React, { useState } from "react";
 import {
-  Button,
-  Checkbox,
+  Modal,
+  Header,
+  Divider,
+  Container,
+  Icon,
   Form,
   Input,
   Select,
   TextArea,
   Grid,
-  Modal,
+  Button,
 } from "semantic-ui-react";
-// import TodoView from "./TodoView";
-/* 카테고리 */
-const options = [
-  { key: "e", text: "운동", value: "exercise" },
-  { key: "s", text: "공부", value: "study" },
-  { key: "o", text: "기타등등", value: "other" },
-];
+import FileUploadFormView from "./FileUploadFormView";
 
-class TodoUpdateView extends Component {
-  constructor(props) {
-    super(props);
+import "./todoInputItemsStyle.css";
 
-    this.state = {
-      title: this.props.todoTitle !== null ? this.props.todoTitle : "",
-      description: "",
-      category: "",
-      endTime: "",
-      completed: "",
-    };
-  }
+const TodoUpdateView = ({ open, onModal, onUpdateTodo }) => {
+  const [images, setImages] = useState([]);
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [endTime, setEndTime] = useState("");
 
-  onTitleChange = (e) => this.setState({ title: e.target.value });
-  onDescriptionChange = (e) => this.setState({ description: e.target.value });
-  onCategoryChange = (e) => this.setState({ category: e.target.value });
-  onEndTimeChange = (e) => this.setState({ endTime: e.target.value });
-  onCompletedChange = (e) => this.setState({ completed: e.target.value });
+  //그리드 사이즈 지정
+  const GRID_LEFT = 3;
+  const GRID_RIGHT = 16 - GRID_LEFT;
+  const maxNumber = 69;
 
-  // setOpen= (flag)=>{this.setState({open:flag})}
+  /* 카테고리 */
+  const options = [
+    { key: "e", text: "운동", value: "exercise" },
+    { key: "s", text: "공부", value: "study" },
+    { key: "o", text: "기타등등", value: "other" },
+  ];
 
-  render() {
-    const { onSaveTodo, open, onModal, todoTitle } = this.props;
-    console.log(this.state.title);
-    return (
-      <Modal
-        onClose={() => onModal(false)}
-        onOpen={() => onModal(true)}
-        open={open}
-        size="large"
-      >
-        <div className="todo__updatePage">
-          <div className="todo__content">
-            <Form>
-              <Grid stackable>
-                <Grid.Row columns={2}>
-                  <Grid.Column width={2}>
-                    <aside>
-                      <label>글제목</label>
-                    </aside>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Form.Field
-                      value={this.state.title}
-                      control={Input}
-                      placeholder="글 제목"
-                      onChange={this.onTitleChange}
-                    />
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={2}>
-                  <Grid.Column width={2}>
-                    <aside>
-                      <label>카테고리</label>
-                    </aside>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Form.Field
-                      control={Select}
-                      options={options}
-                      placeholder="카테고리"
-                      onChange={this.onCategoryChange}
-                    />
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={2}>
-                  <Grid.Column width={2}>
-                    <aside>
-                      <label>무슨일할까</label>
-                    </aside>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Form.Field
-                      control={TextArea}
-                      placeholder="할 일 작성.."
-                      onChange={this.onDescriptionChange}
-                    />
-                  </Grid.Column>
-                </Grid.Row>
+  const onChangeImages = (imageList) => setImages(imageList);
+  const onChangeCategory = (e) => setCategory(e.target.value);
+  const onChangeTitle = (e) => setTitle(e.target.value);
+  const onChangeDescription = (e) => setDescription(e.target.value);
+  const onChangeEndTime = (e) => setEndTime(e.target.value);
 
-                {/* 날짜 추가 */}
-                <Grid.Row columns={2}>
-                  <Grid.Column width={2}>
-                    <aside>
-                      <label>마감일자</label>
-                    </aside>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <input
-                      type="date"
-                      required
-                      onChange={this.onEndTimeChange}
-                    />
-                  </Grid.Column>
-                </Grid.Row>
-
-                <Grid.Row columns={2}>
-                  <Grid.Column width={2}></Grid.Column>
-                  <Grid.Column>
-                    <aside>
-                      <label>완료여부</label>
-                    </aside>{" "}
-                    <br />
-                    <div className="todo__checkbox_success">
-                      <Checkbox
-                        style={{ background: "white" }}
-                        onChange={this.onCompletedChange}
-                      />
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-
-                <Grid.Row columns={2}>
-                  <Grid.Column width={2}></Grid.Column>
-                  <Grid.Column>
-                    <div className="todo__button_exit">
-                      <aside>
-                        <Button onClick={() => onModal(false)}>닫기</Button>
-                      </aside>
-                    </div>
-                    <div className="todo__button_save">
-                      <aside>
-                        <Button
-                          onClick={(e) => {
-                            onSaveTodo(e, { ...this.state });
-                          }}
-                        >
-                          저장
-                        </Button>
-                      </aside>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Form>
+  return (
+    <Modal
+      onClose={() => onModal(false)}
+      onOpen={() => onModal(true)}
+      open={open}
+      size="tiny"
+    >
+      <Container>
+        <div style={{ margin: "3em" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Header as="h2" content="Todo 수정" />
+            <Icon
+              name="x"
+              size="big"
+              style={{ marginBottom: "0.5em" }}
+              onClick={() => {
+                onModal(false);
+              }}
+            />
           </div>
+          <Divider />
+
+          {/* Todo 입력 폼 */}
+          <Form>
+            <Grid stackable>
+              <Grid.Row columns={2}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>카테고리</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <Form.Field
+                    control={Select}
+                    options={options}
+                    placeholder="카테고리"
+                    onChange={onChangeCategory}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>계획 제목</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <Form.Field
+                    value={title}
+                    control={Input}
+                    placeholder="계획을 한마디로 표현해보세요."
+                    onChange={onChangeTitle}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>계획 내용</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <Form.Field
+                    control={TextArea}
+                    placeholder="오늘은 어떤 계획을 생각하고 계십니까?"
+                    style={{ minHeight: 100 }}
+                    onChange={onChangeDescription}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+
+              {/* 날짜 추가 */}
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>마감일자</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <input type="date" required onChange={onChangeEndTime} />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+
+            {/* 이미지 업로드 부분 */}
+            <div style={{ marginTop: "1em" }}>
+              <FileUploadFormView
+                images={images}
+                onChangeImages={onChangeImages}
+                maxNumber={maxNumber}
+              />
+            </div>
+
+            <Button
+              fluid
+              style={{
+                marginTop: "1em",
+                background: "#FFB517",
+                color: "#ffffff",
+              }}
+              onClick={(e) => {
+                onUpdateTodo(e, {
+                  category: category,
+                  title: title,
+                  description: description,
+                  endTime: endTime,
+                });
+              }}
+            >
+              저장
+            </Button>
+          </Form>
         </div>
-      </Modal>
-    );
-  }
-}
+      </Container>
+    </Modal>
+  );
+};
 
 export default TodoUpdateView;

@@ -4,17 +4,17 @@ import MainCreateTodoFormView from "./MainCreateTodoFormView";
 import TodoFormView from "../../todo/view/TodoFormView";
 
 const MainFormDesktopView = ({ Media, onSaveTodo }) => {
-  // todoUpdate 모달
+  // todo 모달
   const [todoCreateOpen, setTodoCreateOpen] = useState(false);
   const [todoTitle, setTodoTitle] = useState("");
 
   const onCreateTodoModal = (trigger) => {
-    // todoUpdate 모달 열기
+    // todo 모달 열기
     setTodoCreateOpen(trigger);
   };
   const onEnterCreateTodoModal = (e) => {
     if (e.key === "Enter") {
-      // todoUpdate 모달 열기
+      // todo 모달 열기
       setTodoCreateOpen(true);
     }
   };
