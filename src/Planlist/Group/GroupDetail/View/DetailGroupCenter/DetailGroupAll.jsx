@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import DetailGroupAllList from './DetailGroupAllList'
 import DetailGroupAllModal from './DetailGroupAllModal'
-import { Segment ,Input,Button, Header, Icon, Modal, Grid  } from "semantic-ui-react";
+import { Segment ,Input, Modal, Grid  } from "semantic-ui-react";
 import '../../../GroupStyle/GroupDetail.scss';
 
-const GroupAllView = ({sampleData}) => {
+const GroupAllView = ({
+        sampleData,
+        onDetailGroup_create,
+        getDetailGroup_modalOpen,
+        onDetailGroup_modalCheck
+    }) => {
+        
     const [open, setOpen] = useState(false)
     const [search, setSearch] = useState("");
 
@@ -28,7 +34,7 @@ const GroupAllView = ({sampleData}) => {
             <Segment>
                 <Modal
                     closeIcon
-                    open={open}
+                    open={getDetailGroup_modalOpen}
                     trigger={
                         <div>
                             <Input
@@ -39,10 +45,10 @@ const GroupAllView = ({sampleData}) => {
                             />
                         </div>
                     }
-                    onClose={() => setOpen(false)}
-                    onOpen={() => setOpen(true)}
+                    onClose={() => onDetailGroup_modalCheck(false)}
+                    onOpen={() => onDetailGroup_modalCheck(true)}
                     >
-                    <DetailGroupAllModal />
+                    <DetailGroupAllModal onDetailGroup_create={onDetailGroup_create} />
                 </Modal>
             </Segment>
 

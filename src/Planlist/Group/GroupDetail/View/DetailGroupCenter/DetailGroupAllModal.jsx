@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-import {Modal , Input} from "semantic-ui-react";
+import {Modal , Input, Form} from "semantic-ui-react";
 
-const DetailGroupAllModal = () => {
+const DetailGroupAllModal = ({onDetailGroup_create}) => {
     const [title, setTitle] = useState("");
 
     const onTitle = (e) => setTitle(e.target.value);
@@ -10,13 +10,16 @@ const DetailGroupAllModal = () => {
         <>
             <Modal.Content>
                 <p>테스트 케이스</p>
-                <form>
+                <Form onSubmit={(e) =>{
+                        onDetailGroup_create(e,{title}
+                    )}}
+                >
                     <Input 
                         onChange={onTitle} 
                         value={title}
                         placeholder='title...' 
                     />
-                </form>
+                </Form>
             </Modal.Content>
         </>
     );

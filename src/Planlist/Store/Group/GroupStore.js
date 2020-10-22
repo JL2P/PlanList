@@ -16,18 +16,27 @@ export default class GroupStore {
       @observable bestTodo = BsetGroupPage_List_Data
       @observable categoryTodo = CategoryGroupPage_List_Data;
       @observable recommendTodo = RecommendGroupPage_List_Data
+      @observable detailGroup_modalOpen = false;
 
-      @computed get getMyTodo(){
-        return this.myTodo
+      @computed get getMyTodo(){return this.myTodo}
+      @computed get getBestTodo(){return this.bestTodo}
+      @computed get getCategoryTodo(){return this.categoryTodo}
+      @computed get getRecommendTodo(){return this.recommendTodo}
+      @computed get getDetailGroup_modalOpen(){return this.detailGroup_modalOpen}
+
+
+
+      //modal open & close
+      @action
+      detailGroup_modalCheck = (check) => {
+        this.detailGroup_modalOpen = check
       }
-      @computed get getBestTodo(){
-        return this.bestTodo
-      }
-      @computed get getCategoryTodo(){
-        return this.categoryTodo
-      }
-      @computed get getRecommendTodo(){
-        return this.recommendTodo
+
+      //그룹에 게시물 생성
+      @action
+      detailGroup_create = (detailGroup) => {
+        this.myTodo.push(detailGroup)
+        this.detailGroup_modalCheck(false);
       }
 
 }
