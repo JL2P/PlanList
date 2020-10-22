@@ -24,10 +24,14 @@ class ProfileMangeContainer extends Component {
     // console.log(account.accountDetail);
 
     return (
+      <div>
       <ProfileManageView
         account={account.getAccount}
         onModifyAccount={this.onModifyAccount}
       />
+  
+      </div>
+    
     );
   }
 }

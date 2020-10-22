@@ -1,20 +1,34 @@
 import React, { useState } from "react";
-import { Container, Image, Grid, Icon, Segment } from "semantic-ui-react";
+import { Container, Image, Grid, Icon, Segment, Button, Modal } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import { inject, observer } from "mobx-react";
+import ProfileFollowerModalView from "./ProfileFollowerModalView";
+import ProfileFollowingModalView from "./ProfileFollowingModalView";
 
 const ProfileManageView = ({ account, onModifyAccount }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
-
+  
   console.log(account);
   // modal open 상태 관리 (true: open, false: hide)
   const [open, setOpen] = useState(false);
+  //팔로워
+  const [followerOpen, setFollowerOpen] = useState(false);
+  //팔로잉
+  const [followingOpen, setFollowingOpen] = useState(false);
 
   // 하위 컴포넌트인 modal에서 상위컴포넌트인 ProfileManageView의 스테이트를 변경하기 위함
   const onOpen = (trigger) => {
     setOpen(trigger);
+  };
+ //프로팔 팔로워 모달 
+  const onFollowerModal = (trigger) => {
+    setFollowerOpen(trigger);
+  };
+//프로필 팔로잉 모달
+  const onFollowingModal = (trigger) => {
+    setFollowingOpen(trigger);
   };
 
   const [activeItem, setActiveItem] = useState("내정보 관리");
@@ -33,6 +47,16 @@ const ProfileManageView = ({ account, onModifyAccount }) => {
         activeItem={activeItem}
         handleItemClick={handleItemClick}
       />
+      {/* 프로필 팔로워 모달 기본 open상태 false */}
+      <ProfileFollowerModalView
+        followerOpen={followerOpen}
+        onFollowerModal={onFollowerModal}
+      />
+      {/* 프로필 팔로잉 모달 기본 open상태 false */}
+      <ProfileFollowingModalView
+        followingOpen={followingOpen}
+        onFollowingModal={onFollowingModal}
+      />  
 
       <Grid stackable>
         <Grid.Row>
@@ -61,9 +85,14 @@ const ProfileManageView = ({ account, onModifyAccount }) => {
                 {/* 오늘 할일 */}
                 <Grid.Column width={5}>오늘 할 일 &nbsp; 2</Grid.Column>
                 {/* 팔로워 */}
-                <Grid.Column width={5}>팔로워 &nbsp; 10</Grid.Column>
-                {/* 팔로우 */}
-                <Grid.Column width={5}>팔로우 &nbsp; 10</Grid.Column>
+                <Grid.Column width={5}>
+                <Button onClick={() => onFollowerModal(true)} >팔로워</Button> &nbsp; 10
+
+                </Grid.Column>
+                {/* 팔로잉 */}
+                <Grid.Column width={5}>
+                <Button onClick={() => onFollowingModal(true)} >팔로잉</Button>&nbsp; 10
+              </Grid.Column>
               </Grid>
             </Segment>
           </Grid.Column>
