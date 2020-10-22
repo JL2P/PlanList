@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Menu, Container } from "semantic-ui-react";
-import MainListContainer from "../../../Main/Container/MainListContainer";
-import ProfileTodoListContainer from "../container/ProfileTodoListContainer";
+import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
+import ProfileTodoPastListContainer from "../container/ProfileTodoPastListContainer";
 
 class ProfileTodoView extends Component {
   state = { activeItem: "From Now" };
@@ -37,8 +37,8 @@ class ProfileTodoView extends Component {
         </Menu>
 
         <div>
-          {activeItem === "From Now" && <ProfileTodoListContainer />}
-          {activeItem === "Past" && <MainListContainer />}
+          {activeItem === "From Now" && <ProfileTodoFromNowListContainer />}
+          {activeItem === "Past" && <ProfileTodoPastListContainer />}
           {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
           {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}
         </div>

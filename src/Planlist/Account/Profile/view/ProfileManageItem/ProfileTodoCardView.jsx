@@ -1,36 +1,32 @@
 import React from "react";
-import { Card, Image, Button, Radio, Checkbox } from "semantic-ui-react";
+import { Card, Image, Button, Icon } from "semantic-ui-react";
+import "./ProfileTodoCardView.scss";
 
-const ProfileTodoCardView = () => {
+const ProfileTodoCardView = ({ todo }) => {
   return (
     <Card>
+      <Image
+        className="ProfileTodoCard__image"
+        src={todo.imgUrl}
+        wrapped
+        ui={false}
+      />
       <Card.Content>
-        <Image
-          bordered
-          floated="right"
-          width="30%"
-          src="/profiles/hungry.png"
-        />
-        <Card.Header>
-          <Checkbox color="red" />
-          &ensp;To Do Title
-        </Card.Header>
-        <Card.Meta>start_time&ensp;2020-00-00</Card.Meta>
-        <Card.Meta>end_time&emsp;2020-00-00</Card.Meta>
-        <Radio slider />
-        <Card.Description>
-          Steve wants to add you to the group <strong>best friends</strong>
-        </Card.Description>
+        <Card.Header>{todo.title}</Card.Header>
+        <Card.Description>{todo.description}</Card.Description>
+        {/* <Card.Meta>
+          <span className="date">Joined in 2015</span>
+        </Card.Meta> */}
       </Card.Content>
       <Card.Content extra>
-        <div className="ui two buttons">
-          <Button basic color="green">
-            Approve
-          </Button>
-          <Button basic color="red">
-            Decline
-          </Button>
-        </div>
+        <Icon name="clock outline" />
+
+        <Button basic size="mini">
+          시작 {todo.start_time}
+        </Button>
+        <Button basic size="mini" color="yellow">
+          종료 {todo.end_time}
+        </Button>
       </Card.Content>
     </Card>
   );
