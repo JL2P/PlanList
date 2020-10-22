@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
-import ProfileModifyView from "../../../ProfileModify/view/ProfileModifyView";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
+import ProfilePasswordModifyView from "../ProfileModifyItem/ProfilePasswordModifyView";
 
 const ProfileSettingModalView = ({
   open,
@@ -12,13 +12,14 @@ const ProfileSettingModalView = ({
   onModifyAccount,
 }) => {
   return (
-    <Modal open={open} height={10}>
+    <Modal open={open}>
       <Modal.Header>
         <Container textAlign="center">설정</Container>
       </Modal.Header>
-      <Modal.Content scrolling image>
-        <Grid>
-          <Grid.Column width={3}>
+
+      <Grid style={{ marginTop: "15px" }}>
+        <Grid.Column width={4}>
+          <Modal.Content style={{ height: "506px" }}>
             <Menu vertical tabular pointing secondary>
               <Menu.Item
                 name="내정보 관리"
@@ -30,20 +31,18 @@ const ProfileSettingModalView = ({
                 active={activeItem === "비밀번호 변경"}
                 onClick={() => handleItemClick("비밀번호 변경")}
               />
-              <Menu.Item
-                name="소개글 수정"
-                active={activeItem === "소개글 수정"}
-                onClick={() => handleItemClick("소개글 수정")}
-              />
+
               <Menu.Item
                 name="공개 범위"
                 active={activeItem === "공개 범위 설정"}
                 onClick={() => handleItemClick("공개 범위 설정")}
               />
             </Menu>
-          </Grid.Column>
+          </Modal.Content>
+        </Grid.Column>
 
-          <Grid.Column stretched width={13}>
+        <Grid.Column stretched width={12} margin-right={2} stackable>
+          <Modal.Content scrolling style={{ width: "100%" }}>
             <div>
               {activeItem === "내정보 관리" && (
                 <ProfileAccountModifyView
@@ -52,27 +51,16 @@ const ProfileSettingModalView = ({
                 />
               )}
               {activeItem === "비밀번호 변경" && (
-                <ProfileModifyView
+                <ProfilePasswordModifyView
                   account={account}
                   onModifyAccount={onModifyAccount}
                 />
               )}
-              {activeItem === "소개글 수정" && (
-                <p>
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;소개글
-                  수정
-                </p>
-              )}
-              {activeItem === "공개 범위 설정" && (
-                <p>
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;공개
-                  범위 설정
-                </p>
-              )}
+              {activeItem === "공개 범위 설정" && <p>공개 범위 설정</p>}
             </div>
-          </Grid.Column>
-        </Grid>
-      </Modal.Content>
+          </Modal.Content>
+        </Grid.Column>
+      </Grid>
       <Modal.Actions>
         <Button basic color="red" onClick={() => onOpen(false)}>
           <Icon name="remove" /> No
