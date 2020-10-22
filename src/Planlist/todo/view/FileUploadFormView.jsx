@@ -4,7 +4,7 @@ import ImageUploading from "react-images-uploading";
 import "./fileUploadFormStyle.css";
 
 //이미지 업로드 폼
-const FileUploadFormView = ({ images, onChangeImages, maxNumber }) => {
+const FileUploadFormView = ({ images, onChangeImages, maxNumber, message }) => {
   return (
     <ImageUploading
       multiple
@@ -43,7 +43,7 @@ const FileUploadFormView = ({ images, onChangeImages, maxNumber }) => {
             onClick={onImageUpload}
             {...dragProps}
           >
-            <b>클릭 또는 드래그하여 이미지를 업로드 해주세요</b>
+            <b>{message}</b>
           </div>
         </div>
       )}

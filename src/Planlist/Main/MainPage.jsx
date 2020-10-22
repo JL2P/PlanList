@@ -1,12 +1,28 @@
 import React from "react";
+import { createMedia } from "@artsy/fresnel";
+import MainTodoCreateDesktopContainer from "./Container/MainTodoCreateDesktopContainer";
+import MainTodoCreateMobileContainer from "./Container/MainTodoCreateMobileContainer";
 import MainListContainer from "./Container/MainListContainer";
-import MainFormContainer from "./Container/MainFormContainer";
 
 //rsf hook
 const MainPage = () => {
+  const { MediaContextProvider, Media } = createMedia({
+    breakpoints: {
+      mobile: 0,
+      tablet: 768,
+      computer: 1024,
+    },
+  });
   return (
     <>
-      <MainFormContainer />
+      <MediaContextProvider>
+        <Media greaterThan="mobile">
+          <MainTodoCreateDesktopContainer />
+        </Media>
+        <Media at="mobile">
+          <MainTodoCreateMobileContainer />
+        </Media>
+      </MediaContextProvider>
       <MainListContainer />
     </>
   );
