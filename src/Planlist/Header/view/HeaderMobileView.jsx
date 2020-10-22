@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Menu, Segment, Sidebar } from "semantic-ui-react";
 import HeaderIconsView from "./HeaderIconsView";
 
 const HeaderMobileView = ({ Media }) => {
