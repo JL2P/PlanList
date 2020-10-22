@@ -4,7 +4,6 @@ import "./itemStyle.css";
 import MainItemInfoModalView from "./MainItemInfoModalView";
 import MainItemConfigModalView from "./MainItemConfigModalView";
 import TodoUpdateContainer from "../../../todo/container/TodoUpdateContainer";
-import TodoCommentContainer from "../../../todo/container/TodoCommentContainer";
 
 import MainItem from "./MainItem";
 import MainItemCover from "./MainItemCover";
@@ -52,7 +51,6 @@ const MainItemFrame = ({ todoModel }) => {
         item={todoModel}
         open={itemInfoOpen}
         onModal={onInfoModal}
-        CommentContainer={TodoCommentContainer}
       />
       <div className="todo">
         <MainItemCover todoModel={todoModel} onCofigModal={onCofigModal} />
