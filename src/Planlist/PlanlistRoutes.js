@@ -7,7 +7,8 @@ export { default as SignUp } from "./Sign/Signup/SignupPage";
 export { default as Auth } from "./Auth/AuthPage";
 
 //group 추가
-export { default as Group } from "./Group/GroupPage";
+export { default as GroupMenu } from "./Group/GroupMenu/GroupMenuPage";
+export { default as GroupDetail } from "./Group/GroupDetail/GroupDetailPage";
 
 //todo 추가
 // export { default as Todo } from "./todo/TodoPage";

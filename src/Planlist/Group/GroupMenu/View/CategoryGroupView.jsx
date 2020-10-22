@@ -3,7 +3,7 @@ import CategoryGroupItem from "./GroupItem/CategoryGroupItem";
 import { Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import "../GroupStyle/Group.scss";
+import "../../GroupStyle/Group.scss";
 
 const CategoryGroupView = ({sampleData}) => {
   const Groupitem = sampleData.map((item, index) => (

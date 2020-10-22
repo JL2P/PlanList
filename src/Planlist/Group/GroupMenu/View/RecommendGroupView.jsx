@@ -3,7 +3,7 @@ import RecommendGroupItem from "./GroupItem/RecommendGroupItem";
 import { Container, Grid} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import "../GroupStyle/Group.scss";
+import "../../GroupStyle/Group.scss";
 
 const RecommendGroupView = ({sampleData}) => {
     const Groupitem = sampleData.map((item, index) => (

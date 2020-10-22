@@ -27,7 +27,7 @@ class ProfileMangeContainer extends Component {
     return (
       <div>
       <ProfileManageView
-        account={account.getAccount}
+        account={account.getAccount2}
         onModifyAccount={this.onModifyAccount}
       />
   

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card ,Image,Icon } from "semantic-ui-react";
-import '../../GroupStyle/Group.scss';
+import '../../../GroupStyle/Group.scss';
 
 const NewGroupItem = () => {
   return (
@@ -11,4 +11,4 @@ const NewGroupItem = () => {
   );
 };
 
-export default NewGroupItem;
+export default React.memo(NewGroupItem);

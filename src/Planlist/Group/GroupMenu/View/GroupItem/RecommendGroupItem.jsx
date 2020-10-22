@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Image, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import "../../GroupStyle/Group.scss";
+import "../../../GroupStyle/Group.scss";
 
 const RecommendGroupItem = ({ item }) => {
   return (
