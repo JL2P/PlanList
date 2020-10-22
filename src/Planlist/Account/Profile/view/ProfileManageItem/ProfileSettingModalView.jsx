@@ -46,7 +46,10 @@ const ProfileSettingModalView = ({
           <Modal.Content scrolling style={{ width: "100%" }}>
             <div>
               {activeItem === "내정보 관리" && (
-                <ProfileAccountModifyView account={account} />
+                <ProfileAccountModifyView
+                  account={account}
+                  onModifyAccount={onModifyAccount}
+                />
               )}
               {activeItem === "비밀번호 변경" && (
                 <ProfilePasswordModifyView account={account} />

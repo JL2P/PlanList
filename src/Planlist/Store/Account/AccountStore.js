@@ -123,7 +123,5 @@ export default class AccountStore {
   @computed get getAccount2() {
     return this.accounts2 ? { ...this.account2 } : {};
   }
-  @action select = (account2) => {
-    this.account2 = account2;
-  };
+  ////
 }

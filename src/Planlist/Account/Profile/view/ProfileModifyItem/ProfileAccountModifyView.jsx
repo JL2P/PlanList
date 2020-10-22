@@ -9,7 +9,7 @@ import {
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountModifyView = ({ account }) => {
+const ProfileAccountModifyView = ({ account, onModifyAccount }) => {
   const modifyTitle = 4;
   const modifyContent = 10;
   const genderOptions = [
@@ -69,7 +69,13 @@ const ProfileAccountModifyView = ({ account }) => {
             </aside>
           </Grid.Column>
           <Grid.Column width={modifyContent}>
-            <Input fluid placeholder={account.name} />
+            <Input
+              fluid
+              placeholder={account.name}
+              // label="name"
+              // value={account && account.name ? account.name : ""}
+              // onChange={(e)=>on}
+            />
           </Grid.Column>
         </Grid.Row>
 

@@ -7,8 +7,8 @@ export default [
       "Exercitationem dolore exercitationem enim at vero sit. Enim error fuga incidunt illo in consequuntur. Nobis quod voluptas ad ipsum consectetur accusantium iusto.",
     writer: "김춘자",
     rating: 211,
-    start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    start_time: "2020-09-02",
+    end_time: "2020-11-02",
   },
   {
     imgUrl: "/posts/test_img_38.jpg",
@@ -19,7 +19,7 @@ export default [
     writer: "최성현",
     rating: 106,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-11-02",
   },
   {
     imgUrl: "/posts/test_img_89.jpg",
@@ -30,7 +30,7 @@ export default [
     writer: "박민지",
     rating: 394,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-12-02",
   },
   {
     imgUrl: "/posts/test_img_55.jpg",
@@ -40,8 +40,8 @@ export default [
       "Expedita dicta at totam. Aspernatur provident eligendi in. Deleniti tempora iusto in.\nOdio inventore atque illo ipsam. Vel et iste in vero. Ullam sint sunt quasi.",
     writer: "김건우",
     rating: 78,
-    start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    start_time: "2020-09-02",
+    end_time: "2020-08-02",
   },
   {
     imgUrl: "/posts/test_img_83.jpg",
@@ -52,7 +52,7 @@ export default [
     writer: "신지현",
     rating: 288,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2021-11-02",
   },
   {
     imgUrl: "/posts/test_img_87.jpg",

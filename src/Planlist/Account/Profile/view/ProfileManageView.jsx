@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Image, Grid, Icon, Segment } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
-import { inject, observer } from "mobx-react";
 
 const ProfileManageView = ({ account, onModifyAccount }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
