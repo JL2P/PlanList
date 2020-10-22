@@ -13,9 +13,11 @@ const ProfileFollowerModalView = ({
       onClose={() => onFollowerModal(false)}
       onOpen={() => onFollowerModal(true)}
       open={followerOpen}
-      size="mini"
+      size="tiny"
       >
+        <Modal.Content scrolling style={{ width: "100%" }}>
       <ProfileFollowerListView></ProfileFollowerListView>
+      </Modal.Content>
   </Modal>
   )
 }

@@ -3,8 +3,8 @@ import { Container, Image, Grid, Icon, Segment, Button, Modal } from "semantic-u
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import { inject, observer } from "mobx-react";
-import ProfileFollowerModalView from "./ProfileFollowerModalView";
-import ProfileFollowingModalView from "./ProfileFollowingModalView";
+import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
+import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
 const ProfileManageView = ({ account, onModifyAccount }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
@@ -86,12 +86,12 @@ const ProfileManageView = ({ account, onModifyAccount }) => {
                 <Grid.Column width={5}>오늘 할 일 &nbsp; 2</Grid.Column>
                 {/* 팔로워 */}
                 <Grid.Column width={5}>
-                <Button onClick={() => onFollowerModal(true)} >팔로워</Button> &nbsp; 10
+                <text onClick={() => onFollowerModal(true)} >팔로워</text> &nbsp; 10
 
                 </Grid.Column>
                 {/* 팔로잉 */}
                 <Grid.Column width={5}>
-                <Button onClick={() => onFollowingModal(true)} >팔로잉</Button>&nbsp; 10
+                <text onClick={() => onFollowingModal(true)} >팔로잉</text>&nbsp; 10
               </Grid.Column>
               </Grid>
             </Segment>

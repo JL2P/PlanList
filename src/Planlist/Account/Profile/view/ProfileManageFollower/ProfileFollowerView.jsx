@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Item, Label, Button,Header } from "semantic-ui-react";
+import { Container, Item, Button, Header } from "semantic-ui-react";
 const ProfileFollowerView = () => {
     return (
         <div>
@@ -27,13 +27,15 @@ const ProfileFollowerView = () => {
                 </div>
                 <div className="part_b">
                 
-                    <Header as="h3" style={{marginLeft:"0.5em"}}>박민재</Header>
+                    <text style={{marginLeft:"1em", fontSize:"14px"}}
+                    >박민재</text>
+                    
                 </div>
             </div>
             <div clasName="part_a2">
-                <Header as='h4' color='red' onClick={()=>{alert("delete!!")}}>
-                delete
-                </Header>
+                <Button size="tiny" basic color='grey' onClick={()=>{alert("delete!!")}}>
+                삭제
+                </Button>
             </div>
             </div>
         </Item>
