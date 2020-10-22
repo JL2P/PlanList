@@ -6,9 +6,7 @@ import {
   Container,
   Icon,
   Form,
-  Input,
   Select,
-  TextArea,
   Grid,
   Button,
 } from "semantic-ui-react";
@@ -16,16 +14,18 @@ import FileUploadFormView from "./FileUploadFormView";
 
 import "./todoInputItemsStyle.css";
 
-const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
+const TodoCreateMobileForm = ({
+  open,
+  onModal,
+  title,
+  onChangeTitle,
+  createTodo,
+}) => {
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState(todo.category);
-  const [title, setTitle] = useState(todo.title);
-  const [description, setDescription] = useState(todo.description);
-  const [endTime, setEndTime] = useState(todo.endTime);
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [endTime, setEndTime] = useState("");
 
-  //그리드 사이즈 지정
-  const GRID_LEFT = 3;
-  const GRID_RIGHT = 16 - GRID_LEFT;
   const maxNumber = 69;
 
   /* 카테고리 */
@@ -37,10 +37,8 @@ const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
 
   const onChangeImages = (imageList) => setImages(imageList);
   const onChangeCategory = (e) => setCategory(e.target.value);
-  const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
-
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -49,7 +47,7 @@ const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
       size="tiny"
     >
       <Container>
-        <div style={{ margin: "3em" }}>
+        <div style={{ margin: "1em" }}>
           <div
             style={{
               display: "flex",
@@ -57,7 +55,7 @@ const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
               alignItems: "center",
             }}
           >
-            <Header as="h2" content="Todo 수정" />
+            <Header as="h2" content="Todo 작성" />
             <Icon
               name="x"
               size="big"
@@ -67,84 +65,66 @@ const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
               }}
             />
           </div>
-          <Divider />
+          <Divider style={{ marginTop: "-0.5em", marginBottom: "1.5em" }} />
 
           {/* Todo 입력 폼 */}
           <Form>
             <Grid stackable>
-              <Grid.Row columns={2}>
-                <Grid.Column width={GRID_LEFT}>
-                  <aside>
-                    <label>카테고리</label>
-                  </aside>
-                </Grid.Column>
-                <Grid.Column width={GRID_RIGHT}>
-                  <Form.Field
-                    control={Select}
+              <Grid.Row>
+                <Form.Field style={{ width: "100%" }}>
+                  <label>카테고리</label>
+                  <Select
+                    placeholder="카테고리"
                     value={category}
                     options={options}
                     onChange={onChangeCategory}
-                    placeholder="카테고리"
                   />
-                </Grid.Column>
+                </Form.Field>
               </Grid.Row>
-              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
-                <Grid.Column width={GRID_LEFT}>
-                  <aside>
-                    <label>계획 제목</label>
-                  </aside>
-                </Grid.Column>
-                <Grid.Column width={GRID_RIGHT}>
-                  <Form.Field
-                    value={title}
-                    control={Input}
-                    onChange={onChangeTitle}
+              <Grid.Row style={{ marginTop: "0.5em" }}>
+                <Form.Field style={{ width: "100%" }}>
+                  <label>계획 제목</label>
+                  <input
                     placeholder="계획을 한마디로 표현해보세요."
+                    value={title}
+                    onChange={onChangeTitle}
                   />
-                </Grid.Column>
+                </Form.Field>
               </Grid.Row>
 
-              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
-                <Grid.Column width={GRID_LEFT}>
-                  <aside>
-                    <label>계획 내용</label>
-                  </aside>
-                </Grid.Column>
-                <Grid.Column width={GRID_RIGHT}>
-                  <Form.Field
-                    control={TextArea}
+              <Grid.Row style={{ marginTop: "0.5em" }}>
+                <Form.Field style={{ width: "100%" }}>
+                  <label>계획 내용</label>
+                  <textarea
+                    placeholder="오늘은 어떤 계획을 생각하고 계십니까?"
                     value={description}
                     onChange={onChangeDescription}
-                    placeholder="오늘은 어떤 계획을 생각하고 계십니까?"
-                    style={{ minHeight: 100 }}
+                    style={{ maxHeight: "60px" }}
                   />
-                </Grid.Column>
+                </Form.Field>
               </Grid.Row>
 
               {/* 날짜 추가 */}
-              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
-                <Grid.Column width={GRID_LEFT}>
-                  <aside>
-                    <label>마감일자</label>
-                  </aside>
-                </Grid.Column>
-                <Grid.Column width={GRID_RIGHT}>
+              <Grid.Row style={{ marginTop: "0.5em", width: "100%" }}>
+                <Form.Field style={{ width: "100%" }}>
+                  <label>마감일자</label>
                   <input
                     type="date"
                     required
                     value={endTime}
                     onChange={onChangeEndTime}
                   />
-                </Grid.Column>
+                </Form.Field>
               </Grid.Row>
             </Grid>
 
             {/* 이미지 업로드 부분 */}
-            <div style={{ marginTop: "1em" }}>
+            <div style={{ marginTop: "1.5em" }}>
               <FileUploadFormView
                 images={images}
                 onChangeImages={onChangeImages}
                 maxNumber={maxNumber}
+                message={"이미지를 업로드 해주세요"}
               />
             </div>
 
@@ -156,7 +136,7 @@ const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
                 color: "#ffffff",
               }}
               onClick={(e) => {
-                onUpdateTodo(e, {
+                createTodo(e, {
                   category: category,
                   title: title,
                   description: description,
@@ -173,4 +153,4 @@ const TodoUpdateModalView = ({ todo, open, onModal, onUpdateTodo }) => {
   );
 };
 
-export default TodoUpdateModalView;
+export default TodoCreateMobileForm;

@@ -1,6 +1,7 @@
 import React from "react";
 import "./itemModalStyle.css";
-import { Modal, Image, Button, Label, Icon } from "semantic-ui-react";
+import { Modal, Image, Label, Icon } from "semantic-ui-react";
+import TodoCommentFrame from "../../../todo/view/comment/TodoCommentFrame";
 
 const MainItemModelView = ({ item, open, onModal }) => {
   return (
@@ -8,10 +9,11 @@ const MainItemModelView = ({ item, open, onModal }) => {
       onClose={() => onModal(false)}
       onOpen={() => onModal(true)}
       open={open}
+      size="small"
     >
       <Modal.Header>{item.title}</Modal.Header>
       <Modal.Content image>
-        <Image size="medium" src={item.imgUrl} />
+        <Image size="medium" src={item.imgUrl} style={{ maxHeight: "300px" }} />
         <div className="modal__description">
           <Modal.Description>
             <h3>Description</h3>
@@ -26,14 +28,12 @@ const MainItemModelView = ({ item, open, onModal }) => {
               {item.writer}
             </Label>
             <Label basic>
-              <Icon name="star" color="yellow" /> {item.rating}
+              <Icon name="heart" color="red" /> {item.rating}
             </Label>
           </div>
         </div>
       </Modal.Content>
-      <Modal.Actions>
-        <Button onClick={() => onModal(false)}>Cancel</Button>
-      </Modal.Actions>
+      <TodoCommentFrame />
     </Modal>
   );
 };

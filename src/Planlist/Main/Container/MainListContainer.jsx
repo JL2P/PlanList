@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import MainListView from "../View/MainListView";
 import MainItemGroupView from "../View/MainItem/MainItemGroupView";
-import MainItemView from "../View/MainItem/MainItemView";
+import MainItemFrame from "../View/MainItem/MainItemFrame";
 
 @inject("Store")
 @observer
@@ -22,6 +22,11 @@ class MainPageContainer extends Component {
   //Todo를 업데이트 하는 함수
   onUpdateTodo = (e, todoUpdateModel) => {
     console.log(todoUpdateModel);
+  };
+
+  onCreateComment = (e, id) => {
+    console.log(id);
+    console.log(e.target.value);
   };
 
   componentDidMount() {
@@ -57,7 +62,7 @@ class MainPageContainer extends Component {
     //데이터를 이용하여 메인 아이템 리스트 생성
     const MainItemViewList = data.map((column) =>
       column.map((todoModel, idx) => (
-        <MainItemView
+        <MainItemFrame
           key={idx}
           todoModel={todoModel}
           onUpdateTodo={this.onUpdateTodo}

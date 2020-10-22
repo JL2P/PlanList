@@ -7,7 +7,7 @@ class MainItemGroupView extends Component {
     const { columnRef, items } = this.props;
     return (
       <Grid.Column>
-        <div className="test" ref={columnRef}>
+        <div ref={columnRef}>
           <Card.Group>{items}</Card.Group>
         </div>
       </Grid.Column>
