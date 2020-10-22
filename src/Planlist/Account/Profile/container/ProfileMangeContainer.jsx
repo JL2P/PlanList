@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProfileManageView from "../view/ProfileManageView";
 import { inject, observer } from "mobx-react";
-
+import data from "../../../Sample/Data/MainPage_List_Data";
 @inject("Store")
 @observer
 class ProfileMangeContainer extends Component {
@@ -21,13 +21,14 @@ class ProfileMangeContainer extends Component {
     console.log("render");
     const { account } = this.props.Store;
     console.log("??", account);
-    // console.log(account.accountDetail);
+    console.log("유저", account.getAccount2.name);
 
+    // console.log(account.accountDetail);
     return (
-      <ProfileManageView
-        account={account.getAccount}
-        onModifyAccount={this.onModifyAccount}
-      />
+      <div>
+        {/* <ProfileManageView account={account.getAccount} /> */}
+        <ProfileManageView account={account.getAccount2} />
+      </div>
     );
   }
 }

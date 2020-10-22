@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
+import ProfileAccountPrivacyView from "../ProfileModifyItem/ProfileAccountPrivacyView";
 import ProfilePasswordModifyView from "../ProfileModifyItem/ProfilePasswordModifyView";
 
 const ProfileSettingModalView = ({
@@ -45,28 +46,24 @@ const ProfileSettingModalView = ({
           <Modal.Content scrolling style={{ width: "100%" }}>
             <div>
               {activeItem === "내정보 관리" && (
-                <ProfileAccountModifyView
-                  account={account}
-                  onModifyAccount={onModifyAccount}
-                />
+                <ProfileAccountModifyView account={account} />
               )}
               {activeItem === "비밀번호 변경" && (
-                <ProfilePasswordModifyView
-                  account={account}
-                  onModifyAccount={onModifyAccount}
-                />
+                <ProfilePasswordModifyView account={account} />
               )}
-              {activeItem === "공개 범위 설정" && <p>공개 범위 설정</p>}
+              {activeItem === "공개 범위 설정" && (
+                <ProfileAccountPrivacyView account={account} />
+              )}
             </div>
           </Modal.Content>
         </Grid.Column>
       </Grid>
       <Modal.Actions>
-        <Button basic color="red" onClick={() => onOpen(false)}>
-          <Icon name="remove" /> No
+        <Button basic onClick={() => onOpen(false)}>
+          <Icon name="remove" /> 취소
         </Button>
-        <Button color="green" onClick={() => onOpen(false)}>
-          <Icon name="checkmark" /> Yes
+        <Button style={{ background: "#FFB517" }} onClick={() => onOpen(false)}>
+          <Icon name="checkmark" /> 저장
         </Button>
       </Modal.Actions>
     </Modal>

@@ -5,7 +5,6 @@ import {
   Input,
   Image,
   TextArea,
-  Menu,
   Dropdown,
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
