@@ -9,7 +9,7 @@ const DetailGroupAllList = ({item}) => {
                 <Image src={item.imgUrl} className="Group_img" />
                 <Card.Content>
                 <Card.Header className="group_Card_header">{item.title}</Card.Header>
-                <Card.Description>member : {item.rating}</Card.Description>
+                <Card.Description>참여한 멤버 수 : {item.rating}</Card.Description>
                 </Card.Content>
             </Card>
         </Grid.Column>
