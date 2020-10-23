@@ -8,8 +8,7 @@ const ProfileFollowerListView = () => {
     return (
         <div style={{height:"600px", textAlign:"center"}}>
         <Header as="h3" dividing style={{marginTop:"0.5em"}}>팔로워</Header>
-     
-          <div>
+         <div>
            <Item.Group>
             {element}
           </Item.Group>
