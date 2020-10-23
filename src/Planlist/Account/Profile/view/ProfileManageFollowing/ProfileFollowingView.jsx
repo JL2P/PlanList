@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Item, Button, Header } from "semantic-ui-react";
+import { Container, Item, Button, Image } from "semantic-ui-react";
 
 const ProfileFollowingView = () => {
     return (
@@ -22,9 +22,10 @@ const ProfileFollowingView = () => {
             }}>
                 
                 <div className="part_b">
-                    <img
+                    <Image
                     src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
                     alt="jsx-a11y/alt-text"
+                    circular
                     />
                  </div>
                 
