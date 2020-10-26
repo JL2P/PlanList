@@ -1,6 +1,6 @@
 export default [
     {
-        imgUrl: "/posts/test_img_85.jpg",
+        //imgUrl: "/posts/test_img_85.jpg",
         name: "강영호",
         title: "Corporis sed numquam maiores.",
         description:
@@ -11,7 +11,7 @@ export default [
         end_time: "2020-10-02",
       },
       {
-        imgUrl: "/posts/test_img_31.jpg",
+        //imgUrl: "/posts/test_img_31.jpg",
         name: "김지영",
         title: "Sapiente minus repudiandae enim.",
         description:
@@ -22,7 +22,7 @@ export default [
         end_time: "2020-10-02",
       },
       {
-        imgUrl: "/posts/test_img_67.jpg",
+        //imgUrl: "/posts/test_img_67.jpg",
         name: "이명숙",
         title: "Possimus dolore earum aut repellendus.",
         description:
@@ -33,7 +33,7 @@ export default [
         end_time: "2020-10-02",
       },
       {
-        imgUrl: "/posts/test_img_86.jpg",
+        //imgUrl: "/posts/test_img_86.jpg",
         name: "이옥순",
         title: "Quo aperiam cupiditate rem similique minima dicta nam.",
         description:
@@ -43,7 +43,7 @@ export default [
         start_time: "2020-10-02",
         end_time: "2020-10-02",
       },{
-        imgUrl: "/posts/test_img_22.jpg",
+        //imgUrl: "/posts/test_img_22.jpg",
         name: "배민서",
         title: "Cumque dicta officiis officia ullam id ea sunt.",
         description:

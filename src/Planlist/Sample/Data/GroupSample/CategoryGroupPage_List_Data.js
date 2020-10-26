@@ -1,6 +1,6 @@
 export default [
     {
-        imgUrl: "/posts/test_img_76.jpg",
+        //imgUrl: "/posts/test_img_76.jpg",
         name: "주현정",
         title:
             "기술",
@@ -12,7 +12,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_35.jpg",
+        //imgUrl: "/posts/test_img_35.jpg",
         name: "이영식",
         title: "여행",
         description:
@@ -23,7 +23,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_3.jpg",
+        //imgUrl: "/posts/test_img_3.jpg",
         name: "김경희",
         title: "비즈니스",
         description:
@@ -34,7 +34,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_24.jpg",
+        //imgUrl: "/posts/test_img_24.jpg",
         name: "최서준",
         title: "스포츠",
         description:
@@ -45,7 +45,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_56.jpg",
+        //imgUrl: "/posts/test_img_56.jpg",
         name: "박옥순",
         title: "건강",
         description:
@@ -56,7 +56,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_58.jpg",
+        //imgUrl: "/posts/test_img_58.jpg",
         name: "이시우",
         title: "교육",
         description:
@@ -67,7 +67,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_86.jpg",
+        //imgUrl: "/posts/test_img_86.jpg",
         name: "김수빈",
         title: "요리",
         description:
@@ -78,7 +78,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_83.jpg",
+        //imgUrl: "/posts/test_img_83.jpg",
         name: "성지훈",
         title: "예술",
         description:
@@ -89,7 +89,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_2.jpg",
+        //imgUrl: "/posts/test_img_2.jpg",
         name: "커뮤니티",
         title: "Ut voluptatibus ut dicta error architecto aliquid nisi.",
         description:
@@ -100,7 +100,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_30.jpg",
+        //imgUrl: "/posts/test_img_30.jpg",
         name: "김지연",
         title: "육아",
         description:
