@@ -1,6 +1,6 @@
 export default [
     {
-        imgUrl: "/posts/test_img_97.jpg",
+        //imgUrl: "/posts/test_img_97.jpg",
         name: "이지영",
         title: "Rerum culpa a blanditiis rem quia laboriosam.",
         description:
@@ -11,7 +11,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_30.jpg",
+        //imgUrl: "/posts/test_img_30.jpg",
         name: "윤승현",
         title: "Nostrum fugit incidunt animi.",
         description:
@@ -22,7 +22,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_10.jpg",
+        //imgUrl: "/posts/test_img_10.jpg",
         name: "김재현",
         title: "Fugiat pariatur a animi.",
         description:
@@ -33,7 +33,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_27.jpg",
+        //imgUrl: "/posts/test_img_27.jpg",
         name: "박지후",
         title: "Consequuntur delectus perspiciatis nam deleniti odio.",
         description:
@@ -44,7 +44,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_35.jpg",
+        //imgUrl: "/posts/test_img_35.jpg",
         name: "박지연",
         title: "Nihil maiores laboriosam at odit inventore debitis.",
         description:
@@ -55,7 +55,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_44.jpg",
+        //imgUrl: "/posts/test_img_44.jpg",
         name: "박보람",
         title: "Qui illo reprehenderit id.",
         description:
@@ -66,7 +66,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_9.jpg",
+        //imgUrl: "/posts/test_img_9.jpg",
         name: "김준영",
         title: "Libero culpa occaecati quam itaque.",
         description:
@@ -77,7 +77,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_36.jpg",
+        //imgUrl: "/posts/test_img_36.jpg",
         name: "조지아",
         title: "Eum nemo voluptatibus blanditiis.",
         description:
@@ -88,7 +88,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_55.jpg",
+        //imgUrl: "/posts/test_img_55.jpg",
         name: "김현숙",
         title: "Eaque veniam vel.",
         description:
@@ -99,7 +99,7 @@ export default [
         end_time: "2020-10-02",
     },
     {
-        imgUrl: "/posts/test_img_99.jpg",
+        //imgUrl: "/posts/test_img_99.jpg",
         name: "강성수",
         title: "Laborum dolorum corporis id nisi repellat soluta.",
         description:
