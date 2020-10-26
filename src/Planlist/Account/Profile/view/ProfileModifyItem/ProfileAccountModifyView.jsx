@@ -156,6 +156,22 @@ const ProfileAccountModifyView = ({ account, onModifyAccount }) => {
             />
           </Grid.Column>
         </Grid.Row>
+
+
+        <Grid.Row columns={2}>
+          <Grid.Column width={modifyTitle}>
+            <aside>
+              <label>소개글</label>
+            </aside>
+          </Grid.Column>
+          <Grid.Column width={modifyContent}>
+            <TextArea
+              placeholder={account.introduce}
+              style={{ minHeight: 150 }}
+            />
+          </Grid.Column>
+        </Grid.Row>
+
       </Grid>
     </Form>
   );
