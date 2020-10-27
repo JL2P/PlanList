@@ -17,7 +17,7 @@ export default class TodoStore {
   //모델 정의
   @observable todo = {};
   @observable todos = [];
-  @observable mainTodos = [];
+  @observable mainTodos = [];z
 
   @computed get getTodo() {
     return this.todo;

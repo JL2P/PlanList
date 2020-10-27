@@ -14,19 +14,21 @@ class ProfileTodoFromNowListContainer extends Component {
     const { todo } = this.props.Store;
     const todos = todo.getTodos2;
 
-    const todays_date = new Date(); // 현재 날짜 받아오기
-    const year = todays_date.getFullYear();
-    const month = todays_date.getMonth() + 1; // 1월:0
-    const date = todays_date.getDate(); // 날짜
+    const today_date = new Date(); // 현재 날짜 받아오기
+    const year = today_date.getFullYear();
+    const month = today_date.getMonth() + 1; // 1월:0
+    const date = today_date.getDate(); // 날짜
     // const day = todays_date.getDay(); // 요일
     const today = year + "-" + month + "-" + date;
-    console.log("날짜!!", todays_date);
+    console.log("날짜!!", today_date);
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
       .filter((item) => item.end_time >= today)
       .sort((a, b) => (a.end_time > b.end_time ? 1 : -1));
     // .sort((a, b) => a.end_time - b.end_time);
+
+    // console.log("count", fromNow.length);
 
     // 앞으로 해야 할 일 종료 날짜를 담은 리스트
     const fromNow_date = [];

@@ -1,15 +1,24 @@
 import React, { useState } from "react";
-import { Container, Image, Grid, Icon, Segment, Button, Modal } from "semantic-ui-react";
+import {
+  Container,
+  Image,
+  Grid,
+  Icon,
+  Segment,
+  Button,
+  Modal,
+  Form,
+} from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import { inject, observer } from "mobx-react";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
-const ProfileManageView = ({ account, onModifyAccount }) => {
+const ProfileManageView = ({ account, onModifyAccount, todo_count }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
-  
+
   console.log(account);
   // modal open 상태 관리 (true: open, false: hide)
   const [open, setOpen] = useState(false);
@@ -22,11 +31,11 @@ const ProfileManageView = ({ account, onModifyAccount }) => {
   const onOpen = (trigger) => {
     setOpen(trigger);
   };
- //프로팔 팔로워 모달 
+  //프로팔 팔로워 모달
   const onFollowerModal = (trigger) => {
     setFollowerOpen(trigger);
   };
-//프로필 팔로잉 모달
+  //프로필 팔로잉 모달
   const onFollowingModal = (trigger) => {
     setFollowingOpen(trigger);
   };
@@ -56,7 +65,7 @@ const ProfileManageView = ({ account, onModifyAccount }) => {
       <ProfileFollowingModalView
         followingOpen={followingOpen}
         onFollowingModal={onFollowingModal}
-      />  
+      />
 
       <Grid stackable>
         <Grid.Row>
@@ -83,16 +92,19 @@ const ProfileManageView = ({ account, onModifyAccount }) => {
             <Segment basic>
               <Grid stackable style={{ fontSize: pText2 }}>
                 {/* 오늘 할일 */}
-                <Grid.Column width={5}>오늘 할 일 &nbsp; 2</Grid.Column>
+                <Grid.Column width={5}>
+                  해야 할 일 &nbsp; {todo_count}
+                </Grid.Column>
                 {/* 팔로워 */}
                 <Grid.Column width={5}>
-                <text onClick={() => onFollowerModal(true)} >팔로워</text> &nbsp; 10
-
+                  <text onClick={() => onFollowerModal(true)}>팔로워</text>{" "}
+                  &nbsp; 10
                 </Grid.Column>
                 {/* 팔로잉 */}
                 <Grid.Column width={5}>
-                <text onClick={() => onFollowingModal(true)} >팔로잉</text>&nbsp; 10
-              </Grid.Column>
+                  <text onClick={() => onFollowingModal(true)}>팔로잉</text>
+                  &nbsp; 10
+                </Grid.Column>
               </Grid>
             </Segment>
           </Grid.Column>
