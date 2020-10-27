@@ -4,10 +4,9 @@ import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowList
 import ProfileTodoPastListContainer from "../container/ProfileTodoPastListContainer";
 
 class ProfileTodoView extends Component {
-  state = { activeItem: "From Now" };
+  state = { activeItem: "해야 할 일" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
   render() {
     const { activeItem } = this.state;
 
@@ -15,13 +14,13 @@ class ProfileTodoView extends Component {
       <Container style={{ width: "900px", marginTop: "2em" }}>
         <Menu pointing secondary>
           <Menu.Item
-            name="From Now"
-            active={activeItem === "From Now"}
+            name="해야 할 일"
+            active={activeItem === "해야 할 일"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="Past"
-            active={activeItem === "Past"}
+            name="지난 할 일"
+            active={activeItem === "지난 할 일"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
@@ -37,8 +36,8 @@ class ProfileTodoView extends Component {
         </Menu>
 
         <div>
-          {activeItem === "From Now" && <ProfileTodoFromNowListContainer />}
-          {activeItem === "Past" && <ProfileTodoPastListContainer />}
+          {activeItem === "해야 할 일" && <ProfileTodoFromNowListContainer />}
+          {activeItem === "지난 할 일" && <ProfileTodoPastListContainer />}
           {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
           {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}
         </div>

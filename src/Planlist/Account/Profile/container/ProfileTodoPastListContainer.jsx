@@ -36,15 +36,6 @@ class ProfileTodoPastListContainer extends Component {
       }
     });
 
-    console.log("투두스");
-    console.log(past_date);
-
-    // 날짜 정렬 테스트
-    // const test = ["2020-08-10", "2020-10-10", "2020-06-10"];
-    // // const test2 = test.sort((a, b) => a - b);
-    // console.log("투두스");
-    // console.log(test.sort((a, b) => (a > b ? 1 : -1)));
-
     // 종료일이 지난 할 일을 종료 날짜별로 묶음
     const past_list = past_date.map((item) => []);
     past.map((item) => past_list[past_date.indexOf(item.end_time)].push(item));
