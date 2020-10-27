@@ -138,7 +138,7 @@ const ProfileFollowerView = () => {
             </div>
             <div clasName="part_a2">
                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                삭제
+                팔로잉
                 </Button>
             </div>
             </div>
