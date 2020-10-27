@@ -21,16 +21,21 @@ class ProfileMangeContainer extends Component {
     // Store에서 account Store가져오기
     console.log("render");
     const { account, todo } = this.props.Store;
+    const todos = todo.getTodos2;
+    const today = todo.getToday;
     console.log("??", account);
+    console.log(today);
+    
+    const count = todos.filter((item) => item.end_time >= today).length;
 
     // console.log(account.accountDetail);
     return (
       <div>
-      <ProfileManageView
-        account={account.getAccount2}
-        onModifyAccount={this.onModifyAccount}
-      />
-  
+        <ProfileManageView
+          account={account.getAccount2}
+          onModifyAccount={this.onModifyAccount}
+          todo_count={count}
+        />
       </div>
     );
   }

@@ -19,6 +19,8 @@ export default class TodoStore {
   @observable todos = [];
   @observable mainTodos = [];
 
+  @observable today = {}; // 오늘 날짜 : 년-월-일
+
   @computed get getTodo() {
     return this.todo;
   }
@@ -29,6 +31,14 @@ export default class TodoStore {
 
   @computed get getMainTodos() {
     return this.mainTodos;
+  }
+
+  @computed get getToday() {
+    const today_date = new Date(); // 현재 날짜 받아오기
+    const year = today_date.getFullYear();
+    const month = today_date.getMonth() + 1; // 1월 : 0
+    const date = today_date.getDate(); // 날짜
+    return year + "-" + month + "-" + date;
   }
 
   @action

@@ -13,18 +13,12 @@ class ProfileTodoPastListContainer extends Component {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo } = this.props.Store;
     const todos = todo.getTodos2;
-
-    const todays_date = new Date(); // 현재 날짜 받아오기
-    const year = todays_date.getFullYear();
-    const month = todays_date.getMonth() + 1; // 1월:0
-    const date = todays_date.getDate(); // 날짜
-    // const day = todays_date.getDay(); // 요일
-    const today = year + "-" + month + "-" + date;
+    const today = todo.getToday;
 
     // 종료일이 지난 할 일 리스트를 정렬
     const past = todos
-      .filter((item, index) => item.end_time < today)
-      .sort((a, b) => b.end_time - a.end_time);
+      .filter((item) => item.end_time < today)
+      .sort((a, b) => (a.end_time < b.end_time ? 1 : -1));
 
     // 종료일이 지난 날짜를 담은 리스트
     const past_date = [];
