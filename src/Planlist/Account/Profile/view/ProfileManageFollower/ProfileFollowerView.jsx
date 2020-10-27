@@ -1,9 +1,103 @@
-import React from 'react';
-import { Container, Item, Button, Image } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-react";
 const ProfileFollowerView = () => {
+    const [confirmOpen, setConfirmOpen] = useState(false);
+
+    const onConfirmModal = (trigger) => {
+        setConfirmOpen(trigger);
+      };
+
+
     return (
         <div>
-        <Container >
+        
+        
+        <Modal
+        onClose={() => setConfirmOpen(false)}
+        onOpen={() => setConfirmOpen(true)}
+        open={confirmOpen}
+        size="mini"
+        >
+          
+            <div
+             style={{
+                display:'flex', /* flex로 지정*/ 
+                justifyContent:"center", 
+                alignItems:"center", /* 높이의 정중앙 */
+                marginTop:"1em"
+                
+                }}>
+               <Modal.Content>
+              <div style={{
+                display:"flex",
+                flexDirection:"column",
+                justifyContent:"center", 
+                alignItems:"center"
+
+            }}>
+                <div style={{display:"flex",  justifyContent:"center"}}>
+                    <Image style={{margin:"1em", alignItems: "center"} }
+                    src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
+                    alt="jsx-a11y/alt-text"
+                    circular
+                    size="tiny"
+                    />
+                </div>
+                <div style={{padding:"1.2em"}}>
+                    <text>박민재님의 팔로우를 취소하시겠어요?</text>
+                </div>
+                </div>
+                </Modal.Content>
+                </div>
+                <div>
+              <Divider/>
+                <div
+                style={{
+                display:'flex', /* flex로 지정*/ 
+                justifyContent:"center", 
+                alignItems:"center", /* 높이의 정중앙 */
+                margin:"0.5em"
+                
+                }}>
+                <div style={{
+                display:"flex",
+                flexDirection:"column",
+                justifyContent:"center", 
+                alignItems:"center"
+
+            }}>
+                
+                <div>
+                <text style={{color:"red", fontWeight:"bold"}}>팔로우 취소</text>
+                </div>
+                </div>
+                </div>
+            </div>
+            <Divider/>
+                <div
+                style={{
+                display:'flex', /* flex로 지정*/ 
+                justifyContent:"center", 
+                alignItems:"center", /* 높이의 정중앙 */
+                margin:"0.5em"
+                
+                }}>
+                <div style={{
+                display:"flex",
+                flexDirection:"column",
+                justifyContent:"center", 
+                alignItems:"center"
+
+            }}>
+                
+                <div style={{marginBottom:"0.5em"}}>
+                <text style={{}}>취소</text>
+                 </div>
+                 </div>
+                 </div>
+            </Modal>
+    <Container>
+    
         <Item>
             <div 
             className="part_a"
@@ -26,15 +120,24 @@ const ProfileFollowerView = () => {
                     circular
                     />
                 </div>
-                <div className="part_b">
-                
+               
+                <div className="part_b2">
+                    
+                    <div>ID</div>
+                    <div>
+                        
                     <text style={{marginLeft:"1em", fontSize:"14px"}}
                     >박민재</text>
+                    </div>
                     
+                    
+                </div>
+                <div>
+
                 </div>
             </div>
             <div clasName="part_a2">
-                <Button size="tiny" basic color='grey' onClick={()=>{alert("delete!!")}}>
+                <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
                 삭제
                 </Button>
             </div>
