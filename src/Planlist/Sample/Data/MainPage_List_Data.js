@@ -8,7 +8,7 @@ export default [
     writer: "김춘자",
     rating: 211,
     start_time: "2020-09-02",
-    end_time: "2020-11-02",
+    end_time: "2022-11-02",
   },
   {
     imgUrl: "/posts/test_img_38.jpg",
@@ -96,7 +96,7 @@ export default [
     writer: "이정호",
     rating: 113,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-26",
   },
   {
     imgUrl: "/posts/test_img_86.jpg",
@@ -107,7 +107,7 @@ export default [
     writer: "박진우",
     rating: 145,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-26",
   },
   {
     imgUrl: "/posts/test_img_22.jpg",
@@ -118,7 +118,7 @@ export default [
     writer: "이순자",
     rating: 30,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-27",
   },
   {
     imgUrl: "/posts/test_img_50.jpg",
@@ -372,7 +372,7 @@ export default [
     writer: "한경수",
     rating: 232,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-27",
   },
   {
     imgUrl: "/posts/test_img_77.jpg",
@@ -383,7 +383,7 @@ export default [
     writer: "안지혜",
     rating: 148,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-12-02",
   },
   {
     imgUrl: "/posts/test_img_70.jpg",
@@ -394,7 +394,7 @@ export default [
     writer: "이예지",
     rating: 378,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-12-02",
   },
   {
     imgUrl: "/posts/test_img_19.jpg",
@@ -746,7 +746,7 @@ export default [
     writer: "차정훈",
     rating: 271,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-25",
   },
   {
     imgUrl: "/posts/test_img_37.jpg",
@@ -757,7 +757,7 @@ export default [
     writer: "성은주",
     rating: 209,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-25",
   },
   {
     imgUrl: "/posts/test_img_73.jpg",
@@ -768,7 +768,7 @@ export default [
     writer: "최영진",
     rating: 366,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-26",
   },
   {
     imgUrl: "/posts/test_img_79.jpg",
@@ -790,7 +790,7 @@ export default [
     writer: "한서영",
     rating: 71,
     start_time: "2020-10-02",
-    end_time: "2020-10-02",
+    end_time: "2020-10-06",
   },
   {
     imgUrl: "/posts/test_img_16.jpg",

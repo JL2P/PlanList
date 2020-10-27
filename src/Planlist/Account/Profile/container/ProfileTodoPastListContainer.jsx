@@ -20,11 +20,13 @@ class ProfileTodoPastListContainer extends Component {
     const date = todays_date.getDate(); // 날짜
     // const day = todays_date.getDay(); // 요일
     const today = year + "-" + month + "-" + date;
+    console.log("겟타임", todays_date.getTime);
 
     // 종료일이 지난 할 일 리스트를 정렬
     const past = todos
       .filter((item, index) => item.end_time < today)
-      .sort((a, b) => b.end_time - a.end_time);
+      .sort((a, b) => (a.end_time < b.end_time ? 1 : -1));
+    // .sort((a, b) => b.end_time - a.end_time);
 
     // 종료일이 지난 날짜를 담은 리스트
     const past_date = [];
@@ -33,6 +35,15 @@ class ProfileTodoPastListContainer extends Component {
         past_date.push(item.end_time);
       }
     });
+
+    console.log("투두스");
+    console.log(past_date);
+
+    // 날짜 정렬 테스트
+    // const test = ["2020-08-10", "2020-10-10", "2020-06-10"];
+    // // const test2 = test.sort((a, b) => a - b);
+    // console.log("투두스");
+    // console.log(test.sort((a, b) => (a > b ? 1 : -1)));
 
     // 종료일이 지난 할 일을 종료 날짜별로 묶음
     const past_list = past_date.map((item) => []);

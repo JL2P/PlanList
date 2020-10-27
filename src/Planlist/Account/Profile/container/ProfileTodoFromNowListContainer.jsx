@@ -25,7 +25,8 @@ class ProfileTodoFromNowListContainer extends Component {
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
       .filter((item, index) => item.end_time >= today)
-      .sort((a, b) => a.end_time - b.end_time);
+      .sort((a, b) => (a.end_time > b.end_time ? 1 : -1));
+    // .sort((a, b) => a.end_time - b.end_time);
 
     // 앞으로 해야 할 일 종료 날짜를 담은 리스트
     const fromNow_date = [];
