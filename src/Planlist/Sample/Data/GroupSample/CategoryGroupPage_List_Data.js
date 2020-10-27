@@ -91,7 +91,7 @@ export default [
     {
         //imgUrl: "/posts/test_img_2.jpg",
         name: "커뮤니티",
-        title: "Ut voluptatibus ut dicta error architecto aliquid nisi.",
+        title: "레크레이션",
         description:
             "Nemo eum expedita optio reiciendis. Temporibus quidem aut dolorem itaque. Enim tempore sapiente dolor iusto.",
         writer: "장지민",

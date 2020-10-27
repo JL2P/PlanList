@@ -135,6 +135,7 @@ $breakpoint-desktop: 1024px;
   transform: translate(-50%, -50%);
   font-size: 80px!important;
   color:#ffb509;
+  z-index: 1;
   &:hover{
     color: #ffce5c!important;
   }

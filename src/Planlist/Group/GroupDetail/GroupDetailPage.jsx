@@ -13,26 +13,28 @@ const GroupDetailPage = ({history}) => {
 
     const boxShadowRemove ={boxShadow:"none"}
     return (
-        <Container>
-            <Grid celled style={boxShadowRemove}>
-                <Grid.Row style={boxShadowRemove}>
-                    <Grid.Column width={4} style={boxShadowRemove}>
-                        <DetailProfileContainer />
-                    </Grid.Column>
-                    
+        <div className="groupDetailWrap">
+            <Container>
+                <Grid celled style={boxShadowRemove}>
+                    <Grid.Row style={boxShadowRemove}>
+                        <Grid.Column width={4} style={boxShadowRemove}>
+                            <DetailProfileContainer />
+                        </Grid.Column>
+                        
 
-                    <Grid.Column width={8} style={boxShadowRemove}>
-                        <DetailCenterlContainer />
-                    </Grid.Column>
+                        <Grid.Column width={8} style={boxShadowRemove}>
+                            <DetailCenterlContainer />
+                        </Grid.Column>
 
-                    <Grid.Column width={4} style={boxShadowRemove}>
-                        <DetailChattingContainer />
-                    </Grid.Column>
+                        <Grid.Column width={4} style={boxShadowRemove}>
+                            <DetailChattingContainer />
+                        </Grid.Column>
 
-                </Grid.Row>
-            </Grid>
-            
-        </Container>
+                    </Grid.Row>
+                </Grid>
+                
+            </Container>
+        </div>
     );
 };
 

@@ -5,7 +5,7 @@ import "../../../GroupStyle/Group.scss";
 
 const CategoryGroupItem = ({ item }) => {
   return (
-    <Link to="/">
+    <Link to="/groupcategory">
       <Card className="group_card categoryGroup_card" raised>
         <Image 
             src={item.imgUrl} 

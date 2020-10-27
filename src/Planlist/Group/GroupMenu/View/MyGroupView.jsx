@@ -52,7 +52,7 @@ const MyGroupView = ({ sampleData }) => {
         <div className="group_header_text">
           <p className="group_header_headerText">내 그룹</p>
           <p className="group_header_contents">내가 가입한 그룹 목록입니다.</p>
-          <Link to="/" className="group_allView">모두 보기</Link>
+          <Link to="/groupcategory" className="group_allView">모두 보기</Link>
         </div>
           <Slider {...settings}>
             <NewGroupItem />
