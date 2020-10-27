@@ -16,7 +16,7 @@ export default [
         text: '여행'
     },{
         name: 'business',
-        text: '비즈니스'
+        text: '비지니스'
     },{
         name: 'sports',
         text: '스포츠'
