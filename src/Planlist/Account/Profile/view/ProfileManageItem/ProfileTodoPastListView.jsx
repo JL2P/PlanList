@@ -5,11 +5,11 @@ const ProfileTodoPastListView = ({ past_list, past_date }) => {
   return (
     <div>
       {past_list.map((date, index) => (
-        <div>
+        <div key={index}>
           <p>{past_date[index]}</p>
           <Card.Group>
-            {past_list[index].map((item, index) => (
-              <ProfileTodoCardView todo={item} />
+            {date.map((item, index) => (
+              <ProfileTodoCardView todo={item} key={index} />
             ))}
           </Card.Group>
           <Divider></Divider>

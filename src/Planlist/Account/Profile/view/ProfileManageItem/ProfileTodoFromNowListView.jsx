@@ -5,10 +5,10 @@ const ProfileTodoFromNowListView = ({ fromNow_list, fromNow_date }) => {
   return (
     <div>
       {fromNow_list.map((date, index) => (
-        <div>
+        <div key={index}>
           <p>{fromNow_date[index]}</p>
           <Card.Group>
-            {fromNow_list[index].map((item, index) => (
+            {date.map((item, index) => (
               <ProfileTodoCardView todo={item} key={index} />
             ))}
           </Card.Group>
