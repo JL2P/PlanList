@@ -12,6 +12,7 @@ const ProfileSettingModalView = ({
   account,
   onModifyAccount,
 }) => {
+  const modal_height = "560px";
   return (
     <Modal open={open}>
       <Modal.Header>
@@ -20,8 +21,14 @@ const ProfileSettingModalView = ({
 
       <Grid style={{ marginTop: "15px" }}>
         <Grid.Column width={4}>
-          <Modal.Content style={{ height: "506px" }}>
-            <Menu vertical tabular pointing secondary>
+          <Modal.Content style={{ height: modal_height }}>
+            <Menu
+              vertical
+              tabular
+              pointing
+              secondary
+              style={{ height: "610px" }}
+            >
               <Menu.Item
                 name="내정보 관리"
                 active={activeItem === "내정보 관리"}
@@ -43,7 +50,11 @@ const ProfileSettingModalView = ({
         </Grid.Column>
 
         <Grid.Column stretched width={12} margin-right={2} stackable>
-          <Modal.Content scrolling style={{ width: "100%" }}>
+          <Modal.Content
+            scrolling
+            image
+            style={{ width: "100%", height: modal_height }}
+          >
             <div>
               {activeItem === "내정보 관리" && (
                 <ProfileAccountModifyView
