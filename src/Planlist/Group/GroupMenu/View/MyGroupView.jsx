@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import '../../GroupStyle/Group.scss';
 
-const MyGroupView = ({ sampleData }) => {
+const MyGroupView = ({ sampleData,categoryList,onCreateGroup }) => {
   const Groupitem = sampleData.map((item, index) => (
     <MyGroupItem key={index} item={item} />
   ));
@@ -55,7 +55,7 @@ const MyGroupView = ({ sampleData }) => {
           <Link to="/groupcategory" className="group_allView">모두 보기</Link>
         </div>
           <Slider {...settings}>
-            <NewGroupItem />
+            <NewGroupItem categoryList={categoryList} onCreateGroup={onCreateGroup} />
             {Groupitem}
           </Slider>
       </Container>
