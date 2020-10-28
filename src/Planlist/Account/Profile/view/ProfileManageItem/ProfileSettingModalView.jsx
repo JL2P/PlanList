@@ -10,7 +10,8 @@ const ProfileSettingModalView = ({
   activeItem,
   handleItemClick,
   account,
-  onModifyAccount,
+  loginId,
+  loginCheck,
 }) => {
   const modal_height = "560px";
   return (
@@ -45,6 +46,14 @@ const ProfileSettingModalView = ({
                 active={activeItem === "공개 범위 설정"}
                 onClick={() => handleItemClick("공개 범위 설정")}
               />
+
+              <Menu.Item
+                name="로그아웃"
+                active={activeItem === "로그아웃"}
+                onClick={() => {
+                  onOpen(false);
+                }}
+              />
             </Menu>
           </Modal.Content>
         </Grid.Column>
@@ -57,10 +66,7 @@ const ProfileSettingModalView = ({
           >
             <div>
               {activeItem === "내정보 관리" && (
-                <ProfileAccountModifyView
-                  account={account}
-                  onModifyAccount={onModifyAccount}
-                />
+                <ProfileAccountModifyView account={account} />
               )}
               {activeItem === "비밀번호 변경" && (
                 <ProfilePasswordModifyView account={account} />
@@ -68,6 +74,7 @@ const ProfileSettingModalView = ({
               {activeItem === "공개 범위 설정" && (
                 <ProfileAccountPrivacyView account={account} />
               )}
+              {activeItem === "로그아웃"}
             </div>
           </Modal.Content>
         </Grid.Column>

@@ -9,12 +9,8 @@ class ProfileMangeContainer extends Component {
     console.log("componentDidMount");
     const { account } = this.props.Store;
     account.selectUser("song");
+    // account.selectAll();
   }
-
-  onModifyAccount = () => {
-    const { account } = this.props.Store;
-    account.userModify(account);
-  };
 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
@@ -23,17 +19,20 @@ class ProfileMangeContainer extends Component {
     const { account, todo } = this.props.Store;
     const todos = todo.getTodos2;
     const today = todo.getToday;
-    console.log("??", account);
+    console.log(account.getAccount);
     console.log(today);
-    
+    // console.log(account.getLogCheck == false);
+    console.log(account.getLoginId);
+
     const count = todos.filter((item) => item.end_time >= today).length;
 
     // console.log(account.accountDetail);
     return (
       <div>
         <ProfileManageView
-          account={account.getAccount2}
-          onModifyAccount={this.onModifyAccount}
+          account={account.getAccount}
+          loginId={account.getLoginId}
+          loginCheck={account.getLogCheck}
           todo_count={count}
         />
       </div>

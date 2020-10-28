@@ -9,7 +9,7 @@ import {
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountModifyView = ({ account, onModifyAccount }) => {
+const ProfileAccountModifyView = ({ account }) => {
   const modifyTitle = 4;
   const modifyContent = 10;
   const genderOptions = [
