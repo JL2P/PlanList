@@ -6,7 +6,7 @@ import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFro
 @observer
 class ProfileTodoFromNowListContainer extends Component {
   componentDidMount() {
-    this.props.Store.todo.getApiTodo(3);
+    this.props.Store.todo.getApiTodos();
   }
 
   render() {

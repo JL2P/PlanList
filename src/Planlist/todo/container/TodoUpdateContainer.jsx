@@ -7,8 +7,12 @@ import { inject, observer } from "mobx-react";
 @inject("Store")
 @observer
 class TodoUpdateContainer extends Component {
-  updateTodo = (e) => {
-    console.log("updateTodo");
+  updateTodo = (e, todoUpdateModel) => {
+    e.preventDefault(); // 기본적인 서브밋 행동을 취소
+    const { todo } = this.props.Store;
+    todo.modifyTodo(todoUpdateModel);
+    //업데이트 후 모달 닫기
+    this.props.onModal(false);
   };
 
   render() {

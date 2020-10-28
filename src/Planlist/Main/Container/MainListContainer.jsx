@@ -19,9 +19,9 @@ class MainPageContainer extends Component {
     );
   }
 
-  //Todo를 업데이트 하는 함수
-  onUpdateTodo = (e, todoUpdateModel) => {
-    console.log(todoUpdateModel);
+  //Todo 삭제
+  onDeleteTodo = (e, todoId) => {
+    console.log(todoId);
   };
 
   onCreateComment = (e, id) => {
@@ -30,7 +30,7 @@ class MainPageContainer extends Component {
   };
 
   componentDidMount() {
-    this.props.Store.todo.getApiTodo(this.COLUMN_COUNT);
+    this.props.Store.todo.getApiTodos();
   }
 
   componentDidUpdate() {
@@ -47,12 +47,9 @@ class MainPageContainer extends Component {
     //각 div를 비교했을때, 최대높이와 최소높이의 차이가 150이상일 경우
 
     if (MaxValue - MinValue > 300) {
-      let changeTodoList = todo.getMainTodos;
+      let changeTodoList = todo.getTodosFrame;
       //최대높이의 item을 최소 높이의 아이템 배열에 넣어준다.
       changeTodoList[minIndex].push(changeTodoList[maxIndex].pop());
-
-      //MainTodos변경
-      todo.setMainTodos(changeTodoList);
     }
   }
 
@@ -65,7 +62,7 @@ class MainPageContainer extends Component {
         <MainItemFrame
           key={idx}
           todoModel={todoModel}
-          onUpdateTodo={this.onUpdateTodo}
+          onDeleteTodo={this.onDeleteTodo}
         />
       ))
     );
@@ -84,13 +81,12 @@ class MainPageContainer extends Component {
   };
 
   render() {
-    //테스트용 데이터셋
     const { todo } = this.props.Store;
-    const sampleData = todo.getMainTodos;
+    const todosFrame = todo.getTodosFrame;
 
     //메인 아이템 리스트를 각 화면 커럼에 순서대로 배치
     const MainItemGroupListView = this.divisonToItemGroup(
-      sampleData,
+      todosFrame,
       this.COLUMN_COUNT
     );
 

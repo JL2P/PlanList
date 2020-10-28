@@ -5,7 +5,7 @@ const MainItemCover = ({ todoModel, onCofigModal }) => {
     <div className="todo__subitem">
       <Button style={{ padding: "1em", pointerEvents: "none" }}>
         <Icon name="star" color="yellow" />
-        <b style={{ fontSize: "14px" }}>{todoModel.rating}</b>
+        <b style={{ fontSize: "14px" }}>{todoModel.likePoint}</b>
       </Button>
       <Button
         style={{ padding: "1em" }}

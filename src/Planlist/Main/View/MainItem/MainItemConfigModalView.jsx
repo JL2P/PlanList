@@ -1,6 +1,11 @@
 import React from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
-const MainItemConfigModalView = ({ open, onModal, onTodoUpdateModal }) => {
+const MainItemConfigModalView = ({
+  open,
+  onModal,
+  onTodoUpdateModal,
+  onDeleteTodo,
+}) => {
   return (
     <Modal
       basic
@@ -38,6 +43,7 @@ const MainItemConfigModalView = ({ open, onModal, onTodoUpdateModal }) => {
           inverted
           color="red"
           style={{ marginBottom: "1em" }}
+          onClick={onDeleteTodo}
         >
           <Icon name="remove" /> 글 삭제
         </Button>
