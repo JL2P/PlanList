@@ -50,4 +50,11 @@ export default class GroupStore {
         this.select_Group_categoryList = item
       }
 
+      //그룹 생성
+      @action
+      createGroup = (createObj) => {
+        this.myTodo.push(createObj)
+        console.log(this.myTodo)
+      }
+
 }
