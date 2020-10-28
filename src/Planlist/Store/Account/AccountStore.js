@@ -22,6 +22,7 @@ export default class AccountStore {
   accounts = [];
 
   @observable logCheck = false;
+  @observable loginId = "";
   @observable authModifymove = true;
 
   @computed
@@ -35,6 +36,14 @@ export default class AccountStore {
 
   @computed get getAuthModifymove() {
     return this.authModifymove;
+  }
+
+  @computed get getLogCheck() {
+    return this.logCheck;
+  }
+
+  @computed get loginId() {
+    return this.loginId;
   }
 
   @action
@@ -67,6 +76,7 @@ export default class AccountStore {
     ) {
       this.logCheck = true;
       this.account = result;
+      this.loginId = account.accountId;
       console.log(result);
       console.log("로그인이 완료되었습니다.");
     }
