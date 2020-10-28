@@ -1,42 +1,55 @@
 export default [
-    {
-        name: 'all',
+    {   
+        key: 1,
+        value: 'all',
         text: '전체 그룹'
     },{
-        name: 'myGroup',
+        key: 2,
+        value: 'myGroup',
         text: '내 그룹'
     },{
-        name: 'bestGroup',
+        key: 3,
+        value: 'bestGroup',
         text: '인기 그룹'
     },{
-        name: 'technology',
+        key: 4,
+        value: 'technology',
         text: '기술'
     },{
-        name: 'travel',
+        key: 5,
+        value: 'travel',
         text: '여행'
     },{
-        name: 'business',
+        key: 6,
+        value: 'business',
         text: '비즈니스'
     },{
-        name: 'sports',
+        key: 7,
+        value: 'sports',
         text: '스포츠'
     },{
-        name: 'health',
+        key: 8,
+        value: 'health',
         text: '건강'
     },{
-        name: 'education',
+        key: 9,
+        value: 'education',
         text: '교육'
     },{
-        name: 'cooking',
+        key: 10,
+        value: 'cooking',
         text: '요리'
     },{
-        name: 'art',
+        key: 11,
+        value: 'art',
         text: '예술'
     },{
-        name: 'recreation',
+        key: 12,
+        value: 'recreation',
         text: '레크레이션'
     },{
-        name: 'parenting',
+        key: 13,
+        value: 'parenting',
         text: '육아'
     },
 ]

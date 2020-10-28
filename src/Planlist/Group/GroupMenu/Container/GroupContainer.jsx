@@ -10,16 +10,27 @@ import { inject, observer } from "mobx-react";
 @observer
 class GroupContainer extends Component {
 
+    onCreateGroup = (e, createObj) => {
+        e.preventDefault();
+        const { group } = this.props.Store;
+        group.createGroup(createObj);
+    }
+
     render() {
         const { group } = this.props.Store;
         const my_sampleData = group.getMyTodo;
         const best_sampleData = group.getBestTodo;
         const category_sampleData = group.getCategoryTodo;
         const recommend_sampleData= group.getRecommendTodo;
+        const categoryList = group.getCategoryList;
         
         return (
             <div>
-                <MyGroupView sampleData={my_sampleData}/>
+                <MyGroupView 
+                    sampleData={my_sampleData} 
+                    categoryList={categoryList}
+                    onCreateGroup={this.onCreateGroup}
+                />
                 <BestGroupView sampleData={best_sampleData} />
                 <CategoryGroupView sampleData={category_sampleData} />
                 <RecommendGroupView sampleData={recommend_sampleData} />
