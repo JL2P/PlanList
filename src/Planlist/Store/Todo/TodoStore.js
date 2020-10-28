@@ -9,7 +9,6 @@ import TodoModel from "../../Api/model/todo/TodoModel";
 
 //테스트용 추가 -승훈-
 import exampleDataset from "../../Sample/Data/MainPage_List_Data";
-import TodoMainTestModel from "../../Api/model/TodoMainTestModel";
 
 export default class TodoStore {
   constructor(root) {
@@ -64,7 +63,6 @@ export default class TodoStore {
 
   @action
   setTodos(todos){
-    console.log(todos)
     this.todos=todos;
   }
 

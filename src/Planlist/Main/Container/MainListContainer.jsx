@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import MainListView from "../View/MainListView";
 import MainItemGroupView from "../View/MainItem/MainItemGroupView";
 import MainItemFrame from "../View/MainItem/MainItemFrame";
+import MainNoTodoContainer from "../Container/MainNoTodoContainer";
 
 @inject("Store")
 @observer
@@ -19,11 +20,6 @@ class MainPageContainer extends Component {
     );
   }
 
-  //Todo 삭제
-  onDeleteTodo = (e, todoId) => {
-    console.log(todoId);
-  };
-
   onCreateComment = (e, id) => {
     console.log(id);
     console.log(e.target.value);
@@ -35,21 +31,25 @@ class MainPageContainer extends Component {
 
   componentDidUpdate() {
     const { todo } = this.props.Store;
+    const todos = todo.getTodos;
+    if (todos.length > 0) {
+      const columnHeights = this.columns.map(
+        (item) => item.current.clientHeight
+      );
 
-    const columnHeights = this.columns.map((item) => item.current.clientHeight);
+      const MaxValue = Math.max.apply(null, columnHeights);
+      const MinValue = Math.min.apply(null, columnHeights);
 
-    const MaxValue = Math.max.apply(null, columnHeights);
-    const MinValue = Math.min.apply(null, columnHeights);
+      const maxIndex = columnHeights.indexOf(MaxValue);
+      const minIndex = columnHeights.indexOf(MinValue);
 
-    const maxIndex = columnHeights.indexOf(MaxValue);
-    const minIndex = columnHeights.indexOf(MinValue);
+      //각 div를 비교했을때, 최대높이와 최소높이의 차이가 150이상일 경우
 
-    //각 div를 비교했을때, 최대높이와 최소높이의 차이가 150이상일 경우
-
-    if (MaxValue - MinValue > 300) {
-      let changeTodoList = todo.getTodosFrame;
-      //최대높이의 item을 최소 높이의 아이템 배열에 넣어준다.
-      changeTodoList[minIndex].push(changeTodoList[maxIndex].pop());
+      if (MaxValue - MinValue > 300) {
+        let changeTodoList = todo.getTodosFrame;
+        //최대높이의 item을 최소 높이의 아이템 배열에 넣어준다.
+        changeTodoList[minIndex].push(changeTodoList[maxIndex].pop());
+      }
     }
   }
 
@@ -82,6 +82,7 @@ class MainPageContainer extends Component {
 
   render() {
     const { todo } = this.props.Store;
+    const todos = todo.getTodos;
     const todosFrame = todo.getTodosFrame;
 
     //메인 아이템 리스트를 각 화면 커럼에 순서대로 배치
@@ -90,7 +91,14 @@ class MainPageContainer extends Component {
       this.COLUMN_COUNT
     );
 
-    return <MainListView itemList={MainItemGroupListView} />;
+    const mainList =
+      todos.length > 0 ? (
+        <MainListView itemList={MainItemGroupListView} />
+      ) : (
+        <MainNoTodoContainer />
+      );
+
+    return mainList;
   }
 }
 
