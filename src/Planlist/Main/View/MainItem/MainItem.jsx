@@ -20,7 +20,7 @@ const MainItem = ({ todoModel, onInfoModal }) => {
           >
             <div style={{ marginLeft: "0.5em" }}>
               <Icon name="user" />
-              {todoModel.name}
+              {todoModel.writer}
             </div>
             <div
               style={{
@@ -28,11 +28,6 @@ const MainItem = ({ todoModel, onInfoModal }) => {
               }}
             >
               <Card.Meta>
-                <Label basic color="teal" style={{ marginRight: "0.5em" }}>
-                  <Icon name="clock outline" style={{ marginRight: "0.5em" }} />
-                  {todoModel.startTime}
-                </Label>
-
                 <Label basic color="red">
                   <Icon name="clock outline" style={{ marginRight: "0.5em" }} />
                   {todoModel.endTime}

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import TodoCreateDesktopForm from "../../todo/view/TodoCreateDesktopForm";
-import MainCreateTodoDesktopView from "../View/MainCreateTodoDesktopView";
+import MainNoTodoView from "../View/MainNoTodoView";
 
 @inject("Store")
 @observer
-class MainTodoCreateDesktopContainer extends Component {
+class MainNoTodoContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +54,8 @@ class MainTodoCreateDesktopContainer extends Component {
     const { open, todoTitle } = this.state;
 
     return (
-      <div style={{ background: "#1b1c1d" }}>
+      <div>
+        <MainNoTodoView onCreateTodoModal={this.onModal} />
         <TodoCreateDesktopForm
           open={open}
           onModal={this.onModal}
@@ -62,15 +63,9 @@ class MainTodoCreateDesktopContainer extends Component {
           onChangeTitle={this.changeTodoTitle}
           createTodo={this.createTodo}
         />
-        <MainCreateTodoDesktopView
-          title={todoTitle}
-          onChangeTitle={this.changeTodoTitle}
-          onCreateTodoModal={this.onModal}
-          onEnterCreateTodoModal={this.onEnterModal}
-        />
       </div>
     );
   }
 }
 
-export default MainTodoCreateDesktopContainer;
+export default MainNoTodoContainer;

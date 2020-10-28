@@ -4,7 +4,7 @@ import axios from "axios"
 export default class TodoRepository{
 
    //공통 적으로 사용되는 URL
-   URL = "/api/todos/";
+   URL = "/api/todos";
 
 
    // todo list 조회
@@ -34,7 +34,7 @@ export default class TodoRepository{
     // todo 삭제
     // DELETE /api/todo/{todoId}/
     todoDelete = (todoId)=>{
-        return axios.delete(this.URL+`${todoId}/`).then(request=>request.data||null)
+        return axios.delete(this.URL+`/${todoId}/`).then(request=>request.data||null)
     }
 }
 

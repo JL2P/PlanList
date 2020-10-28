@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import "./itemStyle.css";
 import MainItemInfoModalView from "./MainItemInfoModalView";
 import MainItemConfigModalView from "./MainItemConfigModalView";
+
 import TodoUpdateContainer from "../../../todo/container/TodoUpdateContainer";
+import MainItemConfigCotainer from "../../Container/MainItemConfigCotainer";
 
 import MainItem from "./MainItem";
 import MainItemCover from "./MainItemCover";
@@ -35,18 +37,20 @@ const MainItemFrame = ({ todoModel }) => {
   };
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <TodoUpdateContainer
         todo={todoModel}
         open={todoUpdateOpen}
         onModal={onTodoUpdateModal}
       />
 
-      <MainItemConfigModalView
+      <MainItemConfigCotainer
+        todo={todoModel}
         open={itemConfigOpen}
         onModal={onCofigModal}
         onTodoUpdateModal={onTodoUpdateModal}
       />
+
       <MainItemInfoModalView
         item={todoModel}
         open={itemInfoOpen}

@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
   // Authentication Service
   app.use(
-    "/api",
+    "/api/auth",
     createProxyMiddleware({
       target: "http://localhost:9000",
       changeOrigin: true,

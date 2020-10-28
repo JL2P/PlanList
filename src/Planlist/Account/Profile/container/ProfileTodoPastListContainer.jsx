@@ -6,7 +6,7 @@ import ProfileTodoPastListView from "../view/ProfileManageItem/ProfileTodoPastLi
 @observer
 class ProfileTodoPastListContainer extends Component {
   componentDidMount() {
-    this.props.Store.todo.getApiTodo(3);
+    this.props.Store.todo.getApiTodos();
   }
 
   render() {
