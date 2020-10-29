@@ -13,22 +13,33 @@ class GroupCategoryContainer extends Component {
         group.categoryList_select(item);
     }
 
+    //그룹 전체 리스트 조회
+    onAllGroups = () => {
+        const { group } = this.props.Store;
+        group.getApiGroups();
+    }
+
     render() {
+        const location = this.props.location;
         const { group } = this.props.Store;
         const {getCategoryList,getSelect_Group_categoryList} = group;
+        const getGroups = group.getGroups;
         return (
             <Grid divided style={{marginLeft:"0",marginTop:"0"}}>
                 <Grid.Row style={{paddingTop:"0"}}>
                 <Grid.Column  width={3} style={{padding:"0"}}>
                     <GroupCategoryNav 
                         sampleData={getCategoryList}
+                        selectList={getSelect_Group_categoryList}
                         onCategoryList_select={this.onCategoryList_select}
                     />
                 </Grid.Column>
                 <Grid.Column  width={13} style={{padding:"2rem 3rem"}}>
                     <GroupCategoryContents 
-                        sampleData={getCategoryList}
+                        GroupsData={getGroups}
                         selectList={getSelect_Group_categoryList}
+                        onAllGroups={this.onAllGroups}
+                        location={location}
                     />
                 </Grid.Column>
                 </Grid.Row>
