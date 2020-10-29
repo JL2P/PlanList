@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import '../../GroupStyle/Group.scss';
 
-const MyGroupView = ({ sampleData,categoryList,onCreateGroup }) => {
+const MyGroupView = ({ sampleData,categoryList,onCreateGroup,onCategoryDefault }) => {
   const Groupitem = sampleData.map((item, index) => (
     <MyGroupItem key={index} item={item} />
   ));
@@ -52,7 +52,7 @@ const MyGroupView = ({ sampleData,categoryList,onCreateGroup }) => {
         <div className="group_header_text">
           <p className="group_header_headerText">내 그룹</p>
           <p className="group_header_contents">내가 가입한 그룹 목록입니다.</p>
-          <Link to="/groupcategory" className="group_allView">모두 보기</Link>
+          <Link to="/groupcategory" className="group_allView" onClick={onCategoryDefault}>모두 보기</Link>
         </div>
           <Slider {...settings}>
             <NewGroupItem categoryList={categoryList} onCreateGroup={onCreateGroup} />

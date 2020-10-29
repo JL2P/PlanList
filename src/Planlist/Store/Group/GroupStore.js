@@ -31,11 +31,7 @@ export default class GroupStore {
       @observable group = {};
       @observable groups = [];
       @observable categoryList = CategoryList_Data;
-      @observable select_Group_categoryList = {   
-        key: 1,
-        value: 'all',
-        text: '전체 그룹'
-      };
+      @observable select_Group_categoryList = this.categoryList[0];
       @observable detailGroup_modalOpen = false;
       @observable detailGroup_open ={};
 
