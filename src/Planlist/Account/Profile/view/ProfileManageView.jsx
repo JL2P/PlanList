@@ -76,8 +76,24 @@ const ProfileManageView = ({ account, todo_count, loginId, loginCheck }) => {
       <Grid stackable>
         <Grid.Row>
           {/* 프로필 이미지 */}
-          <Grid.Column width={4}>
-            <Image src="/profiles/hungry.png" size="small" bordered circular />
+          <Grid.Column
+            width={4}
+            style={{
+              height: "150px",
+              width: "150px",
+            }}
+          >
+            <Image
+              src="/profiles/peng.png"
+              bordered
+              circular
+              centered
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </Grid.Column>
           {/* 프로필 정보 */}
           <Grid.Column width={12}>

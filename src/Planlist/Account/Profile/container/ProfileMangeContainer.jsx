@@ -8,7 +8,7 @@ class ProfileMangeContainer extends Component {
   componentDidMount() {
     console.log("componentDidMount");
     const { account } = this.props.Store;
-    account.selectUser("song");
+    account.selectUser("giant_peng");
     // account.selectAll();
   }
 
