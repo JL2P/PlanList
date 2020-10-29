@@ -11,27 +11,29 @@ import {
 } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
-import { inject, observer } from "mobx-react";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
 const ProfileManageView = ({
+  accounts,
   account,
   todo_count,
   loginId,
   loginCheck,
   onSelectUser,
+  onModifyUser,
+  onSetAccountProp,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
   // 로그인 아이디 일단 임시로 주었음!!
-  onSelectUser("giant_peng");
+  // onSelectUser("giant_peng");
   loginId = account.accountId;
   loginCheck = true;
   console.log(account);
   console.log("loginId >> ", loginId, loginCheck);
-  //
+  
 
   // modal open 상태 관리 (true: open, false: hide)
   const [open, setOpen] = useState(false);
@@ -62,6 +64,7 @@ const ProfileManageView = ({
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
       <ProfileSettingModalView
+        accounts={accounts}
         account={account}
         open={open}
         onOpen={onOpen}
@@ -69,6 +72,8 @@ const ProfileManageView = ({
         handleItemClick={handleItemClick}
         loginId={loginId}
         loginCheck={loginCheck}
+        onModifyUser={onModifyUser}
+        onSetAccountProp={onSetAccountProp}
       />
       {/* 프로필 팔로워 모달 기본 open상태 false */}
       <ProfileFollowerModalView

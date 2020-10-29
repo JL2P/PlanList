@@ -8,14 +8,28 @@ class ProfileMangeContainer extends Component {
   componentDidMount() {
     console.log("componentDidMount");
     const { account, todo } = this.props.Store;
-    // account.selectUser("giant_peng");
+    //여기서 랜덤으로 뽑아서 사용해보는방법?
+    const userList = ["giant_peng","giant_pen2","giant_peng3"];
+
+    account.selectUser("giant_peng");
     account.selectAll();
     todo.getApiTodos();
   }
 
+  //로그인이 됬을때 디비에서 id에맞는 유저정보를 가지고 오기위함
   onSelectUser = (user) => {
     const { account } = this.props.Store;
     account.selectUser(user);
+  };
+
+  onSetAccountProp = (key, value) => {
+    const { account } = this.props.Store;
+    account.setAccountProp(key, value);
+  };
+
+  onModifyUser = (user) => {
+    const { account } = this.props.Store;
+    account.userModify(user);
   };
 
   render() {
@@ -35,8 +49,11 @@ class ProfileMangeContainer extends Component {
     return (
       <div>
         <ProfileManageView
+          accounts={account.getAccounts}
           account={account.getAccount}
           onSelectUser={this.onSelectUser}
+          onModifyUser={this.onModifyUser}
+          onSetAccountProp={this.onSetAccountProp}
           loginId={account.getLoginId}
           loginCheck={account.getLogCheck}
           todo_count={count}

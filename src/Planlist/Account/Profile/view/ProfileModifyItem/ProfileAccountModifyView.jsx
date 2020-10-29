@@ -9,7 +9,8 @@ import {
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountModifyView = ({ account }) => {
+const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
+  console.log(account);
   const modifyTitle = 4;
   const modifyContent = 10;
   const genderOptions = [
@@ -36,16 +37,29 @@ const ProfileAccountModifyView = ({ account }) => {
   return (
     <Form style={{ width: "95%" }}>
       <Grid stackable>
-        <Grid.Row columns={2}>
+        <Grid.Row columns={3}>
           {/* <Grid.Column width={1}></Grid.Column> */}
           {/* 프로필 이미지 */}
-          <Grid.Column width={4}>
+          <Grid.Column
+            width={4}
+            // style={{
+            //   height: "80px",
+            //   width: "80px",
+            // }}
+          >
             <Image
-              style={{ marginLeft: "65px" }}
-              src="/profiles/hungry.png"
+              src="/profiles/peng.png"
               size="tiny"
               bordered
               circular
+              centered
+              style={{
+                marginLeft: "65px",
+                // width: "100%",
+                // height: "100%",
+                // objectFit: "cover",
+                // overfollow: "hidden",
+              }}
               label={{ as: "a", corner: "right", icon: "setting" }}
             />
           </Grid.Column>
@@ -62,7 +76,7 @@ const ProfileAccountModifyView = ({ account }) => {
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row columns={2}>
+        <Grid.Row columns={3}>
           <Grid.Column width={modifyTitle}>
             <aside>
               <label>이름</label>
@@ -72,21 +86,9 @@ const ProfileAccountModifyView = ({ account }) => {
             <Input
               fluid
               placeholder={account.name}
-              // label="name"
-              // value={account && account.name ? account.name : ""}
-              // onChange={(e)=>on}
+              value={account.name}
+              onChange={(e) => onSetAccountProp("name", e.target.value)}
             />
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row columns={2}>
-          <Grid.Column width={modifyTitle}>
-            <aside>
-              <label>전화번호</label>
-            </aside>
-          </Grid.Column>
-          <Grid.Column width={modifyContent}>
-            <Input fluid placeholder={account.phone} />
           </Grid.Column>
         </Grid.Row>
 
@@ -135,17 +137,6 @@ const ProfileAccountModifyView = ({ account }) => {
         <Grid.Row columns={2}>
           <Grid.Column width={modifyTitle}>
             <aside>
-              <label>주소</label>
-            </aside>
-          </Grid.Column>
-          <Grid.Column width={modifyContent}>
-            <Input fluid placeholder={account.address} />
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row columns={2}>
-          <Grid.Column width={modifyTitle}>
-            <aside>
               <label>소개글</label>
             </aside>
           </Grid.Column>
@@ -156,22 +147,6 @@ const ProfileAccountModifyView = ({ account }) => {
             />
           </Grid.Column>
         </Grid.Row>
-
-
-        <Grid.Row columns={2}>
-          <Grid.Column width={modifyTitle}>
-            <aside>
-              <label>소개글</label>
-            </aside>
-          </Grid.Column>
-          <Grid.Column width={modifyContent}>
-            <TextArea
-              placeholder={account.introduce}
-              style={{ minHeight: 150 }}
-            />
-          </Grid.Column>
-        </Grid.Row>
-
       </Grid>
     </Form>
   );

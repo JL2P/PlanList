@@ -22,10 +22,10 @@ const ProfileTodoCardView = ({ todo }) => {
         <Icon name="clock outline" />
 
         <Button basic size="mini">
-          시작 {todo.start_time}
+          시작 {todo.startTime ? todo.startTime : "0000-00-00"}
         </Button>
         <Button basic size="mini" color="yellow">
-          종료 {todo.end_time}
+          종료 {todo.endTime}
         </Button>
       </Card.Content>
     </Card>

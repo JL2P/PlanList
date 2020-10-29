@@ -22,7 +22,7 @@ export default class AccountStore {
   accounts = [];
 
   @observable logCheck = false;
-  @observable loginId = "";
+  @observable loginId = "giant_peng";
   @observable authModifymove = true;
 
   @computed
@@ -49,6 +49,14 @@ export default class AccountStore {
   @action
   changeTest() {
     this.account = { A: "123" };
+  }
+
+  @action
+  setAccountProp(key, value) {
+    this.account = {
+      ...this.account,
+      [key]: value,
+    };
   }
 
   //회원가입
@@ -108,8 +116,10 @@ export default class AccountStore {
   @action
   async userModify(account) {
     const accountModel = new AccountAddModel(account);
-    const result = await this.accountRepository.accountModify(accountModel);
-    console.log(result);
+    // const result = await this.accountRepository.accountModify(accountModel);
+    // console.log(result);
+    await this.accountRepository.accountModify(accountModel);
+    this.selectAll();
   }
 
   @action
@@ -117,11 +127,13 @@ export default class AccountStore {
     console.log(accountId);
     const account = await this.accountRepository.accountDetail(accountId);
     this.account = new AccountModel(account);
+    
   }
 
   @action
   async selectAll() {
-    this.accounts = await this.accountRepository.accountList();
+    const accounts = await this.accountRepository.accountList();
+    this.accounts = accounts.map((account) => new AccountModel(account));
   }
 
   //// account페이지 sampledata
