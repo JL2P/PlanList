@@ -11,19 +11,29 @@ import {
 } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
-import { inject, observer } from "mobx-react";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
-const ProfileManageView = ({ account, todo_count, loginId, loginCheck }) => {
+const ProfileManageView = ({
+  accounts,
+  account,
+  todo_count,
+  loginId,
+  loginCheck,
+  onSelectUser,
+  onModifyUser,
+  onSetAccountProp,
+}) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
   // 로그인 아이디 일단 임시로 주었음!!
+  // onSelectUser("giant_peng");
   loginId = account.accountId;
   loginCheck = true;
+  console.log(account);
   console.log("loginId >> ", loginId, loginCheck);
-  //
+  
 
   // modal open 상태 관리 (true: open, false: hide)
   const [open, setOpen] = useState(false);
@@ -54,6 +64,7 @@ const ProfileManageView = ({ account, todo_count, loginId, loginCheck }) => {
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
       <ProfileSettingModalView
+        accounts={accounts}
         account={account}
         open={open}
         onOpen={onOpen}
@@ -61,6 +72,8 @@ const ProfileManageView = ({ account, todo_count, loginId, loginCheck }) => {
         handleItemClick={handleItemClick}
         loginId={loginId}
         loginCheck={loginCheck}
+        onModifyUser={onModifyUser}
+        onSetAccountProp={onSetAccountProp}
       />
       {/* 프로필 팔로워 모달 기본 open상태 false */}
       <ProfileFollowerModalView
@@ -76,8 +89,24 @@ const ProfileManageView = ({ account, todo_count, loginId, loginCheck }) => {
       <Grid stackable>
         <Grid.Row>
           {/* 프로필 이미지 */}
-          <Grid.Column width={4}>
-            <Image src="/profiles/hungry.png" size="small" bordered circular />
+          <Grid.Column
+            width={4}
+            style={{
+              height: "150px",
+              width: "150px",
+            }}
+          >
+            <Image
+              src="/profiles/peng.png"
+              bordered
+              circular
+              centered
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </Grid.Column>
           {/* 프로필 정보 */}
           <Grid.Column width={12}>

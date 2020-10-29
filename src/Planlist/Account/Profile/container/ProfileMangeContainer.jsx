@@ -7,30 +7,53 @@ import { inject, observer } from "mobx-react";
 class ProfileMangeContainer extends Component {
   componentDidMount() {
     console.log("componentDidMount");
-    const { account } = this.props.Store;
-    account.selectUser("song");
-    // account.selectAll();
+    const { account, todo } = this.props.Store;
+    //여기서 랜덤으로 뽑아서 사용해보는방법?
+    const userList = ["giant_peng","giant_pen2","giant_peng3"];
+
+    account.selectUser("giant_peng");
+    account.selectAll();
+    todo.getApiTodos();
   }
+
+  //로그인이 됬을때 디비에서 id에맞는 유저정보를 가지고 오기위함
+  onSelectUser = (user) => {
+    const { account } = this.props.Store;
+    account.selectUser(user);
+  };
+
+  onSetAccountProp = (key, value) => {
+    const { account } = this.props.Store;
+    account.setAccountProp(key, value);
+  };
+
+  onModifyUser = (user) => {
+    const { account } = this.props.Store;
+    account.userModify(user);
+  };
 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
     console.log("render");
     const { account, todo } = this.props.Store;
-    const todos = todo.getTodos2;
+    const todos = todo.getTodos;
     const today = todo.getToday;
-    console.log(account.getAccount);
-    console.log(today);
+    console.log(">>", account.getAccount);
+    console.log("오늘 날짜 : ", today);
+    // console.log(todos[0].end_time);
     // console.log(account.getLogCheck == false);
     console.log(account.getLoginId);
+    const count = todos.filter((item) => item.endTime >= today).length;
 
-    const count = todos.filter((item) => item.end_time >= today).length;
-
-    // console.log(account.accountDetail);
     return (
       <div>
         <ProfileManageView
+          accounts={account.getAccounts}
           account={account.getAccount}
+          onSelectUser={this.onSelectUser}
+          onModifyUser={this.onModifyUser}
+          onSetAccountProp={this.onSetAccountProp}
           loginId={account.getLoginId}
           loginCheck={account.getLogCheck}
           todo_count={count}

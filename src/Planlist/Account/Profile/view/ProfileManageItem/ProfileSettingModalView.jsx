@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
 import ProfileAccountPrivacyView from "../ProfileModifyItem/ProfileAccountPrivacyView";
@@ -9,11 +9,15 @@ const ProfileSettingModalView = ({
   onOpen,
   activeItem,
   handleItemClick,
+  accounts,
   account,
   loginId,
   loginCheck,
+  onModifyUser,
+  onSetAccountProp,
 }) => {
   const modal_height = "560px";
+
   return (
     <Modal open={open}>
       <Modal.Header>
@@ -66,7 +70,12 @@ const ProfileSettingModalView = ({
           >
             <div>
               {activeItem === "내정보 관리" && (
-                <ProfileAccountModifyView account={account} />
+                <ProfileAccountModifyView
+                  account={account}
+                  accounts={accounts}
+                  onSetAccountProp={onSetAccountProp}
+                  onModifyUser={onModifyUser}
+                />
               )}
               {activeItem === "비밀번호 변경" && (
                 <ProfilePasswordModifyView account={account} />
@@ -83,7 +92,11 @@ const ProfileSettingModalView = ({
         <Button basic onClick={() => onOpen(false)}>
           <Icon name="remove" /> 취소
         </Button>
-        <Button style={{ background: "#FFB517" }} onClick={() => onOpen(false)}>
+        <Button
+          style={{ background: "#FFB517" }}
+          // onClick={() => onOpen(false)}
+          onClick={() => onModifyUser(account)}
+        >
           <Icon name="checkmark" /> 저장
         </Button>
       </Modal.Actions>
