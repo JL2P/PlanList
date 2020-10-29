@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
-// import AccountModel from "../../Api/model/AccountModel";
 import TodoRepository from "../../Api/Repository/TodoRepository";
+import CommentRepository from "../../Api/Repository/CommentRepository";
 
 import TodoModifyModel from "../../Api/model/todo/TodoModifyModel";
 import TodoAddModel from "../../Api/model/todo/TodoAddModel";
@@ -9,16 +9,19 @@ import TodoModel from "../../Api/model/todo/TodoModel";
 
 //테스트용 추가 -승훈-
 import exampleDataset from "../../Sample/Data/MainPage_List_Data";
+import { CommentAddModel } from '../../Api/model/comment/CommentModels'
 
 export default class TodoStore {
   constructor(root) {
     this.root = root;
     this.todoRepository = new TodoRepository();
+    this.commentRepository = new CommentRepository();
   }
 
   //모델 정의
-  @observable todo = {};
   @observable todos = [];
+  @observable todo = {};
+  @observable comments = [];
 
   @observable today = {}; // 오늘 날짜 : 년-월-일
 
@@ -28,6 +31,10 @@ export default class TodoStore {
 
   @computed get getTodos() {
     return this.todos;
+  }
+
+  @computed get getComments() {
+    return this.comments;
   }
 
   @computed get getTodosFrame() {
@@ -66,12 +73,25 @@ export default class TodoStore {
     this.todos=todos;
   }
 
+  @action
+  setTodo(todo){
+    this.todo=todo;
+  }
+
+  @action
+  setComments(comments){
+    this.comments=comments;
+  }
+
+
+  // API를 호출하여 todos에 todo리스트 데이터를 넣어준다.
   @action 
-  async getApiTodos() {    
+  async getApiTodos() {
     const apiGetTodos = await this.todoRepository.TodoList();
     this.todos = apiGetTodos.map(todo=>new TodoModel(todo));
   }
 
+  // API를 호출하여 todo데이터를 저장한다.
   @action
   async saveTodo(todoObj) {
     const todoModel = new TodoAddModel(todoObj);
@@ -79,6 +99,7 @@ export default class TodoStore {
     this.getApiTodos();
   }
 
+  // API를 호출하여 todo데이터를 수정한다.
   @action
   async modifyTodo(todoObj) {
     const todoModel = new TodoModifyModel(todoObj);
@@ -86,11 +107,21 @@ export default class TodoStore {
     this.getApiTodos();
   }
 
+  // API를 호출하여 todo데이터를 삭제한다.
   @action
   async deleteTodo(todoId) {
     await this.todoRepository.todoDelete(todoId);
     const newMaintodo = this.todos.filter(todo => todo.id!==todoId)
     this.todos = newMaintodo;
+  }
+
+
+  // API를 호출하여 해당 todo의 댓글을 생성한다.
+  @action
+  async addComment(todoId, commentObj){
+    const commentModel = new CommentAddModel(commentObj)
+    await this.commentRepository.commentCreate(todoId, commentModel);
+    
   }
 
 

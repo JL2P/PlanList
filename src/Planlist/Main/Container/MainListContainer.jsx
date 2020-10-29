@@ -20,11 +20,6 @@ class MainPageContainer extends Component {
     );
   }
 
-  onCreateComment = (e, id) => {
-    console.log(id);
-    console.log(e.target.value);
-  };
-
   componentDidMount() {
     this.props.Store.todo.getApiTodos();
   }
@@ -53,6 +48,14 @@ class MainPageContainer extends Component {
     }
   }
 
+  selectedTodo = (todoModel) => {
+    const { todo } = this.props.Store;
+    todo.setTodo(todoModel);
+    console.log(todoModel);
+    console.log(todoModel.comments);
+    todo.setComments(todoModel.comments);
+  };
+
   divisonToItemGroup = (data, n) => {
     const MainItemGroupList = [];
 
@@ -63,6 +66,7 @@ class MainPageContainer extends Component {
           key={idx}
           todoModel={todoModel}
           onDeleteTodo={this.onDeleteTodo}
+          selectedTodo={this.selectedTodo}
         />
       ))
     );

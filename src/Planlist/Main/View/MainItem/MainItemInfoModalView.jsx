@@ -1,9 +1,8 @@
 import React from "react";
 import "./itemModalStyle.css";
 import { Modal, Image, Label, Icon } from "semantic-ui-react";
-import TodoCommentFrame from "../../../todo/view/comment/TodoCommentFrame";
 
-const MainItemModelView = ({ item, open, onModal }) => {
+const MainItemInfoModalView = ({ todo, open, onModal, children }) => {
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -11,13 +10,13 @@ const MainItemModelView = ({ item, open, onModal }) => {
       open={open}
       size="small"
     >
-      <Modal.Header>{item.title}</Modal.Header>
+      <Modal.Header>{todo.title}</Modal.Header>
       <Modal.Content image>
-        <Image size="medium" src={item.imgUrl} style={{ maxHeight: "300px" }} />
+        <Image size="medium" src={todo.imgUrl} style={{ maxHeight: "300px" }} />
         <div className="modal__description">
           <Modal.Description>
             <h3>Description</h3>
-            <p>{item.description}</p>
+            <p>{todo.description}</p>
           </Modal.Description>
           <div className="modal__description__info">
             <Label as="a" basic image>
@@ -25,17 +24,17 @@ const MainItemModelView = ({ item, open, onModal }) => {
                 src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
                 alt="jsx-a11y/alt-text"
               />
-              {item.writer}
+              {todo.writer}
             </Label>
             <Label basic>
-              <Icon name="heart" color="red" /> {item.rating}
+              <Icon name="heart" color="red" /> {todo.likePoint}
             </Label>
           </div>
         </div>
       </Modal.Content>
-      <TodoCommentFrame />
+      {children}
     </Modal>
   );
 };
 
-export default MainItemModelView;
+export default MainItemInfoModalView;
