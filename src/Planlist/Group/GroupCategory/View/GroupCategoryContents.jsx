@@ -10,9 +10,9 @@ const GroupCategoryContents = ({GroupsData, selectList, onAllGroups,location}) =
       },[]);
 
     const GroupCategoryitem = GroupsData.map((item, index) => (
-        <>
+        <div key={index}>
             {`/groupcategory/${item.category}` == location.pathname ?
-                    <Grid.Column key={index} className="recommendGroup_column">
+                    <Grid.Column  className="recommendGroup_column">
                         <Link to="/groupdetail">
                             <Card className="group_card" raised>
                             <Image src={item.imgUrl} className="Group_img" />
@@ -28,7 +28,7 @@ const GroupCategoryContents = ({GroupsData, selectList, onAllGroups,location}) =
                     
                 : ""
             }
-        </>
+        </div>
     ));
 
     return (
@@ -36,9 +36,7 @@ const GroupCategoryContents = ({GroupsData, selectList, onAllGroups,location}) =
             <h2 style={{marginBottom:"2rem"}}>{selectList.text}</h2>
             <Grid columns={4} divided>
                 <Grid.Row>
-
-                {GroupCategoryitem}
-
+                    {GroupCategoryitem}
                 </Grid.Row>
             </Grid>
         </div>
