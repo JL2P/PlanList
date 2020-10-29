@@ -3,9 +3,10 @@ import { Card, Image, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "../../../GroupStyle/Group.scss";
 
-const RecommendGroupItem = ({ item }) => {
+const RecommendGroupItem = ({ item,onGroupDetail_page }) => {
+
   return (
-    <Grid.Column className="recommendGroup_column">
+    <Grid.Column className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
         <Link to="/groupdetail">
         <Card className="group_card" raised>
             <Image src={item.imgUrl} className="Group_img" />

@@ -10,30 +10,68 @@ import { inject, observer } from "mobx-react";
 @observer
 class GroupContainer extends Component {
 
+    //그룹 생성
     onCreateGroup = (e, createObj) => {
         e.preventDefault();
         const { group } = this.props.Store;
         group.createGroup(createObj);
     }
 
+    //그룹 전체 리스트 조회
+    onAllGroups = () => {
+        const { group } = this.props.Store;
+        group.getApiGroups();
+    }
+    //그룹 디테일 조회
+    onGroupDetail_page = (groupId) => {
+        const { group } = this.props.Store;
+        group.groupDetail_page(groupId);
+    }
+    //카테고리 사진 클릭시 getSelect_Group_categoryList 변경
+    onCategorySelect = (category) => {
+        const { group } = this.props.Store;
+        group.select_Group_categoryList = category
+    }
+    //그룹 메뉴에서 '모두보기' 클릭시 카테고리 페이지 기본값
+    onCategoryDefault = () => {
+        const { group } = this.props.Store;
+        group.select_Group_categoryList = group.categoryList[0];
+    }
+
     render() {
         const { group } = this.props.Store;
         const my_sampleData = group.getMyTodo;
         const best_sampleData = group.getBestTodo;
-        const category_sampleData = group.getCategoryTodo;
-        const recommend_sampleData= group.getRecommendTodo;
-        const categoryList = group.getCategoryList;
+
+        const {
+            getGroups,
+            getDetailGroup_open,
+            getCategoryList,
+        } = group
         
         return (
             <div>
                 <MyGroupView 
                     sampleData={my_sampleData} 
-                    categoryList={categoryList}
+                    categoryList={getCategoryList}
                     onCreateGroup={this.onCreateGroup}
+                    onCategoryDefault={this.onCategoryDefault}
                 />
-                <BestGroupView sampleData={best_sampleData} />
-                <CategoryGroupView sampleData={category_sampleData} />
-                <RecommendGroupView sampleData={recommend_sampleData} />
+                <BestGroupView 
+                    sampleData={best_sampleData}
+                    onCategoryDefault={this.onCategoryDefault}
+                />
+                <CategoryGroupView 
+                    categoryList={getCategoryList} 
+                    onCategorySelect={this.onCategorySelect}
+                    onCategoryDefault={this.onCategoryDefault}
+                />
+                <RecommendGroupView
+                    groups={getGroups} 
+                    onAllGroups={this.onAllGroups}
+                    onGroupDetail_page={this.onGroupDetail_page}
+                    onCategoryDefault={this.onCategoryDefault}
+                />
             </div>
         );
     }

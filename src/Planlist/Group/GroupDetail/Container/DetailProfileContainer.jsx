@@ -8,9 +8,16 @@ class DetailProfileContainer extends Component {
     render() {
         const { group } = this.props.Store;
         const my_sampleData = group.getMyTodo;
+
+        const {
+            getDetailGroup_open,
+        } = group
         return (
             <div>
-                <GroupProfile sampleData={my_sampleData} />
+                <GroupProfile 
+                    sampleData={my_sampleData}
+                    detailGroup_open={getDetailGroup_open}
+                />
             </div>
         );
     }

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "../../GroupStyle/Group.scss";
 
-const CategoryGroupView = ({sampleData}) => {
-  const Groupitem = sampleData.map((item, index) => (
-    <CategoryGroupItem key={index} item={item} />
+const CategoryGroupView = ({categoryList,onCategorySelect,onCategoryDefault}) => {
+  const Groupitem = categoryList.map((item, index) => (
+    <CategoryGroupItem key={index} item={item} onCategorySelect={onCategorySelect} />
   ));
 
   var settings = {
@@ -51,7 +51,7 @@ const CategoryGroupView = ({sampleData}) => {
             <div className="group_header_text">
                 <p className="group_header_headerText">카테고리</p>
                 <p className="group_header_contents">원하시는 카테고리를 둘러보고 그룹을 찾아보세요!</p>
-                <Link to="/groupcategory" className="group_allView">모두 보기</Link>
+                <Link to="/groupcategory" className="group_allView" onClick={onCategoryDefault}>모두 보기</Link>
             </div>
             <Slider {...settings}>
                 {Groupitem}

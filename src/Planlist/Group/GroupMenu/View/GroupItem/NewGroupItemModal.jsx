@@ -16,7 +16,7 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
   const maxNumber = 69;
 
   const onChangeImages = (imageList) => setImages(imageList);
-  const onChangeCategory = (event, {value}) => {setCategory(event.target.value); console.log(value)}
+  const onChangeCategory = (e,{value}) => {setCategory(value); console.log(category)}
   const onChangeTitle = (e) => {setTitle(e.target.value)};
   const onChangeDescription = (e) => setDescription(e.target.value);
 
@@ -30,7 +30,7 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
               alignItems: "center",
             }}
           >
-            <Header as="h2" content="Todo 작성" />
+            <Header as="h2" content="그룹 생성" />
             <Icon name="cancel" size="big" onClick={() => setOpen(false)} style={{cursor:"pointer",marginBottom: "0.5em"}} />
           </div>
           <Divider style={{ marginTop: "-0.5em", marginBottom: "1.5em" }} />
@@ -109,7 +109,6 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
                   category: category,
                   title: title,
                   description: description,
-                  imgUrl: images
                 });
               }}
             >

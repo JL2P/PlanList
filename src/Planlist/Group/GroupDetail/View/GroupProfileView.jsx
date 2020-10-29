@@ -1,13 +1,16 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Image } from 'semantic-ui-react'
 
-const GroupProfilView = ({sampleData}) => {
+const GroupProfilView = ({sampleData,detailGroup_open}) => {
+    useEffect(() => {
+        console.log(detailGroup_open)
+    },[])
     return (
         <div>
-            <Image src={sampleData[2].imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
-            <p style={{fontSize:"1.2rem", fontWeight:"bold"}}>{sampleData[2].title}</p>
-            <p>멤버 : {sampleData[2].rating}명</p>
-            <p>{sampleData[2].description}</p>
+            <Image src={detailGroup_open.imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
+            <p style={{fontSize:"1.2rem", fontWeight:"bold"}}>{detailGroup_open.title}</p>
+            <p>멤버 : {detailGroup_open.rating}명</p>
+            <p>{detailGroup_open.description}</p>
             
         </div>
     );

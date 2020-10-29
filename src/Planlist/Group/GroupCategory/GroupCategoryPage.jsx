@@ -1,10 +1,10 @@
 import React from 'react';
 import GroupCategoryContainer from './Container/GroupCategoryContainer';
 
-const GroupCategoryPage = () => {
+const GroupCategoryPage = ({location}) => {
     return (
         <div>
-            <GroupCategoryContainer />
+            <GroupCategoryContainer location={location} />
         </div>
     );
 };
