@@ -3,7 +3,7 @@ import { Comment, Form, Icon } from "semantic-ui-react";
 import TodoCommentContainer from "../../container/TodoCommentContainer";
 import "./todoCommentFormStyle.css";
 
-const TodoCommentFormVIew = ({ author, text, time, subComment }) => {
+const TodoCommentFormVIew = ({ author, text, time, children }) => {
   const [reply, setReply] = useState(false);
 
   const onReply = () => setReply(!reply);
@@ -31,9 +31,7 @@ const TodoCommentFormVIew = ({ author, text, time, subComment }) => {
           <TodoCommentContainer />
         </Form>
       </Comment.Content>
-      {subComment && (
-        <Comment.Group style={{ maxWidth: "100%" }}>{subComment}</Comment.Group>
-      )}
+      <Comment.Group style={{ maxWidth: "100%" }}>{children}</Comment.Group>
     </Comment>
   );
 };

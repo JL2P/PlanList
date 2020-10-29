@@ -1,3 +1,5 @@
+import { CommentModel } from '../comment/CommentModels';
+
 export default class TodoModel{
     constructor(todoObj){
         this.id = todoObj.id;
@@ -9,5 +11,6 @@ export default class TodoModel{
         this.endTime = todoObj.endTime;
         this.groupAt = todoObj.groupAt;
         this.likePoint = todoObj.likePoint;  
+        this.comments = todoObj.comments.map(comment=>new CommentModel(comment));
     }
 }

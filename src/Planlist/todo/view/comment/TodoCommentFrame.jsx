@@ -3,7 +3,8 @@ import TodoCommentFormVIew from "./TodoCommentFormView";
 import TodoCommentContainer from "../../container/TodoCommentContainer";
 
 import { Comment, Form, Divider } from "semantic-ui-react";
-const TodoCommentFrame = () => {
+
+const TodoCommentFrame = ({ comments }) => {
   const [reply, setReply] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ const TodoCommentFrame = () => {
               setReply(!reply);
             }}
           >
-            댓글 4개 모두 보기
+            댓글 {comments.length}개 모두 보기
           </p>
         )}
         {reply && (
@@ -29,18 +30,18 @@ const TodoCommentFrame = () => {
             >
               댓글 숨기기
             </p>
+
             <TodoCommentFormVIew
               author="Matt"
               text="How artistic!"
               time="Today at 5:42PM"
-              subComment={
-                <TodoCommentFormVIew
-                  author="Matt"
-                  text="How artistic!"
-                  time="Today at 5:42PM"
-                />
-              }
-            />
+            >
+              <TodoCommentFormVIew
+                author="Matt"
+                text="How artistic!"
+                time="Today at 5:42PM"
+              />
+            </TodoCommentFormVIew>
           </div>
         )}
         <Form reply>

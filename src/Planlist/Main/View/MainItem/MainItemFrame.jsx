@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
 import "./itemStyle.css";
-import MainItemInfoModalView from "./MainItemInfoModalView";
-import MainItemConfigModalView from "./MainItemConfigModalView";
-
 import TodoUpdateContainer from "../../../todo/container/TodoUpdateContainer";
+import MainItemInfoContainer from "../../Container/MainItemInfoContainer";
 import MainItemConfigCotainer from "../../Container/MainItemConfigCotainer";
 
 import MainItem from "./MainItem";
 import MainItemCover from "./MainItemCover";
-const MainItemFrame = ({ todoModel }) => {
+const MainItemFrame = ({ todoModel, selectedTodo }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
@@ -19,6 +17,7 @@ const MainItemFrame = ({ todoModel }) => {
 
   const onInfoModal = (trigger) => {
     setItemInfoOpen(trigger);
+    selectedTodo(todoModel);
   };
 
   const onCofigModal = (trigger) => {
@@ -51,11 +50,12 @@ const MainItemFrame = ({ todoModel }) => {
         onTodoUpdateModal={onTodoUpdateModal}
       />
 
-      <MainItemInfoModalView
-        item={todoModel}
+      <MainItemInfoContainer
+        todo={todoModel}
         open={itemInfoOpen}
         onModal={onInfoModal}
       />
+
       <div className="todo">
         <MainItemCover todoModel={todoModel} onCofigModal={onCofigModal} />
         <MainItem todoModel={todoModel} onInfoModal={onInfoModal} />
