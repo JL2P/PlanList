@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import RecommendGroupItem from "./GroupItem/RecommendGroupItem";
 import { Container, Grid} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "../../GroupStyle/Group.scss";
 
-const RecommendGroupView = ({sampleData}) => {
-    const Groupitem = sampleData.map((item, index) => (
-        <RecommendGroupItem key={index} item={item} />
+const RecommendGroupView = ({
+        groups,
+        onAllGroups,
+        onGroupDetail_page
+    }) => {
+
+    useEffect(() => {
+        onAllGroups();
+      },[]);
+
+    const Groupitem = groups.map((item, index) => (
+        <RecommendGroupItem  onGroupDetail_page={onGroupDetail_page} key={index} item={item} />
     ));
 
     return (
