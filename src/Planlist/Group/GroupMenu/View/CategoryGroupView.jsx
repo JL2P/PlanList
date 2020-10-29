@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "../../GroupStyle/Group.scss";
 
-const CategoryGroupView = ({sampleData}) => {
-  const Groupitem = sampleData.map((item, index) => (
-    <CategoryGroupItem key={index} item={item} />
+const CategoryGroupView = ({categoryList,onCategorySelect}) => {
+  const Groupitem = categoryList.map((item, index) => (
+    <CategoryGroupItem key={index} item={item} onCategorySelect={onCategorySelect} />
   ));
 
   var settings = {
