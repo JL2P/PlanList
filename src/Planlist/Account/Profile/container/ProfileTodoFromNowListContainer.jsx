@@ -12,26 +12,26 @@ class ProfileTodoFromNowListContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo } = this.props.Store;
-    const todos = todo.getTodos2;
+    const todos = todo.getTodos;
     const today = todo.getToday;
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
-      .filter((item) => item.end_time >= today)
-      .sort((a, b) => (a.end_time > b.end_time ? 1 : -1));
+      .filter((item) => item.endTime >= today)
+      .sort((a, b) => (a.endTime > b.endTime ? 1 : -1));
 
     // 앞으로 해야 할 일 종료 날짜를 담은 리스트
     const fromNow_date = [];
     fromNow.map((item) => {
-      if (!fromNow_date.includes(item.end_time)) {
-        fromNow_date.push(item.end_time);
+      if (!fromNow_date.includes(item.endTime)) {
+        fromNow_date.push(item.endTime);
       }
     });
 
     // 앞으로 해야 할 일을 종료 날짜별로 묶음
     const fromNow_list = fromNow_date.map((item) => []);
     fromNow.map((item) =>
-      fromNow_list[fromNow_date.indexOf(item.end_time)].push(item)
+      fromNow_list[fromNow_date.indexOf(item.endTime)].push(item)
     );
 
     return (

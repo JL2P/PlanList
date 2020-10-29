@@ -15,13 +15,21 @@ import { inject, observer } from "mobx-react";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
-const ProfileManageView = ({ account, todo_count, loginId, loginCheck }) => {
+const ProfileManageView = ({
+  account,
+  todo_count,
+  loginId,
+  loginCheck,
+  onSelectUser,
+}) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
   // 로그인 아이디 일단 임시로 주었음!!
+  onSelectUser("giant_peng");
   loginId = account.accountId;
   loginCheck = true;
+  console.log(account);
   console.log("loginId >> ", loginId, loginCheck);
   //
 
