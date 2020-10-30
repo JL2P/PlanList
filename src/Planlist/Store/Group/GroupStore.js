@@ -2,6 +2,8 @@ import { observable, computed, action } from "mobx";
 import CategoryList_Data from "../../Category/CategoryList_Data";
 import GroupModel from "../../Api/model/group/GroupModel";
 import GroupAddModel from "../../Api/model/group/GroupAddModel";
+import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
+
 import MyGroupPage_List_Data from "../../Sample/Data/GroupSample/MyGroupPage_List_Data";
 import BsetGroupPage_List_Data from "../../Sample/Data/GroupSample/BsetGroupPage_List_Data";
 import CategoryGroupPage_List_Data from "../../Sample/Data/GroupSample/CategoryGroupPage_List_Data";
@@ -75,8 +77,11 @@ export default class GroupStore {
       async createGroup(groupObj){
         const groupModel = new GroupAddModel(groupObj);
         console.log(groupObj);
-        await this.groupRepository.groupCreate(groupModel);
+        const result = await this.groupRepository.groupCreate(groupModel);
+        console.log(result)
         this.getApiGroups()
+        //생성시 해당 그룹으로 연결
+        this.groupDetail_page(result.id)
       }
 
       //그룹 디테일 조회
@@ -86,4 +91,18 @@ export default class GroupStore {
         this.detailGroup_open = new GroupModel(result);
         console.log(this.detailGroup_open)
       }
+
+      //그룹 디테일 페이지 설정 저장
+      @action
+      async settingSave(groupObj){
+        const groupModel = new GroupModifyModel(groupObj);
+        console.log(groupModel)
+        await this.groupRepository.groupModify(groupModel);
+      }
+      //그룹 디테일 페이지 설정에서 그룹 삭제
+      @action
+      async settingRemove(groupId){
+        await this.groupRepository.groupDelete(groupId)
+      }
+      
 }

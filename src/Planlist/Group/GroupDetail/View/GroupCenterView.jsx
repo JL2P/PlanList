@@ -9,13 +9,16 @@ const GroupCenterView = ({
         sampleData,
         onDetailGroup_create,
         getDetailGroup_modalOpen,
-        onDetailGroup_modalCheck
+        onDetailGroup_modalCheck,
+        detailGroup,
+        onSettingSave,
+        onSettingRemove
     }) => {
     return (
         <div>
             <DetailGroupNav />
             <Route 
-                path="/groupdetail/all" 
+                path="/groupdetail" 
                 exact 
                 render={() => <DetailGroupAll
                      sampleData={sampleData}
@@ -24,7 +27,15 @@ const GroupCenterView = ({
                      onDetailGroup_modalCheck={onDetailGroup_modalCheck}
                 /> } />
             <Route path="/groupdetail/member" exact component={DetailGroupMember} />
-            <Route path="/groupdetail/setting" exact component={DetailGroupSetting} />
+            <Route
+                path="/groupdetail/setting" 
+                exact
+                render={() => <DetailGroupSetting
+                    detailGroup={detailGroup}
+                    onSettingSave={onSettingSave}
+                    onSettingRemove={onSettingRemove}
+                />}
+            />
         </div>
     );
 };

@@ -52,7 +52,7 @@ const MyGroupView = ({ sampleData,categoryList,onCreateGroup,onCategoryDefault }
         <div className="group_header_text">
           <p className="group_header_headerText">내 그룹</p>
           <p className="group_header_contents">내가 가입한 그룹 목록입니다.</p>
-          <Link to="/groupcategory" className="group_allView" onClick={onCategoryDefault}>모두 보기</Link>
+          <Link to={`/groupcategory/${categoryList[1].value}`} className="group_allView" onClick={() => onCategoryDefault(categoryList[1])}>모두 보기</Link>
         </div>
           <Slider {...settings}>
             <NewGroupItem categoryList={categoryList} onCreateGroup={onCreateGroup} />

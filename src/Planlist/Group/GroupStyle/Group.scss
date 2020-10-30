@@ -115,7 +115,8 @@ $breakpoint-desktop: 1024px;
 //RecommentGroupItem
 .recommendGroup_column{
   box-shadow: none!important;
-  padding:0 0.5rem 1rem!important;
+  padding:0 0.5rem 2rem!important;
+  overflow: hidden;
 }
 
 //NewGroup

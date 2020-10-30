@@ -21,5 +21,17 @@ export default class GroupRepository{
     groupCreate = (GroupModel) => {
         return axios.post(this.URL,GroupModel).then(request => request.data||[])
     }
+    
+    // group 수정
+    // PUT /api/group/
+    groupModify = (GroupModel)=>{
+        return axios.put(this.URL,GroupModel).then(request=>request.data||{})
+    }
+
+    //group 삭제
+    // DELETE /api/group/{groupId}
+    groupDelete = (groupId) => {
+        return axios.delete(this.URL+`${groupId}/`).then(request=>request.data||null)
+    }    
 
 }

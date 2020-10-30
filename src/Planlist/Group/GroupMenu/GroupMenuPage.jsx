@@ -1,10 +1,10 @@
 import React from 'react';
 import GroupContainer from './Container/GroupContainer'
 
-const GroupPage = () => {
+const GroupPage = ({history}) => {
     return (
         <div>
-            <GroupContainer />
+            <GroupContainer history={history} />
         </div>
     );
 };
