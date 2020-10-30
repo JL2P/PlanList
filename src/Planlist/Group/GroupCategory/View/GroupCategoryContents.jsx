@@ -10,23 +10,41 @@ const GroupCategoryContents = ({GroupsData, selectList, onAllGroups,location}) =
       },[]);
 
     const GroupCategoryitem = GroupsData.map((item, index) => (
+
         <div key={index}>
-            {`/groupcategory/${item.category}` == location.pathname ?
-                    <Grid.Column  className="recommendGroup_column">
-                        <Link to="/groupdetail">
-                            <Card className="group_card" raised>
-                            <Image src={item.imgUrl} className="Group_img" />
-                            <Card.Content>
-                                <Card.Header className="group_Card_header">
-                                {item.title}
-                                </Card.Header>
-                                <Card.Description>member : {item.rating}</Card.Description>
-                            </Card.Content>
-                            </Card>
-                        </Link>
-                    </Grid.Column>
-                    
-                : ""
+            {`/groupcategory` == location.pathname ? ( 
+                //전체 조회
+                <Grid.Column  className="recommendGroup_column">
+                    <Link to="/groupdetail">
+                        <Card className="group_card" raised>
+                        <Image src={item.imgUrl} className="Group_img" />
+                        <Card.Content>
+                            <Card.Header className="group_Card_header">
+                            {item.title}
+                            </Card.Header>
+                            <Card.Description>member : {item.rating}</Card.Description>
+                        </Card.Content>
+                        </Card>
+                    </Link>
+                </Grid.Column>
+
+            ) : `/groupcategory/${item.category}` == location.pathname ? (
+                // 카테고리별로 조회
+                <Grid.Column  className="recommendGroup_column">
+                    <Link to="/groupdetail">
+                        <Card className="group_card" raised>
+                        <Image src={item.imgUrl} className="Group_img" />
+                        <Card.Content>
+                            <Card.Header className="group_Card_header">
+                            {item.title}
+                            </Card.Header>
+                            <Card.Description>member : {item.rating}</Card.Description>
+                        </Card.Content>
+                        </Card>
+                    </Link>
+                </Grid.Column>
+            ) : ""
+            
             }
         </div>
     ));
