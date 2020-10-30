@@ -19,12 +19,13 @@ const ProfileSettingModalView = ({
 }) => {
   const modal_height = "400px";
 
-  // 회원 탈퇴 모달 modal open 상태 관리 (true: open, false: hide)
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
-  // 하위 컴포넌트인 modal에서 상위컴포넌트인 스테이트를 변경하기 위함
   const onWithdrawalModal = (trigger) => {
     setWithdrawalOpen(trigger);
   };
+
+  // const [name, setName] = useState(account.name);
+  // const onChangeName = (e) => setName(e.target.value);
 
   return (
     <Modal
@@ -39,6 +40,8 @@ const ProfileSettingModalView = ({
         onWithdrawalModal={onWithdrawalModal}
         onDeleteUser={onDeleteUser}
         account={account}
+        // name={name}
+        // onChangeName={onChangeName}
       />
 
       <Modal.Header>
@@ -107,7 +110,7 @@ const ProfileSettingModalView = ({
                 <ProfileAccountModifyView
                   account={account}
                   onSetAccountProp={onSetAccountProp}
-                  onModifyUser={onModifyUser}
+                  // onModifyUser={onModifyUser}
                 />
               )}
               {/* {activeItem === "비밀번호 변경" && (
@@ -127,12 +130,25 @@ const ProfileSettingModalView = ({
           <Icon name="remove" /> 취소
         </Button>
         <Button
-          href="/account"
+          // href="/account"
           style={{ background: "#FFB517" }}
           onClick={() => {
-            // onModifyUser(account);
+            onModifyUser(account);
             onSettingModal(false);
           }}
+          // onClick={(e) => {
+          //   onModifyUser(e, {
+          //     accountId: account.accountId,
+          //     email: account.email,
+          //     name: name,
+          //     birth: "",
+          //     gender: "",
+          //     introduce: "",
+          //     loginType: "",
+          //     openAt: "",
+          //     usedAt: "",
+          //   });
+          // }}
         >
           <Icon name="checkmark" /> 저장
         </Button>

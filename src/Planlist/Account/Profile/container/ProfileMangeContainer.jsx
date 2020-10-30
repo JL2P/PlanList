@@ -32,6 +32,11 @@ class ProfileMangeContainer extends Component {
     account.userModify(user);
   };
 
+  // onModifyUser = (e,accountModel) => {
+  //   const { account } = this.props.Store;
+  //   account.userModify(accountModel);
+  // };
+
   onDeleteUser = (accountId) => {
     const { account } = this.props.Store;
     account.userRemove(accountId);

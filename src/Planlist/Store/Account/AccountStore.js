@@ -2,6 +2,7 @@ import { observable, computed, action } from "mobx";
 // import data from "../../Sample/Data/Sign_Account_Data";
 import AccountModel from "../../Api/model/AccountModel";
 import AccountAddModel from "../../Api/model/AccountAddModel";
+import AccountModifyModel from "../../Api/model/AccountModifyModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
 import AccountRepository from "../../Api/Repository/AccountRepository";
 import data from "../../Sample/Data/ProfileAccount_Sample_Data";
@@ -126,7 +127,7 @@ export default class AccountStore {
   //UserModify
   @action
   async userModify(account) {
-    const accountModel = new AccountAddModel(account);
+    const accountModel = new AccountModifyModel(account);
     // const result = await this.accountRepository.accountModify(accountModel);
     // console.log(result);
     await this.accountRepository.accountModify(accountModel);

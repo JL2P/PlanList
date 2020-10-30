@@ -177,9 +177,7 @@ const ProfileManageView = ({
         </Grid.Row>
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
-        {account.introduce
-          ? account.introduce
-          : "소개글 블라블라 어쩌구 ~~~~~~~~~~~"}
+        {account.introduce}
       </Segment>
     </Container>
   );
