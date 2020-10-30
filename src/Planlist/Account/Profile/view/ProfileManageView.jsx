@@ -6,8 +6,6 @@ import {
   Icon,
   Segment,
   Button,
-  Modal,
-  Form,
 } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
@@ -23,6 +21,7 @@ const ProfileManageView = ({
   onSelectUser,
   onModifyUser,
   onSetAccountProp,
+  onDeleteUser,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
@@ -33,18 +32,18 @@ const ProfileManageView = ({
   loginCheck = true;
   console.log(account);
   console.log("loginId >> ", loginId, loginCheck);
-  
 
   // modal open 상태 관리 (true: open, false: hide)
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const [settingOpen, setSettingOpen] = useState(false);
   //팔로워
   const [followerOpen, setFollowerOpen] = useState(false);
   //팔로잉
   const [followingOpen, setFollowingOpen] = useState(false);
 
   // 하위 컴포넌트인 modal에서 상위컴포넌트인 ProfileManageView의 스테이트를 변경하기 위함
-  const onOpen = (trigger) => {
-    setOpen(trigger);
+  const onSettingModal = (trigger) => {
+    setSettingOpen(trigger);
   };
   //프로팔 팔로워 모달
   const onFollowerModal = (trigger) => {
@@ -66,13 +65,14 @@ const ProfileManageView = ({
       <ProfileSettingModalView
         accounts={accounts}
         account={account}
-        open={open}
-        onOpen={onOpen}
+        settingOpen={settingOpen}
+        onSettingModal={onSettingModal}
         activeItem={activeItem}
         handleItemClick={handleItemClick}
         loginId={loginId}
         loginCheck={loginCheck}
         onModifyUser={onModifyUser}
+        onDeleteUser={onDeleteUser}
         onSetAccountProp={onSetAccountProp}
       />
       {/* 프로필 팔로워 모달 기본 open상태 false */}
@@ -122,7 +122,10 @@ const ProfileManageView = ({
                     </Grid.Column>
                     {/* setting */}
                     <Grid.Column width={2} style={{ fontSize: pText1 }}>
-                      <Icon name="setting" onClick={() => onOpen(true)} />
+                      <Icon
+                        name="setting"
+                        onClick={() => onSettingModal(true)}
+                      />
                     </Grid.Column>
                   </>
                 ) : (
@@ -143,7 +146,7 @@ const ProfileManageView = ({
                 {/* setting */}
                 {/* <Grid.Column width={2} style={{ fontSize: pText1 }}>
                   {!loginCheck && loginId === account.accountId ? (
-                    <Icon name="setting" onClick={() => onOpen(true)} />
+                    <Icon name="setting" onClick={() => onSettingModal(true)} />
                   ) : (
                     <Button>팔로우</Button>
                   )}

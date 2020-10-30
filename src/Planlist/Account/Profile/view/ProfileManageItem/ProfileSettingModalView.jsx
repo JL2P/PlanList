@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
 import ProfileAccountPrivacyView from "../ProfileModifyItem/ProfileAccountPrivacyView";
-import ProfilePasswordModifyView from "../ProfileModifyItem/ProfilePasswordModifyView";
 
 const ProfileSettingModalView = ({
-  open,
-  onOpen,
+  
+  settingOpen,
+  onSettingModal,
   activeItem,
   handleItemClick,
   accounts,
@@ -15,11 +15,15 @@ const ProfileSettingModalView = ({
   loginCheck,
   onModifyUser,
   onSetAccountProp,
+  onDeleteUser,
 }) => {
   const modal_height = "560px";
-
   return (
-    <Modal open={open}>
+    <Modal
+      onClose={() => onSettingModal(false)}
+      onOpen={() => onSettingModal(true)}
+      open={settingOpen}
+    >
       <Modal.Header>
         <Container textAlign="center">설정</Container>
       </Modal.Header>
@@ -39,11 +43,12 @@ const ProfileSettingModalView = ({
                 active={activeItem === "내정보 관리"}
                 onClick={() => handleItemClick("내정보 관리")}
               />
-              <Menu.Item
+
+              {/* <Menu.Item
                 name="비밀번호 변경"
                 active={activeItem === "비밀번호 변경"}
                 onClick={() => handleItemClick("비밀번호 변경")}
-              />
+              /> */}
 
               <Menu.Item
                 name="공개 범위"
@@ -55,8 +60,15 @@ const ProfileSettingModalView = ({
                 name="로그아웃"
                 active={activeItem === "로그아웃"}
                 onClick={() => {
-                  onOpen(false);
+                  onSettingModal(false);
                 }}
+              />
+
+              <Menu.Item
+                href="/"
+                name="회원탈퇴"
+                active={activeItem === "회원탈퇴"}
+                onClick={() => onDeleteUser(account.accountId)}
               />
             </Menu>
           </Modal.Content>
@@ -77,25 +89,29 @@ const ProfileSettingModalView = ({
                   onModifyUser={onModifyUser}
                 />
               )}
-              {activeItem === "비밀번호 변경" && (
+              {/* {activeItem === "비밀번호 변경" && (
                 <ProfilePasswordModifyView account={account} />
-              )}
+              )} */}
               {activeItem === "공개 범위 설정" && (
                 <ProfileAccountPrivacyView account={account} />
               )}
               {activeItem === "로그아웃"}
+              {activeItem === "회원탈퇴"}
             </div>
           </Modal.Content>
         </Grid.Column>
       </Grid>
       <Modal.Actions>
-        <Button basic onClick={() => onOpen(false)}>
+        <Button basic onClick={() => onSettingModal(false)}>
           <Icon name="remove" /> 취소
         </Button>
         <Button
+          href="/account"
           style={{ background: "#FFB517" }}
-          // onClick={() => onOpen(false)}
-          onClick={() => onModifyUser(account)}
+          onClick={() => {
+            onModifyUser(account);
+            // onSettingModal(false);
+          }}
         >
           <Icon name="checkmark" /> 저장
         </Button>

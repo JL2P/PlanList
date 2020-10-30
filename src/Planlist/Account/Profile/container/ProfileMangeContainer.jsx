@@ -9,7 +9,7 @@ class ProfileMangeContainer extends Component {
     console.log("componentDidMount");
     const { account, todo } = this.props.Store;
     //여기서 랜덤으로 뽑아서 사용해보는방법?
-    const userList = ["giant_peng","giant_pen2","giant_peng3"];
+    // const userList = ["giant_peng","giant_pen2","giant_peng3"];
 
     account.selectUser("giant_peng");
     account.selectAll();
@@ -32,6 +32,11 @@ class ProfileMangeContainer extends Component {
     account.userModify(user);
   };
 
+  onDeleteUser = (accountId) =>{
+    const {account} = this.props.Store;
+    account.userRemove(accountId);
+  }
+
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
@@ -53,6 +58,7 @@ class ProfileMangeContainer extends Component {
           account={account.getAccount}
           onSelectUser={this.onSelectUser}
           onModifyUser={this.onModifyUser}
+          onDeleteUser={this.onDeleteUser}
           onSetAccountProp={this.onSetAccountProp}
           loginId={account.getLoginId}
           loginCheck={account.getLogCheck}

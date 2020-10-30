@@ -104,7 +104,9 @@ export default class AccountStore {
   async userRemove(accountId) {
     await this.accountRepository.accountDelete(accountId);
     console.log("아이디 삭제 완료");
+    this.selectAll();
   }
+  
   //auth move
   @action
   btn_change() {
