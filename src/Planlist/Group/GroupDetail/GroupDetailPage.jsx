@@ -19,7 +19,7 @@ const GroupDetailPage = ({history}) => {
                         
 
                         <Grid.Column width={8} style={boxShadowRemove}>
-                            <DetailCenterlContainer />
+                            <DetailCenterlContainer history={history} />
                         </Grid.Column>
 
                         <Grid.Column width={4} style={boxShadowRemove}>
