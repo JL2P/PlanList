@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import DetailCenterlContainer from './Container/DetailCenterlContainer';
 import DetailChattingContainer from './Container/DetailChattingContainer';
 import DetailProfileContainer from './Container/DetailProfileContainer';
@@ -6,10 +6,6 @@ import DetailProfileContainer from './Container/DetailProfileContainer';
 import { Container, Grid} from "semantic-ui-react";
 
 const GroupDetailPage = ({history}) => {
-
-    useEffect(() => {
-        history.push('/groupdetail/all')
-    },[])
 
     const boxShadowRemove ={boxShadow:"none"}
     return (

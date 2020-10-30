@@ -15,7 +15,7 @@ const GroupCenterView = ({
         <div>
             <DetailGroupNav />
             <Route 
-                path="/groupdetail/all" 
+                path="/groupdetail" 
                 exact 
                 render={() => <DetailGroupAll
                      sampleData={sampleData}

@@ -13,7 +13,7 @@ const DetailGroupNav = () => {
     <div>
         <Menu pointing secondary>
             <Menu.Item
-            as={Link} to="/groupdetail/all"
+            as={Link} to="/groupdetail"
             name="전체글"
             active={activeItem === "전체글"}
             onClick={handleItemClick}
