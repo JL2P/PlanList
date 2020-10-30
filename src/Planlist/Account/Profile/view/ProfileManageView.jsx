@@ -6,8 +6,6 @@ import {
   Icon,
   Segment,
   Button,
-  Modal,
-  Form,
 } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
@@ -15,36 +13,37 @@ import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerMod
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
 const ProfileManageView = ({
-  accounts,
   account,
   todo_count,
-  loginId,
+  // loginId,
   loginCheck,
-  onSelectUser,
+  onSignout,
+  // onSelectUser,
   onModifyUser,
   onSetAccountProp,
+  onDeleteUser,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
   // 로그인 아이디 일단 임시로 주었음!!
   // onSelectUser("giant_peng");
-  loginId = account.accountId;
-  loginCheck = true;
+  // loginId = account.accountId;
+  // loginCheck = true;
   console.log(account);
-  console.log("loginId >> ", loginId, loginCheck);
-  
+  console.log("login >> ", loginCheck);
 
   // modal open 상태 관리 (true: open, false: hide)
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const [settingOpen, setSettingOpen] = useState(false);
   //팔로워
   const [followerOpen, setFollowerOpen] = useState(false);
   //팔로잉
   const [followingOpen, setFollowingOpen] = useState(false);
 
   // 하위 컴포넌트인 modal에서 상위컴포넌트인 ProfileManageView의 스테이트를 변경하기 위함
-  const onOpen = (trigger) => {
-    setOpen(trigger);
+  const onSettingModal = (trigger) => {
+    setSettingOpen(trigger);
   };
   //프로팔 팔로워 모달
   const onFollowerModal = (trigger) => {
@@ -64,15 +63,16 @@ const ProfileManageView = ({
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
       <ProfileSettingModalView
-        accounts={accounts}
         account={account}
-        open={open}
-        onOpen={onOpen}
+        settingOpen={settingOpen}
+        onSettingModal={onSettingModal}
         activeItem={activeItem}
         handleItemClick={handleItemClick}
-        loginId={loginId}
+        // loginId={loginId}
         loginCheck={loginCheck}
+        onSignout={onSignout}
         onModifyUser={onModifyUser}
+        onDeleteUser={onDeleteUser}
         onSetAccountProp={onSetAccountProp}
       />
       {/* 프로필 팔로워 모달 기본 open상태 false */}
@@ -113,7 +113,8 @@ const ProfileManageView = ({
             {/* 첫 번째 행 */}
             <Segment basic>
               <Grid stackable>
-                {loginCheck && loginId === account.accountId ? (
+                {/* {loginCheck && loginId === account.accountId ? ( */}
+                {loginCheck ? (
                   // 로그인된 사용자 페이지
                   <>
                     {/* 사용자 아이디 */}
@@ -122,7 +123,10 @@ const ProfileManageView = ({
                     </Grid.Column>
                     {/* setting */}
                     <Grid.Column width={2} style={{ fontSize: pText1 }}>
-                      <Icon name="setting" onClick={() => onOpen(true)} />
+                      <Icon
+                        name="setting"
+                        onClick={() => onSettingModal(true)}
+                      />
                     </Grid.Column>
                   </>
                 ) : (
@@ -143,7 +147,7 @@ const ProfileManageView = ({
                 {/* setting */}
                 {/* <Grid.Column width={2} style={{ fontSize: pText1 }}>
                   {!loginCheck && loginId === account.accountId ? (
-                    <Icon name="setting" onClick={() => onOpen(true)} />
+                    <Icon name="setting" onClick={() => onSettingModal(true)} />
                   ) : (
                     <Button>팔로우</Button>
                   )}
@@ -173,9 +177,7 @@ const ProfileManageView = ({
         </Grid.Row>
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
-        {account.introduce
-          ? account.introduce
-          : "소개글 블라블라 어쩌구 ~~~~~~~~~~~"}
+        {account.introduce}
       </Segment>
     </Container>
   );
