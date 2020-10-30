@@ -51,7 +51,7 @@ const CategoryGroupView = ({categoryList,onCategorySelect,onCategoryDefault}) =>
             <div className="group_header_text">
                 <p className="group_header_headerText">카테고리</p>
                 <p className="group_header_contents">원하시는 카테고리를 둘러보고 그룹을 찾아보세요!</p>
-                <Link to="/groupcategory" className="group_allView" onClick={onCategoryDefault}>모두 보기</Link>
+                <Link to="/groupcategory" className="group_allView" onClick={() => onCategoryDefault(categoryList[0])}>모두 보기</Link>
             </div>
             <Slider {...settings}>
                 {Groupitem}
