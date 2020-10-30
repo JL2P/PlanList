@@ -20,6 +20,18 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
   const onChangeTitle = (e) => {setTitle(e.target.value)};
   const onChangeDescription = (e) => setDescription(e.target.value);
 
+  //카테고리 선택창에 내그룹, 모든그룹, 인기그룹 제거
+  const categoryShow = [];
+  const categoryTrue = () => {
+    categoryList.map((item) => {
+      if(item.show === "true"){
+        categoryShow.push(item)
+      }
+    })
+  }
+  categoryTrue();
+
+
   return (
     <Container>
       <div style={{ margin: "3rem" }}>
@@ -49,7 +61,7 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
                     control={Select}
                     onChange={onChangeCategory}
                     placeholder="카테고리"
-                    options={categoryList}
+                    options={categoryShow}
                   />
                 </Grid.Column>
               </Grid.Row>
