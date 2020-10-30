@@ -21,8 +21,8 @@ export default class AccountStore {
   @observable
   accounts = [];
 
-  @observable logCheck = false;
-  @observable loginId = "giant_peng";
+  @observable logCheck = true; // 로그인 상태
+  @observable loginId = "giant_peng"; // 로그인된 아이디
   @observable authModifymove = true;
 
   @computed
@@ -89,6 +89,14 @@ export default class AccountStore {
       console.log("로그인이 완료되었습니다.");
     }
   }
+
+  @action signout() {
+    console.log("로그인 상태");
+    console.log(this.logCheck);
+    this.logCheck = false;
+    console.log(this.logCheck);
+  }
+
   //auth
   @action
   async auth(account) {
@@ -99,6 +107,7 @@ export default class AccountStore {
       this.logCheck = false;
     }
   }
+
   //authRemove
   @action
   async userRemove(accountId) {
@@ -106,7 +115,7 @@ export default class AccountStore {
     console.log("아이디 삭제 완료");
     this.selectAll();
   }
-  
+
   //auth move
   @action
   btn_change() {
@@ -129,7 +138,6 @@ export default class AccountStore {
     console.log(accountId);
     const account = await this.accountRepository.accountDetail(accountId);
     this.account = new AccountModel(account);
-    
   }
 
   @action

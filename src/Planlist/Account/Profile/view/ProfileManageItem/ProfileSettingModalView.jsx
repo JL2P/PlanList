@@ -1,42 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
 import ProfileAccountPrivacyView from "../ProfileModifyItem/ProfileAccountPrivacyView";
+import WithdrawalModalView from "./WithdrawalModalView";
 
 const ProfileSettingModalView = ({
-  
   settingOpen,
   onSettingModal,
   activeItem,
   handleItemClick,
-  accounts,
   account,
-  loginId,
+  // loginId,
   loginCheck,
+  onSignout,
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
 }) => {
-  const modal_height = "560px";
+  const modal_height = "400px";
+
+  // 회원 탈퇴 모달 modal open 상태 관리 (true: open, false: hide)
+  const [withdrawalOpen, setWithdrawalOpen] = useState(false);
+  // 하위 컴포넌트인 modal에서 상위컴포넌트인 스테이트를 변경하기 위함
+  const onWithdrawalModal = (trigger) => {
+    setWithdrawalOpen(trigger);
+  };
+
   return (
     <Modal
       onClose={() => onSettingModal(false)}
       onOpen={() => onSettingModal(true)}
       open={settingOpen}
+      style={{ width: "700px" }}
     >
+      {/* 회원탈퇴 모달 */}
+      <WithdrawalModalView
+        withdrawalOpen={withdrawalOpen}
+        onWithdrawalModal={onWithdrawalModal}
+        onDeleteUser={onDeleteUser}
+        account={account}
+      />
+
       <Modal.Header>
         <Container textAlign="center">설정</Container>
       </Modal.Header>
 
       <Grid style={{ marginTop: "15px" }}>
-        <Grid.Column width={4}>
+        <Grid.Column width={3}>
           <Modal.Content style={{ height: modal_height }}>
             <Menu
               vertical
               tabular
               pointing
               secondary
-              style={{ height: "610px" }}
+              style={{ height: modal_height, width: "120px" }}
             >
               <Menu.Item
                 name="내정보 관리"
@@ -57,24 +74,29 @@ const ProfileSettingModalView = ({
               />
 
               <Menu.Item
+                // href="/account"
                 name="로그아웃"
                 active={activeItem === "로그아웃"}
                 onClick={() => {
                   onSettingModal(false);
+                  onSignout();
                 }}
               />
 
               <Menu.Item
-                href="/"
+                // href="/"
                 name="회원탈퇴"
                 active={activeItem === "회원탈퇴"}
-                onClick={() => onDeleteUser(account.accountId)}
+                onClick={() => {
+                  onWithdrawalModal(true);
+                  // onDeleteUser(account.accountId);
+                }}
               />
             </Menu>
           </Modal.Content>
         </Grid.Column>
 
-        <Grid.Column stretched width={12} margin-right={2} stackable>
+        <Grid.Column stretched width={13} margin-right={2} stackable>
           <Modal.Content
             scrolling
             image
@@ -84,7 +106,6 @@ const ProfileSettingModalView = ({
               {activeItem === "내정보 관리" && (
                 <ProfileAccountModifyView
                   account={account}
-                  accounts={accounts}
                   onSetAccountProp={onSetAccountProp}
                   onModifyUser={onModifyUser}
                 />
@@ -109,8 +130,8 @@ const ProfileSettingModalView = ({
           href="/account"
           style={{ background: "#FFB517" }}
           onClick={() => {
-            onModifyUser(account);
-            // onSettingModal(false);
+            // onModifyUser(account);
+            onSettingModal(false);
           }}
         >
           <Icon name="checkmark" /> 저장

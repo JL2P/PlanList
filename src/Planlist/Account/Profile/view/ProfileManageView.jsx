@@ -13,12 +13,12 @@ import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerMod
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
 const ProfileManageView = ({
-  accounts,
   account,
   todo_count,
-  loginId,
+  // loginId,
   loginCheck,
-  onSelectUser,
+  onSignout,
+  // onSelectUser,
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
@@ -28,10 +28,10 @@ const ProfileManageView = ({
 
   // 로그인 아이디 일단 임시로 주었음!!
   // onSelectUser("giant_peng");
-  loginId = account.accountId;
-  loginCheck = true;
+  // loginId = account.accountId;
+  // loginCheck = true;
   console.log(account);
-  console.log("loginId >> ", loginId, loginCheck);
+  console.log("login >> ", loginCheck);
 
   // modal open 상태 관리 (true: open, false: hide)
   // const [open, setOpen] = useState(false);
@@ -63,14 +63,14 @@ const ProfileManageView = ({
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
       <ProfileSettingModalView
-        accounts={accounts}
         account={account}
         settingOpen={settingOpen}
         onSettingModal={onSettingModal}
         activeItem={activeItem}
         handleItemClick={handleItemClick}
-        loginId={loginId}
+        // loginId={loginId}
         loginCheck={loginCheck}
+        onSignout={onSignout}
         onModifyUser={onModifyUser}
         onDeleteUser={onDeleteUser}
         onSetAccountProp={onSetAccountProp}
@@ -113,7 +113,8 @@ const ProfileManageView = ({
             {/* 첫 번째 행 */}
             <Segment basic>
               <Grid stackable>
-                {loginCheck && loginId === account.accountId ? (
+                {/* {loginCheck && loginId === account.accountId ? ( */}
+                {loginCheck ? (
                   // 로그인된 사용자 페이지
                   <>
                     {/* 사용자 아이디 */}

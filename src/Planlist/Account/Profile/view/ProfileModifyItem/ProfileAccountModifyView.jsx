@@ -54,7 +54,7 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
               circular
               centered
               style={{
-                marginLeft: "65px",
+                marginLeft: "50px",
                 // width: "100%",
                 // height: "100%",
                 // objectFit: "cover",
