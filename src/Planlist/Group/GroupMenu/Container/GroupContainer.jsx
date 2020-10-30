@@ -33,9 +33,9 @@ class GroupContainer extends Component {
         group.select_Group_categoryList = category
     }
     //그룹 메뉴에서 '모두보기' 클릭시 카테고리 페이지 기본값
-    onCategoryDefault = () => {
+    onCategoryDefault = (categoryList) => {
         const { group } = this.props.Store;
-        group.select_Group_categoryList = group.categoryList[0];
+        group.select_Group_categoryList = categoryList;
     }
 
     render() {
@@ -58,6 +58,7 @@ class GroupContainer extends Component {
                     onCategoryDefault={this.onCategoryDefault}
                 />
                 <BestGroupView 
+                    categoryList={getCategoryList}
                     sampleData={best_sampleData}
                     onCategoryDefault={this.onCategoryDefault}
                 />
