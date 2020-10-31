@@ -6,7 +6,7 @@ import { inject, observer } from "mobx-react";
 @observer
 class MainItemConfigCotainer extends Component {
   onDeleteTodo = () => {
-    const todoId = this.props.todo.id;
+    const todoId = this.props.todo.todoId;
     const { todo } = this.props.Store;
     todo.deleteTodo(todoId);
     //모달창 닫기
