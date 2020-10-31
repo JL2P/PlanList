@@ -31,7 +31,9 @@ const TodoCommentFormVIew = ({ author, text, time, children }) => {
           <TodoCommentContainer />
         </Form>
       </Comment.Content>
-      <Comment.Group style={{ maxWidth: "100%" }}>{children}</Comment.Group>
+      {children && (
+        <Comment.Group style={{ maxWidth: "100%" }}>{children}</Comment.Group>
+      )}
     </Comment>
   );
 };

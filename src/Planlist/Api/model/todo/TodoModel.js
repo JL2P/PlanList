@@ -2,7 +2,7 @@ import { CommentModel } from '../comment/CommentModels';
 
 export default class TodoModel{
     constructor(todoObj){
-        this.id = todoObj.id;
+        this.todoId = todoObj.todoId;
         this.imgUrl = todoObj.imgUrl;
         this.title = todoObj.title;
         this.description = todoObj.description;

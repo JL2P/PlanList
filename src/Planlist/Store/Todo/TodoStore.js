@@ -103,6 +103,7 @@ export default class TodoStore {
   @action
   async modifyTodo(todoObj) {
     const todoModel = new TodoModifyModel(todoObj);
+    console.log(todoModel)
     await this.todoRepository.todoUpdate(todoModel);
     this.getApiTodos();
   }
@@ -111,7 +112,7 @@ export default class TodoStore {
   @action
   async deleteTodo(todoId) {
     await this.todoRepository.todoDelete(todoId);
-    const newMaintodo = this.todos.filter(todo => todo.id!==todoId)
+    const newMaintodo = this.todos.filter(todo => todo.todoId!==todoId)
     this.todos = newMaintodo;
   }
 
@@ -121,7 +122,6 @@ export default class TodoStore {
   async addComment(todoId, commentObj){
     const commentModel = new CommentAddModel(commentObj)
     await this.commentRepository.commentCreate(todoId, commentModel);
-    
   }
 
 

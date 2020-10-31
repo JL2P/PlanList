@@ -31,17 +31,24 @@ const TodoCommentFrame = ({ comments }) => {
               댓글 숨기기
             </p>
 
-            <TodoCommentFormVIew
-              author="Matt"
-              text="How artistic!"
-              time="Today at 5:42PM"
-            >
+            {comments.map((comment) => (
               <TodoCommentFormVIew
-                author="Matt"
-                text="How artistic!"
+                key={comment.commentId}
+                author={comment.writer}
+                text={comment.text}
                 time="Today at 5:42PM"
-              />
-            </TodoCommentFormVIew>
+              >
+                {comment.length > 0 &&
+                  comment.subComments.map((subComment) => (
+                    <TodoCommentFormVIew
+                      key={subComment.subCommentId}
+                      author={subComment.writer}
+                      text={subComment.text}
+                      time="Today at 5:42PM"
+                    />
+                  ))}
+              </TodoCommentFormVIew>
+            ))}
           </div>
         )}
         <Form reply>

@@ -157,7 +157,7 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo }) => {
               }}
               onClick={(e) => {
                 updateTodo(e, {
-                  id: todo.id,
+                  todoId: todo.todoId,
                   category: category,
                   title: title,
                   description: description,
