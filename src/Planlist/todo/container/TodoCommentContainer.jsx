@@ -5,8 +5,12 @@ import { inject, observer } from "mobx-react";
 @inject("Store")
 @observer
 class TodoCommentContainer extends Component {
-  createComment = (comment) => {
-    alert(comment, "create");
+  createComment = (text) => {
+    const { todo } = this.props.Store;
+
+    const writer = "giant_peng";
+    const seletedTodo = todo.getTodo;
+    todo.addComment(seletedTodo.todoId, { text: text, writer: writer });
   };
 
   updateComment = (comment) => {

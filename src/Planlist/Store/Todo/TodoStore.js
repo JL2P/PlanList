@@ -122,7 +122,6 @@ export default class TodoStore {
   async addComment(todoId, commentObj){
     const commentModel = new CommentAddModel(commentObj)
     await this.commentRepository.commentCreate(todoId, commentModel);
-    
   }
 
 
