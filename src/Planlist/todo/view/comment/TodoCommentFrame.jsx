@@ -18,7 +18,7 @@ const TodoCommentFrame = ({ comments }) => {
               setReply(!reply);
             }}
           >
-            댓글 {comments.length}개 모두 보기
+            댓글 모두 보기
           </p>
         )}
         {reply && (
@@ -32,19 +32,12 @@ const TodoCommentFrame = ({ comments }) => {
             </p>
 
             {comments.map((comment) => (
-              <TodoCommentFormVIew
-                key={comment.commentId}
-                author={comment.writer}
-                text={comment.text}
-                time="Today at 5:42PM"
-              >
-                {comment.length > 0 &&
+              <TodoCommentFormVIew key={comment.commentId} comment={comment}>
+                {comment.subComments.length > 0 &&
                   comment.subComments.map((subComment) => (
                     <TodoCommentFormVIew
                       key={subComment.subCommentId}
-                      author={subComment.writer}
-                      text={subComment.text}
-                      time="Today at 5:42PM"
+                      comment={subComment}
                     />
                   ))}
               </TodoCommentFormVIew>

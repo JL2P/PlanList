@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "semantic-ui-react";
 
 const CommentInputFormView = ({ createComment, updateComment }) => {
@@ -12,7 +12,7 @@ const CommentInputFormView = ({ createComment, updateComment }) => {
         fluid
         icon="pencil"
         iconPosition="left"
-        placeholder="Enter tags"
+        placeholder="댓글 달기..."
         onKeyPress={onKeyPressComment}
       />
       <p style={{ marginTop: "0.5em", opacity: "0.8" }}>
