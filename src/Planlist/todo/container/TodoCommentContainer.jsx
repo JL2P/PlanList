@@ -18,10 +18,10 @@ class TodoCommentContainer extends Component {
         text: text,
         writer: writer,
       });
+      setReply(false);
     } else {
       todo.addComment(seletedTodo.todoId, { text: text, writer: writer });
     }
-    setReply(false);
   };
 
   updateComment = (comment) => {

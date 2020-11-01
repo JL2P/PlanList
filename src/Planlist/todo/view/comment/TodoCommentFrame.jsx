@@ -18,7 +18,7 @@ const TodoCommentFrame = ({ comments }) => {
               setReply(!reply);
             }}
           >
-            댓글 {comments.length}개 모두 보기
+            댓글 모두 보기
           </p>
         )}
         {reply && (
