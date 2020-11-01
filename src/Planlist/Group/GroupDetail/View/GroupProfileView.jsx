@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import { Image } from 'semantic-ui-react'
+import { Image, Button } from 'semantic-ui-react'
 
 const GroupProfilView = ({sampleData,detailGroup_open}) => {
     useEffect(() => {
@@ -11,7 +11,9 @@ const GroupProfilView = ({sampleData,detailGroup_open}) => {
             <p style={{fontSize:"1.2rem", fontWeight:"bold"}}>{detailGroup_open.title}</p>
             <p>멤버 : {detailGroup_open.rating}명</p>
             <p>{detailGroup_open.description}</p>
-            
+            <Button inverted color='orange'>
+                그룹 가입하기
+            </Button> 
         </div>
     );
 };
