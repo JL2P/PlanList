@@ -9,7 +9,8 @@ import TodoModel from "../../Api/model/todo/TodoModel";
 
 //테스트용 추가 -승훈-
 import exampleDataset from "../../Sample/Data/MainPage_List_Data";
-import { CommentAddModel } from '../../Api/model/comment/CommentModels'
+import { CommentAddModel, CommentModel } from '../../Api/model/comment/CommentModels'
+import { SubCommentAddModel } from '../../Api/model/comment/SubCommentModels';
 
 export default class TodoStore {
   constructor(root) {
@@ -21,6 +22,7 @@ export default class TodoStore {
   //모델 정의
   @observable todos = [];
   @observable todo = {};
+  @observable comment = {};
   @observable comments = [];
 
   @observable today = {}; // 오늘 날짜 : 년-월-일
@@ -31,6 +33,10 @@ export default class TodoStore {
 
   @computed get getTodos() {
     return this.todos;
+  }
+
+  @computed get getComment() {
+    return this.comment;
   }
 
   @computed get getComments() {
@@ -79,6 +85,11 @@ export default class TodoStore {
   }
 
   @action
+  setComment(comment){
+    this.comment=comment;
+  }
+
+  @action
   setComments(comments){
     this.comments=comments;
   }
@@ -103,7 +114,6 @@ export default class TodoStore {
   @action
   async modifyTodo(todoObj) {
     const todoModel = new TodoModifyModel(todoObj);
-    console.log(todoModel)
     await this.todoRepository.todoUpdate(todoModel);
     this.getApiTodos();
   }
@@ -116,12 +126,36 @@ export default class TodoStore {
     this.todos = newMaintodo;
   }
 
+  //api를 이용하여 댓글 리스트를 가져온다.
+  @action
+  async apiGetComments(todoId){
+    const dataList = await this.commentRepository.commentList(todoId)
+    this.comments = dataList.map(comment=>new CommentModel(comment))
+  }
+
+  //api를 이용하여 댓글을 가져온다
+  @action
+  async apiGetComment(todoId, commentId){
+    const data = await this.commentRepository.commentDetail(todoId, commentId)
+    this.comment = new CommentModel(data)
+  }
 
   // API를 호출하여 해당 todo의 댓글을 생성한다.
   @action
   async addComment(todoId, commentObj){
     const commentModel = new CommentAddModel(commentObj)
     await this.commentRepository.commentCreate(todoId, commentModel);
+    this.apiGetComments(todoId);
+    this.getApiTodos();
+  }
+
+  // API를 호출하여 해당 댓글의 대댓글을 생성한다.
+  @action
+  async addSubComment(todoId, commentId, subCommentObj){
+    const subCommentAddModel = new SubCommentAddModel(subCommentObj)
+    await this.commentRepository.subCommentCreate(todoId, commentId, subCommentAddModel);
+    this.apiGetComments(todoId);
+    this.getApiTodos();
   }
 
 

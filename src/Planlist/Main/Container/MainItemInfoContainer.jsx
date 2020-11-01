@@ -7,12 +7,6 @@ import TodoCommentFormVIew from "../../todo/view/comment/TodoCommentFormView";
 @inject("Store")
 @observer
 class MainItemInfoContainer extends Component {
-  getComments = (comments) => {
-    comments.map((comment) => {
-      return <TodoCommentFormVIew></TodoCommentFormVIew>;
-    });
-  };
-
   render() {
     const { todo } = this.props.Store;
     const seletedTodo = todo.getTodo;

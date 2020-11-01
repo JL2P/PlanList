@@ -10,10 +10,20 @@ export default class CommentRepository{
         return axios.get(this.URL+`/${todoId}/comments`).then(request=>request.data||{})
     }
 
-    //todo 추가
     // POST /api/todos/{todoId}/comments
     commentCreate = (todoId, CommentAddModel)=>{
         return axios.post(this.URL+`/${todoId}/comments`,CommentAddModel).then(request=>request.data||{})
     }
+
+    //{todoId}/comments/{commentId}
+    commentDetail = (todoId,commentId)=>{
+        return axios.get(this.URL+`/${todoId}/comments/${commentId}`).then(request=>request.data||{})
+    }
+
+    //api/todos/{todoId}/comments/{commentId}/subComments
+    subCommentCreate = (todoId,commentId, SubCommentAddModel)=>{
+        return axios.post(this.URL+`/${todoId}/comments/${commentId}/subComments`,SubCommentAddModel).then(request=>request.data||{})
+    }
+    
 
 }

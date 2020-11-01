@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Comment, Form, Icon } from "semantic-ui-react";
+import { Comment, Form, Icon, Label } from "semantic-ui-react";
 import TodoCommentContainer from "../../container/TodoCommentContainer";
 import "./todoCommentFormStyle.css";
 
-const TodoCommentFormVIew = ({ author, text, time, children }) => {
+const TodoCommentFormVIew = ({ comment, children }) => {
   const [reply, setReply] = useState(false);
 
   const onReply = () => setReply(!reply);
@@ -12,12 +12,23 @@ const TodoCommentFormVIew = ({ author, text, time, children }) => {
     <Comment>
       <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
       <Comment.Content>
-        <Comment.Author as="a">{author}</Comment.Author>
+        <Comment.Author as="a">{comment.writer}</Comment.Author>
         <Comment.Metadata>
-          <div>{time}</div>
+          <div>{"time"}</div>
           <Icon name="heart" />
         </Comment.Metadata>
-        <Comment.Text>{text}</Comment.Text>
+        <Comment.Text>
+          {comment.targetId && (
+            <Label
+              style={{ marginLeft: "0.5em", marginRight: "0.5em" }}
+              size="mini"
+              color="blue"
+            >
+              {comment.targetId}
+            </Label>
+          )}
+          {comment.text}
+        </Comment.Text>
         <Comment.Actions>
           <Comment.Action
             onClick={() => {
@@ -28,7 +39,7 @@ const TodoCommentFormVIew = ({ author, text, time, children }) => {
           </Comment.Action>
         </Comment.Actions>
         <Form reply className={reply ? "onReply" : "offReply"}>
-          <TodoCommentContainer />
+          <TodoCommentContainer comment={comment} setReply={setReply} />
         </Form>
       </Comment.Content>
       {children && (

@@ -6,11 +6,22 @@ import { inject, observer } from "mobx-react";
 @observer
 class TodoCommentContainer extends Component {
   createComment = (text) => {
+    const { comment, setReply } = this.props;
     const { todo } = this.props.Store;
 
     const writer = "giant_peng";
     const seletedTodo = todo.getTodo;
-    todo.addComment(seletedTodo.todoId, { text: text, writer: writer });
+
+    if (comment) {
+      todo.addSubComment(seletedTodo.todoId, comment.commentId, {
+        targetId: comment.writer,
+        text: text,
+        writer: writer,
+      });
+    } else {
+      todo.addComment(seletedTodo.todoId, { text: text, writer: writer });
+    }
+    setReply(false);
   };
 
   updateComment = (comment) => {
