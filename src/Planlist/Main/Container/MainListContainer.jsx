@@ -51,8 +51,6 @@ class MainPageContainer extends Component {
   selectedTodo = (todoModel) => {
     const { todo } = this.props.Store;
     todo.setTodo(todoModel);
-    console.log(todoModel);
-    console.log(todoModel.comments);
     todo.setComments(todoModel.comments);
   };
 

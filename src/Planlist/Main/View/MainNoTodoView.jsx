@@ -22,7 +22,7 @@ const MainNoTodoView = ({ onCreateTodoModal }) => {
         }}
       >
         <Icon name="play" />
-        <Header as="h1">계획 생성하기</Header>
+        <Header>계획 생성하기</Header>
         <Header.Subheader>
           현재 진행중인 계획이 존재하지 않습니다. 계획을 생성해보세요.
         </Header.Subheader>
