@@ -5,7 +5,7 @@ import AccountAddModel from "../../Api/model/AccountAddModel";
 import AccountModifyModel from "../../Api/model/AccountModifyModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
 import AccountRepository from "../../Api/Repository/AccountRepository";
-import data from "../../Sample/Data/ProfileAccount_Sample_Data";
+import data from "../../Sample/Data/AccountSample/SampleAccounts";
 
 export default class AccountStore {
   constructor(root) {
