@@ -11,7 +11,7 @@ class ProfileMangeContainer extends Component {
     //여기서 랜덤으로 뽑아서 사용해보는방법?
     // const userList = ["giant_peng","giant_pen2","giant_peng3"];
 
-    account.selectUser("giant_peng");
+    account.selectUser("loopy");
     account.selectAll();
     todo.getApiTodos();
   }
@@ -66,6 +66,7 @@ class ProfileMangeContainer extends Component {
     return (
       <div>
         <ProfileManageView
+        
           account={account.getAccount}
           // onSelectUser={this.onSelectUser}
           onModifyUser={this.onModifyUser}

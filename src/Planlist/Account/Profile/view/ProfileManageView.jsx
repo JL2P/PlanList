@@ -31,7 +31,7 @@ const ProfileManageView = ({
   // loginId = account.accountId;
   // loginCheck = true;
   console.log(account);
-  console.log("login >> ", loginCheck);
+  // console.log("login >> ", loginCheck);
 
   // modal open 상태 관리 (true: open, false: hide)
   // const [open, setOpen] = useState(false);
@@ -97,7 +97,7 @@ const ProfileManageView = ({
             }}
           >
             <Image
-              src="/profiles/peng.png"
+              src={account.imgUrl}
               bordered
               circular
               centered

@@ -17,19 +17,20 @@ Account 데이터를 담는 클래스
 */
 export default class AccountModel {
   constructor(accountObj) {
-    this.accountId = accountObj.accountId; 
-    this.email = accountObj.email; 
+    this.accountId = accountObj.accountId;
+    this.email = accountObj.email;
     this.name = accountObj.name;
     // this.password = accountObj.password;
-    this.birth = accountObj.birth; 
-    this.gender = accountObj.gender; 
-    // this.address = accountObj.address; 
-    // this.phone = accountObj.phone; 
-    this.introduce = accountObj.introduce; 
-    // this.rating = accountObj.rating; 
+    this.birth = accountObj.birth;
+    this.gender = accountObj.gender;
+    // this.address = accountObj.address;
+    // this.phone = accountObj.phone;
+    this.introduce = accountObj.introduce;
+    // this.rating = accountObj.rating;
     // this.displayAt = accountObj.displayAt || "ALL";
     this.loginType = accountObj.loginType;
     this.openAt = accountObj.openAt;
     this.usedAt = accountObj.usedAt;
+    this.imgUrl = accountObj.imgUrl;
   }
 }

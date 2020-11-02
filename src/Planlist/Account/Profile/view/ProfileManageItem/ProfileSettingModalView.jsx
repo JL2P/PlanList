@@ -117,7 +117,10 @@ const ProfileSettingModalView = ({
                 <ProfilePasswordModifyView account={account} />
               )} */}
               {activeItem === "공개 범위 설정" && (
-                <ProfileAccountPrivacyView account={account} />
+                <ProfileAccountPrivacyView
+                  account={account}
+                  onSetAccountProp={onSetAccountProp}
+                />
               )}
               {activeItem === "로그아웃"}
               {activeItem === "회원탈퇴"}
