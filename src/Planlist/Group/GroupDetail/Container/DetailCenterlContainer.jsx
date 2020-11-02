@@ -36,11 +36,13 @@ class DetailCenterlContainer extends Component {
 
     render() {
         const { group } = this.props.Store;
+        const { account } = this.props.Store;
         const {
             getMyTodo,
             getDetailGroup_modalOpen,
             detailGroup_open
         } = group;
+        const {loginAccount} = account;
         return (
             <div>
                 <GroupCenterView 
@@ -51,6 +53,7 @@ class DetailCenterlContainer extends Component {
                     onDetailGroup_create={this.onDetailGroup_create}
                     onSettingSave={this.onSettingSave}
                     onSettingRemove={this.onSettingRemove}
+                    onLogInUser={loginAccount}
                 />
             </div>
         );

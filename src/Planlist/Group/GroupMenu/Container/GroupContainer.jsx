@@ -41,6 +41,7 @@ class GroupContainer extends Component {
 
     render() {
         const { group } = this.props.Store;
+        const { account } = this.props.Store;
         const my_sampleData = group.getMyTodo;
         const best_sampleData = group.getBestTodo;
 
@@ -49,7 +50,9 @@ class GroupContainer extends Component {
             getDetailGroup_open,
             getCategoryList,
         } = group
-        
+
+        const {loginAccount} = account;
+         
         return (
             <div>
                 <MyGroupView 
@@ -57,6 +60,7 @@ class GroupContainer extends Component {
                     categoryList={getCategoryList}
                     onCreateGroup={this.onCreateGroup}
                     onCategoryDefault={this.onCategoryDefault}
+                    onLogInUser={loginAccount}
                 />
                 <BestGroupView 
                     categoryList={getCategoryList}

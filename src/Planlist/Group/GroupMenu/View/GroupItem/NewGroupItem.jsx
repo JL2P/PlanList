@@ -3,7 +3,7 @@ import { Card, Image, Icon, Button, Header, Modal } from "semantic-ui-react";
 import NewGroupItemModal from "./NewGroupItemModal";
 import "../../../GroupStyle/Group.scss";
 
-const NewGroupItem = ({categoryList,onCreateGroup}) => {
+const NewGroupItem = ({categoryList,onCreateGroup,onLogInUser}) => {
   const [open, setOpen] = React.useState(false)
   return (
     <Modal
@@ -22,6 +22,7 @@ const NewGroupItem = ({categoryList,onCreateGroup}) => {
         setOpen={setOpen} 
         categoryList={categoryList}
         onCreateGroup={onCreateGroup}
+        onLogInUser={onLogInUser}
       />
     </Modal>
   );

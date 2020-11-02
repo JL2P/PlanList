@@ -35,7 +35,7 @@ export default class GroupStore {
       @observable categoryList = CategoryList_Data;
       @observable select_Group_categoryList = this.categoryList[0];
       @observable detailGroup_modalOpen = false;
-      @observable detailGroup_open ={};
+      @observable detailGroup_open ={};  //그룹 디테일에 해당되는 객체
 
       @computed get getGroup(){return this.group;}
       @computed get getGroups(){return this.groups;}

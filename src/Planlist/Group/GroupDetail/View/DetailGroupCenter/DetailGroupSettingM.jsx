@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { Segment, Form, Button, Input, TextArea } from "semantic-ui-react";
 
-const DetailGroupSetting = ({
+const DetailGroupSettingM = ({
         onSettingSave,
         detailGroup,
         onSettingRemove
@@ -41,4 +41,4 @@ const DetailGroupSetting = ({
     );
 };
 
-export default DetailGroupSetting;
+export default DetailGroupSettingM;
