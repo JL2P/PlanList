@@ -70,7 +70,7 @@ class ProfileMangeContainer extends Component {
     return (
       <div>
         <ProfileManageView
-          account={account.getAccount}
+          account={account.getLoginAccount}
           // onSelectUser={this.onSelectUser}
           onModifyUser={this.onModifyUser}
           onDeleteUser={this.onDeleteUser}
