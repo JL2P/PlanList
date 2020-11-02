@@ -2,13 +2,18 @@ import React,{useState} from "react";
 import { Button, Header, TextArea ,Input, Icon, Form, Grid, Select, Container, Divider } from "semantic-ui-react";
 import FileUploadFormView from "../../../../todo/view/FileUploadFormView";
 
-const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
+const NewGroupItemModal = ({ 
+    setOpen,
+    categoryList,
+    onCreateGroup,
+    onLogInUser
+  }) => {
 
   const [images, setImages] = useState([]);
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const master = onLogInUser.accountId;
 
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
@@ -49,7 +54,23 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
 
           <Form>
             <Grid stackable>
-              <Grid.Row columns={2}>
+
+            <Grid.Row columns={2}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>그룹 관리자</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <Form.Field
+                    value={master}
+                    control={Input}
+                    readOnly
+                  />
+                </Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
                 <Grid.Column width={GRID_LEFT}>
                   <aside>
                     <label>카테고리</label>
@@ -65,6 +86,7 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
                   />
                 </Grid.Column>
               </Grid.Row>
+
               <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
                 <Grid.Column width={GRID_LEFT}>
                   <aside>
@@ -118,9 +140,10 @@ const NewGroupItemModal = ({ setOpen,categoryList,onCreateGroup }) => {
               }}
               onClick={(e) => {
                 onCreateGroup(e, {
-                  category: category,
-                  title: title,
-                  description: description,
+                  category,
+                  title,
+                  description,
+                  master
                 });
               }}
             >
