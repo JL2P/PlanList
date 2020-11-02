@@ -8,13 +8,17 @@ const GroupAllView = ({
         sampleData,
         onDetailGroup_create,
         getDetailGroup_modalOpen,
-        onDetailGroup_modalCheck
+        onDetailGroup_modalCheck,
+        onLogInUser,
+        detailGroup
     }) => {
         
     const [open, setOpen] = useState(false)
     const [search, setSearch] = useState("");
 
     const onSearch = (e) => {setSearch(e.target.value)}
+
+    const onAlert = () => {alert("글 쓰기 권한이 없습니다.")}
 
     const Groupitem = sampleData.map((item, index) => (
         <DetailGroupAllList key={index} item={item} />
@@ -32,24 +36,36 @@ const GroupAllView = ({
             </Segment>
 
             <Segment>
-                <Modal
-                    closeIcon
-                    open={getDetailGroup_modalOpen}
-                    trigger={
-                        <div>
-                            <Input
-                                placeholder='새로운 계획을 시작해 보세요!'
-                                style={{width:"100%"}}
-                                className="detailGroup_create_input"
-                                icon={{ name: 'write square', circular: true, link: true }}
-                            />
-                        </div>
-                    }
-                    onClose={() => onDetailGroup_modalCheck(false)}
-                    onOpen={() => onDetailGroup_modalCheck(true)}
+                {detailGroup.master === onLogInUser.accountId ? 
+                    <Modal
+                        closeIcon
+                        open={getDetailGroup_modalOpen}
+                        trigger={
+                            <div>
+                                <Input
+                                    placeholder='새로운 계획을 시작해 보세요!'
+                                    style={{width:"100%"}}
+                                    className="detailGroup_create_input"
+                                    icon={{ name: 'write square', circular: true, link: true }}
+                                />
+                            </div>
+                        }
+                        onClose={() => onDetailGroup_modalCheck(false)}
+                        onOpen={() => onDetailGroup_modalCheck(true)}
                     >
-                    <DetailGroupAllModal onDetailGroup_create={onDetailGroup_create} />
-                </Modal>
+                        <DetailGroupAllModal onDetailGroup_create={onDetailGroup_create} />
+                    </Modal>
+                :
+                <Input
+                    placeholder='새로운 계획을 시작해 보세요!'
+                    style={{width:"100%"}}
+                    className="detailGroup_create_input"
+                    icon={{ name: 'write square', circular: true, link: true }}
+                    onClick={onAlert}
+                    readOnly
+                />
+                }
+                
             </Segment>
 
             <Segment>

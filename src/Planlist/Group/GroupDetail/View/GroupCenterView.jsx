@@ -2,7 +2,8 @@ import React from 'react';
 import DetailGroupNav from './DetailGroupCenter/DetailGroupNav';
 import DetailGroupAll from './DetailGroupCenter/DetailGroupAll';
 import DetailGroupMember from './DetailGroupCenter/DetailGroupMember';
-import DetailGroupSetting from './DetailGroupCenter/DetailGroupSetting';
+import DetailGroupSettingM from './DetailGroupCenter/DetailGroupSettingM';
+import DetailGroupSettingU from './DetailGroupCenter/DetailGroupSettingU';
 import {Route} from 'react-router-dom'
 
 const GroupCenterView = ({
@@ -12,11 +13,15 @@ const GroupCenterView = ({
         onDetailGroup_modalCheck,
         detailGroup,
         onSettingSave,
-        onSettingRemove
+        onSettingRemove,
+        onLogInUser
     }) => {
     return (
         <div>
-            <DetailGroupNav />
+            <DetailGroupNav 
+                onLogInUser={onLogInUser}
+                detailGroup={detailGroup} 
+            />
             <Route 
                 path="/groupdetail" 
                 exact 
@@ -25,12 +30,23 @@ const GroupCenterView = ({
                      onDetailGroup_create={onDetailGroup_create}
                      getDetailGroup_modalOpen={getDetailGroup_modalOpen}
                      onDetailGroup_modalCheck={onDetailGroup_modalCheck}
+                     onLogInUser={onLogInUser}
+                     detailGroup={detailGroup}
                 /> } />
             <Route path="/groupdetail/member" exact component={DetailGroupMember} />
             <Route
-                path="/groupdetail/setting" 
+                path="/groupdetail/masterSetting" 
                 exact
-                render={() => <DetailGroupSetting
+                render={() => <DetailGroupSettingM
+                    detailGroup={detailGroup}
+                    onSettingSave={onSettingSave}
+                    onSettingRemove={onSettingRemove}
+                />}
+            />
+            <Route
+                path="/groupdetail/userSetting" 
+                exact
+                render={() => <DetailGroupSettingU
                     detailGroup={detailGroup}
                     onSettingSave={onSettingSave}
                     onSettingRemove={onSettingRemove}

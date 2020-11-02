@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, Segment } from "semantic-ui-react";
 import {Link, withRouter, Route } from 'react-router-dom'
 
-const DetailGroupNav = () => {
+const DetailGroupNav = ({onLogInUser,detailGroup}) => {
   const [activeItem, setActiveItem] = useState("전체글");
 
   const handleItemClick = (e,{name}) => {
@@ -35,12 +35,22 @@ const DetailGroupNav = () => {
             onClick={handleItemClick}
             />
             <Menu.Menu position="right">
-            <Menu.Item
-              as={Link} to="/groupdetail/setting"
+            {detailGroup.master === onLogInUser.accountId ?
+              <Menu.Item
+                as={Link} to="/groupdetail/masterSetting"
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={handleItemClick}
-            />
+              />
+              : 
+              <Menu.Item
+                as={Link} to="/groupdetail/userSetting"
+                name="그룹 설정"
+                active={activeItem === "그룹 설정"}
+                onClick={handleItemClick}
+              />
+            }
+            
             </Menu.Menu>
         </Menu>
     <br />
