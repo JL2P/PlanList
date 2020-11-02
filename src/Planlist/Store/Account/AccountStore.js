@@ -147,13 +147,13 @@ export default class AccountStore {
   }
 
   //// account페이지 sampledata
-  @observable accounts2 = data;
-  @observable account2 = data[0];
-  @computed get getAccounts2() {
-    return this.accounts2 ? this.accounts2.slice() : [];
-  }
-  @computed get getAccount2() {
-    return this.accounts2 ? { ...this.account2 } : {};
-  }
+  // @observable accounts2 = data;
+  // @observable account2 = data[0];
+  // @computed get getAccounts2() {
+  //   return this.accounts2 ? this.accounts2.slice() : [];
+  // }
+  // @computed get getAccount2() {
+  //   return this.accounts2 ? { ...this.account2 } : {};
+  // }
   ////
 }
