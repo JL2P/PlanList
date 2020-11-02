@@ -51,7 +51,7 @@ const ProfileAccountModifyView = ({
             // }}
           >
             <Image
-              src="/profiles/peng.png"
+              src={account.imgUrl}
               size="tiny"
               bordered
               circular

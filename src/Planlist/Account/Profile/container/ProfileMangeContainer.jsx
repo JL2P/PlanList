@@ -11,7 +11,7 @@ class ProfileMangeContainer extends Component {
     //여기서 랜덤으로 뽑아서 사용해보는방법?
     // const userList = ["giant_peng","giant_pen2","giant_peng3"];
 
-    account.selectUser("giant_peng");
+    account.selectUser("loopy");
     account.selectAll();
     todo.getApiTodos();
   }
@@ -56,17 +56,25 @@ class ProfileMangeContainer extends Component {
     const today = todo.getToday;
     console.log(">>", account.getAccount);
     console.log("오늘 날짜 : ", today);
-    // console.log(todos[0].end_time);
     console.log(account.getLogCheck === false);
-    console.log(account.getLoginId);
+    console.log("로그인!!");
+    console.log(">>", account.loginAccount.accountId);
+    console.log(">>", account.getLoginAccount);
 
     // 해야 할 일 개수 count
-    const count = todos.filter((item) => item.endTime >= today).length;
+    const count = todos.filter(
+      (item) =>
+        item.writer === account.getLoginAccount.accountId &&
+        item.endTime >= today
+    ).length;
+    todos.map((item) => console.log(item.endTime));
+    todos.map((item) => console.log(item.endTime >= today));
+    todos.map((item) => console.log(item.endTime <= "2020-11-02"));
 
     return (
       <div>
         <ProfileManageView
-          account={account.getAccount}
+          account={account.getLoginAccount}
           // onSelectUser={this.onSelectUser}
           onModifyUser={this.onModifyUser}
           onDeleteUser={this.onDeleteUser}

@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox, Form, Grid } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountPrivacyView = ({ account }) => {
+const ProfileAccountPrivacyView = ({
+  account,
+  check,
+  onChecked,
+  setChecked,
+}) => {
+  if (account.openAt === "Y") {
+    setChecked(false);
+  } else {
+    setChecked(true);
+  }
+
+  console.log("check", check, account.openAt);
+
   return (
     <Form style={{ width: "95%" }}>
       <Grid stackable>
@@ -17,7 +30,11 @@ const ProfileAccountPrivacyView = ({ account }) => {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-            <Checkbox label="비공개 계정" />
+            <Checkbox
+              label="비공개 계정"
+              checked={!check}
+              onChange={onChecked}
+            />
           </Grid.Column>
         </Grid.Row>
       </Grid>

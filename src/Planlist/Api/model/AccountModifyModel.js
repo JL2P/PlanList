@@ -6,5 +6,7 @@ export default class AccountAddModel {
     this.birth = accountObj.birth;
     this.gender = accountObj.gender;
     this.introduce = accountObj.introduce;
+    this.imgUrl = accountObj.imgUrl;
+    this.openAt = accountObj.openAt;
   }
 }

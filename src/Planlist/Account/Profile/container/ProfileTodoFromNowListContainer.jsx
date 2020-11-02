@@ -11,12 +11,16 @@ class ProfileTodoFromNowListContainer extends Component {
 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
-    const { todo } = this.props.Store;
+    const { todo, account } = this.props.Store;
     const todos = todo.getTodos;
     const today = todo.getToday;
+    const loginAccount = account.getLoginAccount.accountId;
+    const loginCheck = account.getLogCheck;
 
+    console.log("로그인계정", loginCheck);
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
+      .filter((item) => item.writer === loginAccount)
       .filter((item) => item.endTime >= today)
       .sort((a, b) => (a.endTime > b.endTime ? 1 : -1));
 
@@ -35,10 +39,16 @@ class ProfileTodoFromNowListContainer extends Component {
     );
 
     return (
-      <ProfileTodoFromNowListView
-        fromNow_list={fromNow_list}
-        fromNow_date={fromNow_date}
-      />
+      <div>
+        {loginCheck ? (
+          <ProfileTodoFromNowListView
+            fromNow_list={fromNow_list}
+            fromNow_date={fromNow_date}
+          />
+        ) : (
+          <p>비공개 계정입니다!</p>
+        )}
+      </div>
     );
   }
 }
