@@ -10,7 +10,7 @@ class SigninContainer extends Component {
     const { account } = this.props.Store;
     account.signin(accountObj).then((req) => {
       if (account.logCheck === true) {
-        this.props.history.push("/auth");
+        this.props.history.push("/");
       } else {
         alert("회원 정보를 확인해 주세요.");
       }

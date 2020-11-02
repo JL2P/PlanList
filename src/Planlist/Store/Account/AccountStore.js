@@ -14,15 +14,20 @@ export default class AccountStore {
   }
 
   // this.root.todo.
-
-  //모델 정의
+  
+  //로그인 중인 유저 정보
+  @observable loginAccount = {};
+  @observable logCheck = false; // 로그인 상태
+  
+  //선택된 유저 모델 정의
   @observable
   account = {};
 
   @observable
   accounts = [];
 
-  @observable logCheck = true; // 로그인 상태
+
+
   @observable loginId = "giant_peng"; // 로그인된 아이디
   @observable authModifymove = true;
 
@@ -47,6 +52,10 @@ export default class AccountStore {
     return this.loginId;
   }
 
+  @computed get getLoginAccount(){
+    return this.loginAccount;
+  }
+
   @action
   changeTest() {
     this.account = { A: "123" };
@@ -62,13 +71,10 @@ export default class AccountStore {
 
   //회원가입
   @action
-  async signup(account) {
-    console.log(account);
-    const accountModel = new AccountAddModel(account);
-    console.log(accountModel);
-    const result = await this.accountRepository.accountCreate(accountModel);
-    console.log(result);
-    alert("대시");
+  async signup(accountObj) {
+    const accountAddModel = new AccountAddModel(accountObj);
+    console.log(accountAddModel);
+    this.accountRepository.accountSignup(accountAddModel);
   }
 
   //로그인
@@ -76,26 +82,24 @@ export default class AccountStore {
   async signin(account) {
     this.logCheck = false;
     const accountModel = new AccountSigninModel(account);
-    const result = await this.accountRepository.accountSignin(accountModel);
-    console.log(account);
-    console.log(result);
-    if (
-      account.email === result.email &&
-      account.password === result.password
-    ) {
-      this.logCheck = true;
-      this.account = result;
-      this.loginId = account.accountId;
-      console.log(result);
-      console.log("로그인이 완료되었습니다.");
-    }
+    const data = await this.accountRepository.accountSignin(accountModel);
+    // 임시로 주석
+    // if (
+    //   account.email === data.email &&
+    //   account.password === data.password
+    // ) {
+    //   this.logCheck = true;
+    //   this.loginAccount = new AccountModel(data);
+    //   console.log("로그인이 완료되었습니다.");
+    // }
+    this.logCheck = true;
+    this.loginAccount = new AccountModel(data);
+    console.log("로그인이 완료되었습니다.");
   }
 
   @action signout() {
     console.log("로그인 상태");
-    console.log(this.logCheck);
     this.logCheck = false;
-    console.log(this.logCheck);
   }
 
   //auth

@@ -17,12 +17,7 @@ export default class AccountRepository{
         return axios.get(this.URL+`${accountId}/`).then(request=>request.data||{})
     }
 
-    // account 추가
-    // POST /api/account/
-    accountCreate = (AccountModel)=>{
-        return axios.post(this.URL+"signup/", AccountModel).then(request=>request.data||{})
-    }
-
+    
     // account 수정
     // PUT /api/account/
     accountModify = (AccountModel)=>{
@@ -35,11 +30,18 @@ export default class AccountRepository{
         return axios.delete(this.URL+`signout/${accountId}/`).then(request=>request.data||null)
     }
 
-    //로그인
-    // POST /api/account/
+    // 테스트 로그인
+    // POST /api/accounts/signin/
     accountSignin = (AccountModel) => {
-        return axios.post(this.URL+"signin/",AccountModel).then(request=>request.data||{});
+        return axios.post(this.URL+"signin",AccountModel).then(request=>request.data||{});
     }
+
+    // 테스트 회원가입
+    // POST /api/accounts/signup
+    accountSignup = (AccountAddModel) => {
+        return axios.post(this.URL+"signup",AccountAddModel).then(request=>request.data||{});
+    }
+
     //auth
     // POST /api/account/
     accountAuth = (AccountModel) => {
