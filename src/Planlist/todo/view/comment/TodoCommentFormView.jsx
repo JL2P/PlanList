@@ -10,7 +10,7 @@ const TodoCommentFormVIew = ({ comment, children }) => {
 
   return (
     <Comment>
-      <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
+      <Comment.Avatar src="/posts/img_crong.jpg" />
       <Comment.Content>
         <Comment.Author as="a">{comment.writer}</Comment.Author>
         <Comment.Metadata>

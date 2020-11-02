@@ -7,6 +7,15 @@ import { Comment, Form, Divider } from "semantic-ui-react";
 const TodoCommentFrame = ({ comments }) => {
   const [reply, setReply] = useState(false);
 
+  const commentCounter = () => {
+    let count = 0;
+    for (let i = 0; i < comments.length; i++) {
+      const subComments = comments[i].subComments;
+      count += subComments.length;
+    }
+    return comments.length + count;
+  };
+
   return (
     <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
       <Comment.Group style={{ maxWidth: "100%", width: "95%" }}>
@@ -18,7 +27,7 @@ const TodoCommentFrame = ({ comments }) => {
               setReply(!reply);
             }}
           >
-            댓글 모두 보기
+            댓글 {commentCounter()}개 모두 보기
           </p>
         )}
         {reply && (

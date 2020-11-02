@@ -1,20 +1,15 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
-import { 
-    sign_move_text, 
-    sign_IconBtn ,
-    sign_submitBtn 
-} from "../../style/Btn";
+import { sign_move_text, sign_IconBtn, sign_submitBtn } from "../../style/Btn";
 
-const SigninView = ({onSignin}) => {
-
+const SigninView = ({ onSignin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onEmail = e => setEmail(e.target.value);
-  const onPassword = e => setPassword(e.target.value);
+  const onEmail = (e) => setEmail(e.target.value);
+  const onPassword = (e) => setPassword(e.target.value);
 
   const sign_move = {
     float: "right",
@@ -30,11 +25,11 @@ const SigninView = ({onSignin}) => {
     fontWeight: "bold",
   };
   return (
-    <AuthTemplate name = "Log In">
-      <Form 
+    <AuthTemplate name="Log In">
+      <Form
         onSubmit={(e) => {
-          onSignin(e,{email,password}
-        )}}
+          onSignin(e, { email, password });
+        }}
       >
         <div style={sign_IconBtn}>
           <Button color="facebook">
@@ -49,10 +44,10 @@ const SigninView = ({onSignin}) => {
 
         <Form.Field>
           <label>e-mail</label>
-          <input 
-            onChange={onEmail} 
-            type="email" 
-            placeholder="Please enter a e-mail" 
+          <input
+            onChange={onEmail}
+            type="email"
+            placeholder="Please enter a e-mail"
             required
             value={email}
           />
