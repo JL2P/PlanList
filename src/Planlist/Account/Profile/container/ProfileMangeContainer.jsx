@@ -58,11 +58,15 @@ class ProfileMangeContainer extends Component {
     console.log("오늘 날짜 : ", today);
     console.log(account.getLogCheck === false);
     console.log("로그인!!");
-    console.log(">>", account.loginAccount);
+    console.log(">>", account.loginAccount.accountId);
     console.log(">>", account.getLoginAccount);
 
     // 해야 할 일 개수 count
-    const count = todos.filter((item) => item.endTime >= today).length;
+    const count = todos.filter(
+      (item) =>
+        item.writer === account.getLoginAccount.accountId &&
+        item.endTime >= today
+    ).length;
     todos.map((item) => console.log(item.endTime));
     todos.map((item) => console.log(item.endTime >= today));
     todos.map((item) => console.log(item.endTime <= "2020-11-02"));
