@@ -24,6 +24,18 @@ const ProfileSettingModalView = ({
     setWithdrawalOpen(trigger);
   };
 
+  // account 공개 여부를 체크하기 위함 
+  const [check, setChecked] = useState();
+  const onChecked = () => {
+    if (account.openAt === "Y") {
+      setChecked(false);
+      onSetAccountProp("openAt", "N");
+    } else {
+      setChecked(true);
+      onSetAccountProp("openAt", "Y");
+    }
+  };
+
   // const [name, setName] = useState(account.name);
   // const onChangeName = (e) => setName(e.target.value);
 
@@ -120,6 +132,9 @@ const ProfileSettingModalView = ({
                 <ProfileAccountPrivacyView
                   account={account}
                   onSetAccountProp={onSetAccountProp}
+                  check={check}
+                  onChecked={onChecked}
+                  setChecked={setChecked}
                 />
               )}
               {activeItem === "로그아웃"}
