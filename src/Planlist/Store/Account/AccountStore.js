@@ -5,7 +5,6 @@ import AccountAddModel from "../../Api/model/AccountAddModel";
 import AccountModifyModel from "../../Api/model/AccountModifyModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
 import AccountRepository from "../../Api/Repository/AccountRepository";
-import data from "../../Sample/Data/AccountSample/SampleAccounts";
 
 export default class AccountStore {
   constructor(root) {
@@ -43,7 +42,7 @@ export default class AccountStore {
     return this.logCheck;
   }
 
-  @computed get loginId() {
+  @computed get getLoginId() {
     return this.loginId;
   }
 
@@ -136,7 +135,7 @@ export default class AccountStore {
 
   @action
   async selectUser(accountId) {
-    console.log(accountId);
+    console.log("?????", accountId);
     const account = await this.accountRepository.accountDetail(accountId);
     this.account = new AccountModel(account);
   }
@@ -148,13 +147,13 @@ export default class AccountStore {
   }
 
   //// account페이지 sampledata
-  @observable accounts2 = data;
-  @observable account2 = data[0];
-  @computed get getAccounts2() {
-    return this.accounts2 ? this.accounts2.slice() : [];
-  }
-  @computed get getAccount2() {
-    return this.accounts2 ? { ...this.account2 } : {};
-  }
+  // @observable accounts2 = data;
+  // @observable account2 = data[0];
+  // @computed get getAccounts2() {
+  //   return this.accounts2 ? this.accounts2.slice() : [];
+  // }
+  // @computed get getAccount2() {
+  //   return this.accounts2 ? { ...this.account2 } : {};
+  // }
   ////
 }

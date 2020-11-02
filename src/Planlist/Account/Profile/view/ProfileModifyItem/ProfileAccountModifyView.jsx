@@ -134,7 +134,7 @@ const ProfileAccountModifyView = ({
               selection
               options={genderOptions}
               value={account.gender}
-              onChange={(e) => onSetAccountProp("gender", e.target.value)}
+              onChange={(e, { value }) => onSetAccountProp("gender", value)}
             />
           </Grid.Column>
         </Grid.Row>
