@@ -13,11 +13,11 @@ export default class AccountStore {
   }
 
   // this.root.todo.
-  
+
   //로그인 중인 유저 정보
   @observable loginAccount = {};
   @observable logCheck = false; // 로그인 상태
-  
+
   //선택된 유저 모델 정의
   @observable
   account = {};
@@ -25,9 +25,6 @@ export default class AccountStore {
   @observable
   accounts = [];
 
-
-
-  @observable loginId = "giant_peng"; // 로그인된 아이디
   @observable authModifymove = true;
 
   @computed
@@ -47,11 +44,7 @@ export default class AccountStore {
     return this.logCheck;
   }
 
-  @computed get getLoginId() {
-    return this.loginId;
-  }
-
-  @computed get getLoginAccount(){
+  @computed get getLoginAccount() {
     return this.loginAccount;
   }
 
