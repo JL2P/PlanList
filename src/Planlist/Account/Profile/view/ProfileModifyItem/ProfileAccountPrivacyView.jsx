@@ -31,7 +31,7 @@ const ProfileAccountPrivacyView = ({
         <Grid.Row>
           <Grid.Column>
             <Checkbox
-              label="비공개 계정"
+              label="계정 공개하기"
               checked={!check}
               onChange={onChecked}
             />

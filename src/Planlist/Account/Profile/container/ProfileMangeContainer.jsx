@@ -7,20 +7,20 @@ import { Button } from "semantic-ui-react";
 @inject("Store")
 @observer
 class ProfileMangeContainer extends Component {
-  componentDidMount() {
-    console.log("componentDidMount");
-    const { account, todo } = this.props.Store;
-    const { id } = this.props;
-    account.selectUser(id);
-    account.selectAll();
-    todo.getApiTodos();
-  }
+  // componentDidMount() {
+  //   console.log("componentDidMount");
+  //   const { account, todo } = this.props.Store;
+  //   const { id } = this.props;
+  //   account.selectUser(id);
+  //   account.selectAll();
+  //   todo.getApiTodos();
+  // }
 
   // 로그인이 됬을때 디비에서 id에맞는 유저정보를 가지고 오기위함
-  onSelectUser = (user) => {
-    const { account } = this.props.Store;
-    account.selectUser(user);
-  };
+  // onSelectUser = (user) => {
+  //   const { account } = this.props.Store;
+  //   account.selectUser(user);
+  // };
 
   onSetAccountProp = (key, value) => {
     const { account } = this.props.Store;
@@ -53,24 +53,41 @@ class ProfileMangeContainer extends Component {
     const { account, todo } = this.props.Store;
     const todos = todo.getTodos;
     const today = todo.getToday;
-
+    const selectId = account.getAccount.accountId;
     // 해야 할 일 개수 count
     const count = todos.filter(
-      (item) =>
-        item.writer === account.getLoginAccount.accountId &&
-        item.endTime >= today
+      (item) => item.writer === selectId && item.endTime >= today
     ).length;
+    const loginCheck = account.getLogCheck;
     return (
       <div>
         <p>
           {account.getAccounts.map((item) => (
-            <Button onClick={() => this.onSelectUser(item.accountId)}>
-              {item.accountId}
-            </Button>
+            <Link to={`/account/${item.accountId}`}>
+              {item.accountId}&nbsp;
+            </Link>
           ))}
         </p>
         <ProfileManageView
           account={account.getAccount}
+          accountStore={account}
+          // onSelectUser={this.onSelectUser}
+          onModifyUser={this.onModifyUser}
+          onDeleteUser={this.onDeleteUser}
+          onSignout={this.onSignout}
+          onSetAccountProp={this.onSetAccountProp}
+          // loginId={account.getLoginId}
+          loginCheck={account.getLogCheck}
+          todo_count={count}
+        />
+        <hr />
+        <p>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔻&emsp;로그인한
+          유저
+        </p>
+        <ProfileManageView
+          account={loginCheck ? account.getLoginAccount : account.getAccount}
+          accountStore={account}
           // onSelectUser={this.onSelectUser}
           onModifyUser={this.onModifyUser}
           onDeleteUser={this.onDeleteUser}

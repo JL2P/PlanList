@@ -55,8 +55,8 @@ export default class AccountStore {
 
   @action
   setAccountProp(key, value) {
-    this.account = {
-      ...this.account,
+    this.loginAccount = {
+      ...this.loginAccount,
       [key]: value,
     };
   }

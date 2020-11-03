@@ -14,6 +14,7 @@ import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowing
 
 const ProfileManageView = ({
   account,
+  accountStore,
   todo_count,
   // loginId,
   loginCheck,
@@ -26,12 +27,8 @@ const ProfileManageView = ({
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
-  // 로그인 아이디 일단 임시로 주었음!!
-  // onSelectUser("giant_peng");
-  // loginId = account.accountId;
-  // loginCheck = true;
-  console.log(account);
-  // console.log("login >> ", loginCheck);
+  console.log("어카운트", account);
+  console.log("로그인어카운트", accountStore.getLoginAccount.accountId);
 
   // modal open 상태 관리 (true: open, false: hide)
   // const [open, setOpen] = useState(false);
@@ -63,7 +60,7 @@ const ProfileManageView = ({
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
       <ProfileSettingModalView
-        account={account}
+        account={accountStore.getLoginAccount}
         settingOpen={settingOpen}
         onSettingModal={onSettingModal}
         activeItem={activeItem}
@@ -113,8 +110,9 @@ const ProfileManageView = ({
             {/* 첫 번째 행 */}
             <Segment basic>
               <Grid stackable>
-                {/* {loginCheck && loginId === account.accountId ? ( */}
-                {loginCheck ? (
+                {loginCheck &&
+                accountStore.getLoginAccount.accountId === account.accountId ? (
+                  // {loginCheck ? (
                   // 로그인된 사용자 페이지
                   <>
                     {/* 사용자 아이디 */}

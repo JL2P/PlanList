@@ -9,7 +9,6 @@ class ProfileTodoView extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   render() {
     const { activeItem } = this.state;
-
     return (
       <Container style={{ width: "900px", marginTop: "2em" }}>
         <Menu pointing secondary>

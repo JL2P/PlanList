@@ -18,13 +18,13 @@ const ProfileSettingModalView = ({
   onDeleteUser,
 }) => {
   const modal_height = "400px";
-
+  // console.log("로그인어카퉁느", account.accountId);
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
   const onWithdrawalModal = (trigger) => {
     setWithdrawalOpen(trigger);
   };
 
-  // account 공개 여부를 체크하기 위함 
+  // account 공개 여부를 체크하기 위함
   const [check, setChecked] = useState();
   const onChecked = () => {
     if (account.openAt === "Y") {

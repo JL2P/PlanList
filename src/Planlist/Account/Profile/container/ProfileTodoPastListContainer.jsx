@@ -5,18 +5,16 @@ import ProfileTodoPastListView from "../view/ProfileManageItem/ProfileTodoPastLi
 @inject("Store")
 @observer
 class ProfileTodoPastListContainer extends Component {
-  componentDidMount() {
-    this.props.Store.todo.getApiTodos();
-  }
-
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
-    const { todo } = this.props.Store;
+    const { todo, account } = this.props.Store;
+    const selectId = account.getAccount.accountId;
     const todos = todo.getTodos;
     const today = todo.getToday;
 
     // 종료일이 지난 할 일 리스트를 정렬
     const past = todos
+      .filter((item) => item.writer === selectId)
       .filter((item) => item.endTime < today)
       .sort((a, b) => (a.endTime < b.endTime ? 1 : -1));
 
