@@ -10,15 +10,14 @@ const ProfileSettingModalView = ({
   activeItem,
   handleItemClick,
   account,
-  // loginId,
-  loginCheck,
   onSignout,
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
 }) => {
-  const modal_height = "400px";
-  // console.log("로그인어카퉁느", account.accountId);
+  const modal_height = "400px"; // 모달창 높이
+
+  // 회원 탈퇴 모달
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
   const onWithdrawalModal = (trigger) => {
     setWithdrawalOpen(trigger);
@@ -36,9 +35,6 @@ const ProfileSettingModalView = ({
     }
   };
 
-  // const [name, setName] = useState(account.name);
-  // const onChangeName = (e) => setName(e.target.value);
-
   return (
     <Modal
       onClose={() => onSettingModal(false)}
@@ -52,8 +48,6 @@ const ProfileSettingModalView = ({
         onWithdrawalModal={onWithdrawalModal}
         onDeleteUser={onDeleteUser}
         account={account}
-        // name={name}
-        // onChangeName={onChangeName}
       />
 
       <Modal.Header>
@@ -104,7 +98,6 @@ const ProfileSettingModalView = ({
                 active={activeItem === "회원탈퇴"}
                 onClick={() => {
                   onWithdrawalModal(true);
-                  // onDeleteUser(account.accountId);
                 }}
               />
             </Menu>
@@ -122,7 +115,6 @@ const ProfileSettingModalView = ({
                 <ProfileAccountModifyView
                   account={account}
                   onSetAccountProp={onSetAccountProp}
-                  // onModifyUser={onModifyUser}
                 />
               )}
               {/* {activeItem === "비밀번호 변경" && (
@@ -154,19 +146,6 @@ const ProfileSettingModalView = ({
             onModifyUser(account);
             onSettingModal(false);
           }}
-          // onClick={(e) => {
-          //   onModifyUser(e, {
-          //     accountId: account.accountId,
-          //     email: account.email,
-          //     name: name,
-          //     birth: "",
-          //     gender: "",
-          //     introduce: "",
-          //     loginType: "",
-          //     openAt: "",
-          //     usedAt: "",
-          //   });
-          // }}
         >
           <Icon name="checkmark" /> 저장
         </Button>

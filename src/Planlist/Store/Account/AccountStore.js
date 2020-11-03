@@ -90,7 +90,7 @@ export default class AccountStore {
   }
 
   @action signout() {
-    console.log("로그인 상태");
+    this.loginAccount = {};
     this.logCheck = false;
   }
 
@@ -142,15 +142,4 @@ export default class AccountStore {
     const accounts = await this.accountRepository.accountList();
     this.accounts = accounts.map((account) => new AccountModel(account));
   }
-
-  //// account페이지 sampledata
-  // @observable accounts2 = data;
-  // @observable account2 = data[0];
-  // @computed get getAccounts2() {
-  //   return this.accounts2 ? this.accounts2.slice() : [];
-  // }
-  // @computed get getAccount2() {
-  //   return this.accounts2 ? { ...this.account2 } : {};
-  // }
-  ////
 }

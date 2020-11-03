@@ -17,10 +17,11 @@ class ProfileTodoContainer extends Component {
     return (
       <div>
         {openAt === "Y" ||
-        (loginCheck === true &&
+        (loginCheck === true && // 공개 계정이거나 로그인한 사용자 본인의 페이지인 경우, todo 페이지를 보여줌
           loginAccount.accountId === account.getAccount.accountId) ? (
           <ProfileTodoView handleItemClick={this.handleItemClick} />
         ) : (
+          // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌
           <ProfilePrivateAccountTodoView />
         )}
       </div>

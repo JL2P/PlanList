@@ -16,10 +16,8 @@ const ProfileManageView = ({
   account,
   accountStore,
   todo_count,
-  // loginId,
   loginCheck,
   onSignout,
-  // onSelectUser,
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
@@ -31,7 +29,6 @@ const ProfileManageView = ({
   console.log("로그인어카운트", accountStore.getLoginAccount.accountId);
 
   // modal open 상태 관리 (true: open, false: hide)
-  // const [open, setOpen] = useState(false);
   const [settingOpen, setSettingOpen] = useState(false);
   //팔로워
   const [followerOpen, setFollowerOpen] = useState(false);
@@ -65,7 +62,6 @@ const ProfileManageView = ({
         onSettingModal={onSettingModal}
         activeItem={activeItem}
         handleItemClick={handleItemClick}
-        // loginId={loginId}
         loginCheck={loginCheck}
         onSignout={onSignout}
         onModifyUser={onModifyUser}
@@ -112,8 +108,7 @@ const ProfileManageView = ({
               <Grid stackable>
                 {loginCheck &&
                 accountStore.getLoginAccount.accountId === account.accountId ? (
-                  // {loginCheck ? (
-                  // 로그인된 사용자 페이지
+                  // 로그인된 사용자 페이지 - setting 아이콘을 보여줌
                   <>
                     {/* 사용자 아이디 */}
                     <Grid.Column width={13} style={{ fontSize: pText1 }}>
@@ -128,7 +123,7 @@ const ProfileManageView = ({
                     </Grid.Column>
                   </>
                 ) : (
-                  // 다른 사용자 페이지
+                  // 다른 사용자 페이지 - 팔로우 버튼을 보여줌
                   <>
                     <Grid.Column width={10} style={{ fontSize: pText1 }}>
                       {account.accountId}
@@ -138,18 +133,6 @@ const ProfileManageView = ({
                     </Grid.Column>
                   </>
                 )}
-                {/* 사용자 아이디 */}
-                {/* <Grid.Column width={13} style={{ fontSize: pText1 }}>
-                  {account.accountId}
-                </Grid.Column> */}
-                {/* setting */}
-                {/* <Grid.Column width={2} style={{ fontSize: pText1 }}>
-                  {!loginCheck && loginId === account.accountId ? (
-                    <Icon name="setting" onClick={() => onSettingModal(true)} />
-                  ) : (
-                    <Button>팔로우</Button>
-                  )}
-                </Grid.Column> */}
               </Grid>
             </Segment>
             {/* 두 번째 행 */}
@@ -180,7 +163,5 @@ const ProfileManageView = ({
     </Container>
   );
 };
-
-// export default inject("Store")(observer(ProfileManageView));
 
 export default ProfileManageView;
