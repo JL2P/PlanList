@@ -22,7 +22,9 @@ class ProfileTodoContainer extends Component {
           <ProfileTodoView handleItemClick={this.handleItemClick} />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌
-          <ProfilePrivateAccountTodoView />
+          <ProfilePrivateAccountTodoView
+            accountId={account.getAccount.accountId}
+          />
         )}
       </div>
     );

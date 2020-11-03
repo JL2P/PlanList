@@ -129,7 +129,11 @@ const ProfileManageView = ({
                       {account.accountId}
                     </Grid.Column>
                     <Grid.Column width={6} style={{ fontSize: pText1 }}>
-                      <Button color="yellow" content="팔로우" />
+                      <Button
+                        primary
+                        style={{ background: "#FFB517" }}
+                        content="팔로우"
+                      />
                     </Grid.Column>
                   </>
                 )}
