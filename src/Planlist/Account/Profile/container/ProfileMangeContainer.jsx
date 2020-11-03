@@ -41,34 +41,24 @@ class ProfileMangeContainer extends Component {
     const loginCheck = account.getLogCheck;
     return (
       <div>
+        <ProfileManageView
+          account={loginCheck ? account.getLoginAccount : {}}
+          accountStore={account}
+          onModifyUser={this.onModifyUser}
+          onDeleteUser={this.onDeleteUser}
+          onSignout={this.onSignout}
+          onSetAccountProp={this.onSetAccountProp}
+          loginCheck={account.getLogCheck}
+          todo_count={count}
+        />
         <p>
-          {account.getAccounts.map((item) => (
-            <Link to={`/account/${item.accountId}`}>
-              {item.accountId}&nbsp;
-            </Link>
-          ))}
-
-          <ProfileManageView
-            account={loginCheck ? account.getLoginAccount : account.getAccount}
-            accountStore={account}
-            // onSelectUser={this.onSelectUser}
-            onModifyUser={this.onModifyUser}
-            onDeleteUser={this.onDeleteUser}
-            onSignout={this.onSignout}
-            onSetAccountProp={this.onSetAccountProp}
-            // loginId={account.getLoginId}
-            loginCheck={account.getLogCheck}
-            todo_count={count}
-          />
-          <p>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔺&emsp;
-            로그인한 유저
-          </p>
-          <hr />
-          <p>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔻&emsp;
-            다른 사용자 페이지
-          </p>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔺&emsp;
+          로그인한 유저
+        </p>
+        <hr />
+        <p>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔻&emsp;
+          다른 사용자 페이지
         </p>
         <ProfileManageView
           account={account.getAccount}

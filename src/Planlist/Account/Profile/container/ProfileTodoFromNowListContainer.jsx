@@ -1,5 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
+import MainTodoCreateDesktopContainer from "../../../Main/Container/MainTodoCreateDesktopContainer";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
 
 @inject("Store")
@@ -13,6 +15,7 @@ class ProfileTodoFromNowListContainer extends Component {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
     const selectId = account.getAccount.accountId;
+    const loginId = account.getLoginAccount.accountId;
     const todos = todo.getTodos;
     const today = todo.getToday;
 
@@ -36,11 +39,26 @@ class ProfileTodoFromNowListContainer extends Component {
       fromNow_list[fromNow_date.indexOf(item.endTime)].push(item)
     );
 
+    const count = fromNow_list.length;
+
     return (
-      <ProfileTodoFromNowListView
-        fromNow_list={fromNow_list}
-        fromNow_date={fromNow_date}
-      />
+      <div>
+        {count === 0 ? (
+          <div>
+            {loginId === selectId ? (
+              // <h1>계획을 세워보세요!</h1>
+              <MainNoTodoContainer />
+            ) : (
+              <h1>{selectId}님이 등록한 계획이 없습니다.</h1>
+            )}
+          </div>
+        ) : (
+          <ProfileTodoFromNowListView
+            fromNow_list={fromNow_list}
+            fromNow_date={fromNow_date}
+          />
+        )}
+      </div>
     );
   }
 }

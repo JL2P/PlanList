@@ -32,7 +32,7 @@ const HeaderDesktopView = ({ Media, loginAccount, loginCheck }) => {
             <h2 style={{ color: "white" }}>{loginAccount.accountId}</h2>
           )}
           {!loginCheck && (
-            <Link to="signin">
+            <Link to="/signin">
               <h1>로그인하기</h1>
             </Link>
           )}

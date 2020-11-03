@@ -1,7 +1,9 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import ProfileMangeContainer from "./container/ProfileMangeContainer";
 import ProfileTodoContainer from "./container/ProfileTodoContainer";
+import ProfileNonMemberView from "./view/ProfileNonMemberView";
 
 @inject("Store")
 @observer
@@ -24,10 +26,29 @@ class ProfilePage extends Component {
   }
 
   render() {
+    const { account } = this.props.Store;
+    const loginCheck = account.getLogCheck;
+    const id = this.props.match.params.id;
+
     return (
       <div>
-        <ProfileMangeContainer />
-        <ProfileTodoContainer />
+        <h3>
+          {account.getAccounts.map((item) => (
+            <Link to={`/account/${item.accountId}`}>
+              {item.accountId}&ensp;
+            </Link>
+          ))}
+        </h3>
+        {!loginCheck && id === undefined ? (
+          <ProfileNonMemberView />
+        ) : (
+          <div>
+            <ProfileMangeContainer />
+            <ProfileTodoContainer />
+          </div>
+        )}
+        {/* <ProfileMangeContainer />
+        <ProfileTodoContainer /> */}
       </div>
     );
   }
