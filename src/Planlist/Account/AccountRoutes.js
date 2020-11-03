@@ -8,6 +8,7 @@ const AccountRouter = ({ match }) => {
   return (
     <>
       <Route exact path={`${match.url}/`} component={ProfilePage} />
+      <Route exact path={`${match.url}/:id`} component={ProfilePage} />
       <Route exact path={`${match.url}/todos`} component={TodosPage} />
       {/* <Route exact path={`${match.url}/modify`} component={ModifyPage} /> */}
     </>

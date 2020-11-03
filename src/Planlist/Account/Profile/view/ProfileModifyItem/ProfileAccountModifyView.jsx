@@ -10,13 +10,7 @@ import {
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountModifyView = ({
-  account,
-  onSetAccountProp,
-  // name,
-  // onChangeName,
-}) => {
-  console.log(account);
+const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
   const modifyTitle = 4;
   const modifyContent = 10;
   const genderOptions = [
@@ -88,8 +82,6 @@ const ProfileAccountModifyView = ({
           <Grid.Column width={modifyContent}>
             <Input
               fluid
-              // value={name}
-              // onChange={onChangeName}
               placeholder={account.name}
               value={account.name}
               onChange={(e) => onSetAccountProp("name", e.target.value)}
@@ -123,12 +115,6 @@ const ProfileAccountModifyView = ({
             </aside>
           </Grid.Column>
           <Grid.Column width={modifyContent}>
-            {/* <Input
-              fluid
-              value={account.gender}
-              onChange={(e) => onSetAccountProp("gender", e.target.value)}
-            /> */}
-
             <Dropdown
               fluid
               selection

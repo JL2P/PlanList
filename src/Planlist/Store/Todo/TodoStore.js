@@ -6,11 +6,13 @@ import TodoModifyModel from "../../Api/model/todo/TodoModifyModel";
 import TodoAddModel from "../../Api/model/todo/TodoAddModel";
 import TodoModel from "../../Api/model/todo/TodoModel";
 
-
 //테스트용 추가 -승훈-
 import exampleDataset from "../../Sample/Data/MainPage_List_Data";
-import { CommentAddModel, CommentModel } from '../../Api/model/comment/CommentModels'
-import { SubCommentAddModel } from '../../Api/model/comment/SubCommentModels';
+import {
+  CommentAddModel,
+  CommentModel,
+} from "../../Api/model/comment/CommentModels";
+import { SubCommentAddModel } from "../../Api/model/comment/SubCommentModels";
 
 export default class TodoStore {
   constructor(root) {
@@ -45,8 +47,8 @@ export default class TodoStore {
 
   @computed get getTodosFrame() {
     //Frame Column갯수
-    const columns =3
-    
+    const columns = 3;
+
     //메인화면에서 보여지는 column수에 따라 frame갯수 나누기
     const frame = [...Array(columns).keys()].map((_) => []);
 
@@ -75,31 +77,30 @@ export default class TodoStore {
   }
 
   @action
-  setTodos(todos){
-    this.todos=todos;
+  setTodos(todos) {
+    this.todos = todos;
   }
 
   @action
-  setTodo(todo){
-    this.todo=todo;
+  setTodo(todo) {
+    this.todo = todo;
   }
 
   @action
-  setComment(comment){
-    this.comment=comment;
+  setComment(comment) {
+    this.comment = comment;
   }
 
   @action
-  setComments(comments){
-    this.comments=comments;
+  setComments(comments) {
+    this.comments = comments;
   }
-
 
   // API를 호출하여 todos에 todo리스트 데이터를 넣어준다.
-  @action 
+  @action
   async getApiTodos() {
     const apiGetTodos = await this.todoRepository.TodoList();
-    this.todos = apiGetTodos.map(todo=>new TodoModel(todo));
+    this.todos = apiGetTodos.map((todo) => new TodoModel(todo));
   }
 
   // API를 호출하여 todo데이터를 저장한다.
@@ -122,28 +123,28 @@ export default class TodoStore {
   @action
   async deleteTodo(todoId) {
     await this.todoRepository.todoDelete(todoId);
-    const newMaintodo = this.todos.filter(todo => todo.todoId!==todoId)
+    const newMaintodo = this.todos.filter((todo) => todo.todoId !== todoId);
     this.todos = newMaintodo;
   }
 
   //api를 이용하여 댓글 리스트를 가져온다.
   @action
-  async apiGetComments(todoId){
-    const dataList = await this.commentRepository.commentList(todoId)
-    this.comments = dataList.map(comment=>new CommentModel(comment))
+  async apiGetComments(todoId) {
+    const dataList = await this.commentRepository.commentList(todoId);
+    this.comments = dataList.map((comment) => new CommentModel(comment));
   }
 
   //api를 이용하여 댓글을 가져온다
   @action
-  async apiGetComment(todoId, commentId){
-    const data = await this.commentRepository.commentDetail(todoId, commentId)
-    this.comment = new CommentModel(data)
+  async apiGetComment(todoId, commentId) {
+    const data = await this.commentRepository.commentDetail(todoId, commentId);
+    this.comment = new CommentModel(data);
   }
 
   // API를 호출하여 해당 todo의 댓글을 생성한다.
   @action
-  async addComment(todoId, commentObj){
-    const commentModel = new CommentAddModel(commentObj)
+  async addComment(todoId, commentObj) {
+    const commentModel = new CommentAddModel(commentObj);
     await this.commentRepository.commentCreate(todoId, commentModel);
     this.apiGetComments(todoId);
     this.getApiTodos();
@@ -151,17 +152,14 @@ export default class TodoStore {
 
   // API를 호출하여 해당 댓글의 대댓글을 생성한다.
   @action
-  async addSubComment(todoId, commentId, subCommentObj){
-    const subCommentAddModel = new SubCommentAddModel(subCommentObj)
-    await this.commentRepository.subCommentCreate(todoId, commentId, subCommentAddModel);
+  async addSubComment(todoId, commentId, subCommentObj) {
+    const subCommentAddModel = new SubCommentAddModel(subCommentObj);
+    await this.commentRepository.subCommentCreate(
+      todoId,
+      commentId,
+      subCommentAddModel
+    );
     this.apiGetComments(todoId);
     this.getApiTodos();
-  }
-
-
-  //// account페이지 sampledata
-  @observable todos2 = exampleDataset;
-  @computed get getTodos2() {
-    return this.todos2 ? this.todos2.slice() : [];
   }
 }

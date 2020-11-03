@@ -1,5 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
+import MainTodoCreateDesktopContainer from "../../../Main/Container/MainTodoCreateDesktopContainer";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
 
 @inject("Store")
@@ -12,15 +14,14 @@ class ProfileTodoFromNowListContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
+    const selectId = account.getAccount.accountId;
+    const loginId = account.getLoginAccount.accountId;
     const todos = todo.getTodos;
     const today = todo.getToday;
-    const loginAccount = account.getLoginAccount.accountId;
-    const loginCheck = account.getLogCheck;
 
-    console.log("로그인계정", loginCheck);
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
-      .filter((item) => item.writer === loginAccount)
+      .filter((item) => item.writer === selectId)
       .filter((item) => item.endTime >= today)
       .sort((a, b) => (a.endTime > b.endTime ? 1 : -1));
 
@@ -38,15 +39,24 @@ class ProfileTodoFromNowListContainer extends Component {
       fromNow_list[fromNow_date.indexOf(item.endTime)].push(item)
     );
 
+    const count = fromNow_list.length;
+
     return (
       <div>
-        {loginCheck ? (
+        {count === 0 ? (
+          <div>
+            {loginId === selectId ? (
+              // <h1>계획을 세워보세요!</h1>
+              <MainNoTodoContainer />
+            ) : (
+              <h1>{selectId}님이 등록한 계획이 없습니다.</h1>
+            )}
+          </div>
+        ) : (
           <ProfileTodoFromNowListView
             fromNow_list={fromNow_list}
             fromNow_date={fromNow_date}
           />
-        ) : (
-          <p>비공개 계정입니다!</p>
         )}
       </div>
     );
