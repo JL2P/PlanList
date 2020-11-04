@@ -1,6 +1,6 @@
 import React from 'react';
-import {Grid, List, Button, Modal, Label } from 'semantic-ui-react'
-import ProfileFollowerListView from "./ProfileFollowerListView";
+import { Modal} from 'semantic-ui-react'
+import ProfileFollowerListContainer from "../../container/ProfileFollowerListContainer"
 
 const ProfileFollowerModalView = ({
   followerOpen,
@@ -16,7 +16,7 @@ const ProfileFollowerModalView = ({
       size="tiny"
       >
         <Modal.Content scrolling style={{ width: "100%" }}>
-      <ProfileFollowerListView></ProfileFollowerListView>
+        <ProfileFollowerListContainer />
       </Modal.Content>
   </Modal>
   )
