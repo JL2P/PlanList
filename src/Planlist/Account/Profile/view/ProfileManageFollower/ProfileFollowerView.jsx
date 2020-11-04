@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-react";
-const ProfileFollowerView = () => {
+const ProfileFollowerView = ({follow}) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
 
     const onConfirmModal = (trigger) => {
@@ -137,6 +137,7 @@ const ProfileFollowerView = () => {
                 </div>
             </div>
             <div clasName="part_a2">
+                <Button onClick={()=>{follow("id들어가야함")}}>팔로우</Button>
                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
                 팔로잉
                 </Button>

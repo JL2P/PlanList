@@ -21,6 +21,7 @@ const ProfileManageView = ({
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
+  onFollow
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
@@ -123,10 +124,11 @@ const ProfileManageView = ({
                       {account.accountId}
                     </Grid.Column>
                     <Grid.Column width={6} style={{ fontSize: pText1 }}>
-                      <Button
+                      <Button 
                         primary
                         style={{ background: "#FFB517" }}
                         content="팔로우"
+                        onClick={()=>{ onFollow(account.accountId) }}
                       />
                     </Grid.Column>
                   </>
