@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Form,
   Grid,
@@ -6,7 +6,6 @@ import {
   Image,
   TextArea,
   Dropdown,
-  Menu,
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
