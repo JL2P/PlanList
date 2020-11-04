@@ -3,18 +3,21 @@ import CategoryList_Data from "../../Category/CategoryList_Data";
 import GroupModel from "../../Api/model/group/GroupModel";
 import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
+import MemberModel from "../../Api/model/member/MemberModel";
 
 import MyGroupPage_List_Data from "../../Sample/Data/GroupSample/MyGroupPage_List_Data";
 import BsetGroupPage_List_Data from "../../Sample/Data/GroupSample/BsetGroupPage_List_Data";
 import CategoryGroupPage_List_Data from "../../Sample/Data/GroupSample/CategoryGroupPage_List_Data";
 import RecommendGroupPage_List_Data from "../../Sample/Data/GroupSample/RecommendGroupPage_List_Data";
 import GroupRepository from "../../Api/Repository/GroupRepository"
+import MemberRepository from "../../Api/Repository/MemberRepository"
 
 
 export default class GroupStore {
     constructor(root) {
         this.root = root;
         this.groupRepository = new GroupRepository();
+        this.memberRepository = new MemberRepository();
       }
       
       //샘플
@@ -37,12 +40,20 @@ export default class GroupStore {
       @observable detailGroup_modalOpen = false;
       @observable detailGroup_open ={};  //그룹 디테일에 해당되는 객체
 
+      @observable member = {};
+      @observable members = [];
+      @observable confirm = false;
+      @observable manager = false;
+
       @computed get getGroup(){return this.group;}
       @computed get getGroups(){return this.groups;}
       @computed get getDetailGroup_modalOpen(){return this.detailGroup_modalOpen}
       @computed get getCategoryList(){return this.categoryList}
       @computed get getSelect_Group_categoryList(){return this.select_Group_categoryList};
       @computed get getDetailGroup_open(){return this.detailGroup_open;}
+
+      @computed get getMember(){return this.member;}
+      @computed get getMembers(){return this.members;}
       
 
       //modal open & close
@@ -79,9 +90,23 @@ export default class GroupStore {
         console.log(groupObj);
         const result = await this.groupRepository.groupCreate(groupModel);
         console.log(result)
+
+        const groupId = result.id;
+        const accountId = result.master;
+        this.confirm = true;
+        this.manager = true;
+        const newMember = {
+                            "accountId":accountId,
+                            "confirm": this.confirm,
+                            "groupId": groupId,
+                            "manager": this.manager,
+                          }
+
         this.getApiGroups()
         //생성시 해당 그룹으로 연결
         this.groupDetail_page(result.id)
+        //생성시 멤버 생성
+        this.masterMember(newMember);
       }
 
       //그룹 디테일 조회
@@ -103,6 +128,15 @@ export default class GroupStore {
       @action
       async settingRemove(groupId){
         await this.groupRepository.groupDelete(groupId)
+      }
+
+      /*****************************************멤버 관련***************************************************/
+      @action
+      async masterMember(memberObj){
+        console.log("멤버 스토어 : " + memberObj);
+        const memberModel = new MemberModel(memberObj);
+        console.log(memberModel);
+        await this.memberRepository.memberCreate(memberModel);
       }
       
 }

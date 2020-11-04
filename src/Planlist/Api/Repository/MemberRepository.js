@@ -19,7 +19,7 @@ export default class MemberRepository{
     //member 추가
     //POST /api/groups/
     memberCreate = (memberModel) => {
-        return axios.post(this.URL,memberModel).then(request => request.data||[])
+        return axios.post(this.URL+`${memberModel.groupId}/member`,memberModel).then(request => request.data||[])
     }
     
     // member 수정
