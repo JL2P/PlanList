@@ -34,30 +34,21 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
   return (
     <Form style={{ width: "95%" }}>
       <Grid stackable>
-        <Grid.Row columns={3}>
+        <Grid.Row>
           {/* <Grid.Column width={1}></Grid.Column> */}
           {/* 프로필 이미지 */}
-          <Grid.Column
-            width={4}
-            // style={{
-            //   height: "80px",
-            //   width: "80px",
-            // }}
-          >
+          <Grid.Column width={4}>
             <Image
               src={account.imgUrl}
-              size="tiny"
               bordered
-              circular
               centered
               style={{
-                marginLeft: "50px",
-                // width: "100%",
-                // height: "100%",
-                // objectFit: "cover",
-                // overfollow: "hidden",
+                width: "80px",
+                height: "80px",
+                objectFit: "cover",
+                borderRadius: "50%",
+                marginLeft: "40px",
               }}
-              label={{ as: "a", corner: "right", icon: "setting" }}
             />
           </Grid.Column>
           {/* 아이디, 이메일 */}

@@ -82,22 +82,16 @@ const ProfileManageView = ({
       <Grid stackable>
         <Grid.Row>
           {/* 프로필 이미지 */}
-          <Grid.Column
-            width={4}
-            style={{
-              height: "150px",
-              width: "150px",
-            }}
-          >
+          <Grid.Column width={4}>
             <Image
               src={account.imgUrl}
               bordered
-              circular
               centered
               style={{
-                width: "100%",
-                height: "100%",
+                width: "150px",
+                height: "150px",
                 objectFit: "cover",
+                borderRadius: "50%",
               }}
             />
           </Grid.Column>
