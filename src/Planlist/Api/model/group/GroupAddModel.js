@@ -5,5 +5,6 @@ export default class GroupAddModel{
         this.description = groupObj.description //설명글
         this.category = groupObj.category; //카테고리
         this.master = groupObj.master; //그룹장
+        this.members = groupObj.members;
     }
 }

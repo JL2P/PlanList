@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Icon, Button, Header, Modal } from "semantic-ui-react";
+import { Card, Grid, Icon, Modal } from "semantic-ui-react";
 import NewGroupItemModal from "./NewGroupItemModal";
 import "../../../GroupStyle/Group.scss";
 
@@ -12,10 +12,13 @@ const NewGroupItem = ({categoryList,onCreateGroup,onLogInUser}) => {
       open={open}
       size="tiny"
       trigger={
-        <Card className="group_card, Newgroup_card" raised>
-          <Icon name='add circle' className="Newgroup_circle" />
-          <Card.Header className="group_Card_header">그룹 만들기</Card.Header>
-        </Card>
+        <Grid.Column className="recommendGroup_column">
+          <Card className="group_card, Newgroup_card" raised>
+            <Icon name='add circle' className="Newgroup_circle" />
+            <Card.Header className="group_Card_header">그룹 만들기</Card.Header>
+          </Card>
+        </Grid.Column>
+        
       }
     >
       <NewGroupItemModal 

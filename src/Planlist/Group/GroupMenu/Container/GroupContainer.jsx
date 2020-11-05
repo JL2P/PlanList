@@ -19,10 +19,18 @@ class GroupContainer extends Component {
     }
 
     //그룹 전체 리스트 조회
-    onAllGroups = () => {
+    componentDidMount(){
         const { group } = this.props.Store;
         group.getApiGroups();
     }
+    
+    //그룹 전체 리스트 조회
+    // onAllGroups = () => {
+    //     const { group } = this.props.Store;
+    //     group.getApiGroups();
+    // }
+
+
     //그룹 디테일 조회
     onGroupDetail_page = (groupId) => {
         const { group } = this.props.Store;
@@ -42,8 +50,6 @@ class GroupContainer extends Component {
     render() {
         const { group } = this.props.Store;
         const { account } = this.props.Store;
-        const my_sampleData = group.getMyTodo;
-        const best_sampleData = group.getBestTodo;
 
         const {
             getGroups,
@@ -52,32 +58,39 @@ class GroupContainer extends Component {
         } = group
 
         const {loginAccount} = account;
-         
         return (
             <div>
                 <MyGroupView 
-                    sampleData={my_sampleData} 
+                    groups={getGroups}
+                    onGroupDetail_page={this.onGroupDetail_page}
                     categoryList={getCategoryList}
                     onCreateGroup={this.onCreateGroup}
                     onCategoryDefault={this.onCategoryDefault}
                     onLogInUser={loginAccount}
                 />
+                
                 <BestGroupView 
+                    groups={getGroups} 
                     categoryList={getCategoryList}
-                    sampleData={best_sampleData}
+                    onGroupDetail_page={this.onGroupDetail_page}
                     onCategoryDefault={this.onCategoryDefault}
                 />
+                
                 <CategoryGroupView 
                     categoryList={getCategoryList} 
                     onCategorySelect={this.onCategorySelect}
                     onCategoryDefault={this.onCategoryDefault}
                 />
+
+                {getGroups.length >0 &&
                 <RecommendGroupView
                     groups={getGroups} 
-                    onAllGroups={this.onAllGroups}
+                    categoryList={getCategoryList}
                     onGroupDetail_page={this.onGroupDetail_page}
                     onCategoryDefault={this.onCategoryDefault}
                 />
+                }
+ 
             </div>
         );
     }
