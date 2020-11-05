@@ -9,5 +9,6 @@ export default class GroupModel{
         this.category = groupObj.category; //카테고리
         this.master = groupObj.master; //그룹장
         this.members = groupObj.members.map(member=>new MemberModel(member));
+        //프록시로 감싸여 있는 members를 꺼내는 작업
     }
 }
