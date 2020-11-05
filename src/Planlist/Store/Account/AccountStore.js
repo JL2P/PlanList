@@ -87,6 +87,7 @@ export default class AccountStore {
     this.logCheck = true;
     this.loginAccount = new AccountModel(data);
     console.log("로그인이 완료되었습니다.");
+    console.log(this.loginAccount)
   }
 
   @action signout() {
@@ -134,6 +135,7 @@ export default class AccountStore {
   async selectUser(accountId) {
     console.log("?????", accountId);
     const account = await this.accountRepository.accountDetail(accountId);
+    console.log(account.accountId)
     this.account = new AccountModel(account);
   }
 

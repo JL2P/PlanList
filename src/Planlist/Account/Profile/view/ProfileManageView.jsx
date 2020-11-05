@@ -21,13 +21,14 @@ const ProfileManageView = ({
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
-  onFollow
+  onFollow,
+  onGetFollowers,
+  isFollowed
+  
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
-  console.log("어카운트", account);
-  console.log("로그인어카운트", accountStore.getLoginAccount.accountId);
 
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
@@ -124,12 +125,26 @@ const ProfileManageView = ({
                       {account.accountId}
                     </Grid.Column>
                     <Grid.Column width={6} style={{ fontSize: pText1 }}>
+                      
+                      {/* 팔로우 상태일 경우 */}
+                      {isFollowed &&   
                       <Button 
-                        primary
+                      primary 
+                      style={{ background: "#c8c8c8" }}
+                    
+                      content="팔로우 취소"
+                      onClick={()=>{ alert("팔로우취소") }}
+                    />
+                      }
+                      {!isFollowed &&
+                      <Button 
+                        primary 
                         style={{ background: "#FFB517" }}
+                      
                         content="팔로우"
                         onClick={()=>{ onFollow(account.accountId) }}
                       />
+                      }
                     </Grid.Column>
                   </>
                 )}

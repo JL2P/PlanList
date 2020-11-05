@@ -16,8 +16,22 @@ export default class FollowRepository{
 
     }
 
+    //@GetMapping("/followers")
+    getFollowersFunction = (AccountId) => {
+        const data={
+            "myAccountd" : AccountId
+        }
+        return axios.get(this.URL+"followers", data).then(request=>request.data||{});
+    }
 
+    //@GetMapping("/isfollow")
+    followCheckFunction = (AccountId, FollowId) => {
+        const data={
+            "myAccountId" : AccountId,
+            "followAccountId" : FollowId
+        }
+       return axios.post(this.URL+"isfollow", data).then(request=>request.data||{});
+
+    }
     
-
-
 }

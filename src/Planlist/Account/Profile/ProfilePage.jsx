@@ -10,7 +10,8 @@ import ProfileNonMemberView from "./view/ProfileNonMemberView";
 class ProfilePage extends Component {
   componentDidMount() {
     console.log("componentDidMount");
-    const { account, todo } = this.props.Store;
+    const { account, todo ,follow} = this.props.Store;
+    console.log(this.props.match)
     const id = this.props.match.params.id;
 
     console.log("아이디야 나와랏!", id === undefined);
@@ -23,6 +24,11 @@ class ProfilePage extends Component {
 
     account.selectAll();
     todo.getApiTodos();
+
+      //API를 가져오는 부분
+
+    follow.followCheck();
+
   }
 
   render() {
