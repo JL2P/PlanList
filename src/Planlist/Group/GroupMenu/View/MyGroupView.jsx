@@ -7,14 +7,17 @@ import Slider from "react-slick";
 import '../../GroupStyle/Group.scss';
 
 const MyGroupView = ({ 
-    sampleData,
+    groups,
+    onGroupDetail_page,
     categoryList,
     onCreateGroup,
     onCategoryDefault,
     onLogInUser
    }) => {
-  const Groupitem = sampleData.map((item, index) => (
-    <MyGroupItem key={index} item={item} />
+  const Groupitem = groups.map((item, index) => (
+    // <div key={index}>
+      item.master === onLogInUser.accountId ? <MyGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page}/> : null
+    
   ));
 
   var settings = {
@@ -60,7 +63,7 @@ const MyGroupView = ({
           <p className="group_header_contents">내가 가입한 그룹 목록입니다.</p>
           <Link to={`/groupcategory/${categoryList[1].value}`} className="group_allView" onClick={() => onCategoryDefault(categoryList[1])}>모두 보기</Link>
         </div>
-          <Slider {...settings}>
+          <Slider className="slider" {...settings}>
             <NewGroupItem 
               categoryList={categoryList} 
               onCreateGroup={onCreateGroup}

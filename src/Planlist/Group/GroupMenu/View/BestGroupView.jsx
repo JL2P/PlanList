@@ -5,9 +5,14 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "../../GroupStyle/Group.scss";
 
-const BestGroupView = ({ sampleData,onCategoryDefault,categoryList }) => {
-  const Groupitem = sampleData.map((item, index) => (
-    <BestGroupItem key={index} item={item} />
+const BestGroupView = ({ 
+    groups,
+    onCategoryDefault,
+    categoryList,
+    onGroupDetail_page
+    }) => {
+  const Groupitem = groups.map((item, index) => (
+    <BestGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page} />
   ));
 
   var settings = {
@@ -52,7 +57,7 @@ const BestGroupView = ({ sampleData,onCategoryDefault,categoryList }) => {
                 <p className="group_header_contents">많은 사람들이 참여중인 그룹입니다.</p>
                 <Link to={`/groupcategory/${categoryList[2].value}`} className="group_allView" onClick={() => onCategoryDefault(categoryList[2])}>모두 보기</Link>
             </div>
-            <Slider {...settings}>
+            <Slider className="slider" {...settings}>
                 {Groupitem}
             </Slider>
         </Container>
