@@ -7,6 +7,8 @@ import { Button } from "semantic-ui-react";
 @inject("Store")
 @observer
 class ProfileMangeContainer extends Component {
+
+
   onSetAccountProp = (key, value) => {
     const { account } = this.props.Store;
     account.setAccountProp(key, value);
@@ -37,7 +39,7 @@ class ProfileMangeContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
-    const { account, todo } = this.props.Store;
+    const { account, todo, follow } = this.props.Store;
     const todos = todo.getTodos;
     const today = todo.getToday;
     const selectId = account.getAccount.accountId;
@@ -46,19 +48,10 @@ class ProfileMangeContainer extends Component {
       (item) => item.writer === selectId && item.endTime >= today
     ).length;
     const loginCheck = account.getLogCheck;
+    const isFollowed = follow.getIsFollowed;
     return (
       <div>
-        <ProfileManageView
-          account={loginCheck ? account.getLoginAccount : {}}
-          accountStore={account}
-          onModifyUser={this.onModifyUser}
-          onDeleteUser={this.onDeleteUser}
-          onSignout={this.onSignout}
-          onSetAccountProp={this.onSetAccountProp}
-          loginCheck={account.getLogCheck}
-          todo_count={count}
-          onFollow={this.onFollow}
-        />
+        
         <p>
           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔺&emsp;
           로그인한 유저
@@ -78,6 +71,7 @@ class ProfileMangeContainer extends Component {
           loginCheck={account.getLogCheck}
           todo_count={count} 
           onFollow={this.onFollow}
+          isFollowed = {isFollowed}
         />
       </div>
     );
