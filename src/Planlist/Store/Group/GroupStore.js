@@ -39,6 +39,7 @@ export default class GroupStore {
       @observable select_Group_categoryList = this.categoryList[0];
       @observable detailGroup_modalOpen = false;
       @observable detailGroup_open ={};  //그룹 디테일에 해당되는 객체
+      @observable detailGroup_memberLength = 0; 
 
       @observable member = {};
       @observable members = [];
@@ -51,6 +52,7 @@ export default class GroupStore {
       @computed get getCategoryList(){return this.categoryList}
       @computed get getSelect_Group_categoryList(){return this.select_Group_categoryList};
       @computed get getDetailGroup_open(){return this.detailGroup_open;}
+      @computed get getDetailGroup_memberLength(){return this.detailGroup_memberLength;}
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
@@ -78,6 +80,7 @@ export default class GroupStore {
       //그룹 전체 리스트 출력
       @action
       async getApiGroups(){
+        console.log("getApiGroups")
         const apiGetGroups = await this.groupRepository.groupList();
         this.groups = apiGetGroups.map(group => new GroupModel(group))
         console.log(this.groups);
@@ -114,7 +117,8 @@ export default class GroupStore {
       async groupDetail_page(groupId){
         const result = await this.groupRepository.groupDetail(groupId);
         this.detailGroup_open = new GroupModel(result);
-        console.log(this.detailGroup_open)
+        this.detailGroup_memberLength = this.detailGroup_open.members.length;
+        console.log(this.detailGroup_memberLength)
       }
 
       //그룹 디테일 페이지 설정 저장
