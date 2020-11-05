@@ -151,5 +151,10 @@ $breakpoint-desktop: 1024px;
   font-weight: bold;
 }
 
+//slick 왼쪽으로 정렬
+.slider .slick-track{
+  margin-left:0!important;
+}
+
 
 //Modal
