@@ -2,6 +2,7 @@ import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import ProfileTodoPastListView from "../view/ProfileManageItem/ProfileTodoPastListView";
+import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 
 @inject("Store")
 @observer
@@ -41,7 +42,7 @@ class ProfileTodoPastListContainer extends Component {
             {loginId === selectId ? (
               <MainNoTodoContainer />
             ) : (
-              <h1>{selectId}님이 등록한 계획이 없습니다.</h1>
+              <ProfileTodoEmptyView />
             )}
           </div>
         ) : (

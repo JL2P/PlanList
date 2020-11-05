@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import MainTodoCreateDesktopContainer from "../../../Main/Container/MainTodoCreateDesktopContainer";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
+import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 
 @inject("Store")
 @observer
@@ -49,7 +50,7 @@ class ProfileTodoFromNowListContainer extends Component {
               // <h1>계획을 세워보세요!</h1>
               <MainNoTodoContainer />
             ) : (
-              <h1>{selectId}님이 등록한 계획이 없습니다.</h1>
+              <ProfileTodoEmptyView />
             )}
           </div>
         ) : (

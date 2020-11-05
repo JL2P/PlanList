@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Modal, Menu, Grid, Button, Icon } from "semantic-ui-react";
 import ProfileAccountModifyView from "../ProfileModifyItem/ProfileAccountModifyView";
 import ProfileAccountPrivacyView from "../ProfileModifyItem/ProfileAccountPrivacyView";
+import SignoutModalView from "./SignoutModalView";
 import WithdrawalModalView from "./WithdrawalModalView";
 
 const ProfileSettingModalView = ({
@@ -21,6 +22,12 @@ const ProfileSettingModalView = ({
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
   const onWithdrawalModal = (trigger) => {
     setWithdrawalOpen(trigger);
+  };
+
+  // 로그아웃 모달
+  const [signoutOpen, setSignoutOpen] = useState(false);
+  const onSignoutModal = (trigger) => {
+    setSignoutOpen(trigger);
   };
 
   // account 공개 여부를 체크하기 위함
@@ -47,6 +54,14 @@ const ProfileSettingModalView = ({
         withdrawalOpen={withdrawalOpen}
         onWithdrawalModal={onWithdrawalModal}
         onDeleteUser={onDeleteUser}
+        account={account}
+      />
+
+      {/* 로그아웃 모달 */}
+      <SignoutModalView
+        signoutOpen={signoutOpen}
+        onSignoutModal={onSignoutModal}
+        onSignout={onSignout}
         account={account}
       />
 
@@ -87,8 +102,9 @@ const ProfileSettingModalView = ({
                 name="로그아웃"
                 active={activeItem === "로그아웃"}
                 onClick={() => {
-                  onSettingModal(false);
-                  onSignout();
+                  // onSettingModal(false);
+                  // onSignout();
+                  onSignoutModal(true);
                 }}
               />
 
