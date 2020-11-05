@@ -130,7 +130,7 @@ export default class GroupStore {
         await this.groupRepository.groupDelete(groupId)
       }
 
-      /*****************************************멤버 관련***********************************************/
+      /*****************************************멤버 관련*********************************************/
       @action
       async masterMember(memberObj){
         console.log("멤버 스토어 : " + memberObj);
