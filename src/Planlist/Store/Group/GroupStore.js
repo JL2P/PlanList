@@ -40,6 +40,7 @@ export default class GroupStore {
       @observable detailGroup_modalOpen = false;
       @observable detailGroup_open ={};  //그룹 디테일에 해당되는 객체
       @observable detailGroup_memberLength = 0; 
+      @observable detailGroup_memberList = [{}];
 
       @observable member = {};
       @observable members = [];
@@ -53,6 +54,7 @@ export default class GroupStore {
       @computed get getSelect_Group_categoryList(){return this.select_Group_categoryList};
       @computed get getDetailGroup_open(){return this.detailGroup_open;}
       @computed get getDetailGroup_memberLength(){return this.detailGroup_memberLength;}
+      @computed get getDetailGroup_memberList(){return this.detailGroup_memberList;}
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
@@ -118,6 +120,8 @@ export default class GroupStore {
         const result = await this.groupRepository.groupDetail(groupId);
         this.detailGroup_open = new GroupModel(result);
         this.detailGroup_memberLength = this.detailGroup_open.members.length;
+        this.detailGroup_memberList = this.detailGroup_open.members;
+        console.log(this.detailGroup_memberList)
         console.log(this.detailGroup_memberLength)
       }
 

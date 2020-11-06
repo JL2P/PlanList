@@ -14,8 +14,10 @@ const GroupCenterView = ({
         detailGroup,
         onSettingSave,
         onSettingRemove,
-        onLogInUser
+        onLogInUser,
+        memberList
     }) => {
+
     return (
         <div>
             <DetailGroupNav 
@@ -33,7 +35,13 @@ const GroupCenterView = ({
                      onLogInUser={onLogInUser}
                      detailGroup={detailGroup}
                 /> } />
-            <Route path="/groupdetail/member" exact component={DetailGroupMember} />
+            <Route 
+                path="/groupdetail/member" 
+                exact 
+                render={() => <DetailGroupMember
+                    detailGroup={detailGroup}
+                    memberList={memberList}
+                />} />
             <Route
                 path="/groupdetail/masterSetting" 
                 exact
