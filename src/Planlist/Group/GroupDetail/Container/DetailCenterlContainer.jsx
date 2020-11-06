@@ -40,9 +40,12 @@ class DetailCenterlContainer extends Component {
         const {
             getMyTodo,
             getDetailGroup_modalOpen,
-            detailGroup_open
+            detailGroup_open,
+            getDetailGroup_memberList
         } = group;
         const {loginAccount} = account;
+
+        console.log(detailGroup_open)
         return (
             <div>
                 <GroupCenterView 
@@ -54,6 +57,7 @@ class DetailCenterlContainer extends Component {
                     onSettingSave={this.onSettingSave}
                     onSettingRemove={this.onSettingRemove}
                     onLogInUser={loginAccount}
+                    memberList={getDetailGroup_memberList}
                 />
             </div>
         );
