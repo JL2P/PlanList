@@ -8,8 +8,9 @@ class SigninContainer extends Component {
   onSignin = (e, accountObj) => {
     e.preventDefault();
     const { account } = this.props.Store;
+
     account.signin(accountObj).then((req) => {
-      if (account.logCheck === true) {
+      if (localStorage.getItem("jwt_token")) {
         this.props.history.push("/");
       } else {
         alert("회원 정보를 확인해 주세요.");
