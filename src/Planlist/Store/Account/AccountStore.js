@@ -92,6 +92,16 @@ export default class AccountStore {
     }
   }
 
+  // 로그인상태일 경우 해당 유저정보를 API에서 가져온다.
+  @action
+  async getApiAccountInfo(){
+    const data = await this.accountRepository.accountInfo();
+    this.loginAccount = new AccountModel(data);
+    this.logCheck=true
+  }
+
+
+
   @action signout() {
     this.loginAccount = {};
     this.logCheck = false;

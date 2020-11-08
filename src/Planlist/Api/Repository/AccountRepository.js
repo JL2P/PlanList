@@ -17,6 +17,10 @@ export default class AccountRepository{
         return axios.post(this.URL, AccountAddModel,HEADER).then(request=>request.data||{});
     }
 
+    accountInfo = ()=>{
+        return axios.get(this.URL+"/info",HEADER).then(request=>request.data||{});
+    }
+
     // account list조회
     // GET /api/accounts/
     accountList =()=>{
