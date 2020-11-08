@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
-import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
-import { sign_move_text, sign_IconBtn, sign_submitBtn } from "../../style/Btn";
+import { Button, Form, Icon } from "semantic-ui-react";
+import {
+  sign_move_text,
+  sign_IconBtn,
+  sign_submitBtn,
+  sign_btn_text,
+} from "../../style/Btn";
 
 const SigninView = ({ onSignin }) => {
   const [email, setEmail] = useState("");
@@ -17,8 +22,6 @@ const SigninView = ({ onSignin }) => {
   };
   const sign_forgetPassword = {
     display: "block",
-    margin: "1rem 0",
-    textAlign: "center",
     color: "#000000",
     textDecoration: "underline",
     textUnderlinePosition: "under",
@@ -31,51 +34,47 @@ const SigninView = ({ onSignin }) => {
           onSignin(e, { email, password });
         }}
       >
-        <div style={sign_IconBtn}>
-          <Button color="facebook">
-            <Icon name="facebook" />
-            Log in with Facebook
-          </Button>
-          <Button color="google plus">
-            <Icon name="google plus" />
-            Log in with Google
-          </Button>
-        </div>
-
         <Form.Field>
-          <label>e-mail</label>
           <input
             onChange={onEmail}
             type="email"
-            placeholder="Please enter a e-mail"
+            placeholder="Email"
             required
             value={email}
+            style={{ height: "50px" }}
           />
         </Form.Field>
         <Form.Field>
-          <label>Password</label>
           <input
             onChange={onPassword}
             type="password"
-            placeholder="Please enter a password"
+            placeholder="Password"
             required
             value={password}
+            style={{ height: "50px" }}
           />
         </Form.Field>
-        <Form.Field>
-          <Checkbox label="I agree to the Terms and Conditions" />
-        </Form.Field>
-        <Button type="submit" style={sign_submitBtn}>
-          Log In
-        </Button>
         <Link to="/" style={sign_forgetPassword}>
-          Forgot Password?
+          Forgot your Password?
         </Link>
-        <Button color="yellow" style={sign_move}>
-          <Link to="signup" style={sign_move_text}>
-            Sign Up Page
-          </Link>
+        <Button color="yellow" style={sign_submitBtn}>
+          <b style={sign_btn_text}>Log In</b>
         </Button>
+        <b style={{ ...sign_btn_text, marginTop: "5px" }}>or</b>
+        <Button color="facebook" style={sign_submitBtn}>
+          <Icon name="facebook" size="large" />
+          <b style={sign_btn_text}>Continue with Facebook</b>
+        </Button>
+        <Button color="google plus" style={sign_submitBtn}>
+          <Icon name="google plus" size="large" />
+          <b style={sign_btn_text}>Continue with Google</b>
+        </Button>
+
+        <Link to="signup">
+          <b style={{ ...sign_btn_text, marginTop: "15px", color: "black" }}>
+            Sign Up Page
+          </b>
+        </Link>
       </Form>
     </AuthTemplate>
   );

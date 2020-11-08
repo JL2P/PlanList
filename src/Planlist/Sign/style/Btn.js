@@ -11,11 +11,21 @@ export const sign_move_text = {
     padding:".78571429em 1.5em .78571429em"
 }
 export const sign_submitBtn = {
-    display: "block",
-    margin: "0 auto",
     width: "100%",
-    marginTop: "20px",
+    marginTop: "10px",
+    height:"50px",
+    display: "flex",
+    justifyContent:"center",
+    alignItems :"center"
 };
+
+export const sign_btn_text={
+    fontSize:"20px",
+    width:"100%",
+    display: "flex",
+    justifyContent:"center",
+    alignItems :"center"
+}
 
 export default{
     sign_IconBtn,
