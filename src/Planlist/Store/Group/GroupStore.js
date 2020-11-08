@@ -26,6 +26,8 @@ export default class GroupStore {
       @observable categoryTodo = CategoryGroupPage_List_Data;
       @observable recommendTodo = RecommendGroupPage_List_Data;
 
+      @computed get getMyTodo(){return this.myTodo;}
+
       
       //모델 정의
       @observable group = {};
