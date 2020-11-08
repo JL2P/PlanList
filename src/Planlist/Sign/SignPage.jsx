@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AuthTemplate from "./AuthTemplate";
 import SigninPage from "./Signin/SigninPage";
 import SignupPage from "./Signup/SignupPage";
 
@@ -9,10 +8,10 @@ const SignPage = () => {
   const onRegister = () => {
     setLook(false);
   };
-  return (
-    <AuthTemplate>
-      {look == true ? <SigninPage onRegister={onRegister} /> : <SignupPage />}
-    </AuthTemplate>
+  return look === true ? (
+    <SigninPage onRegister={onRegister} />
+  ) : (
+    <SignupPage />
   );
 };
 

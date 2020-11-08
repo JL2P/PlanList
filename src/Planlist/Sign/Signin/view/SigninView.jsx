@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
 import { Button, Form, Icon } from "semantic-ui-react";
-import {
-  sign_move_text,
-  sign_IconBtn,
-  sign_submitBtn,
-  sign_btn_text,
-} from "../../style/Btn";
+import { sign_submitBtn, sign_btn_text } from "../../style/Btn";
+
+import "./signinStyle.css";
 
 const SigninView = ({ onSignin }) => {
   const [email, setEmail] = useState("");
@@ -16,10 +13,6 @@ const SigninView = ({ onSignin }) => {
   const onEmail = (e) => setEmail(e.target.value);
   const onPassword = (e) => setPassword(e.target.value);
 
-  const sign_move = {
-    float: "right",
-    padding: "0",
-  };
   const sign_forgetPassword = {
     display: "block",
     color: "#000000",
@@ -30,6 +23,7 @@ const SigninView = ({ onSignin }) => {
   return (
     <AuthTemplate name="Log In">
       <Form
+        className="LoginForm"
         onSubmit={(e) => {
           onSignin(e, { email, password });
         }}
@@ -41,7 +35,7 @@ const SigninView = ({ onSignin }) => {
             placeholder="Email"
             required
             value={email}
-            style={{ height: "50px" }}
+            style={{ height: "60px" }}
           />
         </Form.Field>
         <Form.Field>
@@ -51,7 +45,7 @@ const SigninView = ({ onSignin }) => {
             placeholder="Password"
             required
             value={password}
-            style={{ height: "50px" }}
+            style={{ height: "60px" }}
           />
         </Form.Field>
         <Link to="/" style={sign_forgetPassword}>
@@ -71,7 +65,7 @@ const SigninView = ({ onSignin }) => {
         </Button>
 
         <Link to="signup">
-          <b style={{ ...sign_btn_text, marginTop: "15px", color: "black" }}>
+          <b style={{ ...sign_btn_text, marginTop: "25px", color: "black" }}>
             Sign Up Page
           </b>
         </Link>

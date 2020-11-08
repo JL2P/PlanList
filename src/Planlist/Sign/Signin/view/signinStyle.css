@@ -1,0 +1,5 @@
+.LoginForm input::placeholder {
+  font-size: 22px;
+  line-height: 25px;
+  vertical-align: middle;
+}
