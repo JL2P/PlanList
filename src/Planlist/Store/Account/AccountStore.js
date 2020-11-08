@@ -5,11 +5,13 @@ import AccountAddModel from "../../Api/model/AccountAddModel";
 import AccountModifyModel from "../../Api/model/AccountModifyModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
 import AccountRepository from "../../Api/Repository/AccountRepository";
+import AuthRepository from '../../Api/Repository/AuthRepository';
 
 export default class AccountStore {
   constructor(root) {
     this.root = root;
     this.accountRepository = new AccountRepository();
+    this.authRepository = new AuthRepository();
   }
 
   // this.root.todo.
@@ -65,8 +67,16 @@ export default class AccountStore {
   @action
   async signup(accountObj) {
     const accountAddModel = new AccountAddModel(accountObj);
-    console.log(accountAddModel);
-    this.accountRepository.accountSignup(accountAddModel);
+    
+    //인증서버에 유저정보 저장
+    const data = await this.authRepository.authSignup({
+      uid: accountAddModel.email,
+      password:accountAddModel.password,
+      name:accountAddModel.accountId
+    })
+
+    // 유저서버로 데이터 저장
+    await this.accountRepository.accountAdd(accountAddModel)
   }
 
   //로그인
@@ -74,21 +84,23 @@ export default class AccountStore {
   async signin(account) {
     this.logCheck = false;
     const accountModel = new AccountSigninModel(account);
-    const data = await this.accountRepository.accountSignin(accountModel);
-    // 임시로 주석
-    // if (
-    //   account.email === data.email &&
-    //   account.password === data.password
-    // ) {
-    //   this.logCheck = true;
-    //   this.loginAccount = new AccountModel(data);
-    //   console.log("로그인이 완료되었습니다.");
-    // }
-    this.logCheck = true;
-    this.loginAccount = new AccountModel(data);
-    console.log("로그인이 완료되었습니다.");
-    console.log(this.loginAccount)
+    const data = await this.authRepository.authSignin(accountModel);
+
+    //유저가 존재 할 경우 localStorage에 토큰을 저장한다.
+    if('access_token' in data){
+      localStorage.jwt_token=data.access_token;
+    }
   }
+
+  // 로그인상태일 경우 해당 유저정보를 API에서 가져온다.
+  @action
+  async getApiAccountInfo(){
+    const data = await this.accountRepository.accountInfo();
+    this.loginAccount = new AccountModel(data);
+    this.logCheck=true
+  }
+
+
 
   @action signout() {
     this.loginAccount = {};

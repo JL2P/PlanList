@@ -12,9 +12,10 @@ class SignupContainer extends Component {
     // Store에서 account Store가져오기
     const { account } = this.props.Store;
     //회원가입 실행
-    account.signup(accountObj);
-    // alert("회원가입이 완료되었습니다.");
-    // window.location.replace("signin");
+    account.signup(accountObj).then((res) => {
+      alert("회원가입이 완료되었습니다.");
+      window.location.replace("/");
+    });
   };
 
   render() {
