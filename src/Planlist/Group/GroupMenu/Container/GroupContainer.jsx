@@ -15,7 +15,7 @@ class GroupContainer extends Component {
         e.preventDefault();
         const { group } = this.props.Store;
         group.createGroup(createObj);
-        this.props.history.push(`/groupDetail/`);
+        this.props.history.push(`/groupDetail/${group.getGroupId}/`);
     }
 
     //그룹 전체 리스트 조회

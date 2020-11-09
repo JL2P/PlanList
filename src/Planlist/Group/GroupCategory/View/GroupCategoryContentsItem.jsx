@@ -6,7 +6,7 @@ import "../../../GroupStyle/Group.scss";
 const GroupCategoryContentsItem = ({ item }) => {
   return (
     <Grid.Column className="recommendGroup_column">
-      <Link to="/groupdetail">
+      <Link to={`/groupdetail/${item.id}/`}>
         <Card className="group_card" raised>
           <Image src={item.imgUrl} className="Group_img" />
           <Card.Content>

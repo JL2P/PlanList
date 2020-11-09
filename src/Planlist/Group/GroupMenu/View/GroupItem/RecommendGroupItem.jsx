@@ -8,7 +8,7 @@ const RecommendGroupItem = ({ item,onGroupDetail_page }) => {
   console.log(item)
   return (
     <Grid.Column className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
-        <Link to="/groupdetail">
+        <Link to={`/groupdetail/${item.id}/`}>
         <Card className="group_card" raised>
             <Image src={item.imgUrl} className="Group_img" />
             <Card.Content>

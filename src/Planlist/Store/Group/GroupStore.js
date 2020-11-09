@@ -41,6 +41,7 @@ export default class GroupStore {
 
       @observable member = {};
       @observable members = [];
+      @observable groupId = 0;
       @observable confirm = false;
       @observable manager = false;
 
@@ -55,6 +56,7 @@ export default class GroupStore {
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
+      @computed get getGroupId(){return this.groupId;}
       @computed get getConfirm(){return this.confirm;}
       @computed get getManager(){return this.manager;}
       
@@ -95,14 +97,14 @@ export default class GroupStore {
         const result = await this.groupRepository.groupCreate(groupModel);
         console.log(result)
 
-        const groupId = result.id;
+        this.groupId = result.id;
         const accountId = result.master;
         this.confirm = true;
         this.manager = true;
         const newMember = {
                             "accountId":accountId,
                             "confirm": this.confirm,
-                            "groupId": groupId,
+                            "groupId": this.groupId,
                             "manager": this.manager,
                           }
 
