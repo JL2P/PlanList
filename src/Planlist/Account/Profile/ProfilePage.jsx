@@ -38,6 +38,8 @@ class ProfilePage extends Component {
       <div>
         {!loginCheck && id === undefined ? (
           <ProfileNonMemberView selectUser={selectUser} />
+        ) : selectUser.accountId === undefined ? (
+          <h1>{id} 회원님을 찾을 수 없습니다</h1>
         ) : (
           <div>
             <ProfileMangeContainer
