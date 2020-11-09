@@ -1,4 +1,5 @@
 //프록시 서버 설정
+const proxy = require("http-proxy-middleware");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
   // Authentication Service
@@ -33,6 +34,15 @@ module.exports = function (app) {
     "/api/groups",
     createProxyMiddleware({
       target: "http://localhost:9003",
+      changeOrigin: true,
+    })
+  );
+
+  // Chat
+  app.use(
+    "/api/chat",
+    createProxyMiddleware({
+      target: "http://localhost:3005",
       changeOrigin: true,
     })
   );
