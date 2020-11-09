@@ -5,7 +5,7 @@ import AccountAddModel from "../../Api/model/AccountAddModel";
 import AccountModifyModel from "../../Api/model/AccountModifyModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
 import AccountRepository from "../../Api/Repository/AccountRepository";
-import AuthRepository from '../../Api/Repository/AuthRepository';
+import AuthRepository from "../../Api/Repository/AuthRepository";
 
 export default class AccountStore {
   constructor(root) {
@@ -67,10 +67,7 @@ export default class AccountStore {
   @action
   async signup(accountObj) {
     const accountAddModel = new AccountAddModel(accountObj);
-    
-    //인증서버에 유저정보 저장
     await this.authRepository.authSignup(accountAddModel);
-
   }
 
   //로그인
@@ -81,20 +78,18 @@ export default class AccountStore {
     const data = await this.authRepository.authSignin(accountModel);
 
     //유저가 존재 할 경우 localStorage에 토큰을 저장한다.
-    if('access_token' in data){
-      localStorage.jwt_token=data.access_token;
+    if ("access_token" in data) {
+      localStorage.jwt_token = data.access_token;
     }
   }
 
   // 로그인상태일 경우 해당 유저정보를 API에서 가져온다.
   @action
-  async getApiAccountInfo(){
+  async getApiAccountInfo() {
     const data = await this.accountRepository.accountInfo();
     this.loginAccount = new AccountModel(data);
-    this.logCheck=true
+    this.logCheck = true;
   }
-
-
 
   @action signout() {
     this.loginAccount = {};
@@ -139,9 +134,7 @@ export default class AccountStore {
 
   @action
   async selectUser(accountId) {
-    console.log("?????", accountId);
     const account = await this.accountRepository.accountDetail(accountId);
-    console.log(account.accountId)
     this.account = new AccountModel(account);
   }
 

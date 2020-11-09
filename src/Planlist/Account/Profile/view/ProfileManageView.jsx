@@ -13,8 +13,8 @@ import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerMod
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
 const ProfileManageView = ({
-  account,
-  accountStore,
+  selectUser,
+  loginAccount,
   todo_count,
   loginCheck,
   onSignout,
@@ -23,12 +23,10 @@ const ProfileManageView = ({
   onDeleteUser,
   onFollow,
   onGetFollowers,
-  isFollowed
-  
+  isFollowed,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
-
 
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
@@ -59,7 +57,7 @@ const ProfileManageView = ({
     <Container text style={{ marginTop: "3em" }}>
       {/* 모달 추가 기본 open상태는 false */}
       <ProfileSettingModalView
-        account={accountStore.getLoginAccount}
+        account={loginAccount}
         settingOpen={settingOpen}
         onSettingModal={onSettingModal}
         activeItem={activeItem}
@@ -86,7 +84,7 @@ const ProfileManageView = ({
           {/* 프로필 이미지 */}
           <Grid.Column width={4}>
             <Image
-              src={account.imgUrl}
+              src={selectUser.imgUrl}
               bordered
               centered
               style={{
@@ -103,12 +101,12 @@ const ProfileManageView = ({
             <Segment basic>
               <Grid stackable>
                 {loginCheck &&
-                accountStore.getLoginAccount.accountId === account.accountId ? (
+                loginAccount.accountId === selectUser.accountId ? (
                   // 로그인된 사용자 페이지 - setting 아이콘을 보여줌
                   <>
                     {/* 사용자 아이디 */}
                     <Grid.Column width={13} style={{ fontSize: pText1 }}>
-                      {account.accountId}
+                      {selectUser.accountId}
                     </Grid.Column>
                     {/* setting */}
                     <Grid.Column width={2} style={{ fontSize: pText1 }}>
@@ -122,29 +120,30 @@ const ProfileManageView = ({
                   // 다른 사용자 페이지 - 팔로우 버튼을 보여줌
                   <>
                     <Grid.Column width={10} style={{ fontSize: pText1 }}>
-                      {account.accountId}
+                      {selectUser.accountId}
                     </Grid.Column>
                     <Grid.Column width={6} style={{ fontSize: pText1 }}>
-                      
                       {/* 팔로우 상태일 경우 */}
-                      {isFollowed &&   
-                      <Button 
-                      primary 
-                      style={{ background: "#c8c8c8" }}
-                    
-                      content="팔로우 취소"
-                      onClick={()=>{ alert("팔로우취소") }}
-                    />
-                      }
-                      {!isFollowed &&
-                      <Button 
-                        primary 
-                        style={{ background: "#FFB517" }}
-                      
-                        content="팔로우"
-                        onClick={()=>{ onFollow(account.accountId) }}
-                      />
-                      }
+                      {isFollowed && (
+                        <Button
+                          primary
+                          style={{ background: "#c8c8c8" }}
+                          content="팔로우 취소"
+                          onClick={() => {
+                            alert("팔로우취소");
+                          }}
+                        />
+                      )}
+                      {!isFollowed && (
+                        <Button
+                          primary
+                          style={{ background: "#FFB517" }}
+                          content="팔로우"
+                          onClick={() => {
+                            onFollow(selectUser.accountId);
+                          }}
+                        />
+                      )}
                     </Grid.Column>
                   </>
                 )}
@@ -173,7 +172,7 @@ const ProfileManageView = ({
         </Grid.Row>
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
-        {account.introduce}
+        {selectUser.introduce}
       </Segment>
     </Container>
   );
