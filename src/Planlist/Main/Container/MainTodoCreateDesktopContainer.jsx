@@ -41,7 +41,6 @@ class MainTodoCreateDesktopContainer extends Component {
     const newTodo = {
       ...todoObj,
       imgUrl: `/posts/test_img_${random_image_number}.jpg`,
-      writer: "shoon2430",
     };
 
     //todo 생성

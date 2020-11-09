@@ -2,7 +2,8 @@ import axios from "axios"
 
 /**
  * axios 공통 모듈
- * 
+ * token 인증을 위해 헤더를 세팅하고,
+ * 토큰이 유효하지 않거나 존재하지 않을시에 로그인 페이지로 이동한다.
  */
 
 const HEADER = {
@@ -11,11 +12,11 @@ const HEADER = {
     }
 }
 
-export const axios_GET = (url, returnType="")=>{
-    return axios.get(url,HEADER)
+export const axios_auth_GET = (url, defualtReturnValue="")=>{
+    return axios.get(url, HEADER)
         .then(res=>{
             console.log(res)
-            return res.data ||returnType})
+            return res.data ||defualtReturnValue})
         .catch(function (error) {
             // console.log(error.response)
             //토큰인증에 실패한 경우 로그인화면으로 이동
@@ -25,9 +26,9 @@ export const axios_GET = (url, returnType="")=>{
             });
 }
 
-export const axios_POST = (url,data={}, returnType="")=>{
-    return axios.post(url,data,HEADER)
-        .then(res=>res.data||returnType)
+export const axios_auth_POST = (url, data={}, defualtReturnValue="")=>{
+    return axios.post(url, data, HEADER)
+        .then(res=>res.data||defualtReturnValue)
         .catch(function (error) {
             //토큰인증에 실패한 경우 로그인화면으로 이동
             if (error.response) {
@@ -36,9 +37,9 @@ export const axios_POST = (url,data={}, returnType="")=>{
             });
 }
 
-export const axios_PUT = (url,data={}, returnType="")=>{
+export const axios_auth_PUT = (url,data={}, defualtReturnValue="")=>{
     return axios.put(url,data,HEADER)
-        .then(res=>res.data||returnType)
+        .then(res=>res.data||defualtReturnValue)
         .catch(function (error) {
             //토큰인증에 실패한 경우 로그인화면으로 이동
             if (error.response) {
@@ -47,9 +48,9 @@ export const axios_PUT = (url,data={}, returnType="")=>{
             });
 }
 
-export const axios_DELETE = (url, returnType="")=>{
+export const axios_auth_DELETE = (url, defualtReturnValue="")=>{
     return axios.delete(url,HEADER)
-        .then(res=>res.data||returnType)
+        .then(res=>res.data||defualtReturnValue)
         .catch(function (error) {
             //토큰인증에 실패한 경우 로그인화면으로 이동
             if (error.response) {

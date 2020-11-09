@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import {axios_GET, axios_POST } from "../common/CommonAxiosModule"
+import {axios_auth_GET } from "../common/CommonAxiosModules"
 
 const HEADER = {
     headers: {
@@ -13,14 +13,8 @@ export default class AccountRepository{
     //공통 적으로 사용되는 URL
     URL = "/api/accounts";
 
-    // 유저 정보 추가
-    // POST /api/accounts
-    accountAdd = (AccountAddModel) => {
-        return axios_POST(this.URL, AccountAddModel,{})
-    }
-
     accountInfo = ()=>{
-        return axios_GET(this.URL+"/info",{});
+        return axios_auth_GET(this.URL+"/info",{});
     }
 
     // account list조회

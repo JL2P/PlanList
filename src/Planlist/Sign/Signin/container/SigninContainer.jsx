@@ -11,7 +11,8 @@ class SigninContainer extends Component {
 
     account.signin(accountObj).then((req) => {
       if (localStorage.getItem("jwt_token")) {
-        this.props.history.push("/");
+        // this.props.history.push("/");
+        window.location.href = "/";
       } else {
         alert("회원 정보를 확인해 주세요.");
       }

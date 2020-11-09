@@ -1,5 +1,5 @@
 
-import {axios_GET, axios_POST, axios_PUT, axios_DELETE} from "../common/CommonAxiosModule"
+import {axios_auth_GET, axios_auth_POST, axios_auth_PUT, axios_auth_DELETE} from "../common/CommonAxiosModules"
 
 
 //Account관련 Api와 연동하는 클래스
@@ -12,32 +12,32 @@ export default class TodoRepository{
    // todo list 조회
    // GET /api/todos/
     TodoList = () => {
-        return axios_GET(this.URL,[]);
+        return axios_auth_GET(this.URL,[]);
     }
 
     //todo 조회
     // GET /api/todo/{todoId}/
     todoDetail = (todoId) =>{
-        return axios_GET(this.URL+`${todoId}/`,{}) 
+        return axios_auth_GET(this.URL+`${todoId}/`,{}) 
         
     }
 
     //todo 추가
     // POST /api/todo/
     todoCreate = (TodoModel)=>{
-        return axios_POST(this.URL,TodoModel,{})
+        return axios_auth_POST(this.URL,TodoModel,{})
     }
 
      // account 수정
     // PUT /api/account/
     todoUpdate = (TodoModel)=>{
-        return axios_PUT(this.URL,TodoModel,{})
+        return axios_auth_PUT(this.URL,TodoModel,{})
     }
 
     // todo 삭제
     // DELETE /api/todo/{todoId}/
     todoDelete = (todoId)=>{
-        return axios_DELETE(this.URL+`/${todoId}/`,null)
+        return axios_auth_DELETE(this.URL+`/${todoId}/`,null)
     }
 }
 
