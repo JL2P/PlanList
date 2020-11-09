@@ -25,7 +25,7 @@ const GroupCenterView = ({
                 detailGroup={detailGroup} 
             />
             <Route 
-                path="/groupdetail" 
+                path={`/groupdetail/${detailGroup.id}/`} 
                 exact 
                 render={() => <DetailGroupAll
                      sampleData={sampleData}
@@ -36,14 +36,14 @@ const GroupCenterView = ({
                      detailGroup={detailGroup}
                 /> } />
             <Route 
-                path="/groupdetail/member" 
+                path={`/groupdetail/${detailGroup.id}/member`} 
                 exact 
                 render={() => <DetailGroupMember
                     detailGroup={detailGroup}
                     memberList={memberList}
                 />} />
             <Route
-                path="/groupdetail/masterSetting" 
+                path={`/groupdetail/${detailGroup.id}/masterSetting`} 
                 exact
                 render={() => <DetailGroupSettingM
                     detailGroup={detailGroup}
@@ -52,7 +52,7 @@ const GroupCenterView = ({
                 />}
             />
             <Route
-                path="/groupdetail/userSetting" 
+                path={`/groupdetail/${detailGroup.id}/userSetting`} 
                 exact
                 render={() => <DetailGroupSettingU
                     detailGroup={detailGroup}

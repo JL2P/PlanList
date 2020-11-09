@@ -41,6 +41,7 @@ export default class GroupStore {
 
       @observable member = {};
       @observable members = [];
+      @observable groupId = 0;
       @observable confirm = false;
       @observable manager = false;
 
@@ -55,6 +56,9 @@ export default class GroupStore {
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
+      @computed get getGroupId(){return this.groupId;}
+      @computed get getConfirm(){return this.confirm;}
+      @computed get getManager(){return this.manager;}
       
 
       //modal open & close
@@ -93,22 +97,22 @@ export default class GroupStore {
         const result = await this.groupRepository.groupCreate(groupModel);
         console.log(result)
 
-        const groupId = result.id;
+        this.groupId = result.id;
         const accountId = result.master;
         this.confirm = true;
         this.manager = true;
         const newMember = {
                             "accountId":accountId,
                             "confirm": this.confirm,
-                            "groupId": groupId,
+                            "groupId": this.groupId,
                             "manager": this.manager,
                           }
 
         this.getApiGroups()
         //생성시 해당 그룹으로 연결
         this.groupDetail_page(result.id)
-        //생성시 멤버 생성
-        this.masterMember(newMember);
+        //생성시 그룹 관리자 생성
+        this.groupMember(newMember);
       }
 
       //그룹 디테일 조회
@@ -136,12 +140,12 @@ export default class GroupStore {
       }
 
       /*****************************************멤버 관련*********************************************/
+      //그룹원 생성
       @action
-      async masterMember(memberObj){
+      async groupMember(memberObj){
         console.log("멤버 스토어 : " + memberObj);
         const memberModel = new MemberModel(memberObj);
         console.log(memberModel);
         await this.memberRepository.memberCreate(memberModel);
       }
-      
 }

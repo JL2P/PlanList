@@ -2,7 +2,6 @@ import React from "react";
 import { Segment, Card, Feed, Button } from "semantic-ui-react";
 
 const DetailGroupMember = ({detailGroup, memberList}) => {
-  console.log(memberList[0].accountId)
 
   const membersList = memberList.map((member,index) => (
     <Feed.Event key ={index}>
