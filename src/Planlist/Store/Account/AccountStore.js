@@ -73,10 +73,12 @@ export default class AccountStore {
       uid: accountAddModel.email,
       password:accountAddModel.password,
       name:accountAddModel.accountId
+    }).then(ress=>{
+
+      // 유저서버로 데이터 저장
+      this.accountRepository.accountAdd(accountAddModel)
     })
 
-    // 유저서버로 데이터 저장
-    await this.accountRepository.accountAdd(accountAddModel)
   }
 
   //로그인

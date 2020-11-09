@@ -1,5 +1,7 @@
 import axios from "axios"
 
+import {axios_GET, axios_POST } from "../common/CommonAxiosModule"
+
 const HEADER = {
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
@@ -14,11 +16,11 @@ export default class AccountRepository{
     // 유저 정보 추가
     // POST /api/accounts
     accountAdd = (AccountAddModel) => {
-        return axios.post(this.URL, AccountAddModel,HEADER).then(request=>request.data||{});
+        return axios_POST(this.URL, AccountAddModel,{})
     }
 
     accountInfo = ()=>{
-        return axios.get(this.URL+"/info",HEADER).then(request=>request.data||{});
+        return axios_GET(this.URL+"/info",{});
     }
 
     // account list조회
