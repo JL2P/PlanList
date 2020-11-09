@@ -10,51 +10,43 @@ import ProfileNonMemberView from "./view/ProfileNonMemberView";
 class ProfilePage extends Component {
   componentDidMount() {
     console.log("componentDidMount");
-    const { account, todo ,follow} = this.props.Store;
-    console.log(this.props.match)
+    const { account, todo, follow } = this.props.Store;
+    console.log(">>", this.props.match);
     const id = this.props.match.params.id;
 
-    console.log("아이디야 나와랏!", id === undefined);
-
-    if (id === undefined) {
-      account.selectUser(account.getLoginAccount.accountId);
-    } else {
-      account.selectUser(id);
-    }
+    account.selectUser(id);
 
     account.selectAll();
     todo.getApiTodos();
 
-      //API를 가져오는 부분
+    //API를 가져오는 부분
 
     follow.followCheck();
-
   }
 
   render() {
     const { account } = this.props.Store;
     const loginCheck = account.getLogCheck;
     const id = this.props.match.params.id;
-
+    const selectUser =
+      id === undefined ? account.getLoginAccount : account.getAccount;
+    console.log("확인");
+    console.log("아이디 : ", account.getAccount.accountId);
+    console.log("로그인 아이디 : ", account.getLoginAccount.accountId);
+    console.log("selectUser", selectUser.accountId);
     return (
       <div>
-        <h3>
-          {account.getAccounts.map((item) => (
-            <Link to={`/account/${item.accountId}`}>
-              {item.accountId}&ensp;
-            </Link>
-          ))}
-        </h3>
         {!loginCheck && id === undefined ? (
-          <ProfileNonMemberView />
+          <ProfileNonMemberView selectUser={selectUser} />
         ) : (
           <div>
-            <ProfileMangeContainer />
-            <ProfileTodoContainer />
+            <ProfileMangeContainer
+              selectUser={selectUser}
+              loginAccount={account.getLoginAccount}
+            />
+            <ProfileTodoContainer selectUser={selectUser} />
           </div>
         )}
-        {/* <ProfileMangeContainer />
-        <ProfileTodoContainer /> */}
       </div>
     );
   }
