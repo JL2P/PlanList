@@ -10,7 +10,8 @@ import {
   Auth,
   GroupMenu,
   GroupDetail,
-  GroupCategory
+  GroupCategory,
+  Chat
 } from "./Planlist/PlanlistRoutes";
 
 const App = withRouter(({ location }) => {
@@ -29,6 +30,7 @@ const App = withRouter(({ location }) => {
         <Route path="/groupmenu" component={GroupMenu} />
         <Route path="/groupdetail" component={GroupDetail} />
         <Route path="/groupcategory" component={GroupCategory} />
+        <Route exact path="/chat" component={Chat} />
  
       </Switch>
       {location.pathname !== "/signin" && location.pathname !== "/signup" && location.pathname !== "/auth" &&(
