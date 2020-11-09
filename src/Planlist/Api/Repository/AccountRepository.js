@@ -1,29 +1,20 @@
 import axios from "axios";
 
+import {axios_auth_GET } from "../common/CommonAxiosModules"
+
 const HEADER = {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("jwt_token")}`,
   },
 };
 
-//Account관련 Api와 연동하는 클래스
 export default class AccountRepository {
   //공통 적으로 사용되는 URL
   URL = "/api/accounts";
 
-  // 유저 정보 추가
-  // POST /api/accounts
-  accountAdd = (AccountAddModel) => {
-    return axios
-      .post(this.URL, AccountAddModel, HEADER)
-      .then((request) => request.data || {});
-  };
-
-  accountInfo = () => {
-    return axios
-      .get(this.URL + "/info", HEADER)
-      .then((request) => request.data || {});
-  };
+  accountInfo = ()=>{
+      return axios_auth_GET(this.URL+"/info",{});
+  }
 
   // account list조회
   // GET /api/accounts/

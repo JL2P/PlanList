@@ -1,4 +1,5 @@
-import axios from "axios"
+import {axios_auth_GET, axios_auth_POST} from "../common/CommonAxiosModules"
+
 
 //Account관련 Api와 연동하는 클래스
 export default class CommentRepository{
@@ -7,22 +8,22 @@ export default class CommentRepository{
 
     // GET /api/todos/{todoId}/comments
     commentList = (todoId)=>{
-        return axios.get(this.URL+`/${todoId}/comments`).then(request=>request.data||{})
+        return axios_auth_GET(this.URL+`/${todoId}/comments`,{})
     }
 
     // POST /api/todos/{todoId}/comments
     commentCreate = (todoId, CommentAddModel)=>{
-        return axios.post(this.URL+`/${todoId}/comments`,CommentAddModel).then(request=>request.data||{})
+        return axios_auth_POST(this.URL+`/${todoId}/comments`,CommentAddModel,{})
     }
 
     //{todoId}/comments/{commentId}
     commentDetail = (todoId,commentId)=>{
-        return axios.get(this.URL+`/${todoId}/comments/${commentId}`).then(request=>request.data||{})
+        return axios_auth_GET(this.URL+`/${todoId}/comments/${commentId}`,{})
     }
 
     //api/todos/{todoId}/comments/{commentId}/subComments
     subCommentCreate = (todoId,commentId, SubCommentAddModel)=>{
-        return axios.post(this.URL+`/${todoId}/comments/${commentId}/subComments`,SubCommentAddModel).then(request=>request.data||{})
+        return axios_auth_POST(this.URL+`/${todoId}/comments/${commentId}/subComments`,SubCommentAddModel,{})
     }
     
 

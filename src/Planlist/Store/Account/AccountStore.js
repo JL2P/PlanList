@@ -67,16 +67,7 @@ export default class AccountStore {
   @action
   async signup(accountObj) {
     const accountAddModel = new AccountAddModel(accountObj);
-
-    //인증서버에 유저정보 저장
-    const data = await this.authRepository.authSignup({
-      uid: accountAddModel.email,
-      password: accountAddModel.password,
-      name: accountAddModel.accountId,
-    });
-
-    // 유저서버로 데이터 저장
-    await this.accountRepository.accountAdd(accountAddModel);
+    await this.authRepository.authSignup(accountAddModel);
   }
 
   //로그인

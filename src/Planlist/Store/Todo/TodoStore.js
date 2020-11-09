@@ -106,7 +106,9 @@ export default class TodoStore {
   // API를 호출하여 todo데이터를 저장한다.
   @action
   async saveTodo(todoObj) {
+    
     const todoModel = new TodoAddModel(todoObj);
+    todoModel.writer = this.root.account.getLoginAccount.accountId;
     await this.todoRepository.todoCreate(todoModel);
     this.getApiTodos();
   }
@@ -145,6 +147,8 @@ export default class TodoStore {
   @action
   async addComment(todoId, commentObj) {
     const commentModel = new CommentAddModel(commentObj);
+    commentModel.writer = this.root.account.getLoginAccount.accountId;
+    
     await this.commentRepository.commentCreate(todoId, commentModel);
     this.apiGetComments(todoId);
     this.getApiTodos();
@@ -154,6 +158,8 @@ export default class TodoStore {
   @action
   async addSubComment(todoId, commentId, subCommentObj) {
     const subCommentAddModel = new SubCommentAddModel(subCommentObj);
+    subCommentAddModel.writer = this.root.account.getLoginAccount.accountId;
+
     await this.commentRepository.subCommentCreate(
       todoId,
       commentId,
