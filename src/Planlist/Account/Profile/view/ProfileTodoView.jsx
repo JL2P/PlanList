@@ -9,6 +9,7 @@ class ProfileTodoView extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   render() {
     const { activeItem } = this.state;
+    const { selectUser } = this.props;
     return (
       <Container style={{ width: "900px", marginTop: "2em" }}>
         <Menu pointing secondary>
@@ -35,8 +36,12 @@ class ProfileTodoView extends Component {
         </Menu>
 
         <div>
-          {activeItem === "해야 할 일" && <ProfileTodoFromNowListContainer />}
-          {activeItem === "지난 할 일" && <ProfileTodoPastListContainer />}
+          {activeItem === "해야 할 일" && (
+            <ProfileTodoFromNowListContainer selectUser={selectUser} />
+          )}
+          {activeItem === "지난 할 일" && (
+            <ProfileTodoPastListContainer selectUser={selectUser} />
+          )}
           {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
           {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}
         </div>
