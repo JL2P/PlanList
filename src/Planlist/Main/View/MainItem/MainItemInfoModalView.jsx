@@ -1,5 +1,6 @@
 import React from "react";
 import "./itemModalStyle.css";
+import { Link } from "react-router-dom";
 import { Modal, Image, Label, Icon } from "semantic-ui-react";
 
 const MainItemInfoModalView = ({ todo, open, onModal, children }) => {
@@ -19,13 +20,15 @@ const MainItemInfoModalView = ({ todo, open, onModal, children }) => {
             <p>{todo.description}</p>
           </Modal.Description>
           <div className="modal__description__info">
-            <Label as="a" basic image>
-              <img
-                src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
-                alt="jsx-a11y/alt-text"
-              />
-              {todo.writer}
-            </Label>
+            <Link to={`/account/${todo.writer}`}>
+              <Label as="a" basic image>
+                <img
+                  src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
+                  alt="jsx-a11y/alt-text"
+                />
+                {todo.writer}
+              </Label>
+            </Link>
             <Label basic>
               <Icon name="heart" color="red" /> {todo.likePoint}
             </Label>

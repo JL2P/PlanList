@@ -168,4 +168,30 @@ export default class TodoStore {
     this.apiGetComments(todoId);
     this.getApiTodos();
   }
+
+
+  @action
+  async addLike(todoId){
+    this.todoRepository.onLike(todoId);
+    this.todos=this.todos.map(todo=>{
+      if(todo.todoId===todoId){
+        todo.likeState=true;
+        todo.likePoint+=1;
+      }
+      return todo
+    });
+  }
+
+  @action
+  async removeLike(todoId){
+    this.todoRepository.cancelLike(todoId);
+    this.todos=this.todos.map(todo=>{
+      if(todo.todoId===todoId){
+        todo.likeState=false;
+        todo.likePoint=todo.likePoint===0?0:todo.likePoint-=1;
+      }
+      return todo
+    })
+  }
+
 }
