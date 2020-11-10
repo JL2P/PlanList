@@ -34,7 +34,8 @@ class GroupContainer extends Component {
     //그룹 디테일 조회
     onGroupDetail_page = (groupId) => {
         const { group } = this.props.Store;
-        group.groupDetail_page(groupId);
+        const { account } = this.props.Store;
+        group.groupDetail_page(groupId,account.loginAccount.accountId);
     }
     //카테고리 사진 클릭시 getSelect_Group_categoryList 변경
     onCategorySelect = (category) => {
