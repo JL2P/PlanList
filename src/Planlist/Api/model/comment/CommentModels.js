@@ -8,6 +8,7 @@ export class CommentModel{
         this.text = commentObj.text;
         this.writer = commentObj.writer;
         this.likePoint = commentObj.likePoint;
+        this.created = commentObj.created;
         this.subComments = commentObj.subComments.map(subComment => new SubCommentModel(subComment));
     }
 };

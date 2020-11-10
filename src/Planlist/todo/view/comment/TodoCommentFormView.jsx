@@ -14,7 +14,7 @@ const TodoCommentFormVIew = ({ comment, children }) => {
       <Comment.Content>
         <Comment.Author as="a">{comment.writer}</Comment.Author>
         <Comment.Metadata>
-          <div>{"time"}</div>
+          <div>{comment.created}</div>
           <Icon name="heart" />
         </Comment.Metadata>
         <Comment.Text>

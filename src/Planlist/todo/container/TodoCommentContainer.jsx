@@ -9,18 +9,16 @@ class TodoCommentContainer extends Component {
     const { comment, setReply } = this.props;
     const { todo } = this.props.Store;
 
-    const writer = "giant_peng";
     const seletedTodo = todo.getTodo;
 
     if (comment) {
       todo.addSubComment(seletedTodo.todoId, comment.commentId, {
         targetId: comment.writer,
         text: text,
-        writer: writer,
       });
       setReply(false);
     } else {
-      todo.addComment(seletedTodo.todoId, { text: text, writer: writer });
+      todo.addComment(seletedTodo.todoId, { text: text });
     }
   };
 

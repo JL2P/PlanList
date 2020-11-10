@@ -7,6 +7,7 @@ export class SubCommentModel{
         this.text = subCommentObj.text;                 // 내용
         this.writer = subCommentObj.writer;             // 작성자ID
         this.likePoint = subCommentObj.likePoint;       // 좋아요
+        this.created = subCommentObj.created;
     }
 };
 
