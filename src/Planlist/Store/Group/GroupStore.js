@@ -117,13 +117,24 @@ export default class GroupStore {
 
       //그룹 디테일 조회
       @action
-      async groupDetail_page(groupId){
+      async groupDetail_page(groupId,accountId){
+        console.log(accountId)
         const result = await this.groupRepository.groupDetail(groupId);
         this.detailGroup_open = new GroupModel(result);
         this.detailGroup_memberLength = this.detailGroup_open.members.length;
         this.detailGroup_memberList = this.detailGroup_open.members;
         console.log(this.detailGroup_memberList)
-        console.log(this.detailGroup_memberLength)
+        let memberList = this.detailGroup_memberList.map(member => 
+          (accountId === member.accountId && member)
+        )
+        for(var i = 0; i< memberList.length; i++){
+          if(memberList[i]){
+            this.member = memberList[i]
+          }
+        }
+        //로컬스토리지에 그룹아이디 저장
+        localStorage.groupId = groupId
+
       }
 
       //그룹 디테일 페이지 설정 저장
@@ -147,5 +158,12 @@ export default class GroupStore {
         const memberModel = new MemberModel(memberObj);
         console.log(memberModel);
         await this.memberRepository.memberCreate(memberModel);
+      }
+
+      //그룹원 신청 확인
+      @action
+      async memberApply(memberObj){
+        const memberModel = new MemberModel(memberObj);
+        await this.memberRepository.memberModify(memberModel);
       }
 }
