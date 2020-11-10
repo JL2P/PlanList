@@ -1,4 +1,5 @@
 import axios from "axios"
+import {axios_auth_POST} from "../common/CommonAxiosModules"
 
 //Account관련 Api와 연동하는 클래스
 export default class FollowRepository{
@@ -11,27 +12,39 @@ export default class FollowRepository{
             "myAccountId" : AccountId,
             "followAccountId" : FollowId
         }
-       return axios.post(this.URL+"follow", data).then(request=>request.data||{});
-
-
+        // url
+        // data
+        // format 
+        return axios_auth_POST(this.URL+"follow",data,{});
     }
 
-    //@GetMapping("/followers")
-    getFollowersFunction = (AccountId) => {
+    //@GetMapping("/followerlist")
+    getFollowerlistFunction = (AccountId) => {
         const data={
             "myAccountd" : AccountId
         }
-        return axios.get(this.URL+"followers", data).then(request=>request.data||{});
+        return axios.get(this.URL+"followerlist", data).then(request=>request.data||{});
     }
+
+    //@GetMapping("/followinglist")
+    getFollowinglistFunction = (AccountId) => {
+        const data={
+            "myAccountd" : AccountId
+        }
+        return axios.get(this.URL+"followinglist", data).then(request=>request.data||{});
+    }
+
+    getFollowi
 
     //@GetMapping("/isfollow")
-    followCheckFunction = (AccountId, FollowId) => {
-        const data={
-            "myAccountId" : AccountId,
-            "followAccountId" : FollowId
-        }
-       return axios.post(this.URL+"isfollow", data).then(request=>request.data||{});
-
+    followCheckFunction = (FollowId) => {
+       return axios_auth_POST(this.URL+`isfollow/${FollowId}`,{},{}).then(data=>{
+           console.log("------ AXIOS_AUTH_POST isfollow ------")
+           console.log(data);
+           return data;
+       });
     }
+
+
     
 }
