@@ -13,7 +13,10 @@ export default class AccountRepository {
   URL = "/api/accounts";
 
   accountInfo = ()=>{
-      return axios_auth_GET(this.URL+"/info",{});
+      return axios_auth_GET(this.URL+"/info",{}).then(data=>{ 
+        if(data.message === "account not found") window.location.href="/signin";  
+        return data;
+      });
   }
 
   // account list조회

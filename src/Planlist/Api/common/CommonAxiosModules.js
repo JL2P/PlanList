@@ -15,10 +15,8 @@ const HEADER = {
 export const axios_auth_GET = (url, defualtReturnValue="")=>{
     return axios.get(url, HEADER)
         .then(res=>{
-            console.log(res)
             return res.data ||defualtReturnValue})
         .catch(function (error) {
-            // console.log(error.response)
             //토큰인증에 실패한 경우 로그인화면으로 이동
             if (error.response) {
                 if(errorTypeCheck(error.response.data.error)) window.location.href="/signin";  
