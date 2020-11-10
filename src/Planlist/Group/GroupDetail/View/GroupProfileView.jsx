@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button } from 'semantic-ui-react'
+import { Image, Button, Card } from 'semantic-ui-react'
 
 const GroupProfilView = ({
         onLogInUser,
@@ -26,8 +26,8 @@ const GroupProfilView = ({
     })
 
     return (
-        <div>
-            <Image src={detailGroup_open.imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
+        <Card style={{padding:"1rem"}}>
+            <Image src="/posts/test_img_1.jpg" style={{borderRadius:"10px",marginBottom:"1rem"}}/>
             <p style={{fontSize:"1.2rem", fontWeight:"bold"}}>{detailGroup_open.title}</p>
             <p>멤버 : {detailGroup_memberLength}명</p>
             <p>{detailGroup_open.description}</p>
@@ -50,7 +50,7 @@ const GroupProfilView = ({
                     </Button>
                 ) 
             }
-        </div>
+        </Card>
     );
 };
 
