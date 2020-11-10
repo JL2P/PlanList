@@ -21,27 +21,30 @@ export default class FollowStore {
     @action
     async follow(followId){
         const accountId = this.root.account.getLoginAccount.accountId;
-        this.followRepository.followFunction(accountId,followId)
-
-
+        await this.followRepository.followFunction(accountId,followId)
     }
     
     @action
-    async getfollowers(){
+    async getfollowerlist(){
       const accountId = this.root.account.getLoginAccount.accountId;
-      this.followRepository.getFollowersFunction(accountId)
+      this.followRepository.getFollowerlistFunction(accountId)
     
     }
 
     @action
-    async followCheck() {
-      console.log("follweCheck");
-    const accountId = this.root.account.getLoginAccount.accountId;
-    const followerId = this.root.account.getAccount.accountId;
-    console.log(accountId,followerId)
-    const flag = await this.followRepository.followCheckFunction(accountId, followerId);
+    async getfollowinglist(){
+      const accountd = this.root.account.getLoginAccount.accountId;
+      this.followRepository.getFollowerlistFunction(accountd)
+    }
+
+   
+    @action
+    async followCheck(followId) {
+    console.log("follweCheck");
+
+    const flag = await this.followRepository.followCheckFunction(followerId);
     
-    console.log(flag)
+    console.log("FLAG "+flag)
     this.isFollowed=flag;
     }
 
