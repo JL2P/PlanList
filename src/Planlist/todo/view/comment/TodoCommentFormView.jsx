@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Comment, Form, Icon, Label } from "semantic-ui-react";
 import TodoCommentContainer from "../../container/TodoCommentContainer";
+import { Link } from "react-router-dom";
 import "./todoCommentFormStyle.css";
 
 const TodoCommentFormVIew = ({ comment, children }) => {
@@ -19,14 +20,10 @@ const TodoCommentFormVIew = ({ comment, children }) => {
         </Comment.Metadata>
         <Comment.Text>
           {comment.targetId && (
-            <Label
-              style={{ marginLeft: "0.5em", marginRight: "0.5em" }}
-              size="mini"
-              color="blue"
-            >
-              {comment.targetId}
-            </Label>
-          )}
+            <Link to={`/account/${comment.targetId}`}>
+              <span style={{ color: "#FFB517" }}>@{comment.targetId}</span>
+            </Link>
+          )}{" "}
           {comment.text}
         </Comment.Text>
         <Comment.Actions>
