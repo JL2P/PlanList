@@ -15,14 +15,18 @@ const GroupCenterView = ({
         onSettingSave,
         onSettingRemove,
         onLogInUser,
-        memberList
+        memberList,
+        onMemberApply,
+        member
     }) => {
 
     return (
         <div>
             <DetailGroupNav 
                 onLogInUser={onLogInUser}
-                detailGroup={detailGroup} 
+                detailGroup={detailGroup}
+                memberList={memberList}
+                member={member}
             />
             <Route 
                 path={`/groupdetail/${detailGroup.id}/`} 
@@ -41,6 +45,7 @@ const GroupCenterView = ({
                 render={() => <DetailGroupMember
                     detailGroup={detailGroup}
                     memberList={memberList}
+                    onMemberApply={onMemberApply}
                 />} />
             <Route
                 path={`/groupdetail/${detailGroup.id}/masterSetting`} 

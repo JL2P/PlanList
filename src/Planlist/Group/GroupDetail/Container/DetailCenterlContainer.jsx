@@ -32,6 +32,13 @@ class DetailCenterlContainer extends Component {
         group.settingRemove(groupId);
         window.location.href = "/groupmenu";
     }
+    //멤버 그룹 가입 신청
+    onMemberApply = (e,memberObj) => {
+        e.preventDefault();
+        console.log(memberObj)
+        const { group } = this.props.Store;
+        group.memberApply(memberObj);
+    }
     
 
     render() {
@@ -41,7 +48,8 @@ class DetailCenterlContainer extends Component {
             getMyTodo,
             getDetailGroup_modalOpen,
             detailGroup_open,
-            getDetailGroup_memberList
+            getDetailGroup_memberList,
+            member
         } = group;
         const {loginAccount} = account;
 
@@ -58,6 +66,8 @@ class DetailCenterlContainer extends Component {
                     onSettingRemove={this.onSettingRemove}
                     onLogInUser={loginAccount}
                     memberList={getDetailGroup_memberList}
+                    onMemberApply={this.onMemberApply}
+                    member={member}
                 />
             </div>
         );

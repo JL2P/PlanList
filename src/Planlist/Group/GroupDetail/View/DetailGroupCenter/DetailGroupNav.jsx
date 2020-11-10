@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { Menu, Segment } from "semantic-ui-react";
 import {Link, withRouter, Route } from 'react-router-dom'
 
-const DetailGroupNav = ({onLogInUser,detailGroup}) => {
+const DetailGroupNav = ({onLogInUser,detailGroup,memberList,member}) => {
+  console.log(member)
   const [activeItem, setActiveItem] = useState("전체글");
 
   const handleItemClick = (e,{name}) => {
       setActiveItem(name);
+  }
+  const navAlert = () => {
+    member.confirm !== "true" && alert("권한이 없습니다.")
   }
 
   return (
@@ -19,10 +23,11 @@ const DetailGroupNav = ({onLogInUser,detailGroup}) => {
             onClick={handleItemClick}
             />
             <Menu.Item
-            as={Link} to={`/groupdetail/${detailGroup.id}/member`}
+            as={Link} to={member.confirm === "true" && `/groupdetail/${detailGroup.id}/member`}
             name="멤버"
             active={activeItem === "멤버"}
             onClick={handleItemClick}
+            onMouseDown={navAlert}
             />
             <Menu.Item
             name="사진첩"
@@ -37,17 +42,19 @@ const DetailGroupNav = ({onLogInUser,detailGroup}) => {
             <Menu.Menu position="right">
             {detailGroup.master === onLogInUser.accountId ?
               <Menu.Item
-                as={Link} to={`/groupdetail/${detailGroup.id}/masterSetting`} 
+                as={Link} to={member.confirm === "true" && `/groupdetail/${detailGroup.id}/masterSetting`} 
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={handleItemClick}
+                onMouseDown={navAlert}
               />
               : 
               <Menu.Item
-                as={Link} to={`/groupdetail/${detailGroup.id}/userSetting`} 
+                as={Link} to={member.confirm === "true" && `/groupdetail/${detailGroup.id}/userSetting`} 
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={handleItemClick}
+                onMouseDown={navAlert}
               />
             }
             
