@@ -39,13 +39,11 @@ export default class FollowStore {
 
    
     @action
-    async followCheck(followId) {
-    console.log("follweCheck");
-
-    const flag = await this.followRepository.followCheckFunction(followerId);
+    async followCheck(followerId) {
+    const followStateObj = await this.followRepository.followCheckFunction(followerId);
     
-    console.log("FLAG "+flag)
-    this.isFollowed=flag;
+    console.log("FLAG "+followStateObj.followState)
+    this.isFollowed=followStateObj.followState;
     }
 
   }
