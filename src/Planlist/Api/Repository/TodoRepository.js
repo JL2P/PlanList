@@ -39,6 +39,15 @@ export default class TodoRepository{
     todoDelete = (todoId)=>{
         return axios_auth_DELETE(this.URL+`/${todoId}/`,null)
     }
+
+    // todo 좋아요 
+    onLike = (todoId)=>{
+        return axios_auth_POST(this.URL+`/${todoId}/like`)
+    }
+    // todo 좋아요 취소
+    cancelLike = (todoId)=>{
+        return axios_auth_DELETE(this.URL+`/${todoId}/like`)
+    }
 }
 
 

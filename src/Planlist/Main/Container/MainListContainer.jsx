@@ -54,6 +54,15 @@ class MainPageContainer extends Component {
     todo.setComments(todoModel.comments);
   };
 
+  onLikeButton = (todoId, action) => {
+    const { todo } = this.props.Store;
+    if (action === "ADD") {
+      todo.addLike(todoId);
+    } else {
+      todo.removeLike(todoId);
+    }
+  };
+
   divisonToItemGroup = (data, n) => {
     const MainItemGroupList = [];
 
@@ -65,6 +74,7 @@ class MainPageContainer extends Component {
           todoModel={todoModel}
           onDeleteTodo={this.onDeleteTodo}
           selectedTodo={this.selectedTodo}
+          onLikeButton={this.onLikeButton}
         />
       ))
     );
