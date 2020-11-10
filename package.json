@@ -86,7 +86,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start:**",
     "start:client": "node scripts/start.js",
-    "start:server": "node src/Planlist/Chat/server/server.js",
+    "start:server": "node src/Planlist/Chat/server.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },

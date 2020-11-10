@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ProfileMangeContainer from "./container/ProfileMangeContainer";
 import ProfileTodoContainer from "./container/ProfileTodoContainer";
 import ProfileNonMemberView from "./view/ProfileNonMemberView";
+import ProfileNotFoundAccountView from "./view/ProfileNotFoundAccountView";
 
 @inject("Store")
 @observer
@@ -39,7 +40,7 @@ class ProfilePage extends Component {
         {!loginCheck && id === undefined ? (
           <ProfileNonMemberView selectUser={selectUser} />
         ) : selectUser.accountId === undefined ? (
-          <h1>{id} 회원님을 찾을 수 없습니다</h1>
+          <ProfileNotFoundAccountView id={id} />
         ) : (
           <div>
             <ProfileMangeContainer

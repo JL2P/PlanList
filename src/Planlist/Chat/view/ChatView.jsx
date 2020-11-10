@@ -1,5 +1,5 @@
 import React from "react";
-import "./ChatView.scss";
+import "./css/ChatView.css";
 const ChatView = () => {
   return (
     <div>
