@@ -38,13 +38,6 @@ export default class FollowRepository{
 
     //@GetMapping("/isfollow")
     followCheckFunction = (FollowId) => {
-       return axios_auth_POST(this.URL+`isfollow/${FollowId}`,{},{}).then(data=>{
-           console.log("------ AXIOS_AUTH_POST isfollow ------")
-           console.log(data);
-           return data;
-       });
+       return axios_auth_POST(this.URL+`isfollow/${FollowId}`,{},{});
     }
-
-
-    
 }

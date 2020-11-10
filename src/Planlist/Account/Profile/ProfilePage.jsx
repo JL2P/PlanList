@@ -21,7 +21,7 @@ class ProfilePage extends Component {
 
     //API를 가져오는 부분
 
-    follow.followCheck();
+    follow.followCheck(id);
   }
 
   render() {
