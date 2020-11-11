@@ -4,7 +4,9 @@ import { Segment, Card, Feed, Button } from "semantic-ui-react";
 const DetailGroupMember = ({
     group, 
     memberList,
-    onMemberApply
+    onMemberApply,
+    onMemberRemove,
+    member
   }) => {
   
   //그룹 가입 신청 List
@@ -34,7 +36,7 @@ const DetailGroupMember = ({
             })}>
                 확인
             </Button>
-            <Button size="tiny" basic color='red' style={{marginLeft:"0.5rem"}}>
+            <Button size="tiny" basic color='red' style={{marginLeft:"0.5rem"}} onClick={() => onMemberRemove(group.id,member.id)}>
                 취소
             </Button>
           </form>
@@ -43,8 +45,8 @@ const DetailGroupMember = ({
   ))
 
   //멤버 List
-  const membersList = memberList.map((member,index) => (
-      member.confirm === "true" ? (
+  const membersList = memberList.map((member_map,index) => (
+      member_map.confirm === "true" ? (
         <Feed.Event key ={index} style={{
           display:"flex", 
           alignItems:"center",
@@ -53,35 +55,39 @@ const DetailGroupMember = ({
         }}>
           <Feed.Label image="/posts/test_img_1.jpg" />
           <Feed.Content>
-            <Feed.Date content={member.accountId} style={{fontSize:"1.2rem"}}/>
+            <Feed.Date content={member_map.accountId} style={{fontSize:"1.2rem"}}/>
             <Feed.Summary>
               <small>그룹 가입일 :</small> 
             </Feed.Summary>
           </Feed.Content>
-          <div>
-            <Button size="tiny" basic color='red'>
-                그룹 강퇴
-            </Button>
-          </div>
+          {member.manager === "true" && member_map.manager === "false" &&
+            <div>
+              <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member.id)}>
+                  그룹 강퇴
+              </Button>
+            </div>}
         </Feed.Event>
       ) : ""
   ))
 
   return (
     <div>
-      <Segment>
-        <Card style={{width:"100%"}}>
-          <Card.Content>
-            <Card.Header style={{margin:"0", fontSize:"1.1rem"}}>그룹 가입 신청 List</Card.Header>
-          </Card.Content>
+      {member.manager === "true" &&
+        <Segment>
+          <Card style={{width:"100%"}}>
+            <Card.Content>
+              <Card.Header style={{margin:"0", fontSize:"1.1rem"}}>그룹 가입 신청 List</Card.Header>
+            </Card.Content>
 
-          <Card.Content style={{paddingTop:"0"}}>
-            <Feed>
-              {membersApply}
-            </Feed>
-          </Card.Content>
-        </Card>
-      </Segment>
+            <Card.Content style={{paddingTop:"0"}}>
+              <Feed>
+                {membersApply}
+              </Feed>
+            </Card.Content>
+          </Card>
+        </Segment>
+      }
+      
       <Segment>
         <Card style={{width:"100%"}}>
           <Card.Content>

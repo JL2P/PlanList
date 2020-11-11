@@ -36,7 +36,7 @@ const GroupProfilView = ({
             : memberDetail.accountId === onLogInUser.accountId && memberDetail.confirm === "false"  ?
                 (   
                     <>
-                        <Button inverted color='orange' onClick={() => onMemberRemove(memberDetail.id)}>그룹가입 신청 중입니다.</Button>
+                        <Button inverted color='orange' onClick={() => onMemberRemove(group.id,memberDetail.id)}>그룹가입 신청 중입니다.</Button>
                         <p><small>신청을 취소하시려면 Click</small></p>
                     </>
                 ) :

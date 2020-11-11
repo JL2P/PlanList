@@ -6,19 +6,29 @@ import { inject, observer } from "mobx-react";
 @observer
 class DetailProfileContainer extends Component {
 
+    //그룹 가입 신청
     onGroupJoin = (e,memberObj) => {
         console.log(memberObj)
         const { group } = this.props.Store;
-        group.confirm = false;
-        group.manager = false;
-        group.groupMember(memberObj)
+        var result = window.confirm("정말로 그룹에 가입하시겠습니까?");
+        if(result){
+            group.confirm = false;
+            group.manager = false;
+            group.groupMember(memberObj)
+            alert("그룹에 가입 신청 되셨습니다.")
+        }
     }
 
     //그룹 탈퇴
-    onMemberRemove = (memberId) => {
+    onMemberRemove = (groupId,memberId) => {
         const { group } = this.props.Store;
-        group.memberRemove(memberId)
-        console.log(memberId)
+        var result = window.confirm("정말로 그룹을 탈퇴하시겠습니까?")
+        if(result){
+            group.memberRemove(groupId,memberId);
+            alert("그룹에서 탈퇴하셨습니다.")
+            this.props.history.push(`/groupmenu/`);
+            
+        }
     }
 
     render() {

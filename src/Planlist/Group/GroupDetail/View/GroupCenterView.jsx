@@ -17,7 +17,10 @@ const GroupCenterView = ({
         onLogInUser,
         memberList,
         onMemberApply,
-        member
+        member,
+        onMemberRemove,
+        onMemberRemove_user,
+        members
     }) => {
 
     return (
@@ -46,6 +49,9 @@ const GroupCenterView = ({
                     group={group}
                     memberList={memberList}
                     onMemberApply={onMemberApply}
+                    onMemberRemove={onMemberRemove}
+                    members={members}
+                    member={member}
                 />} />
             <Route
                 path={`/groupdetail/${group.id}/masterSetting`} 
@@ -61,8 +67,10 @@ const GroupCenterView = ({
                 exact
                 render={() => <DetailGroupSettingU
                     group={group}
+                    member={member}
                     onSettingSave={onSettingSave}
                     onSettingRemove={onSettingRemove}
+                    onMemberRemove_user={onMemberRemove_user}
                 />}
             />
         </div>
