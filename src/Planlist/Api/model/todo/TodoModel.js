@@ -17,5 +17,6 @@ export default class TodoModel {
       (comment) => new CommentModel(comment)
     );
     this.created = todoObj.created;
+    this.modified = todoObj.modified;
   }
 }
