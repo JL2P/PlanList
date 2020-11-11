@@ -2,7 +2,7 @@ import React from "react";
 import { Segment, Card, Feed, Button } from "semantic-ui-react";
 
 const DetailGroupMember = ({
-    detailGroup, 
+    group, 
     memberList,
     onMemberApply
   }) => {

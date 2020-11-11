@@ -14,8 +14,8 @@ class GroupContainer extends Component {
     onCreateGroup = (e, createObj) => {
         e.preventDefault();
         const { group } = this.props.Store;
-        group.createGroup(createObj);
-        this.props.history.push(`/groupDetail/${group.getGroupId}/`);
+        group.createGroup(createObj).then(() => 
+        this.props.history.push(`/groupDetail/${group.getGroupId}/`));
     }
 
     //그룹 전체 리스트 조회
@@ -23,13 +23,6 @@ class GroupContainer extends Component {
         const { group } = this.props.Store;
         group.getApiGroups();
     }
-    
-    //그룹 전체 리스트 조회
-    // onAllGroups = () => {
-    //     const { group } = this.props.Store;
-    //     group.getApiGroups();
-    // }
-
 
     //그룹 디테일 조회
     onGroupDetail_page = (groupId) => {
@@ -54,7 +47,6 @@ class GroupContainer extends Component {
 
         const {
             getGroups,
-            getDetailGroup_open,
             getCategoryList,
         } = group
 

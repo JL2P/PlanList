@@ -22,8 +22,13 @@ class GroupCategoryContainer extends Component {
     render() {
         const location = this.props.location;
         const { group } = this.props.Store;
-        const {getCategoryList,getSelect_Group_categoryList} = group;
-        const getGroups = group.getGroups;
+        const {
+            getCategoryList,
+            getSelect_Group_categoryList,
+            getGroup,
+            getGroups
+        } = group;
+
         return (
             <Grid divided style={{marginLeft:"0",marginTop:"0"}}>
                 <Grid.Row style={{paddingTop:"0"}}>
@@ -40,6 +45,7 @@ class GroupCategoryContainer extends Component {
                         selectList={getSelect_Group_categoryList}
                         onAllGroups={this.onAllGroups}
                         location={location}
+                        group={group}
                     />
                 </Grid.Column>
                 </Grid.Row>

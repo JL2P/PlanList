@@ -10,7 +10,7 @@ const GroupAllView = ({
         getDetailGroup_modalOpen,
         onDetailGroup_modalCheck,
         onLogInUser,
-        detailGroup
+        group
     }) => {
         
     const [open, setOpen] = useState(false)
@@ -36,7 +36,7 @@ const GroupAllView = ({
             </Segment>
 
             <Segment>
-                {detailGroup.master === onLogInUser.accountId ? 
+                {group.master === onLogInUser.accountId ? 
                     <Modal
                         closeIcon
                         open={getDetailGroup_modalOpen}

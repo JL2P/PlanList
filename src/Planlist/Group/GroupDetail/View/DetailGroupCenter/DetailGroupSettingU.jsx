@@ -3,7 +3,7 @@ import { Segment, Form, Button, Input,} from "semantic-ui-react";
 
 const DetailGroupSettingU = ({
         onSettingSave,
-        detailGroup,
+        group,
         onSettingRemove
     }) => {
     

@@ -111,6 +111,7 @@ export default class GroupStore {
         this.getApiGroups()
         //생성시 해당 그룹으로 연결
         this.groupDetail_page(result.id)
+        console.log(result.id)
         //생성시 그룹 관리자 생성
         this.groupMember(newMember);
       }
@@ -120,9 +121,9 @@ export default class GroupStore {
       async groupDetail_page(groupId,accountId){
         console.log(accountId)
         const result = await this.groupRepository.groupDetail(groupId);
-        this.detailGroup_open = new GroupModel(result);
-        this.detailGroup_memberLength = this.detailGroup_open.members.length;
-        this.detailGroup_memberList = this.detailGroup_open.members;
+        this.group = new GroupModel(result);
+        this.detailGroup_memberLength = this.group.members.length;
+        this.detailGroup_memberList = this.group.members;
         console.log(this.detailGroup_memberList)
         let memberList = this.detailGroup_memberList.map(member => 
           (accountId === member.accountId && member)
@@ -165,5 +166,11 @@ export default class GroupStore {
       async memberApply(memberObj){
         const memberModel = new MemberModel(memberObj);
         await this.memberRepository.memberModify(memberModel);
+      }
+
+      //멤버 제거
+      @action
+      async memberRemove(groupId,memberId){
+
       }
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, Segment } from "semantic-ui-react";
 import {Link, withRouter, Route } from 'react-router-dom'
 
-const DetailGroupNav = ({onLogInUser,detailGroup,memberList,member}) => {
+const DetailGroupNav = ({onLogInUser,group,memberList,member}) => {
   console.log(member)
   const [activeItem, setActiveItem] = useState("전체글");
 
@@ -17,13 +17,13 @@ const DetailGroupNav = ({onLogInUser,detailGroup,memberList,member}) => {
     <div>
         <Menu pointing secondary>
             <Menu.Item
-            as={Link} to={`/groupdetail/${detailGroup.id}/`}
+            as={Link} to={`/groupdetail/${group.id}/`}
             name="전체글"
             active={activeItem === "전체글"}
             onClick={handleItemClick}
             />
             <Menu.Item
-            as={Link} to={member.confirm === "true" && `/groupdetail/${detailGroup.id}/member`}
+            as={Link} to={member.confirm === "true" && `/groupdetail/${group.id}/member`}
             name="멤버"
             active={activeItem === "멤버"}
             onClick={handleItemClick}
@@ -40,9 +40,9 @@ const DetailGroupNav = ({onLogInUser,detailGroup,memberList,member}) => {
             onClick={handleItemClick}
             />
             <Menu.Menu position="right">
-            {detailGroup.master === onLogInUser.accountId ?
+            {group.master === onLogInUser.accountId ?
               <Menu.Item
-                as={Link} to={member.confirm === "true" && `/groupdetail/${detailGroup.id}/masterSetting`} 
+                as={Link} to={member.confirm === "true" && `/groupdetail/${group.id}/masterSetting`} 
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={handleItemClick}
@@ -50,7 +50,7 @@ const DetailGroupNav = ({onLogInUser,detailGroup,memberList,member}) => {
               />
               : 
               <Menu.Item
-                as={Link} to={member.confirm === "true" && `/groupdetail/${detailGroup.id}/userSetting`} 
+                as={Link} to={member.confirm === "true" && `/groupdetail/${group.id}/userSetting`} 
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={handleItemClick}

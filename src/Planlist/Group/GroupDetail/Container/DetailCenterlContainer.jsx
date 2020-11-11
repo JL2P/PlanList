@@ -47,18 +47,17 @@ class DetailCenterlContainer extends Component {
         const {
             getMyTodo,
             getDetailGroup_modalOpen,
-            detailGroup_open,
+            getGroup,
             getDetailGroup_memberList,
             member
         } = group;
         const {loginAccount} = account;
 
-        console.log(detailGroup_open)
         return (
             <div>
                 <GroupCenterView 
                     sampleData={getMyTodo}
-                    detailGroup={detailGroup_open}
+                    group={getGroup}
                     getDetailGroup_modalOpen={getDetailGroup_modalOpen}
                     onDetailGroup_modalCheck={this.onDetailGroup_modalCheck}
                     onDetailGroup_create={this.onDetailGroup_create}

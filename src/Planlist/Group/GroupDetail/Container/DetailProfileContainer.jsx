@@ -14,12 +14,19 @@ class DetailProfileContainer extends Component {
         group.groupMember(memberObj)
     }
 
+    //그룹 탈퇴
+    onMemberRemove = (memberId) => {
+        const { group } = this.props.Store;
+        group.memberRemove(memberId)
+        console.log(memberId)
+    }
+
     render() {
         const { group } = this.props.Store;
         const { account } = this.props.Store;
 
         const {
-            getDetailGroup_open,
+            getGroup,
             detailGroup_memberLength,
             getGroups,
             getDetailGroup_memberList,
@@ -33,13 +40,14 @@ class DetailProfileContainer extends Component {
             <div>
                 <GroupProfileView 
                     groups={getGroups}
-                    detailGroup_open={getDetailGroup_open}
+                    group={getGroup}
                     onLogInUser={loginAccount}
                     detailGroup_memberLength={detailGroup_memberLength}
                     detailGroup_memberList ={getDetailGroup_memberList}
                     onGroupJoin={this.onGroupJoin}
                     memberConfirm={getConfirm}
                     memberManager={getManager}
+                    onMemberRemove={this.onMemberRemove}
                 />
             </div>
         );
