@@ -14,7 +14,7 @@ export default class MemberRepository{
     //member list 조회
     // GET / api/groups/
     memberList = () => {
-        return axios.get(this.URL,HEADER).then(request => request.data||[])
+        return axios.get(this.URL+ `member`,HEADER).then(request => request.data||[])
     }
     //member 조회
     // GET /api/groups/{groupId}/
@@ -36,7 +36,7 @@ export default class MemberRepository{
 
     //member 삭제
     // DELETE /api/groups/{groupId}
-    memberDelete = (memberId) => {
-        return axios.delete(this.URL+`${memberId}/`,HEADER).then(request=>request.data||null)
+    memberDelete = (groupId,memberId) => {
+        return axios.delete(this.URL+`${groupId}/member/${memberId}`,HEADER).then(request=>request.data||null)
     }   
 }
