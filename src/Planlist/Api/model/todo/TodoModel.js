@@ -12,6 +12,7 @@ export default class TodoModel{
         this.groupAt = todoObj.groupAt;
         this.likePoint = todoObj.likePoint;  
         this.likeState = todoObj.likeState;  
+        this.completed = todoObj.completed;
         this.comments = todoObj.comments.map(comment=>new CommentModel(comment));
     }
 }
