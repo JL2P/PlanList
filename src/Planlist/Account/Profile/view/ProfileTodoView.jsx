@@ -7,9 +7,11 @@ class ProfileTodoView extends Component {
   state = { activeItem: "해야 할 일" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
   render() {
     const { activeItem } = this.state;
     const { selectUser } = this.props;
+
     return (
       <Container style={{ width: "900px", marginTop: "2em" }}>
         <Menu pointing secondary>

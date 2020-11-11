@@ -1,7 +1,12 @@
 import React from "react";
 import { Card, Divider } from "semantic-ui-react";
 import ProfileTodoCardView from "./ProfileTodoCardView";
-const ProfileTodoFromNowListView = ({ fromNow_list, fromNow_date }) => {
+const ProfileTodoFromNowListView = ({
+  fromNow_list,
+  fromNow_date,
+  selectedTodo,
+  onLikeButton,
+}) => {
   return (
     <div>
       {fromNow_list.map((date, index) => (
@@ -9,7 +14,12 @@ const ProfileTodoFromNowListView = ({ fromNow_list, fromNow_date }) => {
           <p>{fromNow_date[index]}</p>
           <Card.Group>
             {date.map((item, index) => (
-              <ProfileTodoCardView todo={item} key={index} />
+              <ProfileTodoCardView
+                key={index}
+                todo={item}
+                selectedTodo={selectedTodo}
+                onLikeButton={onLikeButton}
+              />
             ))}
           </Card.Group>
           <Divider></Divider>
