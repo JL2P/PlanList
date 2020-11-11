@@ -11,25 +11,28 @@ const GroupCenterView = ({
         onDetailGroup_create,
         getDetailGroup_modalOpen,
         onDetailGroup_modalCheck,
-        detailGroup,
+        group,
         onSettingSave,
         onSettingRemove,
         onLogInUser,
         memberList,
         onMemberApply,
-        member
+        member,
+        onMemberRemove,
+        onMemberRemove_user,
+        members
     }) => {
 
     return (
         <div>
             <DetailGroupNav 
                 onLogInUser={onLogInUser}
-                detailGroup={detailGroup}
+                group={group}
                 memberList={memberList}
                 member={member}
             />
             <Route 
-                path={`/groupdetail/${detailGroup.id}/`} 
+                path={`/groupdetail/${group.id}/`} 
                 exact 
                 render={() => <DetailGroupAll
                      sampleData={sampleData}
@@ -37,32 +40,37 @@ const GroupCenterView = ({
                      getDetailGroup_modalOpen={getDetailGroup_modalOpen}
                      onDetailGroup_modalCheck={onDetailGroup_modalCheck}
                      onLogInUser={onLogInUser}
-                     detailGroup={detailGroup}
+                     group={group}
                 /> } />
             <Route 
-                path={`/groupdetail/${detailGroup.id}/member`} 
+                path={`/groupdetail/${group.id}/member`} 
                 exact 
                 render={() => <DetailGroupMember
-                    detailGroup={detailGroup}
+                    group={group}
                     memberList={memberList}
                     onMemberApply={onMemberApply}
+                    onMemberRemove={onMemberRemove}
+                    members={members}
+                    member={member}
                 />} />
             <Route
-                path={`/groupdetail/${detailGroup.id}/masterSetting`} 
+                path={`/groupdetail/${group.id}/masterSetting`} 
                 exact
                 render={() => <DetailGroupSettingM
-                    detailGroup={detailGroup}
+                    group={group}
                     onSettingSave={onSettingSave}
                     onSettingRemove={onSettingRemove}
                 />}
             />
             <Route
-                path={`/groupdetail/${detailGroup.id}/userSetting`} 
+                path={`/groupdetail/${group.id}/userSetting`} 
                 exact
                 render={() => <DetailGroupSettingU
-                    detailGroup={detailGroup}
+                    group={group}
+                    member={member}
                     onSettingSave={onSettingSave}
                     onSettingRemove={onSettingRemove}
+                    onMemberRemove_user={onMemberRemove_user}
                 />}
             />
         </div>

@@ -2,16 +2,15 @@ import React,{useState} from 'react';
 import { Segment, Form, Button, Input,} from "semantic-ui-react";
 
 const DetailGroupSettingU = ({
-        onSettingSave,
-        detailGroup,
-        onSettingRemove
+        group,
+        member,
+        onMemberRemove_user
     }) => {
-    
     return (
         <div>
             <Segment>
                 <Form >
-                    <Button inverted color='red'>그룹 탈퇴</Button>
+                    <Button inverted color='red' onClick={() => onMemberRemove_user(group.id,member.id)}>그룹 탈퇴</Button>
                 </Form>
             </Segment>
         </div>

@@ -37,7 +37,32 @@ class DetailCenterlContainer extends Component {
         e.preventDefault();
         console.log(memberObj)
         const { group } = this.props.Store;
-        group.memberApply(memberObj);
+        var result = window.confirm("가입 신청을 허용하시겠습니까?")
+        if(result){
+            group.memberApply(memberObj);
+            // this.props.history.push(`/groupdetail/${memberObj.groupId}/member`);
+            alert("사용자가 그룹원이 되었습니다.")
+        }
+    }
+    //그룹 가입신청 취소 & 강퇴
+    onMemberRemove = (groupId,memberId) => {
+        const { group } = this.props.Store;
+        var result = window.confirm("해당 사용자를 그룹에서 강퇴하시겠습니까?")
+        if(result){
+            group.memberRemove(groupId,memberId);
+            // this.props.history.push(`/groupdetail/${groupId}/member`);
+            alert("사용자를 그룹에서 강퇴퇴하셨습니다.")
+        }
+    }
+    //사용자 그룹 탈퇴
+    onMemberRemove_user = (groupId,memberId) => {
+        const { group } = this.props.Store;
+        var result = window.confirm("그룹에서 탈퇴하시겠습니까?")
+        if(result){
+            group.memberRemove(groupId,memberId);
+            this.props.history.push(`/groupmenu`);
+            alert("그룹에서 탈퇴하셨습니다.")
+        }
     }
     
 
@@ -47,18 +72,17 @@ class DetailCenterlContainer extends Component {
         const {
             getMyTodo,
             getDetailGroup_modalOpen,
-            detailGroup_open,
+            getGroup,
             getDetailGroup_memberList,
-            member
+            getMember
         } = group;
         const {loginAccount} = account;
 
-        console.log(detailGroup_open)
         return (
             <div>
                 <GroupCenterView 
                     sampleData={getMyTodo}
-                    detailGroup={detailGroup_open}
+                    group={getGroup}
                     getDetailGroup_modalOpen={getDetailGroup_modalOpen}
                     onDetailGroup_modalCheck={this.onDetailGroup_modalCheck}
                     onDetailGroup_create={this.onDetailGroup_create}
@@ -67,7 +91,9 @@ class DetailCenterlContainer extends Component {
                     onLogInUser={loginAccount}
                     memberList={getDetailGroup_memberList}
                     onMemberApply={this.onMemberApply}
-                    member={member}
+                    member={getMember}
+                    onMemberRemove={this.onMemberRemove}
+                    onMemberRemove_user={this.onMemberRemove_user}
                 />
             </div>
         );

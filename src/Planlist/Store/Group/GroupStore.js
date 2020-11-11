@@ -35,9 +35,10 @@ export default class GroupStore {
       @observable categoryList = CategoryList_Data;
       @observable select_Group_categoryList = this.categoryList[0];
       @observable detailGroup_modalOpen = false;
-      @observable detailGroup_open ={};  //그룹 디테일에 해당되는 객체
+      //그룹 디테일에 해당되는 내용
       @observable detailGroup_memberLength = 0; 
       @observable detailGroup_memberList = [{}];
+      @observable myGroups = [];
 
       @observable member = {};
       @observable members = [];
@@ -50,9 +51,9 @@ export default class GroupStore {
       @computed get getDetailGroup_modalOpen(){return this.detailGroup_modalOpen}
       @computed get getCategoryList(){return this.categoryList}
       @computed get getSelect_Group_categoryList(){return this.select_Group_categoryList};
-      @computed get getDetailGroup_open(){return this.detailGroup_open;}
       @computed get getDetailGroup_memberLength(){return this.detailGroup_memberLength;}
       @computed get getDetailGroup_memberList(){return this.detailGroup_memberList;}
+      @computed get getMyGroups(){return this.myGroups;}
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
@@ -87,6 +88,9 @@ export default class GroupStore {
         const apiGetGroups = await this.groupRepository.groupList();
         this.groups = apiGetGroups.map(group => new GroupModel(group))
         console.log(this.groups);
+
+        //로컬스토리지에 내 그룹 저장 // object를 저장하는 방법
+        localStorage.setItem('myGroups', JSON.stringify(this.myGroups));
       }
 
       //그룹 생성
@@ -111,6 +115,7 @@ export default class GroupStore {
         this.getApiGroups()
         //생성시 해당 그룹으로 연결
         this.groupDetail_page(result.id)
+        console.log(result.id)
         //생성시 그룹 관리자 생성
         this.groupMember(newMember);
       }
@@ -120,9 +125,9 @@ export default class GroupStore {
       async groupDetail_page(groupId,accountId){
         console.log(accountId)
         const result = await this.groupRepository.groupDetail(groupId);
-        this.detailGroup_open = new GroupModel(result);
-        this.detailGroup_memberLength = this.detailGroup_open.members.length;
-        this.detailGroup_memberList = this.detailGroup_open.members;
+        this.group = new GroupModel(result);
+        this.detailGroup_memberLength = this.group.members.length;
+        this.detailGroup_memberList = this.group.members;
         console.log(this.detailGroup_memberList)
         let memberList = this.detailGroup_memberList.map(member => 
           (accountId === member.accountId && member)
@@ -150,6 +155,13 @@ export default class GroupStore {
         await this.groupRepository.groupDelete(groupId)
       }
 
+      //내 그룹을 로컬스토리지에서 호출
+      @action
+      myGroups_array(myGroups){
+        console.log(myGroups)
+        this.myGroups = myGroups;
+      }
+
       /*****************************************멤버 관련*********************************************/
       //그룹원 생성
       @action
@@ -165,5 +177,20 @@ export default class GroupStore {
       async memberApply(memberObj){
         const memberModel = new MemberModel(memberObj);
         await this.memberRepository.memberModify(memberModel);
+      }
+
+      //멤버 제거
+      @action
+      async memberRemove(groupId,memberId){
+        const result = await this.memberRepository.memberDelete(groupId,memberId);
+        console.log(result);
+      }
+
+      //멤버 전체 리스트
+      @action
+      async memberListAll(){
+        console.log("멤버 전체 리스트 출력")
+        const memberList = await this.memberRepository.memberList();
+        this.members = memberList.map(member => new MemberModel(member))
       }
 }
