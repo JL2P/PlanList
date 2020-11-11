@@ -43,6 +43,7 @@ class ProfileTodoContainer extends Component {
           // todo 페이지를 보여줌
           <ProfileTodoView
             selectUser={selectUser}
+            loginAccount={loginAccount}
             selectedTodo={this.selectedTodo}
             onLikeButton={this.onLikeButton}
           />

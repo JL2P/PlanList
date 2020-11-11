@@ -48,7 +48,7 @@ class ProfileTodoView extends Component {
 
   render() {
     const { activeItem } = this.state;
-    const { selectUser, selectedTodo, onLikeButton } = this.props;
+    const { selectUser, loginAccount, selectedTodo, onLikeButton } = this.props;
     const { open, todoTitle } = this.state;
 
     return (
@@ -83,13 +83,17 @@ class ProfileTodoView extends Component {
               active={activeItem === "Completed"}
               onClick={this.handleItemClick}
             />
-            <Menu.Menu position="right">
-              <Menu.Item
-                icon="pencil"
-                name="할 일 작성"
-                onClick={() => this.onModal(true)}
-              />
-            </Menu.Menu>
+            {selectUser === loginAccount ? (
+              <Menu.Menu position="right">
+                <Menu.Item
+                  icon="pencil"
+                  name="할 일 작성"
+                  onClick={() => this.onModal(true)}
+                />
+              </Menu.Menu>
+            ) : (
+              ""
+            )}
           </Menu>
 
           <div>
