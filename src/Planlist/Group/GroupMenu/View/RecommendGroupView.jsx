@@ -10,7 +10,6 @@ const RecommendGroupView = ({
         onCategoryDefault,
         categoryList
     }) => {
-        console.log(categoryList)
 
     // useEffect(() => {
     //     onAllGroups();
