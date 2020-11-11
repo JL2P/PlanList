@@ -18,10 +18,11 @@ class GroupContainer extends Component {
         this.props.history.push(`/groupDetail/${group.getGroupId}/`));
     }
 
-    //그룹 전체 리스트 조회
+    //그룹 전체 리스트 조회, 멤버 전체 리스트 조회
     componentDidMount(){
         const { group } = this.props.Store;
         group.getApiGroups();
+        group.memberListAll();
     }
 
     //그룹 디테일 조회
@@ -40,6 +41,11 @@ class GroupContainer extends Component {
         const { group } = this.props.Store;
         group.select_Group_categoryList = categoryList;
     }
+    //로드시 myGroup 데이터 받아오기
+    onMyGroups = (myGroups) => {
+        const { group } = this.props.Store;
+        group.myGroups_array(myGroups);
+    }
 
     render() {
         const { group } = this.props.Store;
@@ -48,8 +54,8 @@ class GroupContainer extends Component {
         const {
             getGroups,
             getCategoryList,
+            getMembers,
         } = group
-
         const {loginAccount} = account;
         return (
             <div>
@@ -60,6 +66,8 @@ class GroupContainer extends Component {
                     onCreateGroup={this.onCreateGroup}
                     onCategoryDefault={this.onCategoryDefault}
                     onLogInUser={loginAccount}
+                    members={getMembers}
+                    onMyGroups={this.onMyGroups}
                 />
                 
                 <BestGroupView 
