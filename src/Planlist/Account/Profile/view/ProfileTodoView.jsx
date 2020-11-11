@@ -48,7 +48,7 @@ class ProfileTodoView extends Component {
 
   render() {
     const { activeItem } = this.state;
-    const { selectUser } = this.props;
+    const { selectUser, selectedTodo, onLikeButton } = this.props;
     const { open, todoTitle } = this.state;
 
     return (
@@ -94,10 +94,18 @@ class ProfileTodoView extends Component {
 
           <div>
             {activeItem === "해야 할 일" && (
-              <ProfileTodoFromNowListContainer selectUser={selectUser} />
+              <ProfileTodoFromNowListContainer
+                selectUser={selectUser}
+                selectedTodo={selectedTodo}
+                onLikeButton={onLikeButton}
+              />
             )}
             {activeItem === "지난 할 일" && (
-              <ProfileTodoPastListContainer selectUser={selectUser} />
+              <ProfileTodoPastListContainer
+                selectUser={selectUser}
+                selectedTodo={selectedTodo}
+                onLikeButton={onLikeButton}
+              />
             )}
             {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
             {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}

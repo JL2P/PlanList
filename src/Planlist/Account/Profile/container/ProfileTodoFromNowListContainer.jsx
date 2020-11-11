@@ -8,29 +8,10 @@ import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 @inject("Store")
 @observer
 class ProfileTodoFromNowListContainer extends Component {
-  // componentDidMount() {
-  //   this.props.Store.todo.getApiTodos();
-  // }
-
-  selectedTodo = (todoModel) => {
-    const { todo } = this.props.Store;
-    todo.setTodo(todoModel);
-    todo.setComments(todoModel.comments);
-  };
-
-  onLikeButton = (todoId, action) => {
-    const { todo } = this.props.Store;
-    if (action === "ADD") {
-      todo.addLike(todoId);
-    } else {
-      todo.removeLike(todoId);
-    }
-  };
-
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
-    const { selectUser } = this.props;
+    const { selectUser, selectedTodo, onLikeButton } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
     const todos = todo.getTodos;
@@ -75,8 +56,8 @@ class ProfileTodoFromNowListContainer extends Component {
           <ProfileTodoFromNowListView
             fromNow_list={fromNow_list}
             fromNow_date={fromNow_date}
-            selectedTodo={this.selectedTodo}
-            onLikeButton={this.onLikeButton}
+            selectedTodo={selectedTodo}
+            onLikeButton={onLikeButton}
           />
         )}
       </div>

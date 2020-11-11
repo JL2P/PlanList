@@ -22,7 +22,8 @@ const ProfileTodoFromNowListView = ({
               />
             ))}
           </Card.Group>
-          <Divider></Divider>
+
+          <Divider style={{ marginTop: "30px" }} />
         </div>
       ))}
     </div>
