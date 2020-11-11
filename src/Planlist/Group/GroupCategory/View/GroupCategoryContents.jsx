@@ -3,16 +3,38 @@ import { Card, Image, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "../../GroupStyle/Group.scss";
 
-const GroupCategoryContents = ({groups,
+const GroupCategoryContents = ({
+        groups,
         selectList, 
         onAllGroups,
         location,
-        onGroupDetail_page
+        onGroupDetail_page,
+        myGroups
     }) => {
+
     //추후 전체보기 구현에 사용
     useEffect(() => {
         onAllGroups();
       },[]);
+
+    const myGroupItem = myGroups.map((item,index) => (
+        //내 그룹 조회
+        <div key={index}>
+            <Grid.Column  className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
+                <Link  to={`/groupdetail/${item.id}/`}>
+                    <Card className="group_card" raised>
+                    <Image src={item.imgUrl} className="Group_img" />
+                    <Card.Content>
+                        <Card.Header className="group_Card_header">
+                        {item.title}
+                        </Card.Header>
+                        <Card.Description>member : {item.members.length} 명</Card.Description>
+                    </Card.Content>
+                    </Card>
+                </Link>
+            </Grid.Column>
+        </div>
+    ))
 
     const GroupCategoryitem = groups.map((item, index) => (
 
@@ -27,12 +49,27 @@ const GroupCategoryContents = ({groups,
                             <Card.Header className="group_Card_header">
                             {item.title}
                             </Card.Header>
-                            <Card.Description>member : {item.rating}</Card.Description>
+                            <Card.Description>member : {item.members.length} 명</Card.Description>
                         </Card.Content>
                         </Card>
                     </Link>
                 </Grid.Column>
 
+            ) : `/groupcategory/bestGroup` == location.pathname ? (
+                // 인기 그룹 조회
+                <Grid.Column  className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
+                    <Link  to={`/groupdetail/${item.id}/`}>
+                        <Card className="group_card" raised>
+                        <Image src={item.imgUrl} className="Group_img" />
+                        <Card.Content>
+                            <Card.Header className="group_Card_header">
+                            {item.title}
+                            </Card.Header>
+                            <Card.Description>member : {item.members.length} 명</Card.Description>
+                        </Card.Content>
+                        </Card>
+                    </Link>
+                </Grid.Column>
             ) : `/groupcategory/${item.category}` == location.pathname ? (
                 // 카테고리별로 조회
                 <Grid.Column  className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
@@ -43,12 +80,13 @@ const GroupCategoryContents = ({groups,
                             <Card.Header className="group_Card_header">
                             {item.title}
                             </Card.Header>
-                            <Card.Description>member : {item.rating}</Card.Description>
+                            <Card.Description>member : {item.members.length} 명</Card.Description>
                         </Card.Content>
                         </Card>
                     </Link>
                 </Grid.Column>
             ) : ""
+            
             
             }
         </div>
@@ -59,6 +97,7 @@ const GroupCategoryContents = ({groups,
             <h2 style={{marginBottom:"2rem"}}>{selectList.text}</h2>
             <Grid columns={4} divided>
                 <Grid.Row>
+                    {`/groupcategory/myGroup` == location.pathname && myGroupItem}
                     {GroupCategoryitem}
                 </Grid.Row>
             </Grid>

@@ -31,7 +31,8 @@ class GroupCategoryContainer extends Component {
         const {
             getCategoryList,
             getSelect_Group_categoryList,
-            getGroups
+            getGroups,
+            getMyGroups
         } = group;
 
         return (
@@ -51,6 +52,7 @@ class GroupCategoryContainer extends Component {
                         onAllGroups={this.onAllGroups}
                         location={location}
                         onGroupDetail_page={this.onGroupDetail_page}
+                        myGroups={getMyGroups}
                     />
                 </Grid.Column>
                 </Grid.Row>
