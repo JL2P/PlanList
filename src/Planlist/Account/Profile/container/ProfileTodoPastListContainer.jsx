@@ -53,6 +53,7 @@ class ProfileTodoPastListContainer extends Component {
             past_date={past_date}
             selectedTodo={selectedTodo}
             onLikeButton={onLikeButton}
+            today={todo.getToday}
           />
         )}
       </div>

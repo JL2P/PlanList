@@ -56,6 +56,7 @@ class ProfileTodoView extends Component {
       onLikeButton,
     } = this.props;
     const { open, todoTitle } = this.state;
+    const today = this.props.Store.todo.getToday;
 
     return (
       <div>
@@ -65,6 +66,7 @@ class ProfileTodoView extends Component {
           title={todoTitle}
           onChangeTitle={this.changeTodoTitle}
           createTodo={this.createTodo}
+          today={today}
         />
 
         <Container style={{ width: "900px", marginTop: "2em" }}>

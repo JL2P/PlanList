@@ -51,6 +51,7 @@ class MainTodoCreateDesktopContainer extends Component {
 
   render() {
     const { open, todoTitle } = this.state;
+    const today = this.props.Store.todo.getToday;
 
     return (
       <div style={{ background: "#1b1c1d" }}>
@@ -60,6 +61,7 @@ class MainTodoCreateDesktopContainer extends Component {
           title={todoTitle}
           onChangeTitle={this.changeTodoTitle}
           createTodo={this.createTodo}
+          today={today}
         />
         <MainCreateTodoDesktopView
           title={todoTitle}

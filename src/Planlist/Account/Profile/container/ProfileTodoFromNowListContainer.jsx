@@ -59,6 +59,7 @@ class ProfileTodoFromNowListContainer extends Component {
             fromNow_date={fromNow_date}
             selectedTodo={selectedTodo}
             onLikeButton={onLikeButton}
+            today={todo.getToday}
           />
         )}
       </div>

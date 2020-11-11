@@ -97,13 +97,17 @@ const ProfileTodoCardView = ({ todo, selectedTodo, onLikeButton }) => {
           <Icon name="clock outline" />
 
           <Button basic size="mini">
-            시작{" "}
+            시작&nbsp;
             {todo.created
               ? todo.created.substring(0, 10)
               : todo.modified.substring(0, 10)}
           </Button>
-          <Button basic size="mini" color="yellow">
-            종료 {todo.endTime}
+          <Button size="mini" animated="vertical" color="yellow" basic>
+            <Button.Content hidden>
+              <Icon name="check" />
+              완료하기
+            </Button.Content>
+            <Button.Content visible>종료&nbsp;{todo.endTime}</Button.Content>
           </Button>
         </Card.Content>
       </Card>
