@@ -18,6 +18,12 @@ class GroupCategoryContainer extends Component {
         const { group } = this.props.Store;
         group.getApiGroups();
     }
+    //그룹 디테일 조회
+    onGroupDetail_page = (groupId) => {
+        const { group } = this.props.Store;
+        const { account } = this.props.Store;
+        group.groupDetail_page(groupId,account.loginAccount.accountId);
+    }
 
     render() {
         const location = this.props.location;
@@ -25,7 +31,6 @@ class GroupCategoryContainer extends Component {
         const {
             getCategoryList,
             getSelect_Group_categoryList,
-            getGroup,
             getGroups
         } = group;
 
@@ -41,11 +46,11 @@ class GroupCategoryContainer extends Component {
                 </Grid.Column>
                 <Grid.Column  width={13} style={{padding:"2rem 3rem"}}>
                     <GroupCategoryContents 
-                        GroupsData={getGroups}
+                        groups={getGroups}
                         selectList={getSelect_Group_categoryList}
                         onAllGroups={this.onAllGroups}
                         location={location}
-                        group={group}
+                        onGroupDetail_page={this.onGroupDetail_page}
                     />
                 </Grid.Column>
                 </Grid.Row>

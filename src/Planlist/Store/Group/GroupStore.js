@@ -35,7 +35,7 @@ export default class GroupStore {
       @observable categoryList = CategoryList_Data;
       @observable select_Group_categoryList = this.categoryList[0];
       @observable detailGroup_modalOpen = false;
-      @observable detailGroup_open ={};  //그룹 디테일에 해당되는 객체
+      //그룹 디테일에 해당되는 내용
       @observable detailGroup_memberLength = 0; 
       @observable detailGroup_memberList = [{}];
 
@@ -50,7 +50,6 @@ export default class GroupStore {
       @computed get getDetailGroup_modalOpen(){return this.detailGroup_modalOpen}
       @computed get getCategoryList(){return this.categoryList}
       @computed get getSelect_Group_categoryList(){return this.select_Group_categoryList};
-      @computed get getDetailGroup_open(){return this.detailGroup_open;}
       @computed get getDetailGroup_memberLength(){return this.detailGroup_memberLength;}
       @computed get getDetailGroup_memberList(){return this.detailGroup_memberList;}
 

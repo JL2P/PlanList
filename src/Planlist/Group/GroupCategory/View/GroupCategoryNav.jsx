@@ -22,7 +22,7 @@ const GroupCategoryNav = ({
             active={activeItem === item.text}
             onClick={handleItemClick}
             onMouseUp={() => onCategoryList_select(item)}
-            to={item.value === 'all' ? '/groupcategory' : `/groupcategory/${item.value}`}
+            to={item.value === 'all' ? '/groupcategory/' : `/groupcategory/${item.value}`}
         />
     ))
   return (
