@@ -97,7 +97,7 @@ const ProfileTodoCardView = ({ todo, selectedTodo, onLikeButton }) => {
           <Icon name="clock outline" />
 
           <Button basic size="mini">
-            시작 {todo.startTime ? todo.startTime : "0000-00-00"}
+            시작 {startTime ? startTime.substring(0, 10) : "0000-00-00"}
           </Button>
           <Button basic size="mini" color="yellow">
             종료 {todo.endTime}

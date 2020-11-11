@@ -1,6 +1,5 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import ProfileMangeContainer from "./container/ProfileMangeContainer";
 import ProfileTodoContainer from "./container/ProfileTodoContainer";
 import ProfileNonMemberView from "./view/ProfileNonMemberView";
@@ -14,7 +13,7 @@ class ProfilePage extends Component {
     const { account, todo, follow } = this.props.Store;
     console.log(">>", this.props.match);
     const id = this.props.match.params.id;
-    
+
     account.selectUser(id); // url의 id와 일치하는 계정을 선택
     account.selectAll();
 
@@ -41,13 +40,7 @@ class ProfilePage extends Component {
     console.log("로그인 아이디 : ", account.getLoginAccount.accountId);
     console.log("selectUser", selectUser.accountId);
     console.log("로그인", todo.getLoginTodos.length);
-    console.log(
-      "todo는 몇개 ? ",
-      id,
-      todo.getLoginTodos.length,
-      todo.getSelectTodos.length,
-      selectUserTodos.length
-    );
+    console.log(">>", selectUserTodos[0]);
 
     return (
       <div>

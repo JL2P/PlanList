@@ -85,6 +85,7 @@ export default class TodoStore {
 
   @computed get getToday() {
     const today_date = new Date(); // 현재 날짜 받아오기
+    console.log("오늘은?", today_date);
     const year = today_date.getFullYear();
     const month = (today_date.getMonth() + 1).toString().padStart(2, "0"); // 1월 : 0
     const date = today_date.getDate().toString().padStart(2, "0"); // 날짜
