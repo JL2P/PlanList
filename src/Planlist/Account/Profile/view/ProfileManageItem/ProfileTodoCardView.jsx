@@ -56,35 +56,54 @@ const ProfileTodoCardView = ({ todo, selectedTodo, onLikeButton }) => {
         onCofigModal={onCofigModal}
         onLikeButton={onLikeButton}
       /> */}
-      <div>
-        <Card
+      <Card
         onClick={() => onInfoModal(true)}
-        >
-          <Image
-            className="ProfileTodoCard__image"
-            src={todo.imgUrl}
-            wrapped
-            ui={false}
-          />
-          <Card.Content>
-            <Card.Header>{todo.title}</Card.Header>
-            <Card.Description>{todo.description}</Card.Description>
-            {/* <Card.Meta>
+        style={{
+          marginTop: "10px",
+          marginLeft: "10px",
+          height: "300px",
+        }}
+      >
+        <Image
+          className="ProfileTodoCard__image"
+          src={todo.imgUrl}
+          wrapped
+          ui={false}
+        />
+        <Card.Content>
+          <Card.Header
+            style={{
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {todo.title}
+          </Card.Header>
+          <Card.Description
+            style={{
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {todo.description}
+          </Card.Description>
+          {/* <Card.Meta>
           <span className="date">Joined in 2015</span>
         </Card.Meta> */}
-          </Card.Content>
-          <Card.Content extra>
-            <Icon name="clock outline" />
+        </Card.Content>
+        <Card.Content extra>
+          <Icon name="clock outline" />
 
-            <Button basic size="mini">
-              시작 {todo.startTime ? todo.startTime : "0000-00-00"}
-            </Button>
-            <Button basic size="mini" color="yellow">
-              종료 {todo.endTime}
-            </Button>
-          </Card.Content>
-        </Card>
-      </div>
+          <Button basic size="mini">
+            시작 {todo.startTime ? todo.startTime : "0000-00-00"}
+          </Button>
+          <Button basic size="mini" color="yellow">
+            종료 {todo.endTime}
+          </Button>
+        </Card.Content>
+      </Card>
     </div>
   );
 };
