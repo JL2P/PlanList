@@ -11,10 +11,11 @@ class ProfileTodoFromNowListContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
-    const { selectUser, selectedTodo, onLikeButton } = this.props;
+    const { selectUser, selectedTodo, onLikeButton, todos } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
-    const todos = todo.getTodos;
+    // const todos = todo.getTodos;
+    // const todos = todo.getAllTodos;
     const today = todo.getToday;
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬

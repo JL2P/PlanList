@@ -48,7 +48,13 @@ class ProfileTodoView extends Component {
 
   render() {
     const { activeItem } = this.state;
-    const { selectUser, loginAccount, selectedTodo, onLikeButton } = this.props;
+    const {
+      selectUser,
+      loginAccount,
+      selectedTodo,
+      selectUserTodos,
+      onLikeButton,
+    } = this.props;
     const { open, todoTitle } = this.state;
 
     return (
@@ -102,6 +108,7 @@ class ProfileTodoView extends Component {
                 selectUser={selectUser}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
+                todos={selectUserTodos}
               />
             )}
             {activeItem === "지난 할 일" && (
@@ -109,6 +116,7 @@ class ProfileTodoView extends Component {
                 selectUser={selectUser}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
+                todos={selectUserTodos}
               />
             )}
             {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}

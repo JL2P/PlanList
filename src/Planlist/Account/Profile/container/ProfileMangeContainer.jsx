@@ -35,14 +35,12 @@ class ProfileMangeContainer extends Component {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
     const { account, todo, follow } = this.props.Store;
-    const { selectUser, loginAccount } = this.props;
-    const todos = todo.getTodos;
+    const { selectUser, loginAccount, selectUserTodos } = this.props;
     const today = todo.getToday;
     // 해야 할 일 개수 count
-    const count = todos.filter(
-      (item) => item.writer === selectUser.accountId && item.endTime >= today
-    ).length;
-
+    const count = selectUserTodos.filter((item) => item.endTime >= today)
+      .length;
+    console.log("count >> ", count, selectUserTodos.length);
     const isFollowed = follow.getIsFollowed;
 
     return (
@@ -56,6 +54,7 @@ class ProfileMangeContainer extends Component {
           onSetAccountProp={this.onSetAccountProp}
           loginCheck={account.getLogCheck}
           todo_count={count}
+          selectUserTodos={selectUserTodos}
           onFollow={this.onFollow}
           isFollowed={isFollowed}
         />
