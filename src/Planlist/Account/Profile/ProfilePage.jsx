@@ -15,7 +15,7 @@ class ProfilePage extends Component {
     console.log(">>", this.props.match);
     const id = this.props.match.params.id;
 
-    account.selectUser(id);
+    account.selectUser(id); // url의 id와 일치하는 계정을 선택
 
     account.selectAll();
     todo.getApiTodos();
@@ -27,21 +27,23 @@ class ProfilePage extends Component {
 
   render() {
     const { account } = this.props.Store;
-    const loginCheck = account.getLogCheck;
-    const id = this.props.match.params.id;
-    const selectUser =
+    const loginCheck = account.getLogCheck; // true/false
+    const id = this.props.match.params.id; // url의 id
+    const selectUser = // url의 id와 일치하는 계정 선택, undefined면 로그인된 계정 선택
       id === undefined ? account.getLoginAccount : account.getAccount;
     console.log("확인");
     console.log("아이디 : ", account.getAccount.accountId);
     console.log("로그인 아이디 : ", account.getLoginAccount.accountId);
     console.log("selectUser", selectUser.accountId);
+
     return (
       <div>
         {!loginCheck && id === undefined ? (
           <ProfileNonMemberView selectUser={selectUser} />
-        ) : selectUser.accountId === undefined ? (
+        ) : selectUser.accountId === undefined ? ( // url에 해당하는 계정이 없으면, 해당 계정이 없다는 페이지 보여줌
           <ProfileNotFoundAccountView id={id} />
         ) : (
+          // url의 id와 일치하는 계정 페이지 보여줌
           <div>
             <ProfileMangeContainer
               selectUser={selectUser}

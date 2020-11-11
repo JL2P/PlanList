@@ -33,12 +33,14 @@ class ProfileTodoContainer extends Component {
     const openAt = selectUser.openAt;
     const loginCheck = account.getLogCheck;
     const loginAccount = account.getLoginAccount;
-
+    console.log("팔로우", follow.getIsFollowed);
     return (
       <div>
-        {openAt === "Y" ||
-        (loginCheck === true && // 공개 계정이거나 로그인한 사용자 본인의 페이지인 경우, todo 페이지를 보여줌
+        {openAt === "Y" || // 공개 계정이거나
+        follow.getIsFollowed === true || // 팔로잉 계정이거나
+        (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
           loginAccount.accountId === selectUser.accountId) ? (
+          // todo 페이지를 보여줌
           <ProfileTodoView
             selectUser={selectUser}
             selectedTodo={this.selectedTodo}
