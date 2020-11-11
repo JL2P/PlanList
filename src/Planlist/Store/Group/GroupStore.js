@@ -38,6 +38,7 @@ export default class GroupStore {
       //그룹 디테일에 해당되는 내용
       @observable detailGroup_memberLength = 0; 
       @observable detailGroup_memberList = [{}];
+      @observable myGroups = [];
 
       @observable member = {};
       @observable members = [];
@@ -52,6 +53,7 @@ export default class GroupStore {
       @computed get getSelect_Group_categoryList(){return this.select_Group_categoryList};
       @computed get getDetailGroup_memberLength(){return this.detailGroup_memberLength;}
       @computed get getDetailGroup_memberList(){return this.detailGroup_memberList;}
+      @computed get getMyGroups(){return this.myGroups;}
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
@@ -86,6 +88,9 @@ export default class GroupStore {
         const apiGetGroups = await this.groupRepository.groupList();
         this.groups = apiGetGroups.map(group => new GroupModel(group))
         console.log(this.groups);
+
+        //로컬스토리지에 내 그룹 저장 // object를 저장하는 방법
+        localStorage.setItem('myGroups', JSON.stringify(this.myGroups));
       }
 
       //그룹 생성
@@ -150,6 +155,13 @@ export default class GroupStore {
         await this.groupRepository.groupDelete(groupId)
       }
 
+      //내 그룹을 로컬스토리지에서 호출
+      @action
+      myGroups_array(myGroups){
+        console.log(myGroups)
+        this.myGroups = myGroups;
+      }
+
       /*****************************************멤버 관련*********************************************/
       //그룹원 생성
       @action
@@ -170,6 +182,15 @@ export default class GroupStore {
       //멤버 제거
       @action
       async memberRemove(groupId,memberId){
+        const result = await this.memberRepository.memberDelete(groupId,memberId);
+        console.log(result);
+      }
 
+      //멤버 전체 리스트
+      @action
+      async memberListAll(){
+        console.log("멤버 전체 리스트 출력")
+        const memberList = await this.memberRepository.memberList();
+        this.members = memberList.map(member => new MemberModel(member))
       }
 }
