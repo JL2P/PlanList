@@ -18,19 +18,29 @@ class DetailCenterlContainer extends Component {
         const { group } = this.props.Store;
         group.detailGroup_modalCheck(check);
     }
-    //설정창 저장
+    //설정 수정 저장
     onSettingSave = (e,groupObj) => {
         e.preventDefault();
         const { group } = this.props.Store;
-        group.settingSave(groupObj);
-        window.location.href = "/groupmenu";
+        var result = window.confirm("수정 사항을 저장하시겠습니까?")
+        if(result){
+            group.settingSave(groupObj);
+            alert("수정 사항이 반영되었습니다.")
+            window.location.reload();
+        }
+        
+        
     }
     //설정창에서 그룹 제거
     onSettingRemove = (e,groupId) => {
         e.preventDefault();
         const { group } = this.props.Store;
-        group.settingRemove(groupId);
-        window.location.href = "/groupmenu";
+        var result = window.confirm("그룹을 정말 삭제하시겠습니까?")
+        if(result){
+            group.settingRemove(groupId);
+            alert("그룹이 삭제되었습니다.")
+            window.location.href = "/groupmenu";
+        }
     }
     //멤버 그룹 가입 신청
     onMemberApply = (e,memberObj) => {
@@ -40,8 +50,8 @@ class DetailCenterlContainer extends Component {
         var result = window.confirm("가입 신청을 허용하시겠습니까?")
         if(result){
             group.memberApply(memberObj);
-            // this.props.history.push(`/groupdetail/${memberObj.groupId}/member`);
             alert("사용자가 그룹원이 되었습니다.")
+            window.location.reload();
         }
     }
     //그룹 가입신청 취소 & 강퇴
@@ -52,6 +62,7 @@ class DetailCenterlContainer extends Component {
             group.memberRemove(groupId,memberId);
             // this.props.history.push(`/groupdetail/${groupId}/member`);
             alert("사용자를 그룹에서 강퇴퇴하셨습니다.")
+            window.location.reload();
         }
     }
     //사용자 그룹 탈퇴
@@ -62,7 +73,13 @@ class DetailCenterlContainer extends Component {
             group.memberRemove(groupId,memberId);
             this.props.history.push(`/groupmenu`);
             alert("그룹에서 탈퇴하셨습니다.")
+            window.location.reload();
         }
+    }
+    //그룹 디테일 내비게이션
+    onHandleItemClick = (name) => {
+        const { group } = this.props.Store;
+        group.handleItemClick(name);
     }
     
 
@@ -74,7 +91,8 @@ class DetailCenterlContainer extends Component {
             getDetailGroup_modalOpen,
             getGroup,
             getDetailGroup_memberList,
-            getMember
+            getMember,
+            getActiveItem
         } = group;
         const {loginAccount} = account;
 
@@ -94,6 +112,8 @@ class DetailCenterlContainer extends Component {
                     member={getMember}
                     onMemberRemove={this.onMemberRemove}
                     onMemberRemove_user={this.onMemberRemove_user}
+                    activeItem={getActiveItem}
+                    onHandleItemClick={this.onHandleItemClick}
                 />
             </div>
         );
