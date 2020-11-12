@@ -12,7 +12,7 @@ import {
   CommentAddModel,
   CommentModel,
 } from "../../Api/model/comment/CommentModels";
-import { SubCommentAddModel } from "../../Api/model/comment/SubCommentModels";
+import { SubCommentAddModel,SubCommentModel } from "../../Api/model/comment/SubCommentModels";
 
 export default class TodoStore {
   constructor(root) {
@@ -164,19 +164,20 @@ export default class TodoStore {
     this.todos = newMaintodo;
   }
 
-  //api를 이용하여 댓글 리스트를 가져온다.
-  @action
-  async apiGetComments(todoId) {
-    const dataList = await this.commentRepository.commentList(todoId);
-    this.comments = dataList.map((comment) => new CommentModel(comment));
-  }
+  // 사용되지 않음
+  // //api를 이용하여 댓글 리스트를 가져온다.
+  // @action
+  // async apiGetComments(todoId) {
+  //   const dataList = await this.commentRepository.commentList(todoId);
+  //   this.comments = dataList.map((comment) => new CommentModel(comment));
+  // }
 
-  //api를 이용하여 댓글을 가져온다
-  @action
-  async apiGetComment(todoId, commentId) {
-    const data = await this.commentRepository.commentDetail(todoId, commentId);
-    this.comment = new CommentModel(data);
-  }
+  // //api를 이용하여 댓글을 가져온다
+  // @action
+  // async apiGetComment(todoId, commentId) {
+  //   const data = await this.commentRepository.commentDetail(todoId, commentId);
+  //   this.comment = new CommentModel(data);
+  // }
 
   // API를 호출하여 해당 todo의 댓글을 생성한다.
   @action
@@ -184,8 +185,12 @@ export default class TodoStore {
     const commentModel = new CommentAddModel(commentObj);
     commentModel.writer = this.root.account.getLoginAccount.accountId;
 
-    await this.commentRepository.commentCreate(todoId, commentModel);
-    this.apiGetComments(todoId);
+    const data = await this.commentRepository.commentCreate(todoId, commentModel);
+    const newComment = new CommentModel(data);
+    const comments = this.comments.slice('');
+    comments.push(newComment)
+    this.comments = comments;
+
     this.getApiTodos();
   }
 
@@ -195,12 +200,22 @@ export default class TodoStore {
     const subCommentAddModel = new SubCommentAddModel(subCommentObj);
     subCommentAddModel.writer = this.root.account.getLoginAccount.accountId;
 
-    await this.commentRepository.subCommentCreate(
+    const data = await this.commentRepository.subCommentCreate(
       todoId,
       commentId,
       subCommentAddModel
     );
-    this.apiGetComments(todoId);
+    const newSubComment = new SubCommentModel(data);
+
+    this.comments = this.comments.map(comment=>{
+      if(comment.commentId === commentId){
+        const subComments = comment.subComments;
+        subComments.push(newSubComment);
+        comment.subComments = subComments;        
+      }
+      return comment;
+    });
+
     this.getApiTodos();
   }
 
@@ -210,6 +225,8 @@ export default class TodoStore {
     const commentId = comment.commentId;
     this.commentRepository.commentDelete(todoId, comment.commentId);
     this.comments = this.comments.filter(comment=>comment.commentId!==commentId);
+
+    this.getApiTodos();
   }
 
   @action
@@ -225,6 +242,8 @@ export default class TodoStore {
       }
       return comment;
     });
+
+    this.getApiTodos();
   }
 
 

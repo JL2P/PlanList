@@ -4,7 +4,7 @@ import TodoCommentContainer from "../../container/TodoCommentContainer";
 
 import { Comment, Form, Divider } from "semantic-ui-react";
 
-const TodoCommentFrame = ({ comments, onDeleteComment }) => {
+const TodoCommentFrame = ({ comments, loginAccount, onDeleteComment }) => {
   const [reply, setReply] = useState(false);
 
   const commentCounter = () => {
@@ -43,6 +43,7 @@ const TodoCommentFrame = ({ comments, onDeleteComment }) => {
             {comments.map((comment) => (
               <TodoCommentFormVIew
                 key={comment.commentId}
+                loginAccount={loginAccount}
                 comment={comment}
                 onDeleteComment={onDeleteComment}
               >
@@ -50,6 +51,7 @@ const TodoCommentFrame = ({ comments, onDeleteComment }) => {
                   comment.subComments.map((subComment) => (
                     <TodoCommentFormVIew
                       key={subComment.subCommentId}
+                      loginAccount={loginAccount}
                       comment={subComment}
                       onDeleteComment={onDeleteComment}
                     />
