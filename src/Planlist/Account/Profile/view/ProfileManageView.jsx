@@ -160,12 +160,12 @@ const ProfileManageView = ({
                 </Grid.Column>
                 {/* 팔로워 */}
                 <Grid.Column width={5}>
-                  <text onClick={() => onFollowerModal(true)}>팔로워</text>{" "}
+                  <span onClick={() => onFollowerModal(true)}>팔로워</span>{" "}
                   &nbsp; 10
                 </Grid.Column>
                 {/* 팔로잉 */}
                 <Grid.Column width={5}>
-                  <text onClick={() => onFollowingModal(true)}>팔로잉</text>
+                  <span onClick={() => onFollowingModal(true)}>팔로잉</span>
                   &nbsp; 10
                 </Grid.Column>
               </Grid>

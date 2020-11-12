@@ -3,19 +3,26 @@ import { inject, observer } from "mobx-react";
 import {Header, Item} from 'semantic-ui-react'
 import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerView";
 
+
 @inject("Store")
 @observer
 class ProfileFollowerListContainer extends Component {
 
-   // follow function
-    follow =(follow)=>{
-        //팔로우 한다
+  
+      componentDidMount() {
+        const {follow} = this.props.Store;
+        follow.getApiMyFollowers();
         
-    }
-
+      }
+      
+ 
     render(){
-        const array = [{ id: 1}, { id: 2},{ id: 3},{ id: 4}, { id: 5},{ id: 6}];
-        const element = array.map((item) => <ProfileFollowerView follow={this.follow}/>);   
+        const { account, follow } = this.props.Store;
+        const myFollowers = follow.getMyFollowers;
+        console.log("myFollowers")
+        console.log(myFollowers)
+        const element = myFollowers.map((follower) => <ProfileFollowerView follower={follower} isFollowing={follow.getIsFollowing}/>);   
+        
 
         return (
             <div style={{height:"600px", textAlign:"center"}}>

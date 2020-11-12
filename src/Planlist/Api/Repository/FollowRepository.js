@@ -9,7 +9,7 @@ export default class FollowRepository{
 
      // 아직 confirm 받지 않은 나의 모든 팔로워 조회
    // GET /api/accounts/
-    AllFollowers = () => {
+    notConfirmFollowersFunction = () => {
     return axios_auth_GET(this.URL,[]);
 }
 
@@ -25,12 +25,10 @@ export default class FollowRepository{
         return axios_auth_POST(this.URL,data,{});
     }
 
-    //@GetMapping("/followerlist")
-    getFollowerlistFunction = (AccountId) => {
-        const data={
-            "myAccountd" : AccountId
-        }
-        return axios.get(this.URL+"followerlist", data).then(request=>request.data||{});
+    //@GetMapping("/myFollowerList")
+    getMyFollowersFunction = () => {
+
+        return axios_auth_GET(this.URL+"myFollowerList",[]);
     }
 
     //@GetMapping("/followinglist")
@@ -43,9 +41,14 @@ export default class FollowRepository{
 
     
 
-    //@GetMapping("/isfollow")
+    //@PostMapping("/isfollow")
     followCheckFunction = (FollowId) => {
        return axios_auth_POST(this.URL+`isfollow/${FollowId}`,{},{});
+    }
+
+    //@PostMapping("isfollowing")
+    followingCheckFunction = (FollowId) => {
+        return axios_auth_POST(this.URL+`isfllowing/${FollowId}`,{},{});
     }
 
     //@GetMapping("/confirm/{followId}")

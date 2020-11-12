@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-react";
-const ProfileFollowerView = ({follow}) => {
+const ProfileFollowerView = ({follower, isFollowing}) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
 
     const onConfirmModal = (trigger) => {
@@ -123,12 +123,8 @@ const ProfileFollowerView = ({follow}) => {
                
                 <div className="part_b2">
                     
-                    <div>ID</div>
-                    <div>
-                        
-                    <text style={{marginLeft:"1em", fontSize:"14px"}}
-                    >박민재</text>
-                    </div>
+                <div>{follower.accountId}</div>
+                <div>{follower.name}</div>
                     
                     
                 </div>
@@ -137,10 +133,17 @@ const ProfileFollowerView = ({follow}) => {
                 </div>
             </div>
             <div clasName="part_a2">
-                <Button onClick={()=>{follow("id들어가야함")}}>팔로우</Button>
+            {isFollowing && (
+                
                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                팔로잉
+                팔로잉 취소
                 </Button>
+            )}
+            {!isFollowing && (
+                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
+                 팔로잉
+                 </Button>
+            )}
             </div>
             </div>
         </Item>
