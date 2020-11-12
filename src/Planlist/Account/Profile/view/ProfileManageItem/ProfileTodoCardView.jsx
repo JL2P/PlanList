@@ -169,6 +169,7 @@ const ProfileTodoCardView = ({
                   style={{ width: "117px" }}
                 >
                   <Icon name="check" />
+                  완료
                 </Button>
               )}
             </Card.Content>
