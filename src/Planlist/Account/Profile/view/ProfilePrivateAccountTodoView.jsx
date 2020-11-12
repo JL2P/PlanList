@@ -1,4 +1,3 @@
-import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import { Button, Container, Header, Icon, Segment } from "semantic-ui-react";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
