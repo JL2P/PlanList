@@ -4,7 +4,7 @@ import TodoCommentContainer from "../../container/TodoCommentContainer";
 
 import { Comment, Form, Divider } from "semantic-ui-react";
 
-const TodoCommentFrame = ({ comments }) => {
+const TodoCommentFrame = ({ comments, onDeleteComment }) => {
   const [reply, setReply] = useState(false);
 
   const commentCounter = () => {
@@ -41,12 +41,17 @@ const TodoCommentFrame = ({ comments }) => {
             </p>
 
             {comments.map((comment) => (
-              <TodoCommentFormVIew key={comment.commentId} comment={comment}>
+              <TodoCommentFormVIew
+                key={comment.commentId}
+                comment={comment}
+                onDeleteComment={onDeleteComment}
+              >
                 {comment.subComments.length > 0 &&
                   comment.subComments.map((subComment) => (
                     <TodoCommentFormVIew
                       key={subComment.subCommentId}
                       comment={subComment}
+                      onDeleteComment={onDeleteComment}
                     />
                   ))}
               </TodoCommentFormVIew>

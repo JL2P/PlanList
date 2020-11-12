@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Comment, Form, Icon, Label } from "semantic-ui-react";
+import { Comment, Form, Icon } from "semantic-ui-react";
 import TodoCommentContainer from "../../container/TodoCommentContainer";
 import { Link } from "react-router-dom";
 import "./todoCommentFormStyle.css";
 
-const TodoCommentFormVIew = ({ comment, children }) => {
+const TodoCommentFormVIew = ({ comment, children, onDeleteComment }) => {
   const [reply, setReply] = useState(false);
 
   const onReply = () => setReply(!reply);
@@ -13,11 +13,29 @@ const TodoCommentFormVIew = ({ comment, children }) => {
     <Comment>
       <Comment.Avatar src="/posts/img_crong.jpg" />
       <Comment.Content>
-        <Comment.Author as="a">{comment.writer}</Comment.Author>
-        <Comment.Metadata>
-          <div>{comment.created}</div>
-          <Icon name="heart" />
-        </Comment.Metadata>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <Comment.Author as="a">{comment.writer}</Comment.Author>
+            <Comment.Metadata>
+              <div>{comment.created}</div>
+              {/* <Icon name="heart" /> */}
+            </Comment.Metadata>{" "}
+          </div>
+          <Icon
+            name="x"
+            color="red"
+            style={{ marginRight: "1em", cursor: "pointer" }}
+            onClick={() => {
+              onDeleteComment(comment);
+            }}
+          />
+        </div>
         <Comment.Text>
           {comment.targetId && (
             <Link to={`/account/${comment.targetId}`}>
