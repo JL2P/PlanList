@@ -16,7 +16,6 @@ class HeaderMainContainer extends Component {
         //헤더를 호출할 경우 groupDetail과 해당 member 정보를 가져온다.
         if(localStorage.getItem('groupId')){
           const { group } = this.props.Store;
-          console.log("컨트롤러")
           group.groupDetail_page(localStorage.getItem('groupId'),account.loginAccount.accountId);
         }
       })
@@ -26,6 +25,12 @@ class HeaderMainContainer extends Component {
         var myGroup_object = localStorage.getItem('myGroups')
         //오브젝트를 사용하는 방법
         group.myGroups_array(JSON.parse(myGroup_object));
+      }
+      //디테일 내비게이션 저장
+      if(localStorage.getItem('name')){
+        const { group } = this.props.Store;
+        console.log("헤더")
+        group.handleItemClick(localStorage.getItem('name'));
       }
     }
       

@@ -34,7 +34,14 @@ const DetailGroupSettingM = ({
                     />
 
                     <Button onClick={(e) => onSettingRemove(e,group.id)} inverted color='red'>그룹 삭제</Button>
-                    <Button type='submit'>Submit</Button>
+                    <div style={{
+                            marginTop:"1rem", 
+                            borderTop:"1px solid #f2f2f2", 
+                            paddingTop:"1rem",
+                            display:"flex",
+                            justifyContent:"center",
+                            alignItems:"center"
+                        }}><Button type='submit'>Submit</Button></div>
                 </Form>
             </Segment>
         </div>

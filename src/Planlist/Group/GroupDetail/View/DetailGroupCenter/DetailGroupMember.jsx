@@ -60,12 +60,19 @@ const DetailGroupMember = ({
               <small>그룹 가입일 :</small> 
             </Feed.Summary>
           </Feed.Content>
-          {member.manager === "true" && member_map.manager === "false" &&
+          { member_map.manager === "false" ?
             <div>
-              <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member.id)}>
+              <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
                   그룹 강퇴
               </Button>
-            </div>}
+            </div>
+            :
+            <div>
+              <Button size="tiny" basic color='blue'>
+                  그룹장
+              </Button>
+            </div>
+          }
         </Feed.Event>
       ) : ""
   ))
