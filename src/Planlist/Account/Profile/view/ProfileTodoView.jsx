@@ -2,7 +2,9 @@ import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import { Menu, Container } from "semantic-ui-react";
 import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
+import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompletedListContainer";
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
+import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
 import ProfileTodoPastListContainer from "../container/ProfileTodoPastListContainer";
 
 @inject("Store")
@@ -59,7 +61,6 @@ class ProfileTodoView extends Component {
     const today = this.props.Store.todo.getToday;
 
     return (
-
       <div>
         <TodoCreateDesktopForm
           open={open}
@@ -77,27 +78,28 @@ class ProfileTodoView extends Component {
               active={activeItem === "해야 할 일"}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
+            {/* <Menu.Item
               name="지난 할 일"
               active={activeItem === "지난 할 일"}
               onClick={this.handleItemClick}
-            />
+            /> */}
             <Menu.Item
-              name="Not yet"
-              active={activeItem === "Not yet"}
+              name="그동안 한 일"
+              active={activeItem === "그동안 한 일"}
               onClick={this.handleItemClick}
             />
             <Menu.Item
-              name="Completed"
-              active={activeItem === "Completed"}
+              name="하지 못한 일"
+              active={activeItem === "하지 못한 일"}
               onClick={this.handleItemClick}
             />
+
             <Menu.Item
-            name="새로운 알림"
-            active={activeItem === "새로운 알림"}
-            onClick={this.handleItemClick}
-          />
-            {selectUser === loginAccount ? (
+              name="새로운 알림"
+              active={activeItem === "새로운 알림"}
+              onClick={this.handleItemClick}
+            />
+            {selectUser === loginAccount ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
               <Menu.Menu position="right">
                 <Menu.Item
                   icon="pencil"
@@ -119,21 +121,35 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-            {activeItem === "지난 할 일" && (
+            {/* {activeItem === "지난 할 일" && (
               <ProfileTodoPastListContainer
                 selectUser={selectUser}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 todos={selectUserTodos}
               />
+            )} */}
+            {activeItem === "그동안 한 일" && (
+              <ProfileTodoCompletedListContainer
+                selectUser={selectUser}
+                selectedTodo={selectedTodo}
+                onLikeButton={onLikeButton}
+                todos={selectUserTodos}
+              />
             )}
-            {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
-            {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}
-            {activeItem === "새로운 알림" }
+            {activeItem === "하지 못한 일" && (
+              <ProfileTodoIncompletedListContainer
+                selectUser={selectUser}
+                selectedTodo={selectedTodo}
+                onLikeButton={onLikeButton}
+                todos={selectUserTodos}
+              />
+            )}
+
+            {activeItem === "새로운 알림"}
           </div>
         </Container>
       </div>
-
     );
   }
 }

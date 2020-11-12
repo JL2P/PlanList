@@ -20,7 +20,9 @@ const GroupCenterView = ({
         member,
         onMemberRemove,
         onMemberRemove_user,
-        members
+        members,
+        activeItem,
+        onHandleItemClick
     }) => {
 
     return (
@@ -30,6 +32,8 @@ const GroupCenterView = ({
                 group={group}
                 memberList={memberList}
                 member={member}
+                activeItem={activeItem}
+                onHandleItemClick={onHandleItemClick}
             />
             <Route 
                 path={`/groupdetail/${group.id}/`} 

@@ -28,7 +28,7 @@ const TodoCreateDesktopForm = ({
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
-  
+
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
   const GRID_RIGHT = 16 - GRID_LEFT;
@@ -165,7 +165,7 @@ const TodoCreateDesktopForm = ({
                   category: category,
                   title: title,
                   description: description,
-                  endTime: endTime,
+                  endTime: endTime === "" ? today : endTime,
                 });
               }}
             >

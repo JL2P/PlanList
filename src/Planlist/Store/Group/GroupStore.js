@@ -39,6 +39,7 @@ export default class GroupStore {
       @observable detailGroup_memberLength = 0; 
       @observable detailGroup_memberList = [{}];
       @observable myGroups = [];
+      @observable activeItem = "전체글";
 
       @observable member = {};
       @observable members = [];
@@ -54,6 +55,7 @@ export default class GroupStore {
       @computed get getDetailGroup_memberLength(){return this.detailGroup_memberLength;}
       @computed get getDetailGroup_memberList(){return this.detailGroup_memberList;}
       @computed get getMyGroups(){return this.myGroups;}
+      @computed get getActiveItem(){return this.activeItem;}
 
       @computed get getMember(){return this.member;}
       @computed get getMembers(){return this.members;}
@@ -113,22 +115,24 @@ export default class GroupStore {
                           }
 
         this.getApiGroups()
-        //생성시 해당 그룹으로 연결
-        this.groupDetail_page(result.id)
-        console.log(result.id)
         //생성시 그룹 관리자 생성
-        this.groupMember(newMember);
+        this.groupMember(newMember).then(res=>{
+          //생성시 해당 그룹으로 연결
+          this.groupDetail_page(result.id,accountId);
+        });
+        
       }
 
       //그룹 디테일 조회
       @action
       async groupDetail_page(groupId,accountId){
-        console.log(accountId)
         const result = await this.groupRepository.groupDetail(groupId);
         this.group = new GroupModel(result);
+
         this.detailGroup_memberLength = this.group.members.length;
         this.detailGroup_memberList = this.group.members;
         console.log(this.detailGroup_memberList)
+
         let memberList = this.detailGroup_memberList.map(member => 
           (accountId === member.accountId && member)
         )
@@ -140,9 +144,10 @@ export default class GroupStore {
         //로컬스토리지에 그룹아이디 저장
         localStorage.groupId = groupId
 
+        this.handleItemClick("전체글")
       }
 
-      //그룹 디테일 페이지 설정 저장
+      //그룹 디테일 페이지 설정 수정
       @action
       async settingSave(groupObj){
         const groupModel = new GroupModifyModel(groupObj);
@@ -162,11 +167,16 @@ export default class GroupStore {
         this.myGroups = myGroups;
       }
 
+      //그룹 디테일 내비게이션
+      handleItemClick(name){
+        this.activeItem = name;
+        localStorage.name = name;
+      }
+
       /*****************************************멤버 관련*********************************************/
       //그룹원 생성
       @action
       async groupMember(memberObj){
-        console.log("멤버 스토어 : " + memberObj);
         const memberModel = new MemberModel(memberObj);
         console.log(memberModel);
         await this.memberRepository.memberCreate(memberModel);

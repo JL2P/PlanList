@@ -4,9 +4,19 @@ import MainItemConfigCotainer from "../../../../Main/Container/MainItemConfigCot
 import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
 import MainItemCover from "../../../../Main/View/MainItem/MainItemCover";
 import TodoUpdateContainer from "../../../../todo/container/TodoUpdateContainer";
+import "../../../../Main/View/MainItem/itemStyle.css";
+
 import "./ProfileTodoCardView.scss";
 
-const ProfileTodoCardView = ({ todo, selectedTodo, onLikeButton }) => {
+const ProfileTodoCardView = ({
+  todo,
+  selectedTodo,
+  onLikeButton,
+  onComplete,
+  onIncomplete,
+  loginId,
+  today,
+}) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
@@ -46,71 +56,127 @@ const ProfileTodoCardView = ({ todo, selectedTodo, onLikeButton }) => {
         onModal={onCofigModal}
         onTodoUpdateModal={onTodoUpdateModal}
       /> */}
+
+      {/* todo 상세정보 모달 */}
       <MainItemInfoContainer
         todo={todo}
         open={itemInfoOpen}
         onModal={onInfoModal}
       />
-      {/* <MainItemCover
-        todoModel={todo}
-        onCofigModal={onCofigModal}
-        onLikeButton={onLikeButton}
-      /> */}
-      <Card
-        onClick={() => onInfoModal(true)}
-        style={{
-          marginTop: "10px",
-          marginLeft: "10px",
-          height: "300px",
-        }}
-      >
-        <Image
-          className="ProfileTodoCard__image"
-          src={todo.imgUrl}
-          wrapped
-          ui={false}
-        />
-        <Card.Content>
-          <Card.Header
-            style={{
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {todo.title}
-          </Card.Header>
-          <Card.Description
-            style={{
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {todo.description}
-          </Card.Description>
-          {/* <Card.Meta>
-          <span className="date">Joined in 2015</span>
-        </Card.Meta> */}
-        </Card.Content>
-        <Card.Content extra>
-          <Icon name="clock outline" />
 
-          <Button basic size="mini">
-            시작&nbsp;
-            {todo.created
-              ? todo.created.substring(0, 10)
-              : todo.modified.substring(0, 10)}
-          </Button>
-          <Button size="mini" animated="vertical" color="yellow" basic>
-            <Button.Content hidden>
-              <Icon name="check" />
-              완료하기
-            </Button.Content>
-            <Button.Content visible>종료&nbsp;{todo.endTime}</Button.Content>
-          </Button>
-        </Card.Content>
-      </Card>
+      {/* todo Cover */}
+      <div className="todo">
+        {/* <MainItemCover
+          todoModel={todo}
+          onCofigModal={onCofigModal}
+          onLikeButton={onCofigModal}
+        /> */}
+
+        <div className="todo__item">
+          <Card
+            style={{
+              marginTop: "10px",
+              marginLeft: "10px",
+              height: "300px",
+            }}
+          >
+            <Image
+              onClick={() => onInfoModal(true)}
+              className="ProfileTodoCard__image"
+              src={todo.imgUrl}
+              wrapped
+              ui={false}
+            />
+            <Card.Content onClick={() => onInfoModal(true)}>
+              <Card.Header
+                style={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {todo.title}
+              </Card.Header>
+              <Card.Description
+                style={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {todo.description}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Icon name="clock outline" />
+              <Button
+                basic
+                size="mini"
+                style={{ width: "117px", textAlign: "center" }}
+              >
+                시작&nbsp;
+                {todo.created
+                  ? todo.created.substring(0, 10)
+                  : todo.modified.substring(0, 10)}
+              </Button>
+              {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
+              {loginId === todo.writer ? (
+                // 로그인된 유저가 todo 작성자이면 완료하기 버튼을 활성화
+                todo.completed === "N" ? (
+                  <Button
+                    style={{ width: "119px", textAlign: "center" }}
+                    size="mini"
+                    animated="vertical"
+                    color="yellow"
+                    basic
+                    onClick={() => onComplete(todo.todoId)}
+                  >
+                    <Button.Content hidden>
+                      <Icon name="check" />
+                      완료하기
+                    </Button.Content>
+                    <Button.Content visible>
+                      종료&nbsp;{todo.endTime}
+                    </Button.Content>
+                  </Button>
+                ) : (
+                  <Button
+                    size="mini"
+                    animated="vertical"
+                    color="yellow"
+                    style={{ width: "119px" }}
+                    onClick={() => onIncomplete(todo.todoId)}
+                  >
+                    <Icon name="check" />
+                    완료
+                  </Button>
+                )
+              ) : // todo 작성자가 아니면 버튼 비활성화
+              todo.completed === "N" ? (
+                <Button
+                  style={{ width: "119px", textAlign: "center" }}
+                  size="mini"
+                  animated="vertical"
+                  color="yellow"
+                  basic
+                >
+                  종료&nbsp;{todo.endTime}
+                </Button>
+              ) : (
+                <Button
+                  size="mini"
+                  animated="vertical"
+                  color="yellow"
+                  style={{ width: "119px" }}
+                >
+                  <Icon name="check" />
+                  완료
+                </Button>
+              )}
+            </Card.Content>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 };

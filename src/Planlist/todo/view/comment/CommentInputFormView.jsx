@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "semantic-ui-react";
 
-const CommentInputFormView = ({ createComment, updateComment }) => {
+const CommentInputFormView = ({ createComment }) => {
   const onKeyPressComment = (e) => {
     if (e.key === "Enter") createComment(e.target.value);
   };

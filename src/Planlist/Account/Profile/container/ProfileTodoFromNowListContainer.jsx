@@ -1,13 +1,23 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
-import MainTodoCreateDesktopContainer from "../../../Main/Container/MainTodoCreateDesktopContainer";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
 import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 
 @inject("Store")
 @observer
 class ProfileTodoFromNowListContainer extends Component {
+  onComplete = (todoId) => {
+    const { todo } = this.props.Store;
+    todo.todoCompleted(todoId);
+  };
+
+  onIncomplete = (todoId) => {
+    const { todo } = this.props.Store;
+    todo.todoIncompleted(todoId);
+    console.log("클릭!");
+  };
+
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
@@ -20,7 +30,7 @@ class ProfileTodoFromNowListContainer extends Component {
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
-      .filter((item) => item.writer === selectId)
+      // .filter((item) => item.writer === selectId)
       .filter((item) => item.endTime >= today)
       .sort((a, b) => (a.endTime > b.endTime ? 1 : -1));
 
@@ -60,6 +70,9 @@ class ProfileTodoFromNowListContainer extends Component {
             selectedTodo={selectedTodo}
             onLikeButton={onLikeButton}
             today={todo.getToday}
+            onComplete={this.onComplete}
+            onIncomplete={this.onIncomplete}
+            loginId={loginId}
           />
         )}
       </div>

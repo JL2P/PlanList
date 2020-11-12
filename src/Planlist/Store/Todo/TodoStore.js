@@ -205,6 +205,31 @@ export default class TodoStore {
   }
 
   @action
+  async deleteComment(comment){
+    const todoId = this.todo.todoId;
+    const commentId = comment.commentId;
+    this.commentRepository.commentDelete(todoId, comment.commentId);
+    this.comments = this.comments.filter(comment=>comment.commentId!==commentId);
+  }
+
+  @action
+  async deleteSubComment(subComment){
+    const todoId = this.todo.todoId;
+    const commentId = subComment.commentId;
+    const subCommentId = subComment.subCommentId;
+
+    this.commentRepository.subCommentDelete(todoId, commentId ,subCommentId)
+    this.comments = this.comments.map(comment=>{
+      if(comment.commentId === commentId){
+        comment.subComments = comment.subComments.filter(subComment => subComment.subCommentId !==subCommentId)
+      }
+      return comment;
+    });
+  }
+
+
+
+  @action
   async addLike(todoId) {
     this.todoRepository.onLike(todoId);
     this.todos = this.todos.map((todo) => {
@@ -226,5 +251,17 @@ export default class TodoStore {
       }
       return todo;
     });
+  }
+
+  @action
+  async todoCompleted(todoId) {
+    await this.todoRepository.completeTodo(todoId);
+    this.getApiLoginTodos();
+  }
+
+  @action
+  async todoIncompleted(todoId) {
+    await this.todoRepository.incompleteTodo(todoId);
+    this.getApiLoginTodos();
   }
 }

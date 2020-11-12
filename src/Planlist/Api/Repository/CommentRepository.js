@@ -1,4 +1,4 @@
-import {axios_auth_GET, axios_auth_POST} from "../common/CommonAxiosModules"
+import {axios_auth_GET, axios_auth_POST,axios_auth_DELETE} from "../common/CommonAxiosModules"
 
 
 //Account관련 Api와 연동하는 클래스
@@ -24,6 +24,17 @@ export default class CommentRepository{
     //api/todos/{todoId}/comments/{commentId}/subComments
     subCommentCreate = (todoId,commentId, SubCommentAddModel)=>{
         return axios_auth_POST(this.URL+`/${todoId}/comments/${commentId}/subComments`,SubCommentAddModel,{})
+    }
+
+    commentDelete = (todoId,commentId) =>{
+        const addUrl = `/${todoId}/comments/${commentId}`;
+        return axios_auth_DELETE(this.URL+addUrl);
+
+    }
+
+    subCommentDelete = (todoId,commentId,subCommentId) =>{
+        const addUrl = `/${todoId}/comments/${commentId}/subComments/${subCommentId}`;
+        return axios_auth_DELETE(this.URL+addUrl);
     }
     
 
