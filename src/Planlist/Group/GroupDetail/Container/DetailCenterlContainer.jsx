@@ -61,7 +61,7 @@ class DetailCenterlContainer extends Component {
         if(result){
             group.memberRemove(groupId,memberId);
             // this.props.history.push(`/groupdetail/${groupId}/member`);
-            alert("사용자를 그룹에서 강퇴퇴하셨습니다.")
+            alert("사용자를 그룹에서 강퇴하셨습니다.")
             window.location.reload();
         }
     }
@@ -80,6 +80,12 @@ class DetailCenterlContainer extends Component {
     onHandleItemClick = (name) => {
         const { group } = this.props.Store;
         group.handleItemClick(name);
+    }
+    //그룹 디테일에서 나올 때 nav값
+    componentWillUnmount(){
+        const { group } = this.props.Store;
+        group.handleItemClick("전체글")
+        group.member = "";
     }
     
 
