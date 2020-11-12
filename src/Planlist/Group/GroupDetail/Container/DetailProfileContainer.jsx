@@ -16,6 +16,7 @@ class DetailProfileContainer extends Component {
             group.manager = false;
             group.groupMember(memberObj)
             alert("그룹에 가입 신청 되셨습니다.")
+            window.location.reload();
         }
     }
 
