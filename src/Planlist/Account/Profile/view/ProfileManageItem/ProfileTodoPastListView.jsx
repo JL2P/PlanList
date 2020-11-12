@@ -27,6 +27,7 @@ const ProfileTodoPastListView = ({
                 key={index}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
+                today={today}
               />
             ))}
           </Card.Group>

@@ -35,6 +35,7 @@ const ProfileTodoFromNowListView = ({
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
                 loginId={loginId}
+                today={today}
               />
             ))}
           </Card.Group>

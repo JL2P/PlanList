@@ -15,6 +15,7 @@ const ProfileTodoCardView = ({
   onComplete,
   onIncomplete,
   loginId,
+  today,
 }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
@@ -105,9 +106,6 @@ const ProfileTodoCardView = ({
               >
                 {todo.description}
               </Card.Description>
-              {/* <Card.Meta>
-          <span className="date">Joined in 2015</span>
-        </Card.Meta> */}
             </Card.Content>
             <Card.Content extra>
               <Icon name="clock outline" />
@@ -121,10 +119,12 @@ const ProfileTodoCardView = ({
                   ? todo.created.substring(0, 10)
                   : todo.modified.substring(0, 10)}
               </Button>
+              {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
               {loginId === todo.writer ? (
+                // 로그인된 유저가 todo 작성자이면 완료하기 버튼을 활성화
                 todo.completed === "N" ? (
                   <Button
-                    style={{ width: "117px", textAlign: "center" }}
+                    style={{ width: "119px", textAlign: "center" }}
                     size="mini"
                     animated="vertical"
                     color="yellow"
@@ -144,16 +144,17 @@ const ProfileTodoCardView = ({
                     size="mini"
                     animated="vertical"
                     color="yellow"
-                    style={{ width: "117px" }}
+                    style={{ width: "119px" }}
                     onClick={() => onIncomplete(todo.todoId)}
                   >
                     <Icon name="check" />
                     완료
                   </Button>
                 )
-              ) : todo.completed === "N" ? (
+              ) : // todo 작성자가 아니면 버튼 비활성화
+              todo.completed === "N" ? (
                 <Button
-                  style={{ width: "117px", textAlign: "center" }}
+                  style={{ width: "119px", textAlign: "center" }}
                   size="mini"
                   animated="vertical"
                   color="yellow"
@@ -166,7 +167,7 @@ const ProfileTodoCardView = ({
                   size="mini"
                   animated="vertical"
                   color="yellow"
-                  style={{ width: "117px" }}
+                  style={{ width: "119px" }}
                 >
                   <Icon name="check" />
                   완료

@@ -15,7 +15,6 @@ class ProfileTodoCompletedListContainer extends Component {
     const loginId = account.getLoginAccount.accountId;
     // const todos = todo.getTodos;
     // const todos = todo.getAllTodos;
-    const today = todo.getToday;
 
     // 완료한 일 리스트 정렬
     const completed = todos
