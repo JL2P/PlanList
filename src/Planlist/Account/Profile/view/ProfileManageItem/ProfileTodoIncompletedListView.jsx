@@ -1,24 +1,24 @@
 import React from "react";
 import { Card, Divider } from "semantic-ui-react";
 import ProfileTodoCardView from "./ProfileTodoCardView";
-const ProfileTodoCompletedListView = ({
-  completed_list,
-  completed_date,
+const ProfileTodoIncompletedListView = ({
+  incompleted_list,
+  incompleted_date,
   selectedTodo,
   onLikeButton,
   today,
 }) => {
   return (
     <div>
-      {completed_list.map((date, index) => (
+      {incompleted_list.map((date, index) => (
         <div key={index}>
           <p>
-            {completed_date[index].substring(0, 4) +
+            {incompleted_date[index].substring(0, 4) +
               "년 " +
-              completed_date[index].substring(5, 7) +
+              incompleted_date[index].substring(5, 7) +
               "월 " +
-              completed_date[index].substring(8, 10) +
-              "일까지 완료한 일"}
+              incompleted_date[index].substring(8, 10) +
+              "일까지 하지 못한 일"}
           </p>
           <Card.Group>
             {date.map((item, index) => (
@@ -37,4 +37,4 @@ const ProfileTodoCompletedListView = ({
   );
 };
 
-export default ProfileTodoCompletedListView;
+export default ProfileTodoIncompletedListView;

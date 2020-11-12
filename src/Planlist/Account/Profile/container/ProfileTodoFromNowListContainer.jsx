@@ -30,7 +30,6 @@ class ProfileTodoFromNowListContainer extends Component {
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
     const fromNow = todos
-      .filter((item) => item.writer === selectId)
       .filter((item) => item.endTime >= today)
       .sort((a, b) => (a.endTime > b.endTime ? 1 : -1));
 

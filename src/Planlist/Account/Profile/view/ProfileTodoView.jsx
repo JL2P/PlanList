@@ -4,6 +4,7 @@ import { Menu, Container } from "semantic-ui-react";
 import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompletedListContainer";
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
+import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
 import ProfileTodoPastListContainer from "../container/ProfileTodoPastListContainer";
 
 @inject("Store")
@@ -137,7 +138,7 @@ class ProfileTodoView extends Component {
               />
             )}
             {activeItem === "하지 못한 일" && (
-              <ProfileTodoPastListContainer
+              <ProfileTodoIncompletedListContainer
                 selectUser={selectUser}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}

@@ -19,7 +19,6 @@ class ProfileTodoPastListContainer extends Component {
 
     // 종료일이 지난 할 일 리스트를 정렬
     const past = todos
-      .filter((item) => item.writer === selectId)
       .filter((item) => item.endTime < today)
       .sort((a, b) => (a.endTime < b.endTime ? 1 : -1));
 
