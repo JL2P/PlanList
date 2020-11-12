@@ -8,17 +8,14 @@ import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 @inject("Store")
 @observer
 class ProfileTodoFromNowListContainer extends Component {
-  componentDidMount() {
-    this.props.Store.todo.getApiTodos();
-  }
-
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
-    const { selectUser } = this.props;
+    const { selectUser, selectedTodo, onLikeButton, todos } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
-    const todos = todo.getTodos;
+    // const todos = todo.getTodos;
+    // const todos = todo.getAllTodos;
     const today = todo.getToday;
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬
@@ -45,19 +42,24 @@ class ProfileTodoFromNowListContainer extends Component {
 
     return (
       <div>
-        {count === 0 ? (
+        {count === 0 ? ( // 등록된 todo가 없을 때
           <div>
             {loginId === selectId ? (
-              // <h1>계획을 세워보세요!</h1>
+              // 로그인된 계정의 페이지이면 todo 추가 화면
               <MainNoTodoContainer />
             ) : (
+              // 다른 사용자이면 empty 화면
               <ProfileTodoEmptyView />
             )}
           </div>
         ) : (
+          // 등록된 todo가 있으면 todo 보여줌
           <ProfileTodoFromNowListView
             fromNow_list={fromNow_list}
             fromNow_date={fromNow_date}
+            selectedTodo={selectedTodo}
+            onLikeButton={onLikeButton}
+            today={todo.getToday}
           />
         )}
       </div>

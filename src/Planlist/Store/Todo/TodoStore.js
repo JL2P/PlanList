@@ -24,6 +24,9 @@ export default class TodoStore {
   //모델 정의
   @observable todos = [];
   @observable todo = {};
+  @observable allTodos = [];
+  @observable selectTodos = [];
+  @observable loginTodos = [];
   @observable comment = {};
   @observable comments = [];
 
@@ -35,6 +38,18 @@ export default class TodoStore {
 
   @computed get getTodos() {
     return this.todos;
+  }
+
+  @computed get getAllTodos() {
+    return this.allTodos;
+  }
+
+  @computed get getSelectTodos() {
+    return this.selectTodos;
+  }
+
+  @computed get getLoginTodos() {
+    return this.loginTodos;
   }
 
   @computed get getComment() {
@@ -70,6 +85,7 @@ export default class TodoStore {
 
   @computed get getToday() {
     const today_date = new Date(); // 현재 날짜 받아오기
+    console.log("오늘은?", today_date);
     const year = today_date.getFullYear();
     const month = (today_date.getMonth() + 1).toString().padStart(2, "0"); // 1월 : 0
     const date = today_date.getDate().toString().padStart(2, "0"); // 날짜
@@ -103,10 +119,29 @@ export default class TodoStore {
     this.todos = apiGetTodos.map((todo) => new TodoModel(todo));
   }
 
+  @action
+  async getApiAllTodos() {
+    const allTodos = await this.todoRepository.TodoAll();
+    this.allTodos = allTodos.map((todo) => new TodoModel(todo));
+  }
+
+  @action
+  async getApiSelectTodos(selectId) {
+    console.log("안뇽", selectId);
+    const selectTodos = await this.todoRepository.selectTodoList(selectId);
+    this.selectTodos = selectTodos.map((todo) => new TodoModel(todo));
+    console.log("안뇽>>", this.selectTodos.length);
+  }
+
+  @action
+  async getApiLoginTodos() {
+    const loginTodos = await this.todoRepository.loginTodoList();
+    this.loginTodos = loginTodos.map((todo) => new TodoModel(todo));
+  }
+
   // API를 호출하여 todo데이터를 저장한다.
   @action
   async saveTodo(todoObj) {
-    
     const todoModel = new TodoAddModel(todoObj);
     todoModel.writer = this.root.account.getLoginAccount.accountId;
     await this.todoRepository.todoCreate(todoModel);
@@ -148,7 +183,7 @@ export default class TodoStore {
   async addComment(todoId, commentObj) {
     const commentModel = new CommentAddModel(commentObj);
     commentModel.writer = this.root.account.getLoginAccount.accountId;
-    
+
     await this.commentRepository.commentCreate(todoId, commentModel);
     this.apiGetComments(todoId);
     this.getApiTodos();
@@ -169,29 +204,27 @@ export default class TodoStore {
     this.getApiTodos();
   }
 
-
   @action
-  async addLike(todoId){
+  async addLike(todoId) {
     this.todoRepository.onLike(todoId);
-    this.todos=this.todos.map(todo=>{
-      if(todo.todoId===todoId){
-        todo.likeState=true;
-        todo.likePoint+=1;
+    this.todos = this.todos.map((todo) => {
+      if (todo.todoId === todoId) {
+        todo.likeState = true;
+        todo.likePoint += 1;
       }
-      return todo
+      return todo;
     });
   }
 
   @action
-  async removeLike(todoId){
+  async removeLike(todoId) {
     this.todoRepository.cancelLike(todoId);
-    this.todos=this.todos.map(todo=>{
-      if(todo.todoId===todoId){
-        todo.likeState=false;
-        todo.likePoint=todo.likePoint===0?0:todo.likePoint-=1;
+    this.todos = this.todos.map((todo) => {
+      if (todo.todoId === todoId) {
+        todo.likeState = false;
+        todo.likePoint = todo.likePoint === 0 ? 0 : (todo.likePoint -= 1);
       }
-      return todo
-    })
+      return todo;
+    });
   }
-
 }

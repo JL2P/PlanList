@@ -52,6 +52,7 @@ class MainNoTodoContainer extends Component {
 
   render() {
     const { open, todoTitle } = this.state;
+    const today = this.props.Store.todo.getToday;
 
     return (
       <div>
@@ -62,6 +63,7 @@ class MainNoTodoContainer extends Component {
           title={todoTitle}
           onChangeTitle={this.changeTodoTitle}
           createTodo={this.createTodo}
+          today={today}
         />
       </div>
     );

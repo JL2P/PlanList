@@ -6,28 +6,47 @@ import ProfileTodoView from "../view/ProfileTodoView";
 @inject("Store")
 @observer
 class ProfileTodoContainer extends Component {
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  onFollow = (followId)=>{
-    const {follow} = this.props.Store;
+  onFollow = (followId) => {
+    const { follow } = this.props.Store;
     follow.follow(followId);
-  }
+  };
 
+  selectedTodo = (todoModel) => {
+    const { todo } = this.props.Store;
+    todo.setTodo(todoModel);
+    todo.setComments(todoModel.comments);
+  };
+
+  onLikeButton = (todoId, action) => {
+    const { todo } = this.props.Store;
+    if (action === "ADD") {
+      todo.addLike(todoId);
+    } else {
+      todo.removeLike(todoId);
+    }
+  };
 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
-    const { account, follow} = this.props.Store;
-    const { selectUser } = this.props;
+    const { account, follow } = this.props.Store;
+    const { selectUser, selectUserTodos } = this.props;
     const openAt = selectUser.openAt;
     const loginCheck = account.getLogCheck;
     const loginAccount = account.getLoginAccount;
+    console.log("팔로우", follow.getIsFollowed);
     return (
       <div>
-        {openAt === "Y" ||
-        (loginCheck === true && // 공개 계정이거나 로그인한 사용자 본인의 페이지인 경우, todo 페이지를 보여줌
+        {openAt === "Y" || // 공개 계정이거나
+        follow.getIsFollowed === true || // 팔로잉 계정이거나
+        (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
           loginAccount.accountId === selectUser.accountId) ? (
+          // todo 페이지를 보여줌
           <ProfileTodoView
-            handleItemClick={this.handleItemClick}
             selectUser={selectUser}
+            loginAccount={loginAccount}
+            selectUserTodos={selectUserTodos}
+            selectedTodo={this.selectedTodo}
+            onLikeButton={this.onLikeButton}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌

@@ -22,12 +22,13 @@ const TodoCreateDesktopForm = ({
   title,
   onChangeTitle,
   createTodo,
+  today,
 }) => {
   const [images, setImages] = useState([]);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
-
+  
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
   const GRID_RIGHT = 16 - GRID_LEFT;
@@ -135,7 +136,7 @@ const TodoCreateDesktopForm = ({
                   <input
                     type="date"
                     required
-                    value={endTime}
+                    value={endTime ? endTime : today}
                     onChange={onChangeEndTime}
                   />
                 </Grid.Column>
