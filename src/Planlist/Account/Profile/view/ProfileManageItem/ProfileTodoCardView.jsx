@@ -14,6 +14,7 @@ const ProfileTodoCardView = ({
   onLikeButton,
   onComplete,
   onIncomplete,
+  loginId,
 }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
@@ -110,7 +111,6 @@ const ProfileTodoCardView = ({
             </Card.Content>
             <Card.Content extra>
               <Icon name="clock outline" />
-
               <Button
                 basic
                 size="mini"
@@ -121,22 +121,45 @@ const ProfileTodoCardView = ({
                   ? todo.created.substring(0, 10)
                   : todo.modified.substring(0, 10)}
               </Button>
-              {todo.completed === "N" ? (
+              {loginId === todo.writer ? (
+                todo.completed === "N" ? (
+                  <Button
+                    style={{ width: "117px", textAlign: "center" }}
+                    size="mini"
+                    animated="vertical"
+                    color="yellow"
+                    basic
+                    onClick={() => onComplete(todo.todoId)}
+                  >
+                    <Button.Content hidden>
+                      <Icon name="check" />
+                      완료하기
+                    </Button.Content>
+                    <Button.Content visible>
+                      종료&nbsp;{todo.endTime}
+                    </Button.Content>
+                  </Button>
+                ) : (
+                  <Button
+                    size="mini"
+                    animated="vertical"
+                    color="yellow"
+                    style={{ width: "117px" }}
+                    onClick={() => onIncomplete(todo.todoId)}
+                  >
+                    <Icon name="check" />
+                    완료
+                  </Button>
+                )
+              ) : todo.completed === "N" ? (
                 <Button
                   style={{ width: "117px", textAlign: "center" }}
                   size="mini"
                   animated="vertical"
                   color="yellow"
                   basic
-                  onClick={() => onComplete(todo.todoId)}
                 >
-                  <Button.Content hidden>
-                    <Icon name="check" />
-                    완료하기
-                  </Button.Content>
-                  <Button.Content visible>
-                    종료&nbsp;{todo.endTime}
-                  </Button.Content>
+                  종료&nbsp;{todo.endTime}
                 </Button>
               ) : (
                 <Button
@@ -144,9 +167,8 @@ const ProfileTodoCardView = ({
                   animated="vertical"
                   color="yellow"
                   style={{ width: "117px" }}
-                  onClick={() => onIncomplete(todo.todoId)}
                 >
-                  완료
+                  <Icon name="check" />
                 </Button>
               )}
             </Card.Content>

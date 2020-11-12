@@ -72,6 +72,7 @@ class ProfileTodoFromNowListContainer extends Component {
             today={todo.getToday}
             onComplete={this.onComplete}
             onIncomplete={this.onIncomplete}
+            loginId={loginId}
           />
         )}
       </div>
