@@ -20,6 +20,13 @@ class HeaderMainContainer extends Component {
           group.groupDetail_page(localStorage.getItem('groupId'),account.loginAccount.accountId);
         }
       })
+      if(localStorage.getItem('myGroups')){
+        const { group } = this.props.Store;
+        console.log("로컬스토리지 헤더")
+        var myGroup_object = localStorage.getItem('myGroups')
+        //오브젝트를 사용하는 방법
+        group.myGroups_array(JSON.parse(myGroup_object));
+      }
     }
       
     

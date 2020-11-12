@@ -3,16 +3,17 @@ import { Image, Button, Card } from 'semantic-ui-react'
 
 const GroupProfilView = ({
         onLogInUser,
-        detailGroup_open,
+        group,
         detailGroup_memberLength,
         detailGroup_memberList,
         onGroupJoin,
         memberConfirm,
-        memberManager
+        memberManager,
+        onMemberRemove
     }) => {
 
     const accountId = onLogInUser.accountId;
-    const groupId = detailGroup_open.id;
+    const groupId = group.id;
     const confirm = memberConfirm;
     const manager = memberManager;
 
@@ -28,14 +29,14 @@ const GroupProfilView = ({
     return (
         <Card style={{padding:"1rem"}}>
             <Image src="/posts/test_img_1.jpg" style={{borderRadius:"10px",marginBottom:"1rem"}}/>
-            <p style={{fontSize:"1.2rem", fontWeight:"bold"}}>{detailGroup_open.title}</p>
+            <p style={{fontSize:"1.2rem", fontWeight:"bold"}}>{group.title}</p>
             <p>멤버 : {detailGroup_memberLength}명</p>
-            <p>{detailGroup_open.description}</p>
+            <p>{group.description}</p>
             {memberDetail.accountId === onLogInUser.accountId && memberDetail.confirm === "true"  ? "" 
             : memberDetail.accountId === onLogInUser.accountId && memberDetail.confirm === "false"  ?
                 (   
                     <>
-                        <Button inverted color='orange'>그룹가입 신청 중입니다.</Button>
+                        <Button inverted color='orange' onClick={() => onMemberRemove(group.id,memberDetail.id)}>그룹가입 신청 중입니다.</Button>
                         <p><small>신청을 취소하시려면 Click</small></p>
                     </>
                 ) :

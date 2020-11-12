@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import "../../../GroupStyle/Group.scss";
 
 const RecommendGroupItem = ({ item,onGroupDetail_page }) => {
-
-  console.log(item)
   return (
     <Grid.Column className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
         <Link to={`/groupdetail/${item.id}/`}>

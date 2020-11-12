@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import MyGroupItem from "./GroupItem/MyGroupItem";
 import NewGroupItem from "./GroupItem/NewGroupItem";
 import { Container} from "semantic-ui-react";
@@ -12,13 +12,41 @@ const MyGroupView = ({
     categoryList,
     onCreateGroup,
     onCategoryDefault,
-    onLogInUser
+    onLogInUser,
+    members,
+    onMyGroups
    }) => {
-  const Groupitem = groups.map((item, index) => (
-    // <div key={index}>
-      item.master === onLogInUser.accountId ? <MyGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page}/> : null
+
+  let logMember = new Array();
+  const test = members.map(member => {
+    if(onLogInUser.accountId == member.accountId){
+      logMember.push(member)
+    }
+  })
+  
+  let joinMember = ""
+  let myGroups = new Array();
+  const Groupitem = groups.map((item, index) => {
+    for(var i =0; i < item.members.length; i++){
+      if(item.members[i].accountId === onLogInUser.accountId){
+        joinMember = item.members[i].accountId === onLogInUser.accountId;
+        console.log(`${item.title} 조인 : ` + joinMember)
+        myGroups.push(item);
+
+        return(
+          item.master === onLogInUser.accountId || joinMember ?
+            <MyGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page}/> : ""
+        )
+      } 
+    }
+  });
+
+  useEffect(() => {
+    onMyGroups(myGroups)
+  },[myGroups]); 
     
-  ));
+  
+
 
   var settings = {
     dots: true,
@@ -56,7 +84,7 @@ const MyGroupView = ({
   };
 
   return (
-    <div className="myGroup_wrap">
+    <div className="myGroup_wrap" >
       <Container>
         <div className="group_header_text">
           <p className="group_header_headerText">내 그룹</p>

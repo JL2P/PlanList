@@ -10,7 +10,6 @@ const RecommendGroupView = ({
         onCategoryDefault,
         categoryList
     }) => {
-        console.log(categoryList)
 
     // useEffect(() => {
     //     onAllGroups();
@@ -27,7 +26,7 @@ const RecommendGroupView = ({
                 <div className="group_header_text">
                     <p className="group_header_headerText">추천 더 보기</p>
                     <p className="group_header_contents">다른 사람들과 같이 계획에 참여해 보세요!</p>
-                    <Link to="/groupcategory" className="group_allView" onClick={() => onCategoryDefault(categoryList[0])}>모두 보기</Link>
+                    <Link to="/groupcategory/" className="group_allView" onClick={() => onCategoryDefault(categoryList[0])}>모두 보기</Link>
                 </div>
                 <Grid columns={4} divided>
                     <Grid.Row>

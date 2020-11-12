@@ -14,7 +14,7 @@ const GroupDetailPage = ({history}) => {
                 <Grid celled style={boxShadowRemove}>
                     <Grid.Row style={boxShadowRemove}>
                         <Grid.Column width={4} style={boxShadowRemove}>
-                            <DetailProfileContainer />
+                            <DetailProfileContainer history={history} />
                         </Grid.Column>
                         
 

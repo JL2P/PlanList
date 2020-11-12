@@ -59,6 +59,7 @@ class ProfileTodoView extends Component {
     const today = this.props.Store.todo.getToday;
 
     return (
+
       <div>
         <TodoCreateDesktopForm
           open={open}
@@ -91,6 +92,11 @@ class ProfileTodoView extends Component {
               active={activeItem === "Completed"}
               onClick={this.handleItemClick}
             />
+            <Menu.Item
+            name="새로운 알림"
+            active={activeItem === "새로운 알림"}
+            onClick={this.handleItemClick}
+          />
             {selectUser === loginAccount ? (
               <Menu.Menu position="right">
                 <Menu.Item
@@ -123,9 +129,11 @@ class ProfileTodoView extends Component {
             )}
             {activeItem === "Not yet" && <h1>해야 할 할일 모두 나와라!</h1>}
             {activeItem === "Completed" && <h1>달성한 할일 모두 나와라!</h1>}
+            {activeItem === "새로운 알림" }
           </div>
         </Container>
       </div>
+
     );
   }
 }
