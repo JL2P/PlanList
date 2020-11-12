@@ -227,4 +227,16 @@ export default class TodoStore {
       return todo;
     });
   }
+
+  @action
+  async todoCompleted(todoId) {
+    await this.todoRepository.completeTodo(todoId);
+    this.getApiLoginTodos();
+  }
+
+  @action
+  async todoIncompleted(todoId) {
+    await this.todoRepository.incompleteTodo(todoId);
+    this.getApiLoginTodos();
+  }
 }

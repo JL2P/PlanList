@@ -62,6 +62,7 @@ class MainTodoCreateDesktopContainer extends Component {
           onChangeTitle={this.changeTodoTitle}
           createTodo={this.createTodo}
           today={today}
+          
         />
         <MainCreateTodoDesktopView
           title={todoTitle}
