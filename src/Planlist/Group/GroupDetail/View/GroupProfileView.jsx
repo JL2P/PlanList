@@ -12,6 +12,15 @@ const GroupProfilView = ({
         onMemberRemove
     }) => {
 
+    let today = new Date();   
+
+    let year = today.getFullYear(); // 년도
+    let month = today.getMonth() + 1;  // 월
+    let date = today.getDate();  // 날짜
+    let day = today.getDay();  // 요일
+
+    const newToday = `${year}.${month}.${date}`
+
     const accountId = onLogInUser.accountId;
     const groupId = group.id;
     const confirm = memberConfirm;
@@ -32,7 +41,7 @@ const GroupProfilView = ({
             <p style={{fontSize:"1.2rem", fontWeight:"bold", wordBreak:"break-all"}}>{group.title}</p>
             <p>그룹장 : {group.master}</p>
             <p>멤버 : {detailGroup_memberLength}명</p> 
-            <p>{group.description}</p>
+            <p style={{wordBreak:"break-all"}}>{group.description}</p>
             {memberDetail.accountId === onLogInUser.accountId && memberDetail.confirm === "true"  ? "" 
             : memberDetail.accountId === onLogInUser.accountId && memberDetail.confirm === "false"  ?
                 (   
@@ -46,7 +55,8 @@ const GroupProfilView = ({
                         accountId,
                         groupId,
                         confirm,
-                        manager
+                        manager,
+                        date:`${newToday}`
                     })}>
                         그룹 가입하기
                     </Button>

@@ -5,5 +5,6 @@ export default class MemberModel{
         this.confirm = memberObj.confirm;
         this.groupId = memberObj.groupId;
         this.manager = memberObj.manager;
+        this.date = memberObj.date;
     }
 }
