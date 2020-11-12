@@ -21,7 +21,7 @@ const MainItemInfoModalView = ({ todo, open, onModal, children }) => {
           </Modal.Description>
           <div className="modal__description__info">
             <Link to={`/account/${todo.writer}`}>
-              <Label as="a" basic image>
+              <Label basic image>
                 <img
                   src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
                   alt="jsx-a11y/alt-text"
