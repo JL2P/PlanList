@@ -1,5 +1,6 @@
 import {
   axios_auth_GET,
+  axios_auth_body_GET,
   axios_auth_POST,
   axios_auth_PUT,
   axios_auth_DELETE,
@@ -27,8 +28,8 @@ export default class TodoRepository {
 
   // todo list 조회
   // GET /api/todos/
-  TodoList = () => {
-    return axios_auth_GET(this.URL, []);
+  TodoList = (followers) => {
+    return axios_auth_POST(this.URL+"/my",followers, []);
   };
 
   //todo 조회

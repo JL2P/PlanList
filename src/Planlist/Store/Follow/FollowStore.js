@@ -1,7 +1,6 @@
 import FollowRepository from "../../Api/Repository/FollowRepository";
 import { observable, computed, action } from "mobx";
-
-
+import AccountModel from "../../Api/model/AccountModel"
 
 export default class FollowStore {
     constructor(root) {
@@ -14,6 +13,8 @@ export default class FollowStore {
     @observable isfollowing = false;
 
     @observable followers = [];
+    //승훈 추가
+    @observable followings= [];
     @observable follower = {};
 
     @observable notConfirmFollowers = [];
@@ -33,6 +34,11 @@ export default class FollowStore {
   
     @computed get getMyFollowers() {
       return this.followers;
+    }
+
+    //승훈 추가
+    @computed get getMyFollowings(){
+      return this.followings;
     }
 
     @computed get getNotConfirmFollowers(){
@@ -58,7 +64,7 @@ export default class FollowStore {
       const data = await this.followRepository.notConfirmFollowersFunction();
       console.log("getApiNotConfirmFollowers")
       console.log(data)
-      this.notConfirmFollowers = data;
+      this.notConfirmFollowers = data.map(follower=>new AccountModel(follower));
     }
     
 
@@ -70,10 +76,19 @@ export default class FollowStore {
       this.followers = data;
     }
 
+    // @action
+    // async getfollowinglist(){
+    //   const accounId = this.root.account.getLoginAccount.accountId;
+    //   this.followRepository.getFollowerlistFunction(accounId)
+    // }
+
+    //승훈 생성
+    //내가 팔로우를 신청한 사람들중에 나를 수락한 사람들의 데이터를 가져온다.
+    //현재는 사용하지않음 
     @action
-    async getfollowinglist(){
-      const accountd = this.root.account.getLoginAccount.accountId;
-      this.followRepository.getFollowerlistFunction(accountd)
+    async getApiMyFollowings(){
+      const data = await this.followRepository.getMyFollowinglistFunction();
+      this.followings = data.map(following=>new AccountModel(following));
     }
 
    
