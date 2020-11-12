@@ -22,7 +22,7 @@ export default class AccountRepository {
   // account list조회
   // GET /api/accounts/
   accountList = () => {
-    return axios.get(this.URL).then((request) => request.data || []);
+    return axios.get(this.URL, HEADER).then((request) => request.data || []);
   };
 
   //account 조회
