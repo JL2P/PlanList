@@ -4,7 +4,12 @@ import TodoCommentContainer from "../../container/TodoCommentContainer";
 import { Link } from "react-router-dom";
 import "./todoCommentFormStyle.css";
 
-const TodoCommentFormVIew = ({ comment, children, onDeleteComment }) => {
+const TodoCommentFormVIew = ({
+  comment,
+  loginAccount,
+  onDeleteComment,
+  children,
+}) => {
   const [reply, setReply] = useState(false);
 
   const onReply = () => setReply(!reply);
@@ -27,14 +32,16 @@ const TodoCommentFormVIew = ({ comment, children, onDeleteComment }) => {
               {/* <Icon name="heart" /> */}
             </Comment.Metadata>{" "}
           </div>
-          <Icon
-            name="x"
-            color="red"
-            style={{ marginRight: "1em", cursor: "pointer" }}
-            onClick={() => {
-              onDeleteComment(comment);
-            }}
-          />
+          {loginAccount.accountId === comment.writer && (
+            <Icon
+              name="x"
+              color="red"
+              style={{ marginRight: "1em", cursor: "pointer" }}
+              onClick={() => {
+                onDeleteComment(comment);
+              }}
+            />
+          )}
         </div>
         <Comment.Text>
           {comment.targetId && (
