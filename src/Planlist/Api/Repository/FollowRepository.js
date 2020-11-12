@@ -39,8 +39,14 @@ export default class FollowRepository{
         return axios.get(this.URL+"followinglist", data).then(request=>request.data||{});
     }
 
-    
+    //승훈 추가
+    //내가 팔로우를 신청한 사람들중에 나를 수락한 사람들의 데이터를 가져온다.
+    //TodoStore에서 사용중
+    getMyFollowinglistFunction = ()=>{
+        return axios_auth_GET(this.URL+'myFollowingList',[]);
+    }
 
+    
     //@PostMapping("/isfollow")
     followCheckFunction = (FollowId) => {
        return axios_auth_POST(this.URL+`isfollow/${FollowId}`,{},{});
