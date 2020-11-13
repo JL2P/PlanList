@@ -33,8 +33,6 @@ class HeaderMainContainer extends Component {
         group.handleItemClick(localStorage.getItem('name'));
       }
     }
-      
-    
   }
 
   render() {

@@ -10,7 +10,7 @@ const DetailGroupNav = ({
       onHandleItemClick,
       name
   }) => {
-
+    console.log(member)
   // const [activeItem, setActiveItem] = useState("전체글");
 
   // const handleItemClick = (e,{name}) => {
@@ -19,6 +19,10 @@ const DetailGroupNav = ({
   const navAlert = () => {
     member.confirm !== "true" && alert("권한이 없습니다.")
   }
+
+  const memberConfirm = member.confirm === "true" ? true: false;
+  const masterAuth = member.confirm === "true" && member.manager === "true" ? true : false;
+  const memberAuth = member.confirm === "true" && member.manager === "false" ? true : false;
 
   return (
     <div>
@@ -30,7 +34,7 @@ const DetailGroupNav = ({
             onClick={() => onHandleItemClick("전체글")}
             />
             <Menu.Item
-            as={Link} to={member.confirm === "true" && `/groupdetail/${group.id}/member`}
+            as={Link} to={memberConfirm?`/groupdetail/${group.id}/member`:''}
             name="멤버"
             active={activeItem === "멤버"}
             onClick={() => onHandleItemClick("멤버")}
@@ -49,7 +53,7 @@ const DetailGroupNav = ({
             <Menu.Menu position="right">
             {group.master === onLogInUser.accountId ?
               <Menu.Item
-                as={Link} to={member.confirm === "true" && member.manager === "true" && `/groupdetail/${group.id}/masterSetting`} 
+                as={Link} to={masterAuth?`/groupdetail/${group.id}/masterSetting`:''} 
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={() => onHandleItemClick("그룹 설정")}
@@ -57,7 +61,7 @@ const DetailGroupNav = ({
               />
               : 
               <Menu.Item
-                as={Link} to={member.confirm === "true" && member.manager === "false" && `/groupdetail/${group.id}/userSetting`} 
+                as={Link} to={memberAuth?`/groupdetail/${group.id}/userSetting`:''} 
                 name="그룹 설정"
                 active={activeItem === "그룹 설정"}
                 onClick={() => onHandleItemClick("그룹 설정")}

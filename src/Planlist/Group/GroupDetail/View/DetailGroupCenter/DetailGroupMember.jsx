@@ -9,6 +9,15 @@ const DetailGroupMember = ({
     member
   }) => {
   
+    let today = new Date();   
+
+    let year = today.getFullYear(); // 년도
+    let month = today.getMonth() + 1;  // 월
+    let date = today.getDate();  // 날짜
+    let day = today.getDay();  // 요일
+
+    const newToday = `${year}.${month}.${date}`
+
   //그룹 가입 신청 List
   const membersApply = memberList.map((member,index) => (
     member.confirm === "false" ? (
@@ -23,7 +32,7 @@ const DetailGroupMember = ({
           <Feed.Content>
             <Feed.Date content={member.accountId} style={{fontSize:"1.2rem"}}/>
               <Feed.Summary>
-                <small>그룹 가입일 :</small> 
+                <small>가입 신청일 : {member.date}</small> 
             </Feed.Summary>
           </Feed.Content>
           <form>
@@ -32,7 +41,8 @@ const DetailGroupMember = ({
                 accountId:`${member.accountId}`,
                 confirm:"true",
                 manager:`${member.manager}`,
-                groupId:`${member.groupId}`
+                groupId:`${member.groupId}`,
+                date:`${newToday}`
             })}>
                 확인
             </Button>
@@ -57,7 +67,7 @@ const DetailGroupMember = ({
           <Feed.Content>
             <Feed.Date content={member_map.accountId} style={{fontSize:"1.2rem"}}/>
             <Feed.Summary>
-              <small>그룹 가입일 :</small> 
+              <small>그룹 가입일 : {member.date}</small> 
             </Feed.Summary>
           </Feed.Content>
           { member_map.manager === "false" ?

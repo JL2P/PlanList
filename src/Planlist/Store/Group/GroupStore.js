@@ -99,9 +99,16 @@ export default class GroupStore {
       @action
       async createGroup(groupObj){
         const groupModel = new GroupAddModel(groupObj);
-        console.log(groupObj);
         const result = await this.groupRepository.groupCreate(groupModel);
-        console.log(result)
+        
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let day = today.getDay();  // 요일
+
+        const newToday = `${year}.${month}.${date}`
 
         this.groupId = result.id;
         const accountId = result.master;
@@ -112,6 +119,7 @@ export default class GroupStore {
                             "confirm": this.confirm,
                             "groupId": this.groupId,
                             "manager": this.manager,
+                            "date": newToday
                           }
 
         this.getApiGroups()
@@ -144,7 +152,7 @@ export default class GroupStore {
         //로컬스토리지에 그룹아이디 저장
         localStorage.groupId = groupId
 
-        this.handleItemClick("전체글")
+        
       }
 
       //그룹 디테일 페이지 설정 수정
@@ -177,6 +185,7 @@ export default class GroupStore {
       //그룹원 생성
       @action
       async groupMember(memberObj){
+        console.log(memberObj)
         const memberModel = new MemberModel(memberObj);
         console.log(memberModel);
         await this.memberRepository.memberCreate(memberModel);

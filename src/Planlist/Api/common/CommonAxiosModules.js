@@ -12,6 +12,7 @@ const HEADER = {
     }
 }
 
+// GET요청을 보낼 때 Header에 JWT을 넣어서 보내야 하는 경우 사용
 export const axios_auth_GET = (url, defualtReturnValue="")=>{
     return axios.get(url, HEADER)
         .then(res=>{
@@ -24,6 +25,28 @@ export const axios_auth_GET = (url, defualtReturnValue="")=>{
             });
 }
 
+// GET요청을 보낼 때 body에 데이터를 넣어서 보내야 하는 경우 사용
+export const axios_auth_body_GET = (url, list, defualtReturnValue="")=>{
+    console.log(axios_auth_body_GET);
+    const data = {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+        },
+        var:list
+    }
+    console.log(data)
+    return axios.get(url, data)
+        .then(res=>{
+            return res.data ||defualtReturnValue})
+        .catch(function (error) {
+            //토큰인증에 실패한 경우 로그인화면으로 이동
+            if (error.response) {
+                if(errorTypeCheck(error.response.data.error)) window.location.href="/signin";  
+                }
+            });
+}
+
+// POST요청을 보낼 때 Header에 JWT을 넣어서 보내야 하는 경우 사용
 export const axios_auth_POST = (url, data={}, defualtReturnValue="")=>{
     return axios.post(url, data, HEADER)
         .then(res=>res.data||defualtReturnValue)
@@ -35,6 +58,7 @@ export const axios_auth_POST = (url, data={}, defualtReturnValue="")=>{
             });
 }
 
+// PUT요청을 보낼 때 Header에 JWT을 넣어서 보내야 하는 경우 사용
 export const axios_auth_PUT = (url,data={}, defualtReturnValue="")=>{
     return axios.put(url,data,HEADER)
         .then(res=>res.data||defualtReturnValue)
@@ -46,6 +70,7 @@ export const axios_auth_PUT = (url,data={}, defualtReturnValue="")=>{
             });
 }
 
+// DELETE요청을 보낼 때 Header에 JWT을 넣어서 보내야 하는 경우 사용
 export const axios_auth_DELETE = (url, defualtReturnValue="")=>{
     return axios.delete(url,HEADER)
         .then(res=>res.data||defualtReturnValue)
@@ -57,7 +82,7 @@ export const axios_auth_DELETE = (url, defualtReturnValue="")=>{
             });
 }
 
-
+// 인증 에러 체크
 const errorTypeCheck=(error)=>{
     if(error ==="unauthorized") return true;
     if(error ==="invalid_token") return true;

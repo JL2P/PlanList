@@ -20,7 +20,8 @@ class MainItemInfoContainer extends Component {
   };
 
   render() {
-    const { todo } = this.props.Store;
+    const { todo, account } = this.props.Store;
+    const loginAccount = account.getLoginAccount;
     const seletedTodo = todo.getTodo;
 
     const seletedTodoComments = todo.getComments;
@@ -30,6 +31,7 @@ class MainItemInfoContainer extends Component {
       <MainItemInfoModalView todo={seletedTodo} open={open} onModal={onModal}>
         <TodoCommentFrame
           comments={seletedTodoComments}
+          loginAccount={loginAccount}
           onDeleteComment={this.onDeleteComment}
         />
       </MainItemInfoModalView>
