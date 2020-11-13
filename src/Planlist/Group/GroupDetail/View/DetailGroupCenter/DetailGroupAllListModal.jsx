@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Header, Image, Modal } from "semantic-ui-react";
 
 const DetailGroupAllListModal = ({ setOpen, item }) => {
+  console.log(item)
   return (
     <>
       <Modal.Header>Select a Photo</Modal.Header>
@@ -10,7 +11,7 @@ const DetailGroupAllListModal = ({ setOpen, item }) => {
         <Modal.Description>
           <Header>{item.title}</Header>
           <p>{item.description}</p>
-          <p>참여한 멤버 수 : {item.rating}명</p>
+          <p>참여한 멤버 수 : 0 명</p>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

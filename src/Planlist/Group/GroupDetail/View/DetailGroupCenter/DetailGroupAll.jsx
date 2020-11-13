@@ -5,22 +5,22 @@ import { Segment ,Input, Modal, Grid  } from "semantic-ui-react";
 import '../../../GroupStyle/GroupDetail.scss';
 
 const GroupAllView = ({
-        sampleData,
         onDetailGroup_create,
         getDetailGroup_modalOpen,
         onDetailGroup_modalCheck,
         onLogInUser,
-        group
+        group,
+        groupTodoList,
+        categoryList
     }) => {
-        
-    const [open, setOpen] = useState(false)
+
     const [search, setSearch] = useState("");
 
     const onSearch = (e) => {setSearch(e.target.value)}
 
     const onAlert = () => {alert("글 쓰기 권한이 없습니다.")}
 
-    const Groupitem = sampleData.map((item, index) => (
+    const Groupitem = groupTodoList.map((item, index) => (
         <DetailGroupAllList key={index} item={item} />
       ));
     return (
@@ -40,6 +40,7 @@ const GroupAllView = ({
                     <Modal
                         closeIcon
                         open={getDetailGroup_modalOpen}
+                        size="tiny"
                         trigger={
                             <div>
                                 <Input
@@ -53,7 +54,12 @@ const GroupAllView = ({
                         onClose={() => onDetailGroup_modalCheck(false)}
                         onOpen={() => onDetailGroup_modalCheck(true)}
                     >
-                        <DetailGroupAllModal onDetailGroup_create={onDetailGroup_create} />
+                        <DetailGroupAllModal 
+                            onDetailGroup_create={onDetailGroup_create}
+                            group={group} 
+                            onLogInUser={onLogInUser}
+                            categoryList={categoryList}
+                        />
                     </Modal>
                 :
                 <Input
