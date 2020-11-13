@@ -5,6 +5,13 @@ import { inject, observer } from "mobx-react";
 @inject("Store")
 @observer
 class ProfileMangeContainer extends Component {
+
+  componentDidMount=()=>{
+    const {follow} = this.props.Store;
+    follow.getApiMyFollowings();
+    follow.getApiMyFollowers();
+  }
+
   onSetAccountProp = (key, value) => {
     const { account } = this.props.Store;
     account.setAccountProp(key, value);
@@ -43,6 +50,9 @@ class ProfileMangeContainer extends Component {
     console.log("count >> ", count, selectUserTodos.length);
     const isFollowed = follow.getIsFollowed;
 
+    const followers = follow.getMyFollowers;
+    const followings = follow.getMyFollowings;
+
     return (
       <div>
         <ProfileManageView
@@ -57,6 +67,8 @@ class ProfileMangeContainer extends Component {
           selectUserTodos={selectUserTodos}
           onFollow={this.onFollow}
           isFollowed={isFollowed}
+          followers={followers}
+          followings={followings}
         />
       </div>
     );

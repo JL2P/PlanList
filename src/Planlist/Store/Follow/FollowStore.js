@@ -12,9 +12,12 @@ export default class FollowStore {
     @observable isFollowed = false;
     @observable isfollowing = false;
 
+    @observable myfollowerCnt=0;
+    @observable myfollowingCnt=0;
+
     @observable followers = [];
     //승훈 추가
-    @observable followings= [];
+    @observable followings = [];
     @observable follower = {};
 
     @observable notConfirmFollowers = [];
@@ -31,9 +34,13 @@ export default class FollowStore {
     @computed get getFollower() {
       return this.follower;
     }
-  
+
     @computed get getMyFollowers() {
       return this.followers;
+    }
+
+    @computed get getMyFollowerCnt() {
+      return this.myfollowerCnt;
     }
 
     //승훈 추가
@@ -73,7 +80,7 @@ export default class FollowStore {
       const data = await this.followRepository.getMyFollowersFunction();
       console.log("getApiMyfollowers")
       console.log(data)
-      this.followers = data;
+      this.followers = data.map(follower=>new AccountModel(follower));
     }
 
     // @action
@@ -87,10 +94,12 @@ export default class FollowStore {
     //현재는 사용하지않음 
     @action
     async getApiMyFollowings(){
+      
       const data = await this.followRepository.getMyFollowinglistFunction();
+      console.log("getApiMyfollowings")
       this.followings = data.map(following=>new AccountModel(following));
+      console.log(this.followings)
     }
-
    
     @action
     async followCheck(followerId) {

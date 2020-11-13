@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-react";
 
-const ProfileFollowingView = () => {
+const ProfileFollowingView = ({following}) => {
 
     const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -12,11 +12,11 @@ const ProfileFollowingView = () => {
     return (
         <div>
             <Modal
-        onClose={() => setConfirmOpen(false)}
-        onOpen={() => setConfirmOpen(true)}
-        open={confirmOpen}
-        size="mini"
-        >
+                onClose={() => setConfirmOpen(false)}
+                onOpen={() => setConfirmOpen(true)}
+                open={confirmOpen}
+                size="mini"
+                >
           
             <div
              style={{
@@ -36,7 +36,17 @@ const ProfileFollowingView = () => {
             }}>
                 <div style={{display:"flex",  justifyContent:"center"}}>
                     <Image style={{margin:"1em", alignItems: "center"} }
-                    src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
+               
+                    src={following.imgUrl} 
+                    bordered
+                    centered
+                    
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
                     alt="jsx-a11y/alt-text"
                     circular
                     size="tiny"
@@ -115,23 +125,33 @@ const ProfileFollowingView = () => {
                 
                 <div className="part_b">
                     <Image
-                    src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
+                    src={following.imgUrl}
+                    bordered
+                    centered
+                    
+                    style={{
+                      width: "70px",
+                      height: "70px",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
                     alt="jsx-a11y/alt-text"
-                    circular
+                   
+                   
                     />
                  </div>
                 
                 <div className="part_b">
-                  <div>ID</div>
-          
-                    <text style={{marginLeft:"1em", fontSize:"14px"}}
-                    >박민재</text>
+                <div>{following.accountId}</div>
+                <div>{following.name}</div>
+                                
+
                  
                 </div>
             </div>
-            <div clasName="part_a2">
+            <div className="part_a2">
                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                팔로잉
+                팔로잉 취소
                 </Button>
             </div>
             </div>

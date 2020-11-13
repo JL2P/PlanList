@@ -8,22 +8,15 @@ import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerVi
 @observer
 class ProfileFollowerListContainer extends Component {
 
-  
-      componentDidMount() {
-        const {follow} = this.props.Store;
-        follow.getApiMyFollowers();
-        
-      }
-      
- 
     render(){
         const { account, follow } = this.props.Store;
         const myFollowers = follow.getMyFollowers;
         console.log("myFollowers")
         console.log(myFollowers)
-        const element = myFollowers.map((follower) => <ProfileFollowerView follower={follower} isFollowing={follow.getIsFollowing}/>);   
+        const element = myFollowers.map((follower) => <ProfileFollowerView key={follower.accountId} follower={follower} isFollowing={follow.getIsFollowing}/>);   
+    
         
-
+        console.log(element)
         return (
             <div style={{height:"600px", textAlign:"center"}}>
                 <Header as="h3" dividing style={{marginTop:"0.5em"}}>팔로워</Header>
