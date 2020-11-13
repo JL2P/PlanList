@@ -36,6 +36,19 @@ const NewGroupItemModal = ({
   }
   categoryTrue();
 
+  //그룹 생성시 임시로 이미지
+  let img = new Array;
+  const url = () => {
+    for(var i = 0; i < 100; i++){
+      img.push(`/posts/test_img_${i}.jpg`)
+    }
+  }
+  url();
+  function randomItem(a) {
+    return a[Math.floor(Math.random() * a.length)];
+  }
+  let imgUrl = randomItem(img);
+
 
   return (
     <Container>
@@ -143,7 +156,8 @@ const NewGroupItemModal = ({
                   category,
                   title,
                   description,
-                  master
+                  master,
+                  imgUrl
                 });
               }}
             >

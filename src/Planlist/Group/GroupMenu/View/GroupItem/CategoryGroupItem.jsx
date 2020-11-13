@@ -11,7 +11,7 @@ const CategoryGroupItem = ({ item, key, onCategorySelect }) => {
     >
       <Card className="group_card categoryGroup_card" raised>
         <Image 
-            src={item.imgUrl} 
+            src={item.imgurl} 
             className="categoryGroup_img" 
         />
         <div className="categoryGroup_caption"></div>
