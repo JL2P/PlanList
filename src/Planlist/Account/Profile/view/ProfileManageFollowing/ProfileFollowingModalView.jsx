@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
-import ProfileFollowingListView from './ProfileFollowingListView';
+import { Modal } from 'semantic-ui-react'
+import ProfileFollowingListContainer from '../../container/ProfileFollowingListContainer';
 
 const ProfileFollowingModalView = ({
     followingOpen,
@@ -17,7 +17,7 @@ const ProfileFollowingModalView = ({
         size="tiny"
        >
         <Modal.Content scrolling style={{ width: "100%" }}>
-      <ProfileFollowingListView/>  
+      <ProfileFollowingListContainer/>  
       </Modal.Content>
       </Modal>
   

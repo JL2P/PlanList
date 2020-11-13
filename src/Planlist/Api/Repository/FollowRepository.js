@@ -30,6 +30,7 @@ export default class FollowRepository{
 
         return axios_auth_GET(this.URL+"myFollowerList",[]);
     }
+    //@GetMapping("/")
 
     //@GetMapping("/followinglist")
     getFollowinglistFunction = (AccountId) => {
@@ -61,4 +62,6 @@ export default class FollowRepository{
     followConfirmFunction = (FollowId) => {
         return axios_auth_POST(this.URL+`confirm/${FollowId}`,{},{});
     }
+
+
 }

@@ -67,14 +67,16 @@ const DetailGroupMember = ({
           <Feed.Content>
             <Feed.Date content={member_map.accountId} style={{fontSize:"1.2rem"}}/>
             <Feed.Summary>
-              <small>그룹 가입일 : {member.date}</small> 
+              <small>그룹 가입일 : {member_map.date}</small> 
             </Feed.Summary>
           </Feed.Content>
-          { member_map.manager === "false" ?
+          { member_map.manager === "false" ? 
             <div>
-              <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
+              {member.manager === "true" && 
+                <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
                   그룹 강퇴
-              </Button>
+                </Button>
+              }
             </div>
             :
             <div>

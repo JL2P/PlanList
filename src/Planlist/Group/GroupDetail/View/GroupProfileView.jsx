@@ -37,7 +37,7 @@ const GroupProfilView = ({
 
     return (
         <Card style={{padding:"1rem"}}>
-            <Image src="/posts/test_img_1.jpg" style={{borderRadius:"10px",marginBottom:"1rem"}}/>
+            <Image src={group.imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
             <p style={{fontSize:"1.2rem", fontWeight:"bold", wordBreak:"break-all"}}>{group.title}</p>
             <p>그룹장 : {group.master}</p>
             <p>멤버 : {detailGroup_memberLength}명</p> 

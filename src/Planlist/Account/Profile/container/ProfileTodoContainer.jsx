@@ -43,8 +43,6 @@ class ProfileTodoContainer extends Component {
     const loginAccount = account.getLoginAccount;
     const notConfirmFollowers = follow.getNotConfirmFollowers;
 
-    console.log("ProfileTodoContainer")
-    console.log(notConfirmFollowers);
     return (
       <div>
         {openAt === "Y" || // 공개 계정이거나

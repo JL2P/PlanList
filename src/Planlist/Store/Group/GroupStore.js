@@ -4,13 +4,11 @@ import GroupModel from "../../Api/model/group/GroupModel";
 import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
 import MemberModel from "../../Api/model/member/MemberModel";
+import GroupTodoModel from "../../Api/model/GroupTodo/GroupTodoModel";
 
-import MyGroupPage_List_Data from "../../Sample/Data/GroupSample/MyGroupPage_List_Data";
-import BsetGroupPage_List_Data from "../../Sample/Data/GroupSample/BsetGroupPage_List_Data";
-import CategoryGroupPage_List_Data from "../../Sample/Data/GroupSample/CategoryGroupPage_List_Data";
-import RecommendGroupPage_List_Data from "../../Sample/Data/GroupSample/RecommendGroupPage_List_Data";
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
+import GroupTodoRepository from "../../Api/Repository/GroupTodoRepository"
 
 
 export default class GroupStore {
@@ -18,17 +16,10 @@ export default class GroupStore {
         this.root = root;
         this.groupRepository = new GroupRepository();
         this.memberRepository = new MemberRepository();
+        this.groupTodoRepository = new GroupTodoRepository();
       }
-      
-      //샘플
-      @observable myTodo = MyGroupPage_List_Data;
-      @observable bestTodo = BsetGroupPage_List_Data
-      @observable categoryTodo = CategoryGroupPage_List_Data;
-      @observable recommendTodo = RecommendGroupPage_List_Data;
 
-      @computed get getMyTodo(){return this.myTodo;}
-
-      
+  
       //모델 정의
       @observable group = {};
       @observable groups = [];
@@ -47,6 +38,10 @@ export default class GroupStore {
       @observable confirm = false;
       @observable manager = false;
 
+      @observable groupTodo = {};
+      @observable groupTodos = [];
+      @observable groupTodoList = [];
+
       @computed get getGroup(){return this.group;}
       @computed get getGroups(){return this.groups;}
       @computed get getDetailGroup_modalOpen(){return this.detailGroup_modalOpen}
@@ -62,19 +57,16 @@ export default class GroupStore {
       @computed get getGroupId(){return this.groupId;}
       @computed get getConfirm(){return this.confirm;}
       @computed get getManager(){return this.manager;}
+
+      @computed get getGroupTodo(){return this.groupTodo;}
+      @computed get getGroupTodos(){return this.groupTodos;}
+      @computed get getGroupTodoList(){return this.groupTodoList;}
       
 
       //modal open & close
       @action
       detailGroup_modalCheck = (check) => {
         this.detailGroup_modalOpen = check
-      }
-
-      //그룹에 게시물 생성
-      @action
-      detailGroup_create = (detailGroup) => {
-        this.myTodo.push(detailGroup)
-        this.detailGroup_modalCheck(false);
       }
 
       //카테고리 리스트별로 출력
@@ -137,6 +129,7 @@ export default class GroupStore {
         const result = await this.groupRepository.groupDetail(groupId);
         this.group = new GroupModel(result);
 
+        //해당 그룹 아이디 멤버 리스트
         this.detailGroup_memberLength = this.group.members.length;
         this.detailGroup_memberList = this.group.members;
         console.log(this.detailGroup_memberList)
@@ -149,6 +142,11 @@ export default class GroupStore {
             this.member = memberList[i]
           }
         }
+
+        //해당 그룹 아이디 그룹 투두
+        this.groupTodoList = this.group.groupTodos;
+        console.log(this.group.groupTodos);
+
         //로컬스토리지에 그룹아이디 저장
         localStorage.groupId = groupId
 
@@ -211,5 +209,24 @@ export default class GroupStore {
         console.log("멤버 전체 리스트 출력")
         const memberList = await this.memberRepository.memberList();
         this.members = memberList.map(member => new MemberModel(member))
+      }
+
+      /*************************************그룹 투두*********************************************/
+      //그룹 투두 전체 조회
+      @action
+      async groupTodoListAll(){
+        const groupTodoList = await this.groupTodoRepository.groupTodoList();
+        this.groupTodos = groupTodoList.map(groupTodo => new GroupTodoModel(groupTodo))
+        console.log(this.groupTodos)
+        console.log("그룹 투두 리스트 전체 출력")
+      }
+
+      //그룹에 게시물 생성
+      @action
+      async detailGroup_create(groupTodoObj){
+        console.log(groupTodoObj);
+        const groupModel = new GroupTodoModel(groupTodoObj);
+        await this.groupTodoRepository.groupTodoCreate(groupModel);
+        this.detailGroup_modalCheck(false);
       }
 }

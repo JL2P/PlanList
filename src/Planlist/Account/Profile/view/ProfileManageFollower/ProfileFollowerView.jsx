@@ -3,9 +3,12 @@ import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-reac
 const ProfileFollowerView = ({follower, isFollowing}) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
 
+
     const onConfirmModal = (trigger) => {
         setConfirmOpen(trigger);
       };
+
+      console.log(follower.imgUrl)
 
 
     return (
@@ -37,7 +40,16 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
             }}>
                 <div style={{display:"flex",  justifyContent:"center"}}>
                     <Image style={{margin:"1em", alignItems: "center"} }
-                    src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
+                    src={follower.imgUrl}
+                    bordered
+                    centered
+                    
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
                     alt="jsx-a11y/alt-text"
                     circular
                     size="tiny"
@@ -115,8 +127,18 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
             }}>
                 <div className="part_b">
                     <Image
-                    src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
-                    alt="jsx-a11y/alt-text"
+                    src={follower.imgUrl}
+                    bordered
+                    centered
+                    
+                    style={{
+                      width: "70px",
+                      height: "70px",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
+
+                    alt="profile"
                     circular
                     />
                 </div>
@@ -132,7 +154,7 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
 
                 </div>
             </div>
-            <div clasName="part_a2">
+            <div className="part_a2">
             {isFollowing && (
                 
                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>

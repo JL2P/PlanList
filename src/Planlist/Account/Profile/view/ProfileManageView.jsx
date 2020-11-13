@@ -22,10 +22,9 @@ const ProfileManageView = ({
   onSetAccountProp,
   onDeleteUser,
   onFollow,
-  
-  onGetFollowerlist,
   isFollowed,
-  
+  followers,
+  followings
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
@@ -54,6 +53,8 @@ const ProfileManageView = ({
   const handleItemClick = (activeItem) => {
     setActiveItem(activeItem);
   };
+
+  console.log(followers.length);
 
   return (
     <Container text style={{ marginTop: "3em" }}>
@@ -161,12 +162,12 @@ const ProfileManageView = ({
                 {/* 팔로워 */}
                 <Grid.Column width={5}>
                   <span onClick={() => onFollowerModal(true)}>팔로워</span>{" "}
-                  &nbsp; 10
+                  &nbsp; {followers.length}
                 </Grid.Column>
                 {/* 팔로잉 */}
                 <Grid.Column width={5}>
                   <span onClick={() => onFollowingModal(true)}>팔로잉</span>
-                  &nbsp; 10
+                  &nbsp; {followings.length}
                 </Grid.Column>
               </Grid>
             </Segment>

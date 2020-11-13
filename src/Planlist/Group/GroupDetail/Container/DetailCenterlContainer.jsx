@@ -7,10 +7,11 @@ import { inject, observer } from "mobx-react";
 class DetailCenterlContainer extends Component {
 
     //그룹페이지에서 todo 생성
-    onDetailGroup_create = (e,DetailGroupObj) => {
+    onDetailGroup_create = (e,groupTodoObj) => {
         e.preventDefault();
         const { group } = this.props.Store;
-        group.detailGroup_create(DetailGroupObj);
+        group.detailGroup_create(groupTodoObj);
+        window.location.reload();
     }
     //todo 생성후 모달 닫기
     onDetailGroup_modalCheck = (check) => {
@@ -93,19 +94,19 @@ class DetailCenterlContainer extends Component {
         const { group } = this.props.Store;
         const { account } = this.props.Store;
         const {
-            getMyTodo,
             getDetailGroup_modalOpen,
             getGroup,
             getDetailGroup_memberList,
             getMember,
-            getActiveItem
+            getActiveItem,
+            getGroupTodoList,
+            getCategoryList
         } = group;
         const {loginAccount} = account;
 
         return (
             <div>
                 <GroupCenterView 
-                    sampleData={getMyTodo}
                     group={getGroup}
                     getDetailGroup_modalOpen={getDetailGroup_modalOpen}
                     onDetailGroup_modalCheck={this.onDetailGroup_modalCheck}
@@ -120,6 +121,8 @@ class DetailCenterlContainer extends Component {
                     onMemberRemove_user={this.onMemberRemove_user}
                     activeItem={getActiveItem}
                     onHandleItemClick={this.onHandleItemClick}
+                    groupTodoList={getGroupTodoList}
+                    categoryList={getCategoryList}
                 />
             </div>
         );
