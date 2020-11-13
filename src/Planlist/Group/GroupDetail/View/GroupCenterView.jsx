@@ -7,7 +7,6 @@ import DetailGroupSettingU from './DetailGroupCenter/DetailGroupSettingU';
 import {Route} from 'react-router-dom'
 
 const GroupCenterView = ({
-        sampleData,
         onDetailGroup_create,
         getDetailGroup_modalOpen,
         onDetailGroup_modalCheck,
@@ -22,7 +21,9 @@ const GroupCenterView = ({
         onMemberRemove_user,
         members,
         activeItem,
-        onHandleItemClick
+        onHandleItemClick,
+        groupTodoList,
+        categoryList
     }) => {
 
     return (
@@ -39,12 +40,13 @@ const GroupCenterView = ({
                 path={`/groupdetail/${group.id}/`} 
                 exact 
                 render={() => <DetailGroupAll
-                     sampleData={sampleData}
                      onDetailGroup_create={onDetailGroup_create}
                      getDetailGroup_modalOpen={getDetailGroup_modalOpen}
                      onDetailGroup_modalCheck={onDetailGroup_modalCheck}
                      onLogInUser={onLogInUser}
                      group={group}
+                     groupTodoList={groupTodoList}
+                     categoryList={categoryList}
                 /> } />
             <Route 
                 path={`/groupdetail/${group.id}/member`} 
