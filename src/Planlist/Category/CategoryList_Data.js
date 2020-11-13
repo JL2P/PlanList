@@ -3,66 +3,79 @@ export default [
         id: 1,
         value: 'all',
         text: '전체 그룹',
-        show: 'false'
+        show: 'false',
+        imgurl: '/categoryImg/all.jpg',
     },{
         id: 2,
         value: 'myGroup',
         text: '내 그룹',
-        show: 'false'
+        show: 'false',
+        imgurl: '/categoryImg/myGroup.jpg',
     },{
         id: 3,
         value: 'bestGroup',
         text: '인기 그룹',
-        show: 'false'
+        show: 'false',
+        imgurl: '/categoryImg/bestGroup.jpg',
     },{
         id: 4,
         value: 'technology',
         text: '기술',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/skill.jpg',
     },{
         id: 5,
         value: 'travel',
         text: '여행',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/trip.jpg',
     },{
         id: 6,
         value: 'business',
         text: '비즈니스',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/business.jpg',
     },{
         id: 7,
         value: 'sports',
         text: '스포츠',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/sports.jpg',
     },{
         id: 8,
         value: 'health',
         text: '건강',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/health.jpg',
     },{
         id: 9,
         value: 'education',
         text: '교육',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/education.jpg',
     },{
         id: 10,
         value: 'cooking',
         text: '요리',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/cooking.jpg',
     },{
         id: 11,
         value: 'art',
         text: '예술',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/art.jpg',
     },{
         id: 12,
         value: 'recreation',
         text: '레크레이션',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/recreation.jpg',
     },{
         id: 13,
         value: 'parenting',
         text: '육아',
-        show: 'true'
+        show: 'true',
+        imgurl: '/categoryImg/parenting.jpg',
     },
 ]
