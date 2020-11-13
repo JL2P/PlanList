@@ -18,7 +18,7 @@ class GroupContainer extends Component {
         this.props.history.push(`/groupDetail/${group.getGroupId}/`));
     }
 
-    //그룹 전체 리스트 조회, 멤버 전체 리스트 조회
+    //그룹 전체 리스트 조회, 멤버 전체 리스트 조회, 그룹 투두 리스트 조회
     componentDidMount(){
         const { group } = this.props.Store;
         group.getApiGroups();
