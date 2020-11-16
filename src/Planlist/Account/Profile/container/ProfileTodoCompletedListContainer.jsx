@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import ProfileTodoCompletedListView from "../view/ProfileManageItem/ProfileTodoCompletedListView";
+import ProfileMyTodoEmptyView from "../view/ProfileMyTodoEmptyView";
 import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 
 @inject("Store")
@@ -10,7 +10,14 @@ class ProfileTodoCompletedListContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
-    const { selectUser, selectedTodo, onLikeButton, todos } = this.props;
+    const {
+      selectUser,
+      selectedTodo,
+      onLikeButton,
+      todos,
+      onComplete,
+      onIncomplete,
+    } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
     // const todos = todo.getTodos;
@@ -36,14 +43,16 @@ class ProfileTodoCompletedListContainer extends Component {
     );
 
     const count = completed.length;
+    const page = "completed";
+
     return (
       <div>
         {count === 0 ? (
           <div>
             {loginId === selectId ? (
-              <MainNoTodoContainer />
+              <ProfileMyTodoEmptyView page={page} selectId={selectId} />
             ) : (
-              <ProfileTodoEmptyView />
+              <ProfileTodoEmptyView page={page} selectId={selectId} />
             )}
           </div>
         ) : (
@@ -53,6 +62,9 @@ class ProfileTodoCompletedListContainer extends Component {
             selectedTodo={selectedTodo}
             onLikeButton={onLikeButton}
             today={todo.getToday}
+            onComplete={onComplete}
+            onIncomplete={onIncomplete}
+            loginId={loginId}
           />
         )}
       </div>

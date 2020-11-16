@@ -6,18 +6,15 @@ import ProfileTodoView from "../view/ProfileTodoView";
 @inject("Store")
 @observer
 class ProfileTodoContainer extends Component {
-
-  componentDidMount(){
-    const {follow} = this.props.Store;
+  componentDidMount() {
+    const { follow } = this.props.Store;
     follow.getApiNotConfirmFollowers();
-
   }
 
   onFollow = (followId) => {
     const { follow } = this.props.Store;
     follow.follow(followId);
   };
-
 
   selectedTodo = (todoModel) => {
     const { todo } = this.props.Store;
@@ -32,6 +29,17 @@ class ProfileTodoContainer extends Component {
     } else {
       todo.removeLike(todoId);
     }
+  };
+
+  onComplete = (todoId) => {
+    const { todo } = this.props.Store;
+    todo.todoCompleted(todoId);
+  };
+
+  onIncomplete = (todoId) => {
+    const { todo } = this.props.Store;
+    todo.todoIncompleted(todoId);
+    console.log("클릭!");
   };
 
   render() {
@@ -56,6 +64,8 @@ class ProfileTodoContainer extends Component {
             selectUserTodos={selectUserTodos}
             selectedTodo={this.selectedTodo}
             onLikeButton={this.onLikeButton}
+            onComplete={this.onComplete}
+            onIncomplete={this.onIncomplete}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌
@@ -65,8 +75,6 @@ class ProfileTodoContainer extends Component {
             onFollow={this.onFollow}
             isFollowed={follow.getIsFollowed}
           />
-
-
         )}
       </div>
     );

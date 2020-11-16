@@ -12,5 +12,5 @@ app.use("/api/chat", api);
 
 /* listen(포트, 리스너) : 서버를 포트로 listen */
 // 지정한 포트로 서버를 실행하고, 실행이 되면 리스너가 호출됨
-const port = 3001;
+const port = 3005;
 app.listen(port, () => console.log(`Listening on port ${port}`));
