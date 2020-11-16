@@ -11,15 +11,17 @@ import {
   GroupMenu,
   GroupDetail,
   GroupCategory,
-  Chat
+  Chat,
 } from "./Planlist/PlanlistRoutes";
+import JoinRoom from "./Planlist/Chat2/components/JoinRoom/JoinRoom";
+import Chat2 from "./Planlist/Chat2/components/Chat/Chat";
 
 const App = withRouter(({ location }) => {
   return (
     <>
-      {location.pathname !== "/signin" && location.pathname !== "/signup" && location.pathname !== "/auth" &&(
-        <Header />
-      )}
+      {location.pathname !== "/signin" &&
+        location.pathname !== "/signup" &&
+        location.pathname !== "/auth" && <Header />}
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/signin" component={SignIn} />
@@ -30,12 +32,13 @@ const App = withRouter(({ location }) => {
         <Route path="/groupmenu" component={GroupMenu} />
         <Route path="/groupdetail" component={GroupDetail} />
         <Route path="/groupcategory" component={GroupCategory} />
-        <Route exact path="/chat" component={Chat} />
- 
+        <Route path="/chat" component={Chat} />
+        <Route path="/chat2/" exact component={JoinRoom} />
+        <Route path="/chat2/chat" component={Chat2} />
       </Switch>
-      {location.pathname !== "/signin" && location.pathname !== "/signup" && location.pathname !== "/auth" &&(
-        <Footer />
-      )}
+      {location.pathname !== "/signin" &&
+        location.pathname !== "/signup" &&
+        location.pathname !== "/auth" && <Footer />}
     </>
   );
 });
