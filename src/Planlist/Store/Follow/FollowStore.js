@@ -120,11 +120,17 @@ export default class FollowStore {
     
     @action
     async followConfirm(followerId) {
-      const followStateObj = await this.FollowRepository.followConfirmFunction(followerId);
+      const followStateObj = await this.followRepository.followConfirmFunction(followerId);
     }
 
 
-    //-----------------------------------------------------
+    @action
+    async followRefuse(followerId) {
+      const followStateObj = await this.followRepository.followRefuseFunction(followerId);
+    }
+
+
+
 
     @action
     async getApiFollowers(accountId){

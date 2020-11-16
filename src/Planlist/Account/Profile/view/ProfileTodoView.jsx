@@ -58,7 +58,8 @@ class ProfileTodoView extends Component {
       loginAccount,
       selectedTodo,
       selectUserTodos,
-      onLikeButton
+      onLikeButton,
+      onFollowConfirm
       
     } = this.props;
     const { open, todoTitle } = this.state;
@@ -151,7 +152,9 @@ class ProfileTodoView extends Component {
             )}
 
             {activeItem === "새로운 알림" &&
-            <ProfileFollowRequestListContainer />
+            <ProfileFollowRequestListContainer 
+            selectUser={selectUser}
+              onFollowConfirm = {onFollowConfirm}/>
             } 
             
           </div>
