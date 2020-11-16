@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
-import { Segment, Form, Button, Input, TextArea } from "semantic-ui-react";
+import { Segment, Form, Button, Input, TextArea, Checkbox} from "semantic-ui-react";
 
 const DetailGroupSettingM = ({
         onSettingSave,
         group,
-        onSettingRemove
+        onSettingRemove,
     }) => {
     const [title, setTitle] = useState(group.title);
     const [description, setDescription] = useState(group.description);
@@ -38,11 +38,13 @@ const DetailGroupSettingM = ({
 
                 <p style={{margin:"1.2rem 0 -6px 3px"}}>그룹 공개 여부</p>
                 <Segment>
-                    <Button.Group>
-                        <Button>Cancel</Button>
-                        <Button.Or />
-                        <Button positive>Save</Button>
-                    </Button.Group>
+                    <Form.Field style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>
+                        <div style={{display:"inline-block"}}>
+                            <label for="at" >그룹 공개 여부 표시</label>
+                            <p style={{color:"#888", textAlign:"center"}}>공개중</p>
+                        </div>
+                        <Checkbox id="at" toggle defaultChecked />
+                    </Form.Field>
                 </Segment>
 
                 <p style={{margin:"1.2rem 0 -6px 3px"}}>그룹 제거</p>          
