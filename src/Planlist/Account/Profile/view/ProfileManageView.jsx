@@ -55,6 +55,7 @@ const ProfileManageView = ({
   };
 
   console.log(followers.length);
+  console.log(followings.length);
 
   return (
     <Container text style={{ marginTop: "3em" }}>

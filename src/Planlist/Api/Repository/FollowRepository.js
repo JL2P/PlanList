@@ -64,4 +64,15 @@ export default class FollowRepository{
     }
 
 
+    //---------------------------------------------
+
+    //@GetMapping("{accountId}/followers")
+    getFollowersFunction = (AccountId) => {
+        return axios_auth_GET(this.URL+`${AccountId}/followers`,[]);
+    }
+
+    //@GetMapping("{accountId}/followings")
+    getFollowingsFunction = (AccountId)=>{
+        return axios_auth_GET(this.URL+`${AccountId}/followings`,[]);
+    }
 }

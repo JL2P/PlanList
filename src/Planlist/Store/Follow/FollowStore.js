@@ -100,6 +100,7 @@ export default class FollowStore {
       this.followings = data.map(following=>new AccountModel(following));
       console.log(this.followings)
     }
+
    
     @action
     async followCheck(followerId) {
@@ -120,10 +121,25 @@ export default class FollowStore {
     @action
     async followConfirm(followerId) {
       const followStateObj = await this.FollowRepository.followConfirmFunction(followerId);
-      
-      
+    }
 
-      
+
+    //-----------------------------------------------------
+
+    @action
+    async getApiFollowers(accountId){
+      console.log("getApiFollowers")
+      console.log(accountId)
+      const data = await this.followRepository.getFollowersFunction(accountId);
+      this.followers = data.map(follower=>new AccountModel(follower));
+    }
+
+    @action
+    async getApiFollowings(accountId){
+      console.log("getApiFollowings")
+      console.log(accountId)
+      const data = await this.followRepository.getFollowingsFunction(accountId);
+      this.followings = data.map(following=>new AccountModel(following));
     }
   }
 

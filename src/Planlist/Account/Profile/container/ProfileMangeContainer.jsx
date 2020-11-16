@@ -5,12 +5,12 @@ import { inject, observer } from "mobx-react";
 @inject("Store")
 @observer
 class ProfileMangeContainer extends Component {
-
-  componentDidMount=()=>{
-    const {follow} = this.props.Store;
-    follow.getApiMyFollowings();
-    follow.getApiMyFollowers();
-  }
+  componentDidMount = () => {
+    const { follow } = this.props.Store;
+    const { selectUser } = this.props;
+    follow.getApiFollowers(selectUser.accountId);
+    follow.getApiFollowings(selectUser.accountId);
+  };
 
   onSetAccountProp = (key, value) => {
     const { account } = this.props.Store;

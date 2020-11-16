@@ -36,7 +36,7 @@ class ProfilePage extends Component {
     const selectUserTodos =
       id === undefined ? todo.getLoginTodos : todo.getSelectTodos;
     console.log("확인");
-    console.log("아이디 : ", account.getAccount.accountId);
+    console.log("아이디 : ", selectUser);
     console.log("로그인 아이디 : ", account.getLoginAccount.accountId);
     console.log("selectUser", selectUser.accountId);
     console.log("로그인", todo.getLoginTodos.length);
