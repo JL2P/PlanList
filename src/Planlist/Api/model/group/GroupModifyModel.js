@@ -1,4 +1,4 @@
-export default class GroupAddModel{
+export default class GroupModifyModel{
     constructor(groupObj){
         this.id = groupObj.id;
         this.title = groupObj.title //제목
