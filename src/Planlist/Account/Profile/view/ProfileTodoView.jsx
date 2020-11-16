@@ -11,9 +11,7 @@ import ProfileFollowRequestListContainer from "../container/ProfileFollowRequest
 @inject("Store")
 @observer
 class ProfileTodoView extends Component {
-  
   state = { activeItem: "해야 할 일" };
-
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -58,8 +56,7 @@ class ProfileTodoView extends Component {
       loginAccount,
       selectedTodo,
       selectUserTodos,
-      onLikeButton
-      
+      onLikeButton,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -150,10 +147,9 @@ class ProfileTodoView extends Component {
               />
             )}
 
-            {activeItem === "새로운 알림" &&
-            <ProfileFollowRequestListContainer />
-            } 
-            
+            {activeItem === "새로운 알림" && (
+              <ProfileFollowRequestListContainer />
+            )}
           </div>
         </Container>
       </div>

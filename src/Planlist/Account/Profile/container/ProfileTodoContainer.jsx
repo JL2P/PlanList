@@ -6,18 +6,15 @@ import ProfileTodoView from "../view/ProfileTodoView";
 @inject("Store")
 @observer
 class ProfileTodoContainer extends Component {
-
-  componentDidMount(){
-    const {follow} = this.props.Store;
+  componentDidMount() {
+    const { follow } = this.props.Store;
     follow.getApiNotConfirmFollowers();
-
   }
 
   onFollow = (followId) => {
     const { follow } = this.props.Store;
     follow.follow(followId);
   };
-
 
   selectedTodo = (todoModel) => {
     const { todo } = this.props.Store;
@@ -65,8 +62,6 @@ class ProfileTodoContainer extends Component {
             onFollow={this.onFollow}
             isFollowed={follow.getIsFollowed}
           />
-
-
         )}
       </div>
     );

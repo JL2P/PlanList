@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import ProfileTodoCompletedListView from "../view/ProfileManageItem/ProfileTodoCompletedListView";
+import ProfileMyTodoEmptyView from "../view/ProfileMyTodoEmptyView";
 import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 
 @inject("Store")
@@ -36,14 +36,16 @@ class ProfileTodoCompletedListContainer extends Component {
     );
 
     const count = completed.length;
+    const page = "completed";
+
     return (
       <div>
         {count === 0 ? (
           <div>
             {loginId === selectId ? (
-              <MainNoTodoContainer />
+              <ProfileMyTodoEmptyView page={page} selectId={selectId} />
             ) : (
-              <ProfileTodoEmptyView />
+              <ProfileTodoEmptyView page={page} selectId={selectId} />
             )}
           </div>
         ) : (

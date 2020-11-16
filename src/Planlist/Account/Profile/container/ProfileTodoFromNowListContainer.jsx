@@ -1,17 +1,14 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
+import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
+import ProfileMyTodoEmptyView from "../view/ProfileMyTodoEmptyView";
 import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
 
 @inject("Store")
 @observer
 class ProfileTodoFromNowListContainer extends Component {
-  onComplete = (todoId) => {
-    const { todo } = this.props.Store;
-    todo.todoCompleted(todoId);
-  };
-
   onIncomplete = (todoId) => {
     const { todo } = this.props.Store;
     todo.todoIncompleted(todoId);
@@ -49,6 +46,7 @@ class ProfileTodoFromNowListContainer extends Component {
     );
 
     const count = fromNow_list.length;
+    const page = "fromNow";
 
     return (
       <div>
@@ -56,10 +54,17 @@ class ProfileTodoFromNowListContainer extends Component {
           <div>
             {loginId === selectId ? (
               // 로그인된 계정의 페이지이면 todo 추가 화면
-              <MainNoTodoContainer />
+              <ProfileMyTodoEmptyView
+                selectId={selectId}
+                page={page}
+                onModal={this.onModal}
+                onChangeTitle={this.changeTodoTitle}
+                createTodo={this.createTodo}
+                today={today}
+              />
             ) : (
               // 다른 사용자이면 empty 화면
-              <ProfileTodoEmptyView />
+              <ProfileTodoEmptyView selectId={selectId} page={page} />
             )}
           </div>
         ) : (
