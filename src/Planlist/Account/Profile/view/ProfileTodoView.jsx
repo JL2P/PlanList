@@ -57,6 +57,8 @@ class ProfileTodoView extends Component {
       selectedTodo,
       selectUserTodos,
       onLikeButton,
+      onComplete,
+      onIncomplete,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -120,6 +122,8 @@ class ProfileTodoView extends Component {
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 todos={selectUserTodos}
+                onComplete={onComplete}
+                onIncomplete={onIncomplete}
               />
             )}
             {/* {activeItem === "지난 할 일" && (
@@ -136,6 +140,8 @@ class ProfileTodoView extends Component {
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 todos={selectUserTodos}
+                onComplete={onComplete}
+                onIncomplete={onIncomplete}
               />
             )}
             {activeItem === "하지 못한 일" && (
