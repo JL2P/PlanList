@@ -17,8 +17,10 @@ const DetailGroupSettingM = ({
     
     return (
         <div>
-            <Segment>
-                <Form onSubmit={(e) => onSettingSave(e,{id, title, description})} >
+            
+            <Form onSubmit={(e) => onSettingSave(e,{id, title, description})} >
+                <p style={{margin:"0 0 -6px 3px"}}>그룹 내용 수정</p>
+                <Segment>
                     <Form.Field
                         label="Title 수정"
                         control={Input}
@@ -32,18 +34,33 @@ const DetailGroupSettingM = ({
                         value={description} 
                         onChange={(e) => onDescription(e)}
                     />
+                </Segment>
 
-                    <Button onClick={(e) => onSettingRemove(e,group.id)} inverted color='red'>그룹 삭제</Button>
-                    <div style={{
-                            marginTop:"1rem", 
-                            borderTop:"1px solid #f2f2f2", 
-                            paddingTop:"1rem",
-                            display:"flex",
-                            justifyContent:"center",
-                            alignItems:"center"
-                        }}><Button type='submit'>Submit</Button></div>
-                </Form>
-            </Segment>
+                <p style={{margin:"1.2rem 0 -6px 3px"}}>그룹 공개 여부</p>
+                <Segment>
+                    <Button.Group>
+                        <Button>Cancel</Button>
+                        <Button.Or />
+                        <Button positive>Save</Button>
+                    </Button.Group>
+                </Segment>
+
+                <p style={{margin:"1.2rem 0 -6px 3px"}}>그룹 제거</p>          
+                <Segment>
+                    <Button onClick={(e) => onSettingRemove(e,group.id)} inverted color='red'>
+                        그룹 삭제
+                    </Button>
+                </Segment>
+
+                <p style={{margin:"1.2rem 0 -6px 3px"}}>최종 확인</p>
+                <Segment style={{
+                        display:"flex",
+                        justifyContent:"center",
+                        alignItems:"center"
+                    }}>
+                    <Button type='submit'>설정 저장</Button>
+                </Segment>
+            </Form>
         </div>
     );
 };

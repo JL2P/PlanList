@@ -1,12 +1,14 @@
 import React from "react";
 import { Segment, Card, Feed, Button } from "semantic-ui-react";
+import {Link} from 'react-router-dom'
 
 const DetailGroupMember = ({
     group, 
     memberList,
     onMemberApply,
     onMemberRemove,
-    member
+    member,
+    onManagerTransfer
   }) => {
   
     let today = new Date();   
@@ -28,9 +30,12 @@ const DetailGroupMember = ({
           borderBottom:"1px dotted #d9d9d9",
           padding:"0.6rem 0"
         }}>
-          <Feed.Label image="/posts/test_img_1.jpg" />
+          <Feed.Label style={{alignSelf:"center"}} image="/posts/test_img_1.jpg" />
           <Feed.Content>
-            <Feed.Date content={member.accountId} style={{fontSize:"1.2rem"}}/>
+            <Feed.Date 
+              as={Link} to={`/account/${member.accountId}`}
+              content={member.accountId} style={{fontSize:"1.2rem"}}
+            />
               <Feed.Summary>
                 <small>가입 신청일 : {member.date}</small> 
             </Feed.Summary>
@@ -63,9 +68,12 @@ const DetailGroupMember = ({
           borderBottom:"1px dotted #d9d9d9",
           padding:"0.6rem 0"
         }}>
-          <Feed.Label image="/posts/test_img_1.jpg" />
+          <Feed.Label style={{alignSelf:"center"}} image="/posts/test_img_1.jpg" />
           <Feed.Content>
-            <Feed.Date content={member_map.accountId} style={{fontSize:"1.2rem"}}/>
+            
+            <Feed.Date
+              as={Link} to={`/account/${member_map.accountId}`}
+              content={member_map.accountId} style={{fontSize:"1.2rem"}}/>
             <Feed.Summary>
               <small>그룹 가입일 : {member_map.date}</small> 
             </Feed.Summary>
@@ -73,9 +81,31 @@ const DetailGroupMember = ({
           { member_map.manager === "false" ? 
             <div>
               {member.manager === "true" && 
-                <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
-                  그룹 강퇴
-                </Button>
+                <>
+                  <Button 
+                    size="tiny" 
+                    basic color='blue' 
+                    style={{marginRight:"10px"}} 
+                    onClick={(e) => onManagerTransfer(e,{
+                                                      id : member_map.id,
+                                                      groupId: member_map.groupId,
+                                                      manager: "true"
+                                                    },
+                                                    {
+                                                      id : member.id,
+                                                      groupId: member_map.groupId,
+                                                      manager: "false"
+                                                    },{
+                                                      id : group.id,
+                                                      master: member_map.accountId
+                                                    })}
+                  >
+                    그룹장 양도
+                  </Button>
+                  <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
+                    그룹 강퇴
+                  </Button>
+                </>
               }
             </div>
             :

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Menu, Segment } from "semantic-ui-react";
-import {Link, withRouter, Route } from 'react-router-dom'
+import React from "react";
+import { Menu} from "semantic-ui-react";
+import {Link} from 'react-router-dom'
 
 const DetailGroupNav = ({
       onLogInUser,
@@ -8,14 +8,9 @@ const DetailGroupNav = ({
       member,
       activeItem,
       onHandleItemClick,
-      name
   }) => {
     console.log(member)
-  // const [activeItem, setActiveItem] = useState("전체글");
 
-  // const handleItemClick = (e,{name}) => {
-  //     // setActiveItem(name);
-  // }
   const navAlert = () => {
     member.confirm !== "true" && alert("권한이 없습니다.")
   }

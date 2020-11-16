@@ -33,6 +33,11 @@ export default class MemberRepository{
     memberModify = (memberModel)=>{
         return axios.put(this.URL+`${memberModel.groupId}/member`,memberModel,HEADER).then(request=>request.data||{})
     }
+    // 그룹장 양도
+    // PUT /api/groups/
+    memberTranfer = (memberModel)=>{
+        return axios.put(this.URL+`${memberModel.groupId}/transfer`,memberModel,HEADER).then(request=>request.data||{})
+    }
 
     //member 삭제
     // DELETE /api/groups/{groupId}
