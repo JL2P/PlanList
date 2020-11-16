@@ -4,7 +4,7 @@ import GroupModel from "../../Api/model/group/GroupModel";
 import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
 import MemberModel from "../../Api/model/member/MemberModel";
-import GroupTodoModel from "../../Api/model/GroupTodo/GroupTodoModel";
+import {GroupTodoAddModel, GroupTodoModel} from "../../Api/model/GroupTodo/GroupTodoModel";
 
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
@@ -215,18 +215,15 @@ export default class GroupStore {
       //그룹 투두 전체 조회
       @action
       async groupTodoListAll(){
-        const groupTodoList = await this.groupTodoRepository.groupTodoList();
+        const groupTodoList = await this.groupTodoRepository.groupTodosAll();
         this.groupTodos = groupTodoList.map(groupTodo => new GroupTodoModel(groupTodo))
-        console.log(this.groupTodos)
-        console.log("그룹 투두 리스트 전체 출력")
       }
 
       //그룹에 게시물 생성
       @action
       async detailGroup_create(groupTodoObj){
-        console.log(groupTodoObj);
-        const groupModel = new GroupTodoModel(groupTodoObj);
-        await this.groupTodoRepository.groupTodoCreate(groupModel);
+        const grouptodoAddModel = new GroupTodoAddModel(groupTodoObj);
+        await this.groupTodoRepository.createGroupTodo(grouptodoAddModel);
         this.detailGroup_modalCheck(false);
       }
 }
