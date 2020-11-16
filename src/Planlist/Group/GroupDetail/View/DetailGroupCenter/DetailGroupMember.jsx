@@ -6,7 +6,8 @@ const DetailGroupMember = ({
     memberList,
     onMemberApply,
     onMemberRemove,
-    member
+    member,
+    onManagerTransfer
   }) => {
   
     let today = new Date();   
@@ -73,9 +74,31 @@ const DetailGroupMember = ({
           { member_map.manager === "false" ? 
             <div>
               {member.manager === "true" && 
-                <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
-                  그룹 강퇴
-                </Button>
+                <>
+                  <Button 
+                    size="tiny" 
+                    basic color='blue' 
+                    style={{marginRight:"10px"}} 
+                    onClick={(e) => onManagerTransfer(e,{
+                                                      id : member_map.id,
+                                                      groupId: member_map.groupId,
+                                                      manager: "true"
+                                                    },
+                                                    {
+                                                      id : member.id,
+                                                      groupId: member_map.groupId,
+                                                      manager: "false"
+                                                    },{
+                                                      id : group.id,
+                                                      master: member_map.accountId
+                                                    })}
+                  >
+                    그룹장 양도
+                  </Button>
+                  <Button size="tiny" basic color='red' onClick={() => onMemberRemove(group.id,member_map.id)}>
+                    그룹 강퇴
+                  </Button>
+                </>
               }
             </div>
             :

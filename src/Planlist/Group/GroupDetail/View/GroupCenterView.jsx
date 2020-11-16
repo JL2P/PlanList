@@ -23,7 +23,8 @@ const GroupCenterView = ({
         activeItem,
         onHandleItemClick,
         groupTodoList,
-        categoryList
+        categoryList,
+        onManagerTransfer
     }) => {
 
     return (
@@ -58,6 +59,7 @@ const GroupCenterView = ({
                     onMemberRemove={onMemberRemove}
                     members={members}
                     member={member}
+                    onManagerTransfer={onManagerTransfer}
                 />} />
             <Route
                 path={`/groupdetail/${group.id}/masterSetting`} 

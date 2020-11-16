@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Modal , Input, Form,  Button, Header, TextArea ,Icon, Grid, Select, Container, Divider} from "semantic-ui-react";
+import {Modal , Input, Form,  Button, Header, TextArea , Grid, Select, Container, Divider} from "semantic-ui-react";
 import FileUploadFormView from "../../../../todo/view/FileUploadFormView";
 
 const DetailGroupAllModal = ({
@@ -8,8 +8,7 @@ const DetailGroupAllModal = ({
         onLogInUser,
         categoryList
     }) => {
-
-    const [open, setOpen] = useState(false)
+        
     //그룹 생성시 임시로 이미지
     let img = new Array;
     const url = () => {
