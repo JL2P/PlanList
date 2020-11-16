@@ -1,5 +1,5 @@
 import MemberModel from '../member/MemberModel';
-import GroupTodoModel from '../GroupTodo/GroupTodoModel';
+import {GroupTodoModel} from '../GroupTodo/GroupTodoModel';
 
 export default class GroupModel{
     constructor(groupObj){
