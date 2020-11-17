@@ -7,7 +7,7 @@ import DetailGroupPrivate from "./DetailGroupPrivate";
 import DetailGroupNoTodoM from "./DetailGroupNoTodoM";
 import DetailGroupNoTodoU from "./DetailGroupNoTodoU";
 
-const GroupAllView = ({
+const DetailGroupAll = ({
   onDetailGroup_create,
   getDetailGroup_modalOpen,
   onDetailGroup_modalCheck,
@@ -129,4 +129,4 @@ const GroupAllView = ({
   );
 };
 
-export default GroupAllView;
+export default DetailGroupAll;

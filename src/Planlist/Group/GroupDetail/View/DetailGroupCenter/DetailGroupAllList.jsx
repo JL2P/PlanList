@@ -5,29 +5,35 @@ import "../../../GroupStyle/Group.scss";
 import GroupTodoCommentFrame from "./DetailGroupComment/GroupTodoCommentFrame";
 
 const DetailGroupAllList = ({
-  item,
-  seletedTodoComments,
+  groupTodo,
+  selectedGroupTodo,
+  selectedTodoComments,
   loginAccount,
   onDeleteComment,
 }) => {
   const [open, setOpen] = React.useState(false);
 
+  const onOpenModal = () => {
+    selectedGroupTodo(groupTodo);
+    setOpen(true);
+  };
+
   return (
     <Modal
       closeIcon
       onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
+      onOpen={() => onOpenModal()}
       open={open}
       trigger={
         <Grid.Column className="recommendGroup_column">
           <Card className="group_card" raised>
-            <Image src={item.imgUrl} className="Group_img" />
+            <Image src={groupTodo.imgUrl} className="Group_img" />
             <Card.Content>
               <Card.Header className="group_Card_header">
-                {item.title}
+                {groupTodo.title}
               </Card.Header>
               <Card.Description>
-                참여한 멤버 수 : {item.rating}명
+                참여한 멤버 수 : {groupTodo.members.length}명
               </Card.Description>
             </Card.Content>
           </Card>
@@ -37,10 +43,10 @@ const DetailGroupAllList = ({
       <DetailGroupAllListModal
         loginAccount={loginAccount}
         setOpen={setOpen}
-        groupTodo={item}
+        groupTodo={groupTodo}
       >
         <GroupTodoCommentFrame
-          comments={seletedTodoComments}
+          comments={selectedTodoComments}
           loginAccount={loginAccount}
           onDeleteComment={onDeleteComment}
         />
