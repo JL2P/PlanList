@@ -57,7 +57,7 @@ const GroupCenterView = ({
       <Route
         path={`/groupdetail/${group.id}`}
         exact
-        render={() => <DetailGroupAllContainer groupId={group.id} />}
+        render={() => <DetailGroupAllContainer member={member} groupId={group.id} />}
       />
       <Route
         path={`/groupdetail/${group.id}/member`}

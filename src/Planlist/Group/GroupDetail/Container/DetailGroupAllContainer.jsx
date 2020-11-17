@@ -34,6 +34,7 @@ class DetailGroupAllContainer extends Component {
     const { getDetailGroup_modalOpen, getCategoryList } = group;
     const { loginAccount } = account;
     const GroupTodos = group.groupTodo.getGroupTodos;
+    const {member} = this.props
 
     return (
       <DetailGroupAll
@@ -44,6 +45,7 @@ class DetailGroupAllContainer extends Component {
         group={group.getGroup}
         groupTodoList={GroupTodos}
         categoryList={getCategoryList}
+        member={member}
       />
     );
   }
