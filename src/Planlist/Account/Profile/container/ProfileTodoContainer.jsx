@@ -31,6 +31,13 @@ class ProfileTodoContainer extends Component {
     }
   };
 
+
+  onDeleteMyFollowing = (followId) => {
+    alert("삭제되었습니다");
+    const { follow } = this.props.Store;
+    follow.deleteMyFollowing(followId);
+} 
+
   onComplete = (todoId) => {
     const { todo } = this.props.Store;
     todo.todoCompleted(todoId);
@@ -41,6 +48,7 @@ class ProfileTodoContainer extends Component {
     todo.todoIncompleted(todoId);
     console.log("클릭!");
   };
+
 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
@@ -64,8 +72,12 @@ class ProfileTodoContainer extends Component {
             selectUserTodos={selectUserTodos}
             selectedTodo={this.selectedTodo}
             onLikeButton={this.onLikeButton}
+
+            
+
             onComplete={this.onComplete}
             onIncomplete={this.onIncomplete}
+
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌
@@ -74,6 +86,7 @@ class ProfileTodoContainer extends Component {
             selectUser={selectUser}
             onFollow={this.onFollow}
             isFollowed={follow.getIsFollowed}
+            onDeleteMyFollowing={this.onDeleteMyFollowing}
           />
         )}
       </div>

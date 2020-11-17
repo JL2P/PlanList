@@ -159,11 +159,13 @@ class ProfileTodoView extends Component {
             )}
 
 
+
             {activeItem === "새로운 알림" &&
+
             <ProfileFollowRequestListContainer 
             selectUser={selectUser}
               onFollowConfirm = {onFollowConfirm}/>
-            } 
+            )} 
             
           </div>
         </Container>

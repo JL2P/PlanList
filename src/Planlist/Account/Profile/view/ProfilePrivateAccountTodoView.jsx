@@ -7,7 +7,7 @@ import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowing
 class ProfilePrivateAccountTodoView extends Component {
   render() {
 
-    const { accountId, selectUser,onFollow,isFollowed } = this.props;
+    const { accountId, selectUser,onFollow,isFollowed, onDeleteMyFollowing } = this.props;
     console.log(selectUser);
     console.log("금나와라 뚝딱", isFollowed);
     return (
@@ -23,7 +23,8 @@ class ProfilePrivateAccountTodoView extends Component {
                           style={{ background: "#c8c8c8" }}
                           content="팔로우 취소"
                           onClick={() => {
-                            alert("팔로우취소");
+                           
+                            onDeleteMyFollowing(selectUser.accountId);
                           }}
                         />
                       )}

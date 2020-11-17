@@ -8,19 +8,42 @@ import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerVi
 @observer
 class ProfileFollowerListContainer extends Component {
 
+    componentDidMount(){
+        const {follow} = this.props.Store;
+       
+    
+      }
+    onFollowRefuse = (followId) => {
+        alert("삭제되었습니다.");
+        const { follow } = this.props.Store;
+        follow.followRefuse(followId);
+    }
+
+    onIsFollowing = (followId) => {
+        const { follow } = this.props.Store;
+        follow.followingCheck(followId);
+    }    
+
     render(){
         const { account, follow } = this.props.Store;
         const myFollowers = follow.getMyFollowers;
+        
         console.log("myFollowers")
         console.log(myFollowers)
-        const element = myFollowers.map((follower) => <ProfileFollowerView key={follower.accountId} follower={follower} isFollowing={follow.getIsFollowing}/>);   
-    
+        const element = myFollowers.map((follower) => <ProfileFollowerView key={follower.accountId} 
+        follower={follower} 
+        isFollowing={follow.getIsFollowing} 
+        onFollowRefuse={this.onFollowRefuse}
+        onIsFollowing={this.onIsFollowing}
+        
+       />);   
+        
+        
         
         console.log(element)
         return (
             <div style={{height:"600px", textAlign:"center"}}>
-                <Header as="h3" dividing style={{marginTop:"0.5em"}}>팔로워</Header>
-                <div>
+             <div>
                 <Item.Group>
                     {element}
                 </Item.Group>

@@ -23,6 +23,7 @@ const ProfileManageView = ({
   onDeleteUser,
   onFollow,
   isFollowed,
+  isFollowing,
   followers,
   followings,
   

@@ -37,7 +37,7 @@ class ProfileMangeContainer extends Component {
     const { follow } = this.props.Store;
     follow.follow(followId);
   };
-
+ 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
@@ -49,7 +49,7 @@ class ProfileMangeContainer extends Component {
       .length;
     console.log("count >> ", count, selectUserTodos.length);
     const isFollowed = follow.getIsFollowed;
-
+    const isFollowing = follow.getIsFollowing;
     const followers = follow.getMyFollowers;
     const followings = follow.getMyFollowings;
 
@@ -67,8 +67,10 @@ class ProfileMangeContainer extends Component {
           selectUserTodos={selectUserTodos}
           onFollow={this.onFollow}
           isFollowed={isFollowed}
+          isFollowing={isFollowing}
           followers={followers}
           followings={followings}
+
         />
       </div>
     );

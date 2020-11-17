@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-react";
 
-const ProfileFollowingView = ({following}) => {
+const ProfileFollowingView = ({
+    following,
+    onDeleteMyFollowing
+}) => {
 
     const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -77,7 +80,8 @@ const ProfileFollowingView = ({following}) => {
             }}>
                 
                 <div>
-                <text style={{color:"red", fontWeight:"bold"}}>팔로우 취소</text>
+                <text style={{color:"red", fontWeight:"bold"}}
+                 onClick={()=>onDeleteMyFollowing(following.accountId)}>팔로우 취소</text>
                 </div>
                 </div>
                 </div>
@@ -100,7 +104,7 @@ const ProfileFollowingView = ({following}) => {
             }}>
                 
                 <div style={{marginBottom:"0.5em"}}>
-                <text style={{}}>취소</text>
+                <text onClick={()=>setConfirmOpen(false)}>취소</text>
                  </div>
                  </div>
                  </div>
@@ -124,6 +128,7 @@ const ProfileFollowingView = ({following}) => {
             }}>
                 
                 <div className="part_b">
+                <a href={'/account/' + following.accountId}>
                     <Image
                     src={following.imgUrl}
                     bordered
@@ -139,10 +144,13 @@ const ProfileFollowingView = ({following}) => {
                    
                    
                     />
-                 </div>
+                </a>
+                </div>
                 
                 <div className="part_b">
+                <a href={'/account/' + following.accountId}>      
                 <div>{following.accountId}</div>
+                </a>
                 <div>{following.name}</div>
                                 
 
