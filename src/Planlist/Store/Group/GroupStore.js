@@ -11,6 +11,7 @@ import {GroupTodoAddModel, GroupTodoModel} from "../../Api/model/GroupTodo/Group
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
 import GroupTodoRepository from "../../Api/Repository/GroupTodoRepository"
+import GroupTodoStore from './GroupTodoStore';
 
 export default class GroupStore {
     constructor(root) {
@@ -18,6 +19,8 @@ export default class GroupStore {
         this.groupRepository = new GroupRepository();
         this.memberRepository = new MemberRepository();
         this.groupTodoRepository = new GroupTodoRepository();
+        //승훈 추가 GroupTodoStore를 따로 관리하기위함(소스가 너무 길어짐)
+        this.groupTodo = new GroupTodoStore(this); 
       }
 
   
