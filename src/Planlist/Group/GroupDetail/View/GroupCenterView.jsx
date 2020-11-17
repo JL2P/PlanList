@@ -48,6 +48,7 @@ const GroupCenterView = ({
                      group={group}
                      groupTodoList={groupTodoList}
                      categoryList={categoryList}
+                     member={member}
                 /> } />
             <Route 
                 path={`/groupdetail/${group.id}/member`} 
