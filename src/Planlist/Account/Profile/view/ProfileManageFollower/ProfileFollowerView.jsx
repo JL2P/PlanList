@@ -20,10 +20,10 @@ const ProfileFollowerView = ({
         <div>
           
         <Modal
-        onClose={() => setConfirmOpen(false)}
+       
         onOpen={() => setConfirmOpen(true)}
-        open={confirmOpen}
         onClose={() => setConfirmOpen(false)}
+        open={confirmOpen}
         size="mini"
         >
           

@@ -16,7 +16,7 @@ export default class FollowStore {
     @observable myfollowingCnt=0;
 
     @observable followers = [];
-    //승훈 추가
+    //승훈 추가//
     @observable followings = [];
     @observable follower = {};
 
@@ -123,13 +123,16 @@ export default class FollowStore {
       const followStateObj = await this.followRepository.followConfirmFunction(followerId);
     }
 
-
+    //팔로잉요청 거절/ 팔로워리스트에서 팔로워 삭제한다.
     @action
     async followRefuse(followerId) {
       const followStateObj = await this.followRepository.followRefuseFunction(followerId);
     }
 
-
+    @action
+    async deleteMyFollowing(followingId) {
+      const followStateObj = await this.followRepository.deleteMyFollowingFunction(followingId);
+    }
 
 
     @action

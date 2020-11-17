@@ -8,10 +8,19 @@ import ProfileFollowingView from "../view/ProfileManageFollowing/ProfileFollowin
 @observer
 class ProfileFollowingListContainer extends Component {
 
+    onDeleteMyFollowing = (followId) => {
+        alert("삭제되었습니다");
+        const { follow } = this.props.Store;
+        follow.deleteMyFollowing(followId);
+    } 
+
     render(){
         const { follow } = this.props.Store;
         const myFollowings = follow.getMyFollowings;
-        const element = myFollowings.map((following) => <ProfileFollowingView key={following.accountId} following={following}/>);   
+        const element = myFollowings.map((following) => <ProfileFollowingView key={following.accountId} 
+        following={following}
+        onDeleteMyFollowing={this.onDeleteMyFollowing}
+        />);   
 
         return (
             <div style={{height:"600px", textAlign:"center"}}>

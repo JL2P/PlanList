@@ -9,10 +9,12 @@ import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerVi
 class ProfileFollowerListContainer extends Component {
 
     onFollowRefuse = (followId) => {
-        alert(followId);
+        alert("삭제되었습니다.");
         const { follow } = this.props.Store;
         follow.followRefuse(followId);
     }
+
+    
 
     render(){
         const { account, follow } = this.props.Store;
@@ -20,8 +22,11 @@ class ProfileFollowerListContainer extends Component {
         
         console.log("myFollowers")
         console.log(myFollowers)
-        const element = myFollowers.map((follower) => <ProfileFollowerView key={follower.accountId} follower={follower} 
-        isFollowing={follow.getIsFollowing} onFollowRefuse={this.onFollowRefuse}/>);   
+        const element = myFollowers.map((follower) => <ProfileFollowerView key={follower.accountId} 
+        follower={follower} 
+        isFollowing={follow.getIsFollowing} 
+        onFollowRefuse={this.onFollowRefuse}
+        />);   
         
         
         

@@ -46,7 +46,7 @@ export default class FollowRepository{
     getMyFollowinglistFunction = ()=>{
         return axios_auth_GET(this.URL+'myFollowingList',[]);
     }
-
+    //
     
     //@PostMapping("/isfollow")
     followCheckFunction = (FollowId) => {
@@ -66,6 +66,11 @@ export default class FollowRepository{
     //@DeleteMapping("/refuse/{followId}")
     followRefuseFunction = (FollowId) => {
         return axios_auth_DELETE(this.URL+`refuse/${FollowId}`,{},{});
+    }
+
+    //@DeleteMapping("/delete/{followId}")
+    deleteMyFollowingFunction = (FollowId) => {
+        return axios_auth_DELETE(this.URL+`delete/${FollowId}`,{},{});
     }
 
     //@GetMapping("{accountId}/followers")
