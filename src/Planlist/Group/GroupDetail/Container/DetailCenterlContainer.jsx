@@ -5,16 +5,12 @@ import { inject, observer } from "mobx-react";
 @inject("Store")
 @observer
 class DetailCenterlContainer extends Component {
-  //해당 컨테이너 호출 후 API가져오게끔
-  componentDidMount() {
-    const { group } = this.props.Store;
-  }
-
   //그룹페이지에서 todo 생성
   onDetailGroup_create = (e, groupTodoObj) => {
     e.preventDefault();
     const { group } = this.props.Store;
-    group.detailGroup_create(groupTodoObj);
+    const groupTodoStore = group.groupTodo;
+    groupTodoStore.addGroupTodo(groupTodoObj);
     window.location.reload();
   };
   //todo 생성후 모달 닫기
@@ -42,6 +38,7 @@ class DetailCenterlContainer extends Component {
     if (result) {
       group.settingRemove(groupId);
       alert("그룹이 삭제되었습니다.");
+      group.handleItemClick("전체글");
       window.location.href = "/groupmenu";
     }
   };
@@ -90,6 +87,7 @@ class DetailCenterlContainer extends Component {
     group.handleItemClick("전체글");
     group.member = "";
   }
+
   //그룹장 양도
   onManagerTransfer = (e, userObj, masterObj, groupObj) => {
     console.log(groupObj);
@@ -116,14 +114,11 @@ class DetailCenterlContainer extends Component {
       getDetailGroup_memberList,
       getMember,
       getActiveItem,
-      getGroupTodoList,
       getCategoryList,
     } = group;
     const { loginAccount } = account;
-
     const GroupTodos = group.groupTodo.getGroupTodos;
-    console.log();
-    console.log(GroupTodos);
+
     return (
       <div>
         <GroupCenterView
@@ -141,7 +136,7 @@ class DetailCenterlContainer extends Component {
           onMemberRemove_user={this.onMemberRemove_user}
           activeItem={getActiveItem}
           onHandleItemClick={this.onHandleItemClick}
-          groupTodoList={getGroupTodoList}
+          groupTodoList={GroupTodos}
           categoryList={getCategoryList}
           onManagerTransfer={this.onManagerTransfer}
         />

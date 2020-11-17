@@ -64,7 +64,7 @@ const DetailGroupAllModal = ({
                             <Header as="h2" content="그룹 생성" />
                             {/* <Icon name="cancel" size="big" onClick={() => setOpen(false)} style={{cursor:"pointer",marginBottom: "0.5em"}} /> */}
                         </div>
-                        <Divider style={{ marginTop: "-0.5em", marginBottom: "1.5em" }} />
+                        <Divider />
 
                         <Form>
                             <Grid stackable>
