@@ -1,17 +1,61 @@
 import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
 import {Header, Item} from 'semantic-ui-react'
-import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerView";
+import ProfileFollowerRequestView from "../view/ProfileFollowerRequestView";
+import ProfileManageView from "../view/ProfileManageView";
 
 
 @inject("Store")
 @observer
 class ProfileFollowRequestListContainer extends Component {
+    componentDidMount = () => {
 
+        const { follow } = this.props.Store;
+        const { selectUser } = this.props;
+        
+      };
+      onSetAccountProp = (key, value) => {
+        const { account } = this.props.Store;
+        account.setAccountProp(key, value);
+      };
+    
+      onModifyUser = (user) => {
+        const { account } = this.props.Store;
+        account.userModify(user);
+      };
+    
+      onDeleteUser = (accountId) => {
+        const { account } = this.props.Store;
+        account.userRemove(accountId);
+      };
+    
+      onSignout = () => {
+        const { account } = this.props.Store;
+        account.signout();
+      };
+    
+      onFollowConfirm = (followId) => {
+        alert(followId);
+        const { follow } = this.props.Store;
+        follow.followConfirm(followId);
+      };
+
+    onFollowRefuse = (followId) => {
+        alert(followId);
+        const { follow } = this.props.Store;
+        follow.followRefuse(followId);
+    }
     render(){
         const { follow } = this.props.Store;
+        const {selectUser} = this.props;
         const notConfirmFollowers = follow.getNotConfirmFollowers;
-        const element = notConfirmFollowers.map((notConfirmFollower) => <ProfileFollowerView key={notConfirmFollower.accountId} follower={notConfirmFollower}/>);   
+        
+          
+        const element = notConfirmFollowers.map((notConfirmFollower) => <ProfileFollowerRequestView key={notConfirmFollower.accountId} 
+        selectUser={selectUser}        
+        follower={notConfirmFollower} 
+        onFollowConfirm={this.onFollowConfirm} 
+        onFollowRefuse={this.onFollowRefuse}/>);   
         
         return (
             <div style={{height:"600px", textAlign:"center"}}>

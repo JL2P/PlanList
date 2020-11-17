@@ -1,5 +1,5 @@
 import axios from "axios"
-import {axios_auth_POST, axios_auth_GET} from "../common/CommonAxiosModules"
+import {axios_auth_POST, axios_auth_GET, axios_auth_PUT, axios_auth_DELETE} from "../common/CommonAxiosModules"
 
 
 //Account관련 Api와 연동하는 클래스
@@ -55,16 +55,18 @@ export default class FollowRepository{
 
     //@PostMapping("isfollowing")
     followingCheckFunction = (FollowId) => {
-        return axios_auth_POST(this.URL+`isfllowing/${FollowId}`,{},{});
+        return axios_auth_POST(this.URL+`isfollowing/${FollowId}`,{},{});
     }
 
-    //@GetMapping("/confirm/{followId}")
+    //@PutMapping("/confirm/{followId}")
     followConfirmFunction = (FollowId) => {
-        return axios_auth_POST(this.URL+`confirm/${FollowId}`,{},{});
+        return axios_auth_PUT(this.URL+`confirm/${FollowId}`,{},{});
     }
 
-
-    //---------------------------------------------
+    //@DeleteMapping("/refuse/{followId}")
+    followRefuseFunction = (FollowId) => {
+        return axios_auth_DELETE(this.URL+`refuse/${FollowId}`,{},{});
+    }
 
     //@GetMapping("{accountId}/followers")
     getFollowersFunction = (AccountId) => {
