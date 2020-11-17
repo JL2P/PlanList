@@ -6,7 +6,7 @@ import "./Chat.css";
 // 하위 컴포넌트
 import Messages from "../Messages/Messages";
 import RoomInfo from "../RoomInfo/RoomInfo";
-import Input from "../Input/Input";
+import Input from "../ChatInput/ChatInput";
 
 import { Button, Item } from "semantic-ui-react";
 

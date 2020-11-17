@@ -25,12 +25,10 @@ const JoinRoom = () => {
                 variant="outlined"
                 margin="normal"
                 required
-                fullWidth
                 id="name"
                 label="Name"
                 name="name"
                 autoComplete="name"
-                autoFocus
                 onChange={(e) => setName(e.target.value)}
               />
               <Input
