@@ -6,5 +6,6 @@ export default class GroupAddModel{
         this.category = groupObj.category; //카테고리
         this.master = groupObj.master; //그룹장
         this.members = groupObj.members;
+        this.openAt = groupObj.openAt; //그룹 공개 여부
     }
 }

@@ -8,17 +8,20 @@ const DetailGroupSettingM = ({
     }) => {
     const [title, setTitle] = useState(group.title);
     const [description, setDescription] = useState(group.description);
+    const [openAt, setOpenAt] = useState(group.openAt === "true");
 
     //jpa 수정을 위한 소스에 id값을 같이 넘겨주지 않으면 에러가 나거나 row가 추가 생성 된다.
     const id = group.id;
 
     const onTitle = (e) => {setTitle(e.target.value);}
-    const  onDescription = (e) => {setDescription(e.target.value);}
+    const onDescription = (e) => {setDescription(e.target.value);}
+    const onChangeOpenAt = (e) => {setOpenAt(!openAt); console.log(String(openAt))}
+    
     
     return (
         <div>
             
-            <Form onSubmit={(e) => onSettingSave(e,{id, title, description})} >
+            <Form onSubmit={(e) => onSettingSave(e,{id, title, description, openAt:`${String(openAt)}`})} >
                 <p style={{margin:"0 0 -6px 3px"}}>그룹 내용 수정</p>
                 <Segment>
                     <Form.Field
@@ -40,10 +43,11 @@ const DetailGroupSettingM = ({
                 <Segment>
                     <Form.Field style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>
                         <div style={{display:"inline-block"}}>
-                            <label for="at" >그룹 공개 여부 표시</label>
-                            <p style={{color:"#888", textAlign:"center"}}>공개중</p>
+                            <label htmlFor ="at" >그룹 공개 여부 표시</label>
+                            {openAt === true ? <p style={{color:"#888", textAlign:"center"}}>공개중</p> :
+                            <p style={{color:"#888", textAlign:"center"}}>비공개중</p>}
                         </div>
-                        <Checkbox id="at" toggle defaultChecked />
+                        <Checkbox id="at" toggle checked={openAt} onChange={onChangeOpenAt} />
                     </Form.Field>
                 </Segment>
 
