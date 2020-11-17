@@ -90,7 +90,7 @@ const Chat = ({ location }) => {
         <div className="appbar">
           <Item color="primary">
             <Item className="toolBar">
-              <Button color="inherit" href="/chat2">
+              <Button color="inherit" href="/chat">
                 close
               </Button>
             </Item>

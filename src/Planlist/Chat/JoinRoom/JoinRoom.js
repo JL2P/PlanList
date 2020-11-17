@@ -48,7 +48,7 @@ const JoinRoom = () => {
                 <Link
                   className="joinButtonLink"
                   onClick={(e) => (!name || !room ? e.preventDefault() : null)}
-                  to={`/chat2/chat?name=${name}&room=${room}`}
+                  to={`/chat/chat?name=${name}&room=${room}`}
                   // href={`/chat?name=${name}&room=${room}`}
                 >
                   <Button

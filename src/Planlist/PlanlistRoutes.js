@@ -17,4 +17,6 @@ export { default as GroupCategory } from "./Group/GroupCategory/GroupCategoryPag
 // Account는 Account 내에서도 Route가 있음
 export { default as Account } from "./Account/AccountRoutes";
 
-export { default as Chat } from "./Chat/ChatPage";
+// export { default as Chat } from "./Chat/ChatPage";
+export { default as JoinRoom } from "./Chat/JoinRoom/JoinRoom";
+export { default as Chat } from "./Chat/Chat/Chat";
