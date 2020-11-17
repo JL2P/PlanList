@@ -12,25 +12,25 @@ class HeaderMainContainer extends Component {
     if (localStorage.getItem("jwt_token")) {
       const { account } = this.props.Store;
       account.getApiAccountInfo().then(() => {
-
         //헤더를 호출할 경우 groupDetail과 해당 member 정보를 가져온다.
-        if(localStorage.getItem('groupId')){
+        if (localStorage.getItem("groupId")) {
           const { group } = this.props.Store;
-          group.groupDetail_page(localStorage.getItem('groupId'),account.loginAccount.accountId);
+          group.groupDetail_page(
+            localStorage.getItem("groupId"),
+            account.loginAccount.accountId
+          );
         }
-      })
-      if(localStorage.getItem('myGroups')){
+      });
+      if (localStorage.getItem("myGroups")) {
         const { group } = this.props.Store;
-        console.log("로컬스토리지 헤더")
-        var myGroup_object = localStorage.getItem('myGroups')
+        var myGroup_object = localStorage.getItem("myGroups");
         //오브젝트를 사용하는 방법
         group.myGroups_array(JSON.parse(myGroup_object));
       }
       //디테일 내비게이션 저장
-      if(localStorage.getItem('name')){
+      if (localStorage.getItem("name")) {
         const { group } = this.props.Store;
-        console.log("헤더")
-        group.handleItemClick(localStorage.getItem('name'));
+        group.handleItemClick(localStorage.getItem("name"));
       }
     }
   }

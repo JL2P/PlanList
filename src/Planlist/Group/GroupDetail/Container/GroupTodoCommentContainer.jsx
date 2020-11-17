@@ -8,19 +8,28 @@ class GroupTodoCommentContainer extends Component {
   createComment = (text) => {
     const { comment, setReply } = this.props;
     const { group } = this.props.Store;
+    const groupTodoStore = group.groupTodo;
+    const groupId = group.getGroup.id;
+    const groupTodoId = groupTodoStore.getGroupTodo.groupTodoId;
 
-    alert(test);
-    // const seletedTodo = group.getTodo;
-
-    // if (comment) {
-    //   group.addSubComment(seletedTodo.todoId, comment.commentId, {
-    //     targetId: comment.writer,
-    //     text: text,
-    //   });
-    //   setReply(false);
-    // } else {
-    //   group.addComment(seletedTodo.todoId, { text: text });
-    // }
+    if (comment) {
+      // groupId, todoId, commentId, groupTodoSubCommentObj
+      groupTodoStore.addGroupTodoSubComment(
+        groupId,
+        groupTodoId,
+        comment.commentId,
+        {
+          targetId: comment.writer,
+          text: text,
+        }
+      );
+      setReply(false);
+    } // groupId,todoId,groupTodoCommentObj
+    else {
+      groupTodoStore.addGroupTodoComment(groupId, groupTodoId, {
+        text: text,
+      });
+    }
   };
 
   render() {
