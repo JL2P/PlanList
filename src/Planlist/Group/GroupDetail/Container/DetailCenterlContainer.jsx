@@ -38,6 +38,7 @@ class DetailCenterlContainer extends Component {
     if (result) {
       group.settingRemove(groupId);
       alert("그룹이 삭제되었습니다.");
+      group.handleItemClick("전체글");
       window.location.href = "/groupmenu";
     }
   };

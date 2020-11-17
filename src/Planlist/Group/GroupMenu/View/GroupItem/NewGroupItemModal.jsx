@@ -150,7 +150,7 @@ const NewGroupItemModal = ({
 
               <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
                 <Grid.Column width={GRID_LEFT}>
-                  <aside>
+                  <aside style={{margin:"0"}}>
                     <label>그룹 공개 여부</label>
                   </aside>
                 </Grid.Column>
