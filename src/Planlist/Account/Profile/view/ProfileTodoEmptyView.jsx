@@ -1,25 +1,25 @@
-import { inject, observer } from "mobx-react";
-import React, { Component } from "react";
-import { Button, Container, Header, Icon, Segment } from "semantic-ui-react";
+import React from "react";
+import { Container, Header, Icon, Segment } from "semantic-ui-react";
 
-@inject("Store")
-@observer
-class ProfileTodoEmptyView extends Component {
-  render() {
-    const { account } = this.props.Store;
-    const selectId = account.getAccount.accountId;
-
-    return (
-      <Container style={{ width: "900px", marginTop: "2em" }}>
-        <Segment textAlign="center" style={{ height: "160px" }}>
-          <Header icon style={{ marginTop: "20px" }}>
+const ProfileTodoEmptyView = ({ selectId, page }) => {
+  return (
+    <Container style={{ width: "900px", marginTop: "2em" }}>
+      <Segment textAlign="center" style={{ height: "190px" }}>
+        <Header icon style={{ marginTop: "30px" }}>
+          <div>
             <Icon name="calendar times outline" />
-            {selectId}님이 등록한 계획이 없습니다
-          </Header>
-        </Segment>
-      </Container>
-    );
-  }
-}
+            <br />
+            {page === "fromNow"
+              ? selectId + " 님이 등록한 계획이 없습니다."
+              : page === "completed"
+              ? selectId + " 님이 완료한 계획이 없습니다."
+              : selectId + " 님이 완료하지 못한 계획이 없습니다."}
+          </div>
+        </Header>
+      </Segment>
+    </Container>
+  );
+};
+// }
 
 export default ProfileTodoEmptyView;

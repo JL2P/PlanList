@@ -7,6 +7,9 @@ const ProfileTodoCompletedListView = ({
   selectedTodo,
   onLikeButton,
   today,
+  onComplete,
+  onIncomplete,
+  loginId,
 }) => {
   return (
     <div>
@@ -28,6 +31,9 @@ const ProfileTodoCompletedListView = ({
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 today={today}
+                onComplete={onComplete}
+                onIncomplete={onIncomplete}
+                loginId={loginId}
               />
             ))}
           </Card.Group>

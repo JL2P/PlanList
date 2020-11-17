@@ -1,6 +1,5 @@
 import {
   axios_auth_GET,
-  axios_auth_body_GET,
   axios_auth_POST,
   axios_auth_PUT,
   axios_auth_DELETE,

@@ -88,6 +88,19 @@ class DetailCenterlContainer extends Component {
         group.handleItemClick("전체글")
         group.member = "";
     }
+    //그룹장 양도
+    onManagerTransfer = (e,userObj,masterObj,groupObj) => {
+        console.log(groupObj)
+        const { group } = this.props.Store;
+        var result = window.confirm("정말로 그룹장을 양도하시겠습니까?")
+        if(result){
+            //새로고침이 함수 실행보다 빨라서 한 번씩 에러가 발생한다.
+            group.managerTransfer_U(userObj,groupObj).then(() => window.location.reload());
+            group.managerTransfer_M(masterObj,groupObj).then(() => window.location.reload());
+            alert("그룹장이 양도되었습니다.");
+            
+        }
+    }
     
 
     render() {
@@ -123,6 +136,7 @@ class DetailCenterlContainer extends Component {
                     onHandleItemClick={this.onHandleItemClick}
                     groupTodoList={getGroupTodoList}
                     categoryList={getCategoryList}
+                    onManagerTransfer={this.onManagerTransfer}
                 />
             </div>
         );

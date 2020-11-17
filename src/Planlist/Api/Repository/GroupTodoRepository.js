@@ -1,42 +1,55 @@
-import axios from "axios"
-
-const HEADER = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("jwt_token")}`,
-    },
-};
+import {
+    axios_auth_GET,
+    axios_auth_POST,
+    axios_auth_PUT,
+    axios_auth_DELETE,
+  } from "../common/CommonAxiosModules";
 
 //GroupTodo관련 Api와 연동하는 클래스
 export default class GroupTodoRepository{
-    //공통 적으로 사용되는 URL
+    //공통 URL
     URL = "/api/groups/";
 
-    //GroupTodo list 조회
-    // GET / api/groups/
-    groupTodoList = () => {
-        return axios.get(this.URL+`groupTodo`,HEADER).then(request => request.data||[])
-    }
-    //GroupTodo 조회
-    // GET /api/groups/{groupId}/
-    groupTodoDetail = (groupTodoId,groupId) =>{
-        return axios.get(this.URL+`${groupId}/groupTodo/${groupTodoId}/`,HEADER).then(request=>request.data||{})
+    /* 모든 GroupTodo데이터 조회 
+        @GetMapping("/allTodos") */
+    groupTodosAll =() =>{
+        const url = this.URL + "allTodos";
+        return axios_auth_GET(url,[])
     }
 
-    //GroupTodo 추가
-    //POST /api/groups/
-    groupTodoCreate = (groupTodoModel) => {
-        return axios.post(this.URL+`${groupTodoModel.groupId}/groupTodo`,groupTodoModel,HEADER).then(request => request.data||[])
-    }
-    
-    // GroupTodo 수정
-    // PUT /api/groups/
-    groupTodoModify = (groupTodoModel)=>{
-        return axios.put(this.URL+`${groupTodoModel.groupId}/groupTodo`,groupTodoModel,HEADER).then(request=>request.data||{})
+    /* 해당 그룹의 모든 GroupTodo 조회 
+        @GetMapping("/{groupId}/todos") */
+    groupTodos =(groupId) =>{
+        const url = this.URL + `${groupId}/todos`;
+        return axios_auth_GET(url,[])
     }
 
-    //GroupTodo 삭제
-    // DELETE /api/groups/{groupId}
-    groupTodoDelete = (groupId,groupTodoId) => {
-        return axios.delete(this.URL+`${groupId}/groupTodo/${groupTodoId}`,HEADER).then(request=>request.data||null)
-    }   
+    /* GroupTodo상세 정보 조회 
+        @GetMapping("/{groupId}/todos/{groupTodoId}") */
+    groupTodoDetail = (groupId,groupTodoId)=>{
+        const url = this.URL + `${groupId}/todos/${groupTodoId}`;
+        return axios_auth_GET(url,{})
+    }
+
+    /* GroupTodo 생성 
+        @PostMapping("/{groupId}/todos") */
+    createGroupTodo =(groupTodoAddModel)=>{
+        const url = this.URL + `${groupTodoAddModel.groupId}/todos`
+        return axios_auth_POST(url,groupTodoAddModel,{})
+    }
+
+    /* GroupTodp 수정 
+        @PutMapping("/{groupId}/todos/{groupTodoId}") */
+    modifyGroupTodo = (groupId, groupTodoModifyModel) =>{
+        const url = this.URL + `${groupId}/todos/${groupTodoModifyModel.groupTodoId}`
+        return axios_auth_PUT(url,groupTodoModifyModel,{})
+    }
+
+    /* GroupTodo 삭제 
+        @DeleteMapping("/{groupId}/todos/{groupTodoId}") */
+    deleteGroupTodo = (groupId,groupTodoId)=>{
+        const url = this.URL + `${groupId}/todos/${groupTodoId}`
+        return axios_auth_DELETE(url)
+    }
+
 }

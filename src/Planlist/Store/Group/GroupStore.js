@@ -1,15 +1,16 @@
 import { observable, computed, action } from "mobx";
 import CategoryList_Data from "../../Category/CategoryList_Data";
 import GroupModel from "../../Api/model/group/GroupModel";
+import GroupTransferModel from "../../Api/model/group/GroupTransferModel";
 import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
 import MemberModel from "../../Api/model/member/MemberModel";
-import GroupTodoModel from "../../Api/model/GroupTodo/GroupTodoModel";
+import MemberTransferDto from "../../Api/model/member/MemberModel";
+import {GroupTodoAddModel, GroupTodoModel} from "../../Api/model/GroupTodo/GroupTodoModel";
 
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
 import GroupTodoRepository from "../../Api/Repository/GroupTodoRepository"
-
 
 export default class GroupStore {
     constructor(root) {
@@ -210,23 +211,40 @@ export default class GroupStore {
         const memberList = await this.memberRepository.memberList();
         this.members = memberList.map(member => new MemberModel(member))
       }
+      //그룹장 양도 (그룹원 -> 마스터)
+      @action
+      async managerTransfer_U(memberObj,groupObj){
+        const memberModel = new MemberTransferDto(memberObj);
+        const groupModel = new GroupTransferModel(groupObj);
+        console.log(groupModel)
+        await this.memberRepository.memberTranfer(memberModel);
+        const result = await this.groupRepository.groupTransfer(groupModel);
+        console.log(result)
+      }
+
+      //그룹장 양도 (마스터 -> 유저)
+      @action
+      async managerTransfer_M(memberObj,groupObj){
+        const memberModel = new MemberTransferDto(memberObj);
+        const groupModel = new GroupTransferModel(groupObj)
+        await this.memberRepository.memberTranfer(memberModel);
+        const result = await this.groupRepository.groupTransfer(groupModel);
+        console.log(result);
+      }
 
       /*************************************그룹 투두*********************************************/
       //그룹 투두 전체 조회
       @action
       async groupTodoListAll(){
-        const groupTodoList = await this.groupTodoRepository.groupTodoList();
+        const groupTodoList = await this.groupTodoRepository.groupTodosAll();
         this.groupTodos = groupTodoList.map(groupTodo => new GroupTodoModel(groupTodo))
-        console.log(this.groupTodos)
-        console.log("그룹 투두 리스트 전체 출력")
       }
 
       //그룹에 게시물 생성
       @action
       async detailGroup_create(groupTodoObj){
-        console.log(groupTodoObj);
-        const groupModel = new GroupTodoModel(groupTodoObj);
-        await this.groupTodoRepository.groupTodoCreate(groupModel);
+        const grouptodoAddModel = new GroupTodoAddModel(groupTodoObj);
+        await this.groupTodoRepository.createGroupTodo(grouptodoAddModel);
         this.detailGroup_modalCheck(false);
       }
 }
