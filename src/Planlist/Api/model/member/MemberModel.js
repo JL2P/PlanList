@@ -8,3 +8,12 @@ export default class MemberModel{
         this.date = memberObj.date;
     }
 }
+
+//그룹장 양도 DTO
+export class MemberTransferModel{
+    constructor(memberObj){
+        this.id = memberObj.id;
+        this.manager = memberObj.manager;
+        this.groupId = memberObj.groupId;
+    }
+}

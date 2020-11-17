@@ -1,0 +1,15 @@
+.onReply {
+  display: block;
+}
+
+.offReply {
+  display: none;
+}
+
+.onReplyList {
+  display: block;
+}
+
+.offReplyList {
+  display: none;
+}

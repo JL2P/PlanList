@@ -42,7 +42,7 @@ module.exports = function (app) {
   app.use(
     "/api/chat",
     createProxyMiddleware({
-      target: "http://localhost:3001",
+      target: "http://localhost:3005",
       changeOrigin: true,
     })
   );

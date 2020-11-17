@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Segment, Form, Button, Input,} from "semantic-ui-react";
 
 const DetailGroupSettingU = ({

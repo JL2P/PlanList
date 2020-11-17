@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Button, Card } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 const GroupProfilView = ({
         onLogInUser,
@@ -27,8 +28,12 @@ const GroupProfilView = ({
     const manager = memberManager;
 
     let memberDetail = "";
+    let masterMember = "";
 
     const joinBtn = detailGroup_memberList.map((member) => {
+        if(member.manager === "true"){
+            masterMember = member;
+        }
         if(member.accountId === onLogInUser.accountId){
             memberDetail = member;
             console.log(memberDetail.confirm)
@@ -39,7 +44,7 @@ const GroupProfilView = ({
         <Card style={{padding:"1rem"}}>
             <Image src={group.imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
             <p style={{fontSize:"1.2rem", fontWeight:"bold", wordBreak:"break-all"}}>{group.title}</p>
-            <p>그룹장 : {group.master}</p>
+            <p>그룹장 : <Link to={`/account/${masterMember.accountId}`} style={{fontSize:"1.2rem",color:"#8c8c8c"}}>{group.master}</Link></p>
             <p>멤버 : {detailGroup_memberLength}명</p> 
             <p style={{wordBreak:"break-all"}}>{group.description}</p>
             {memberDetail.accountId === onLogInUser.accountId && memberDetail.confirm === "true"  ? "" 

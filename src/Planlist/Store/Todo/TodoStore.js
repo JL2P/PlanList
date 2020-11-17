@@ -130,10 +130,8 @@ export default class TodoStore {
 
   @action
   async getApiSelectTodos(selectId) {
-    console.log("안뇽", selectId);
     const selectTodos = await this.todoRepository.selectTodoList(selectId);
     this.selectTodos = selectTodos.map((todo) => new TodoModel(todo));
-    console.log("안뇽>>", this.selectTodos.length);
   }
 
   @action
@@ -166,21 +164,6 @@ export default class TodoStore {
     const newMaintodo = this.todos.filter((todo) => todo.todoId !== todoId);
     this.todos = newMaintodo;
   }
-
-  // 사용되지 않음
-  // //api를 이용하여 댓글 리스트를 가져온다.
-  // @action
-  // async apiGetComments(todoId) {
-  //   const dataList = await this.commentRepository.commentList(todoId);
-  //   this.comments = dataList.map((comment) => new CommentModel(comment));
-  // }
-
-  // //api를 이용하여 댓글을 가져온다
-  // @action
-  // async apiGetComment(todoId, commentId) {
-  //   const data = await this.commentRepository.commentDetail(todoId, commentId);
-  //   this.comment = new CommentModel(data);
-  // }
 
   // API를 호출하여 해당 todo의 댓글을 생성한다.
   @action
@@ -222,6 +205,7 @@ export default class TodoStore {
     this.getApiTodos();
   }
 
+  // API를 호출하여 해당 댓글 삭제
   @action
   async deleteComment(comment){
     const todoId = this.todo.todoId;
@@ -232,6 +216,7 @@ export default class TodoStore {
     this.getApiTodos();
   }
 
+  // API를 호출하여 해당 대댓글 삭제
   @action
   async deleteSubComment(subComment){
     const todoId = this.todo.todoId;
@@ -250,7 +235,7 @@ export default class TodoStore {
   }
 
 
-
+  // API를 호출하여 Todo의 좋아요 누름
   @action
   async addLike(todoId) {
     this.todoRepository.onLike(todoId);
@@ -263,6 +248,7 @@ export default class TodoStore {
     });
   }
 
+  // // API를 호출하여 Todo의 좋아요 취소
   @action
   async removeLike(todoId) {
     this.todoRepository.cancelLike(todoId);

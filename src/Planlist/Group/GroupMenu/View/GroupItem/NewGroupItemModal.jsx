@@ -1,5 +1,18 @@
 import React,{useState} from "react";
-import { Button, Header, TextArea ,Input, Icon, Form, Grid, Select, Container, Divider } from "semantic-ui-react";
+import { 
+  Button, 
+  Header, 
+  TextArea,
+  Input,
+  Icon,
+  Form, 
+  Grid, 
+  Select, 
+  Container, 
+  Divider, 
+  Checkbox  
+} from "semantic-ui-react";
+
 import FileUploadFormView from "../../../../todo/view/FileUploadFormView";
 
 const NewGroupItemModal = ({ 
@@ -13,6 +26,7 @@ const NewGroupItemModal = ({
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [openAt, setOpenAt] = useState("true");
   const master = onLogInUser.accountId;
 
   //그리드 사이즈 지정
@@ -23,6 +37,7 @@ const NewGroupItemModal = ({
   const onChangeImages = (imageList) => setImages(imageList);
   const onChangeCategory = (e,{value}) => {setCategory(value); console.log(category)}
   const onChangeTitle = (e) => {setTitle(e.target.value)};
+  const onChangeOpenAt = (e,{value}) => {setOpenAt(value); console.log(openAt)}
   const onChangeDescription = (e) => setDescription(e.target.value);
 
   //카테고리 선택창에 내그룹, 모든그룹, 인기그룹 제거
@@ -132,6 +147,35 @@ const NewGroupItemModal = ({
                   />
                 </Grid.Column>
               </Grid.Row>
+
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside style={{margin:"0"}}>
+                    <label>그룹 공개 여부</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <Form.Field style={{display:"flex", alignItems:"center", justifyContent:"space-around"}}>
+                    <Checkbox 
+                      radio
+                      label='공개'
+                      onChange={onChangeOpenAt}
+                      name="openAtRadio"
+                      value="true"
+                      checked={openAt === "true"}
+                    />
+
+                    <Checkbox 
+                      radio
+                      label="비공개"
+                      onChange={onChangeOpenAt}
+                      name="openAtRadio"
+                      value="false"
+                      checked={openAt === "false"}
+                    />
+                  </Form.Field>
+                </Grid.Column>
+              </Grid.Row>
             </Grid>
 
             {/* 이미지 업로드 부분 */}
@@ -157,7 +201,8 @@ const NewGroupItemModal = ({
                   title,
                   description,
                   master,
-                  imgUrl
+                  imgUrl,
+                  openAt
                 });
               }}
             >
