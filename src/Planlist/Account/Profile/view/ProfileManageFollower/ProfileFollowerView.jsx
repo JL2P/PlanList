@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { Container, Item, Button, Image, Modal, Divider } from "semantic-ui-react";
-const ProfileFollowerView = ({follower, isFollowing}) => {
+import { Link } from "react-router-dom";
+import { Container, Item, Button, Image, Modal, Divider, Header, Icon} from "semantic-ui-react";
+const ProfileFollowerView = ({
+    follower, 
+    isFollowing,
+    onFollowRefuse
+}) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
 
 
@@ -13,12 +18,12 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
 
     return (
         <div>
-        
-        
+          
         <Modal
         onClose={() => setConfirmOpen(false)}
         onOpen={() => setConfirmOpen(true)}
         open={confirmOpen}
+        onClose={() => setConfirmOpen(false)}
         size="mini"
         >
           
@@ -80,7 +85,8 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
             }}>
                 
                 <div>
-                <text style={{color:"red", fontWeight:"bold"}}>팔로우 취소</text>
+                <text style={{color:"red", fontWeight:"bold"}}
+                onClick={()=>onFollowRefuse(follower.accountId)}>팔로우 취소</text>
                 </div>
                 </div>
                 </div>
@@ -103,7 +109,7 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
             }}>
                 
                 <div style={{marginBottom:"0.5em"}}>
-                <text style={{}}>취소</text>
+                <text onClick={()=>{setConfirmOpen(false)}}>취소</text>
                  </div>
                  </div>
                  </div>
@@ -126,7 +132,8 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
 
             }}>
                 <div className="part_b">
-                    <Image
+                {/* <Link to={{pathname:`/account/${follower.accountId}`,state:{fromDashboard:true}}} >  */}
+                  <a href={'/account/' + follower.accountId}> <Image 
                     src={follower.imgUrl}
                     bordered
                     centered
@@ -141,11 +148,14 @@ const ProfileFollowerView = ({follower, isFollowing}) => {
                     alt="profile"
                     circular
                     />
+                  </a> 
+                {/* </Link>     */}
                 </div>
                
                 <div className="part_b2">
-                    
+                <a href={'/account/' + follower.accountId}>   
                 <div>{follower.accountId}</div>
+                </a> 
                 <div>{follower.name}</div>
                     
                     
