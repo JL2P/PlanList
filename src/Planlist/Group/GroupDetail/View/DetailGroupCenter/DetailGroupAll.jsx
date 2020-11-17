@@ -4,7 +4,7 @@ import { Segment, Input, Modal, Grid } from "semantic-ui-react";
 import "../../../GroupStyle/GroupDetail.scss";
 import GroupTodoContainer from "../../Container/GroupTodoContainer";
 
-const GroupAllView = ({
+const DetailGroupAll = ({
   onDetailGroup_create,
   getDetailGroup_modalOpen,
   onDetailGroup_modalCheck,
@@ -87,4 +87,4 @@ const GroupAllView = ({
   );
 };
 
-export default GroupAllView;
+export default DetailGroupAll;
