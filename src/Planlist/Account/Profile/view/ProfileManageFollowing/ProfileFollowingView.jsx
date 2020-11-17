@@ -128,6 +128,7 @@ const ProfileFollowingView = ({
             }}>
                 
                 <div className="part_b">
+                <a href={'/account/' + following.accountId}>
                     <Image
                     src={following.imgUrl}
                     bordered
@@ -143,10 +144,13 @@ const ProfileFollowingView = ({
                    
                    
                     />
-                 </div>
+                </a>
+                </div>
                 
                 <div className="part_b">
+                <a href={'/account/' + following.accountId}>      
                 <div>{following.accountId}</div>
+                </a>
                 <div>{following.name}</div>
                                 
 

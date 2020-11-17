@@ -8,13 +8,21 @@ import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerVi
 @observer
 class ProfileFollowerListContainer extends Component {
 
+    componentDidMount(){
+        const {follow} = this.props.Store;
+       
+    
+      }
     onFollowRefuse = (followId) => {
         alert("삭제되었습니다.");
         const { follow } = this.props.Store;
         follow.followRefuse(followId);
     }
 
-    
+    onIsFollowing = (followId) => {
+        const { follow } = this.props.Store;
+        follow.followingCheck(followId);
+    }    
 
     render(){
         const { account, follow } = this.props.Store;
@@ -26,7 +34,9 @@ class ProfileFollowerListContainer extends Component {
         follower={follower} 
         isFollowing={follow.getIsFollowing} 
         onFollowRefuse={this.onFollowRefuse}
-        />);   
+        onIsFollowing={this.onIsFollowing}
+        
+       />);   
         
         
         

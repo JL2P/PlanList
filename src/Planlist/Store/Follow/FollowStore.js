@@ -10,7 +10,7 @@ export default class FollowStore {
 
     //True : 팔로우관계 False : 노팔로우
     @observable isFollowed = false;
-    @observable isfollowing = false;
+    @observable isFollowing = false;
 
     @observable myfollowerCnt=0;
     @observable myfollowingCnt=0;

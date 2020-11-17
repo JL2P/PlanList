@@ -4,7 +4,9 @@ import { Container, Item, Button, Image, Modal, Divider, Header, Icon} from "sem
 const ProfileFollowerView = ({
     follower, 
     isFollowing,
-    onFollowRefuse
+    onFollowRefuse,
+    onIsFollowing
+
 }) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -165,15 +167,15 @@ const ProfileFollowerView = ({
                 </div>
             </div>
             <div className="part_a2">
-            {isFollowing && (
+            {!isFollowing && (
                 
                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                팔로잉 취소
+                팔로잉
                 </Button>
             )}
-            {!isFollowing && (
+            {isFollowing && (
                  <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                 팔로잉
+                 팔로잉 취소
                  </Button>
             )}
             </div>
