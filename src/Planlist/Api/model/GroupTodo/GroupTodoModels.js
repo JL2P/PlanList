@@ -9,6 +9,8 @@ export class GroupTodoModel {
     this.description = groupTodoObj.description;
     this.category = groupTodoObj.category;
     this.writer = groupTodoObj.writer;
+    this.likePoint = groupTodoObj.likePoint;
+    this.likeState = groupTodoObj.likeState;
     this.members = groupTodoObj.members.map(member => new GroupTodoMemberModel(member))
     this.comments = groupTodoObj.comments.map(
       (comment) => new GroupTodoCommentModel(comment)

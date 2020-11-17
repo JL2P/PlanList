@@ -13,7 +13,6 @@ class GroupTodoCommentContainer extends Component {
     const groupTodoId = groupTodoStore.getGroupTodo.groupTodoId;
 
     if (comment) {
-      // groupId, todoId, commentId, groupTodoSubCommentObj
       groupTodoStore.addGroupTodoSubComment(
         groupId,
         groupTodoId,
@@ -24,8 +23,7 @@ class GroupTodoCommentContainer extends Component {
         }
       );
       setReply(false);
-    } // groupId,todoId,groupTodoCommentObj
-    else {
+    } else {
       groupTodoStore.addGroupTodoComment(groupId, groupTodoId, {
         text: text,
       });

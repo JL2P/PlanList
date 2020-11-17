@@ -15,11 +15,9 @@ class GroupTodoContainer extends Component {
 
     //대댓글일 경우
     if (commentType === "SUBCOMMENT") {
-      // groupId, todoId,commentId
       groupTodoStore.deleteGroupTodoSubComment(groupId, groupTodoId, comment);
     } //댓글일 경우
     else {
-      // groupId, todoId
       groupTodoStore.deleteGroupTodoComment(groupId, groupTodoId, comment);
     }
   };
