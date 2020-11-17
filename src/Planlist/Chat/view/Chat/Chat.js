@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import "./Chat.css";
 
 // 하위 컴포넌트
+// import Messages from "../../Messages/Messages";
 import Messages from "../Messages/Messages";
 import RoomInfo from "../RoomInfo/RoomInfo";
 import Input from "../ChatInput/ChatInput";
