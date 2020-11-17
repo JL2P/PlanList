@@ -35,7 +35,7 @@ const DetailGroupAll = ({
   ));
   return (
     <div>
-      {group.openAt === "true" &&  member.groupId === group.id ?
+      {group.openAt === "true" &&  member.groupId === group.id && member.confirm === "true" ?
       // 그룹 공개 여부가 true일 때 && 멤버 그룹id 와 그룹id가 일치할 때 (공개)
         <div>
           <Segment>
@@ -92,6 +92,7 @@ const DetailGroupAll = ({
                 <Grid.Row>{Groupitem}</Grid.Row>
               : 
                 <>
+                {/* 그룹투두가 없을 때 사용자에 따른 화면 */}
                   {member.manager === "true" ? 
                     <Modal
                       closeIcon
