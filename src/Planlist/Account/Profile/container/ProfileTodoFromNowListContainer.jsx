@@ -22,8 +22,6 @@ class ProfileTodoFromNowListContainer extends Component {
     } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
-    // const todos = todo.getTodos;
-    // const todos = todo.getAllTodos;
     const today = todo.getToday;
 
     // 앞으로 해야 할 일 리스트를 종료 날짜별로 정렬

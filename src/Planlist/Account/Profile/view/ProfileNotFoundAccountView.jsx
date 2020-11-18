@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Container, Segment, Image } from "semantic-ui-react";
 
 const ProfileNotFoundAccountView = ({ id }) => {

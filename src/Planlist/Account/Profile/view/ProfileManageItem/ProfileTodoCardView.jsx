@@ -15,7 +15,6 @@ const ProfileTodoCardView = ({
   onComplete,
   onIncomplete,
   loginId,
-  today,
 }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);

@@ -26,7 +26,6 @@ const ProfileManageView = ({
   isFollowing,
   followers,
   followings,
-  
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
