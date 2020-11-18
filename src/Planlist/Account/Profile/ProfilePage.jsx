@@ -9,9 +9,7 @@ import ProfileNotFoundAccountView from "./view/ProfileNotFoundAccountView";
 @observer
 class ProfilePage extends Component {
   componentDidMount() {
-    console.log("componentDidMount");
     const { account, todo, follow } = this.props.Store;
-    console.log(">>", this.props.match);
     const id = this.props.match.params.id;
 
     account.selectUser(id); // url의 id와 일치하는 계정을 선택
@@ -23,7 +21,6 @@ class ProfilePage extends Component {
     todo.getApiLoginTodos(); // 로그인된 계정의 todos
 
     //API를 가져오는 부분
-    console.log();
     follow.followCheck(id);
   }
 
@@ -35,12 +32,6 @@ class ProfilePage extends Component {
       id === undefined ? account.getLoginAccount : account.getAccount;
     const selectUserTodos =
       id === undefined ? todo.getLoginTodos : todo.getSelectTodos;
-    console.log("확인");
-    console.log("아이디 : ", selectUser);
-    console.log("로그인 아이디 : ", account.getLoginAccount.accountId);
-    console.log("selectUser", selectUser.accountId);
-    console.log("로그인", todo.getLoginTodos.length);
-    console.log(">>", selectUserTodos[0]);
 
     return (
       <div>

@@ -5,7 +5,6 @@ import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompletedListContainer";
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
 import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
-import ProfileTodoPastListContainer from "../container/ProfileTodoPastListContainer";
 import ProfileFollowRequestListContainer from "../container/ProfileFollowRequestListContainer";
 
 @inject("Store")
