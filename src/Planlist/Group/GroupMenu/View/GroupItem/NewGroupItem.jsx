@@ -14,7 +14,7 @@ const NewGroupItem = ({categoryList,onCreateGroup,onLogInUser}) => {
       trigger={
         <Grid.Column className="recommendGroup_column">
           <Card className="group_card, Newgroup_card" raised>
-            <Icon name='add circle' className="Newgroup_circle" />
+            <Icon name='add circle' style={{cursor:"pointer"}} className="Newgroup_circle" />
             <Card.Header className="group_Card_header">그룹 만들기</Card.Header>
           </Card>
         </Grid.Column>

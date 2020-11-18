@@ -165,7 +165,7 @@ class ProfileTodoView extends Component {
             <ProfileFollowRequestListContainer 
             selectUser={selectUser}
               onFollowConfirm = {onFollowConfirm}/>
-            )} 
+            } 
             
           </div>
         </Container>
