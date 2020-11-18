@@ -30,13 +30,16 @@ const MyGroupView = ({
     for(var i =0; i < item.members.length; i++){
       if(item.members[i].accountId === onLogInUser.accountId){
         joinMember = item.members[i].accountId === onLogInUser.accountId;
-        console.log(`${item.title} 조인 : ` + joinMember)
+        // console.log(`${item.title} 조인 : ` + joinMember)
         myGroups.push(item);
 
-        return(
-          item.master === onLogInUser.accountId || joinMember ?
-            <MyGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page}/> : ""
-        )
+        //내 그룹 목록 갯수 제한
+        if(index < 12 ){
+          return(
+            item.master === onLogInUser.accountId || joinMember ?
+              <MyGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page}/> : ""
+          )
+        }
       } 
     }
   });

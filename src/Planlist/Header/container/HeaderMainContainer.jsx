@@ -32,6 +32,13 @@ class HeaderMainContainer extends Component {
         const { group } = this.props.Store;
         group.handleItemClick(localStorage.getItem("name"));
       }
+      //카테고리 네비게이션 저장
+      if (localStorage.getItem("select_Group_categoryList")) {
+        const { group } = this.props.Store;
+        var selectCategory = localStorage.getItem("select_Group_categoryList")
+        group.categoryList_select(JSON.parse(selectCategory));
+        console.log("헤더")
+      }
     }
   }
 

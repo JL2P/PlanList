@@ -67,6 +67,8 @@ export default class GroupStore {
       @action
       categoryList_select = (item) => {
         this.select_Group_categoryList = item
+        localStorage.setItem('select_Group_categoryList', JSON.stringify(this.select_Group_categoryList))
+        console.log("스토어")
       }
 
       //그룹 전체 리스트 출력
