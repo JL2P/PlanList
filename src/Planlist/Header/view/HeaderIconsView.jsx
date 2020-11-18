@@ -33,7 +33,7 @@ const HeaderIconsView = () => {
             alt="loupe_white"
           />
         </Link>
-        <Link to={"/chat2/"}>
+        <Link to={"/chat/"}>
           <img
             src="/images/button/messenger_white.png"
             style={iconStyle}
