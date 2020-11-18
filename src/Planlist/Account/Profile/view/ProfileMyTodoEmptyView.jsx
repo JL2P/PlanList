@@ -12,7 +12,8 @@ const ProfileMyTodoEmptyView = ({ selectId, page }) => {
               <div style={{ marginTop: "-240px", fontSize: "5px" }}>
                 <MainNoTodoContainer />
               </div>
-            ) : page === "completed" ? (
+            ) : //
+            page === "completed" ? (
               <div>
                 <Icon name="calendar times outline" />
                 <br />

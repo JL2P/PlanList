@@ -56,9 +56,7 @@ class ProfileTodoView extends Component {
       selectedTodo,
       selectUserTodos,
       onLikeButton,
-
       onFollowConfirm,
-
       onComplete,
       onIncomplete,
     } = this.props;

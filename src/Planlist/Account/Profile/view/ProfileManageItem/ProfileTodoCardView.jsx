@@ -119,6 +119,7 @@ const ProfileTodoCardView = ({
                   : todo.modified.substring(0, 10)}
               </Button>
               {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
+
               {loginId === todo.writer ? (
                 // 로그인된 유저가 todo 작성자이면 완료하기 버튼을 활성화
                 todo.completed === "N" ? (
