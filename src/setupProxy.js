@@ -39,11 +39,11 @@ module.exports = function (app) {
   );
 
   // Chat
-  app.use(
-    "/api/chat",
-    createProxyMiddleware({
-      target: "http://localhost:3005",
-      changeOrigin: true,
-    })
-  );
+  // app.use(
+  //   "/api/chat",
+  //   createProxyMiddleware({
+  //     target: "http://localhost:5000",
+  //     changeOrigin: true,
+  //   })
+  // );
 };

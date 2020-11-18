@@ -18,5 +18,7 @@ export { default as GroupCategory } from "./Group/GroupCategory/GroupCategoryPag
 export { default as Account } from "./Account/AccountRoutes";
 
 // export { default as JoinRoom } from "./Chat/view/JoinRoom/JoinRoom";
-export { default as JoinRoom } from "./Chat/ChatPage";
-export { default as Chat } from "./Chat/view/Chat/Chat";
+// export { default as JoinRoom } from "./Chat/ChatPage";
+export { default as JoinRoom } from "./Chat/components/Join/Join";
+// export { default as Chat } from "./Chat/view/Chat/Chat";
+export { default as Chat } from "./Chat/components/Chat/Chat";

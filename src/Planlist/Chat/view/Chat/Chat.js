@@ -1,116 +1,117 @@
-import React, { useEffect, useState, useReducer } from "react";
-import queryString from "query-string";
-import io from "socket.io-client";
-import "./Chat.css";
+// import React, { useEffect, useState } from "react";
+// import queryString from "query-string";
+// import io from "socket.io-client";
+// // import { io } from "socket.io-client";
+// import "./Chat.css";
 
-// 하위 컴포넌트
-// import Messages from "../../Messages/Messages";
-import Messages from "../Messages/Messages";
-import RoomInfo from "../RoomInfo/RoomInfo";
-import Input from "../ChatInput/ChatInput";
+// // 하위 컴포넌트
+// import Messages from "../Messages/Messages";
+// import RoomInfo from "../RoomInfo/RoomInfo";
+// import Input from "../ChatInput/ChatInput";
 
-import { Button, Item } from "semantic-ui-react";
+// import { Button, Item } from "semantic-ui-react";
 
-// import { io } from "socket.io-client";
+// let socket;
 
-let socket;
+// const Chat = ({ location }) => {
+//   const [name, setName] = useState("");
+//   const [room, setRoom] = useState("");
+//   const [message, setMessage] = useState("");
+//   const [messages, setMessages] = useState([]);
 
-const Chat = ({ location }) => {
-  const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+//   const [users, setUsers] = useState("");
 
-  const [users, setUsers] = useState("");
+//   // const io = require("socket.io-client");
+//   // const ENDPOINT = "https://lamachat.herokuapp.com/";
+//   const ENDPOINT = "http://localhost:";
 
-  // const io = require("socket.io-client");
-  const ENDPOINT = "https://lamachat.herokuapp.com/";
-  // const ENDPOINT = "http://localhost";
+//   useEffect(() => {
+//     // query-string middleware의 사용
+//     // const data = queryString.parse(location.search);
+//     // console.log(location.search); // ?name=&room=
+//     // console.log(data); // 객체 :
+//     // 다시 정리
+//     const { name, room } = queryString.parse(location.search);
 
-  useEffect(() => {
-    // query-string middleware의 사용
-    // const data = queryString.parse(location.search);
-    // console.log(location.search); // ?name=&room=
-    // console.log(data); // 객체 :
-    // 다시 정리
-    const { name, room } = queryString.parse(location.search);
+//     // socket = io(ENDPOINT); // 소켓 연결
+//     socket = io.connect(ENDPOINT); // 소켓 연결
+//     console.log("소켓연결");
+//     setName(name);
+//     setRoom(room);
 
-    socket = io(ENDPOINT); // 소켓 연결
+//     console.log("name, room", name, room);
 
-    setName(name);
-    setRoom(room);
+//     // console.log(socket);
+//     socket.emit("join", { name, room }, (error) => {
+//       // console.log("error");
+//       // 에러 처리
+//       if (error) {
+//         alert(error);
+//       }
+//     });
 
-    console.log(name, room);
+//     // return () => {
+//     //   socket.emit("disconnect");
 
-    // console.log(socket);
-    socket.emit("join", { name, room }, (error) => {
-      // console.log("error");
-      // 에러 처리
-      if (error) {
-        alert(error);
-      }
-    });
+//     //   socket.off();
+//     // };
+//   }, [ENDPOINT, location.search]);
+//   // 한번만 부른다 // 불필요한 사이드 이펙트를 줄인다
 
-    // return () => {
-    //   socket.emit("disconnect");
+//   useEffect(() => {
+//     // 서버에서 message 이벤트가 올 경우에 대해서 `on`
+//     socket.on("message", (message) => {
+//       setMessages([...messages, message]);
+//     });
 
-    //   socket.off();
-    // };
-  }, [ENDPOINT, location.search]);
-  // 한번만 부른다 // 불필요한 사이드 이펙트를 줄인다
+//     socket.on("roomData", ({ users }) => {
+//       setUsers(users);
+//     });
+//   }, [messages]);
 
-  useEffect(() => {
-    // 서버에서 message 이벤트가 올 경우에 대해서 `on`
-    socket.on("message", (message) => {
-      setMessages([...messages, message]);
-    });
+//   // 메세지 보내기 함수
+//   const sendMessage = (e) => {
+//     e.preventDefault();
+//     if (message) {
+//       socket.emit("sendMessage", message, setMessage(""));
+//     }
+//   };
 
-    socket.on("roomData", ({ users }) => {
-      setUsers(users);
-    });
-  }, [messages]);
+//   console.log(message, messages);
+//   console.log(users, "users");
 
-  // 메세지 보내기 함수
-  const sendMessage = (e) => {
-    e.preventDefault();
-    if (message) {
-      socket.emit("sendMessage", message, setMessage(""));
-    }
-  };
+//   // return <h1>Chat</h1>;
+//   // 1.roominfo
+//   // 2.messages
+//   // 3.input
+//   return (
+//     <div className="chatOuterContainer">
+//       <div className="chatInnerContainer">
+//         <div className="appbar">
+//           <Item color="primary">
+//             <Item className="toolBar">
+//               <Button color="inherit" href="/chat">
+//                 close
+//               </Button>
+//             </Item>
+//           </Item>
+//         </div>
+//         <div className="chatScreen">
+//           <Item elevation={5} className="chatScreenPaper">
+//             <RoomInfo room={room} />
+//             <Messages messages={messages} name={name} />
+//             <Input
+//               message={message}
+//               setMessage={setMessage}
+//               sendMessage={sendMessage}
+//             />
+//           </Item>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
-  console.log(message, messages);
-  console.log(users, "users");
+// export default Chat;
 
-  // return <h1>Chat</h1>;
-  // 1.roominfo
-  // 2.messages
-  // 3.input
-  return (
-    <div className="chatOuterContainer">
-      <div className="chatInnerContainer">
-        <div className="appbar">
-          <Item color="primary">
-            <Item className="toolBar">
-              <Button color="inherit" href="/chat">
-                close
-              </Button>
-            </Item>
-          </Item>
-        </div>
-        <div className="chatScreen">
-          <Item elevation={5} className="chatScreenPaper">
-            <RoomInfo room={room} />
-            <Messages messages={messages} name={name} />
-            <Input
-              message={message}
-              setMessage={setMessage}
-              sendMessage={sendMessage}
-            />
-          </Item>
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default Chat;
