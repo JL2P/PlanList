@@ -11,9 +11,14 @@ const BestGroupView = ({
     categoryList,
     onGroupDetail_page
     }) => {
-  const Groupitem = groups.map((item, index) => (
-    <BestGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page} />
-  ));
+  const Groupitem = groups.map((item, index) => {
+    if(index < 12){
+      return(
+        <BestGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page} />
+      )
+    }
+    
+  });
 
   var settings = {
     dots: true,

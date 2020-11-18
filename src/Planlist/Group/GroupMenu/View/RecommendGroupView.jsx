@@ -14,10 +14,19 @@ const RecommendGroupView = ({
     // useEffect(() => {
     //     onAllGroups();
     //   },[]);
+    
+    //그룹 내림차순
+    const descending = groups.sort(function(a,b){
+        return a.id > b.id ? -1 : a.id < b.id ? 1:0;
+    })
 
-     const Groupitem = groups.map((item, index) => (
-        <RecommendGroupItem  onGroupDetail_page={onGroupDetail_page} key={index} item={item} />
-    ));
+     const Groupitem = descending.map((item, index) => {
+         if(index < 12){
+             return(
+                <RecommendGroupItem  onGroupDetail_page={onGroupDetail_page} key={index} item={item} />
+            )
+         }
+    });
       
 
     return (

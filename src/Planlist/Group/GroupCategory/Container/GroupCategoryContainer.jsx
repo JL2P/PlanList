@@ -11,6 +11,7 @@ class GroupCategoryContainer extends Component {
     onCategoryList_select = (item) => {
         const { group } = this.props.Store;
         group.categoryList_select(item);
+        console.log(item)
     }
 
     //그룹 전체 리스트 조회
