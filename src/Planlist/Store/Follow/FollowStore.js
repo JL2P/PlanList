@@ -10,6 +10,8 @@ export default class FollowStore {
 
     //True : 팔로우관계 False : 노팔로우
     @observable isFollowed = false;
+
+    @observable isFollower = false;
     @observable isFollowing = false;
 
     @observable myfollowerCnt=0;
@@ -29,6 +31,10 @@ export default class FollowStore {
     //팔로잉되어 있는지 상태를 겨자온다
     @computed get getIsFollowing(){
       return this.isFollowing
+    }
+    //팔로워인지 상태를 가져온다.
+    @computed get getIsFollower(){
+      return this.isFollower
     }
 
     @computed get getFollower() {
@@ -117,6 +123,15 @@ export default class FollowStore {
       console.log("FLAG "+followStateObj.followState)
       this.isFollowing=followStateObj.followState;
     }
+
+    @action
+    async followerCheck (followerId) {
+      const followStateObj = await this.followRepository.followerCheckFunction(followerId);
+      this.isFollower=followStateObj.followState;
+    }
+
+
+
     
     @action
     async followConfirm(followerId) {

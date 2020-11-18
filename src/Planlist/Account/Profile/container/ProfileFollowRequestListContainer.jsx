@@ -38,6 +38,7 @@ class ProfileFollowRequestListContainer extends Component {
         alert('팔로잉요청 수락되었습니다.');
         const { follow } = this.props.Store;
         follow.followConfirm(followId);
+        window.location.reload();
       };
 
     onFollowRefuse = (followId) => {

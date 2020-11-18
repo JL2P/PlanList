@@ -5,7 +5,6 @@ const ProfileFollowerView = ({
     follower, 
     isFollowing,
     onFollowRefuse,
-    onIsFollowing
 
 }) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
@@ -63,7 +62,7 @@ const ProfileFollowerView = ({
                     />
                 </div>
                 <div style={{padding:"1.2em"}}>
-                    <text>박민재님의 팔로우를 취소하시겠어요?</text>
+                    <span>박민재님의 팔로우를 취소하시겠어요?</span>
                 </div>
                 </div>
                 </Modal.Content>
