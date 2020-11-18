@@ -13,8 +13,6 @@ class ProfileTodoIncompletedListContainer extends Component {
     const { selectUser, selectedTodo, onLikeButton, todos } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
-    // const todos = todo.getTodos;
-    // const todos = todo.getAllTodos;
     const today = todo.getToday;
 
     // 기간 내에 못한 일 리스트를 정렬

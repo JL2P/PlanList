@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Checkbox, Form, Grid } from "semantic-ui-react";
 import "./ProfileModify.scss";
 

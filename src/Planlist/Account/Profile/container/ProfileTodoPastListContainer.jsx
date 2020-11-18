@@ -13,8 +13,6 @@ class ProfileTodoPastListContainer extends Component {
     const { selectUser, selectedTodo, onLikeButton, todos } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
-    // const todos = todo.getTodos;
-    // const todos = todo.getAllTodos;
     const today = todo.getToday;
 
     // 종료일이 지난 할 일 리스트를 정렬
@@ -35,7 +33,7 @@ class ProfileTodoPastListContainer extends Component {
     past.map((item) => past_list[past_date.indexOf(item.endTime)].push(item));
 
     const count = past_list.length;
-    console.log("아이디아디", loginId, selectId);
+
     return (
       <div>
         {count === 0 ? (

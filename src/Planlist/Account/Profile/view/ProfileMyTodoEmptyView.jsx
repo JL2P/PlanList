@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, Container, Header, Icon, Segment } from "semantic-ui-react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
-import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 
 const ProfileMyTodoEmptyView = ({ selectId, page }) => {
   return (

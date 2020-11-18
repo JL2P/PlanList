@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
+// import { io } from "socket.io-client";
 import "./Chat.css";
 
 // 하위 컴포넌트
@@ -9,8 +10,6 @@ import RoomInfo from "../RoomInfo/RoomInfo";
 import Input from "../ChatInput/ChatInput";
 
 import { Button, Item } from "semantic-ui-react";
-
-// import { io } from "socket.io-client";
 
 let socket;
 
@@ -24,7 +23,8 @@ const Chat = ({ location }) => {
 
   // const io = require("socket.io-client");
   const ENDPOINT = "https://lamachat.herokuapp.com/";
-  // const ENDPOINT = "http://localhost";
+  //   const ENDPOINT = "http://localhost:5000";
+  // const ENDPOINT = "https://project-chat-application.herokuapp.com/";
 
   useEffect(() => {
     // query-string middleware의 사용
@@ -34,15 +34,17 @@ const Chat = ({ location }) => {
     // 다시 정리
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT); // 소켓 연결
-
+    // socket = io(ENDPOINT); // 소켓 연결
+    socket = io.connect(ENDPOINT); // 소켓 연결
+    console.log("소켓연결");
     setName(name);
     setRoom(room);
 
-    console.log(name, room);
+    console.log("name, room", name, room);
 
     // console.log(socket);
     socket.emit("join", { name, room }, (error) => {
+      console.log("name, room", name, room);
       // console.log("error");
       // 에러 처리
       if (error) {
@@ -90,7 +92,7 @@ const Chat = ({ location }) => {
         <div className="appbar">
           <Item color="primary">
             <Item className="toolBar">
-              <Button color="inherit" href="/chat2">
+              <Button color="inherit" href="/chat">
                 close
               </Button>
             </Item>

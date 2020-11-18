@@ -5,7 +5,6 @@ import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompletedListContainer";
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
 import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
-import ProfileTodoPastListContainer from "../container/ProfileTodoPastListContainer";
 import ProfileFollowRequestListContainer from "../container/ProfileFollowRequestListContainer";
 
 @inject("Store")
@@ -59,11 +58,9 @@ class ProfileTodoView extends Component {
       onLikeButton,
 
       onFollowConfirm,
-      
 
       onComplete,
       onIncomplete,
-
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -158,15 +155,13 @@ class ProfileTodoView extends Component {
               />
             )}
 
-
-
             {activeItem === "새로운 알림" &&
 
             <ProfileFollowRequestListContainer 
             selectUser={selectUser}
               onFollowConfirm = {onFollowConfirm}/>
             } 
-            
+       
           </div>
         </Container>
       </div>
