@@ -27,6 +27,30 @@ class GroupTodoContainer extends Component {
     const { group } = this.props.Store;
     const groupTodoStore = group.groupTodo;
     groupTodoStore.setGroupTodo(groupTodo);
+    groupTodoStore.checkAttend(groupTodo);
+  };
+
+  // GroupTodo 참가 신청 및 취소 함수
+  onAttendGroupTodo = (flag) => {
+    const { group } = this.props.Store;
+    const groupTodoStore = group.groupTodo;
+
+    if (flag === "ATTEND") {
+      groupTodoStore.attendGroupTodo().then((res) => {
+        if (res) {
+          alert("그룹계획에 참가하였습니다.");
+          // window.location.reload();
+        } else {
+          alert("이미 참가한 계획입니다.");
+        }
+        window.location.reload();
+      });
+    } else {
+      groupTodoStore.cancelGroupTodo().then((res) => {
+        alert("그룹계획 참가를 취소했습니다.");
+        window.location.reload();
+      });
+    }
   };
 
   render() {
@@ -42,6 +66,8 @@ class GroupTodoContainer extends Component {
         selectedTodoComments={groupTodoComments}
         loginAccount={account.getLoginAccount}
         onDeleteComment={this.onDeleteComment}
+        onAttendGroupTodo={this.onAttendGroupTodo}
+        attendAt={groupTodoStore.getGroupTodoAttendAt}
       />
     );
   }

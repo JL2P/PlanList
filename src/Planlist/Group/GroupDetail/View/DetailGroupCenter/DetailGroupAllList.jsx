@@ -10,6 +10,8 @@ const DetailGroupAllList = ({
   selectedTodoComments,
   loginAccount,
   onDeleteComment,
+  onAttendGroupTodo,
+  attendAt,
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -24,6 +26,7 @@ const DetailGroupAllList = ({
       onClose={() => setOpen(false)}
       onOpen={() => onOpenModal()}
       open={open}
+      size="small"
       trigger={
         <Grid.Column className="recommendGroup_column">
           <Card className="group_card" raised>
@@ -44,6 +47,8 @@ const DetailGroupAllList = ({
         loginAccount={loginAccount}
         setOpen={setOpen}
         groupTodo={groupTodo}
+        onAttendGroupTodo={onAttendGroupTodo}
+        attendAt={attendAt}
       >
         <GroupTodoCommentFrame
           comments={selectedTodoComments}
