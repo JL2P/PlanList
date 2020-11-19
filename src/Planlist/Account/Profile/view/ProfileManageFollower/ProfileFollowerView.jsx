@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Container, Item, Button, Image, Modal, Divider, Header, Icon} from "semantic-ui-react";
+
 const ProfileFollowerView = ({
     follower, 
     isFollowing,
     onFollowRefuse,
+    onBtn,
+    children
 
 }) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
@@ -20,101 +22,7 @@ const ProfileFollowerView = ({
     return (
         <div>
           
-        <Modal
-       
-        onOpen={() => setConfirmOpen(true)}
-        onClose={() => setConfirmOpen(false)}
-        open={confirmOpen}
-        size="mini"
-        >
-          
-            <div
-             style={{
-                display:'flex', /* flex로 지정*/ 
-                justifyContent:"center", 
-                alignItems:"center", /* 높이의 정중앙 */
-                marginTop:"1em"
-                
-                }}>
-               <Modal.Content>
-              <div style={{
-                display:"flex",
-                flexDirection:"column",
-                justifyContent:"center", 
-                alignItems:"center"
-
-            }}>
-                <div style={{display:"flex",  justifyContent:"center"}}>
-                    <Image style={{margin:"1em", alignItems: "center"} }
-                    src={follower.imgUrl}
-                    bordered
-                    centered
-                    
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      objectFit: "cover",
-                      borderRadius: "50%",
-                    }}
-                    alt="jsx-a11y/alt-text"
-                    circular
-                    size="tiny"
-                    />
-                </div>
-                <div style={{padding:"1.2em"}}>
-                    <span>박민재님의 팔로우를 취소하시겠어요?</span>
-                </div>
-                </div>
-                </Modal.Content>
-                </div>
-                <div>
-              <Divider/>
-                <div
-                style={{
-                display:'flex', /* flex로 지정*/ 
-                justifyContent:"center", 
-                alignItems:"center", /* 높이의 정중앙 */
-                margin:"0.5em"
-                
-                }}>
-                <div style={{
-                display:"flex",
-                flexDirection:"column",
-                justifyContent:"center", 
-                alignItems:"center"
-
-            }}>
-                
-                <div>
-                <text style={{color:"red", fontWeight:"bold"}}
-                onClick={()=>onFollowRefuse(follower.accountId)}>팔로우 취소</text>
-                </div>
-                </div>
-                </div>
-            </div>
-            <Divider/>
-                <div
-                style={{
-                display:'flex', /* flex로 지정*/ 
-                justifyContent:"center", 
-                alignItems:"center", /* 높이의 정중앙 */
-                margin:"0.5em"
-                
-                }}>
-                <div style={{
-                display:"flex",
-                flexDirection:"column",
-                justifyContent:"center", 
-                alignItems:"center"
-
-            }}>
-                
-                <div style={{marginBottom:"0.5em"}}>
-                <text onClick={()=>{setConfirmOpen(false)}}>취소</text>
-                 </div>
-                 </div>
-                 </div>
-            </Modal>
+        {children}
     <Container>
     
         <Item>
@@ -166,17 +74,9 @@ const ProfileFollowerView = ({
                 </div>
             </div>
             <div className="part_a2">
-            {!isFollowing && (
-                
-                <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                팔로잉
-                </Button>
-            )}
-            {isFollowing && (
-                 <Button size="tiny" basic color='grey' onClick={()=>{onConfirmModal(true)}}>
-                 팔로잉 취소
-                 </Button>
-            )}
+           
+            {onBtn}
+           
             </div>
             </div>
         </Item>

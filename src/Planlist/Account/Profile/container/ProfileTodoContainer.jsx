@@ -14,6 +14,7 @@ class ProfileTodoContainer extends Component {
   onFollow = (followId) => {
     const { follow } = this.props.Store;
     follow.follow(followId);
+    window.location.reload();
   };
 
   selectedTodo = (todoModel) => {

@@ -45,6 +45,7 @@ class ProfileFollowRequestListContainer extends Component {
         alert('팔로잉요청 거절되었습니다.');
         const { follow } = this.props.Store;
         follow.followRefuse(followId);
+        window.location.reload();
     }
     render(){
         const { follow } = this.props.Store;

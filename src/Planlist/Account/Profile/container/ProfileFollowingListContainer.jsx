@@ -12,6 +12,7 @@ class ProfileFollowingListContainer extends Component {
         alert("삭제되었습니다");
         const { follow } = this.props.Store;
         follow.deleteMyFollowing(followId);
+        window.location.reload();
     } 
 
     render(){

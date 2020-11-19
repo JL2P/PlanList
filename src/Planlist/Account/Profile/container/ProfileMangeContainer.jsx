@@ -36,6 +36,7 @@ class ProfileMangeContainer extends Component {
     alert(followId);
     const { follow } = this.props.Store;
     follow.follow(followId);
+    window.location.reload();
   };
 
   render() {
