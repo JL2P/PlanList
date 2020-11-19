@@ -37,9 +37,14 @@ class HeaderMainContainer extends Component {
         const { group } = this.props.Store;
         var selectCategory = localStorage.getItem("select_Group_categoryList")
         group.categoryList_select(JSON.parse(selectCategory));
-        console.log("헤더")
       }
     }
+    const { account } = this.props.Store;
+    account.selectAll();
+
+    const { group } = this.props.Store;
+    group.getApiGroups();
+
   }
 
   render() {
@@ -54,12 +59,15 @@ class HeaderMainContainer extends Component {
     const { account } = this.props.Store;
     const loginAccount = account.getLoginAccount;
     const loginCheck = account.getLogCheck;
+    const accounts = account.getAccounts;
+
     return (
       <MediaContextProvider>
         <HeaderDesktopView
           Media={Media}
           loginAccount={loginAccount}
           loginCheck={loginCheck}
+          accounts={accounts}
         />
         <HeaderMobileView Media={Media} />
       </MediaContextProvider>
