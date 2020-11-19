@@ -1,0 +1,11 @@
+.GroupSearch .content{margin:0}
+.GroupSearch .input{width:100%!important;}
+.GroupSearch .results{
+    width:25em!important;
+    display: flex;
+    align-items: center!important;
+}
+.GroupSearch .image{float: left !important;}
+.GroupSearch .image img{border-radius: 100%;}
+.GroupSearch .title,
+.GroupSearch .description{font-size: 1.2em !important;}
