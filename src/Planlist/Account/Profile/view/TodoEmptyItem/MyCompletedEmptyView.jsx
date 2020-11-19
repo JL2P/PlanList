@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Container, Header, Icon, Segment } from "semantic-ui-react";
 
-const MyCompletedEmptyView = ({ selectId, page }) => {
+const MyCompletedEmptyView = ({ selectId }) => {
   return (
     <Container style={{ width: "900px", marginTop: "2em" }}>
       <Segment textAlign="center" style={{ height: "210px" }}>
