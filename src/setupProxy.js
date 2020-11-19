@@ -2,6 +2,16 @@
 const proxy = require("http-proxy-middleware");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
+
+  // Chat;
+  app.use(
+    "/api/chat",
+    createProxyMiddleware({
+      target: "http://localhost:8000",
+      changeOrigin: true,
+    })
+  );
+
   // Authentication Service
   app.use(
     "/api/auth",
@@ -38,12 +48,14 @@ module.exports = function (app) {
     })
   );
 
-  // Chat;
-  app.use(
-    "/api/chat",
-    createProxyMiddleware({
-      target: "http://localhost:5000",
-      changeOrigin: true,
-    })
-  );
+  // // Chat;
+  // app.use(
+  //   "/api/chat",
+  //   createProxyMiddleware({
+  //     target: "http://localhost:5000",
+  //     changeOrigin: true,
+  //   })
+  // );
+
+
 };
