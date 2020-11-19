@@ -13,7 +13,7 @@ import {
   Button,
 } from "semantic-ui-react";
 import FileUploadFormView from "./FileUploadFormView";
-
+import CategoryList_Data from "../../Category/CategoryList_Data";
 import "./todoInputItemsStyle.css";
 
 const TodoCreateDesktopForm = ({
@@ -35,14 +35,18 @@ const TodoCreateDesktopForm = ({
   const maxNumber = 69;
 
   /* 카테고리 */
-  const options = [
-    { key: "e", text: "운동", value: "exercise" },
-    { key: "s", text: "공부", value: "study" },
-    { key: "o", text: "기타등등", value: "other" },
-  ];
+  const options = CategoryList_Data.slice(3, -1).map((category) => {
+    return {
+      key: category.value,
+      text: category.text,
+      value: category.value,
+    };
+  });
 
   const onChangeImages = (imageList) => setImages(imageList);
-  const onChangeCategory = (e) => setCategory(e.target.value);
+  const onChangeCategory = (e, { value }) => {
+    setCategory(value);
+  };
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
   return (
@@ -84,8 +88,8 @@ const TodoCreateDesktopForm = ({
                 </Grid.Column>
                 <Grid.Column width={GRID_RIGHT}>
                   <Form.Field
-                    value={category}
                     control={Select}
+                    value={category}
                     options={options}
                     onChange={onChangeCategory}
                     placeholder="카테고리"
