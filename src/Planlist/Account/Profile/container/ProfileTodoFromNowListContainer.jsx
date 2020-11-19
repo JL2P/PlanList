@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
-import ProfileMyTodoEmptyView from "../view/ProfileMyTodoEmptyView";
 import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
+import MyFromNowEmptyView from "../view/TodoEmptyItem/MyFromNowEmptyView";
 
 @inject("Store")
 @observer
@@ -53,7 +53,7 @@ class ProfileTodoFromNowListContainer extends Component {
           <div>
             {loginId === selectId ? (
               // 로그인된 계정의 페이지이면 todo 추가 화면
-              <ProfileMyTodoEmptyView
+              <MyFromNowEmptyView
                 selectId={selectId}
                 page={page}
                 onModal={this.onModal}

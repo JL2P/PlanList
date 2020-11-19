@@ -1,8 +1,8 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import ProfileTodoIncompletedListView from "../view/ProfileManageItem/ProfileTodoIncompletedListView";
-import ProfileMyTodoEmptyView from "../view/ProfileMyTodoEmptyView";
 import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
+import MyIncompletedEmptyView from "../view/TodoEmptyItem/MyIncompletedEmptyView";
 
 @inject("Store")
 @observer
@@ -43,7 +43,7 @@ class ProfileTodoIncompletedListContainer extends Component {
         {count === 0 ? (
           <div>
             {loginId === selectId ? (
-              <ProfileMyTodoEmptyView page={page} selectId={selectId} />
+              <MyIncompletedEmptyView page={page} selectId={selectId} />
             ) : (
               <ProfileTodoEmptyView page={page} selectId={selectId} />
             )}
