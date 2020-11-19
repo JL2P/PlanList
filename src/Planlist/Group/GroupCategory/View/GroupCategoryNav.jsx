@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Menu, Input } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
+import GroupCategorySearch from "./GroupCategorySearch";
 
 const GroupCategoryNav = ({
         sampleData,
         onCategoryList_select,
-        selectList
+        selectList,
+        groups,
+        onAllGroups
     }) => {
       
     // const [activeItem, setActiveItem] = useState(selectList.text);
@@ -30,7 +33,7 @@ const GroupCategoryNav = ({
       <Menu pointing secondary vertical style={{width:"100%"}}>
         <Menu.Item style={group_category_nav_padding}>
             <h2>카테고리</h2>
-            <Input icon='search' placeholder='그룹 검색' />
+            <GroupCategorySearch groups={groups} onAllGroups={onAllGroups} />
         </Menu.Item>
         {GroupCategoryNavList}
       </Menu>

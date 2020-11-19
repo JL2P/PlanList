@@ -77,7 +77,6 @@ export default class GroupStore {
         console.log("getApiGroups")
         const apiGetGroups = await this.groupRepository.groupList();
         this.groups = apiGetGroups.map(group => new GroupModel(group))
-        console.log(this.groups);
 
         //로컬스토리지에 내 그룹 저장 // object를 저장하는 방법
         localStorage.setItem('myGroups', JSON.stringify(this.myGroups));
@@ -161,7 +160,6 @@ export default class GroupStore {
       //내 그룹을 로컬스토리지에서 호출
       @action
       myGroups_array(myGroups){
-        console.log(myGroups)
         this.myGroups = myGroups;
       }
 

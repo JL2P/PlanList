@@ -1,10 +1,11 @@
 import React,{useEffect} from "react";
 import MyGroupItem from "./GroupItem/MyGroupItem";
 import NewGroupItem from "./GroupItem/NewGroupItem";
-import { Container} from "semantic-ui-react";
+import { Container, Search} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import '../../GroupStyle/Group.scss';
+import GroupCategorySearch from '../../GroupCategory/View/GroupCategorySearch'
 
 const MyGroupView = ({ 
     groups,
@@ -16,7 +17,7 @@ const MyGroupView = ({
     members,
     onMyGroups
    }) => {
-
+     
   let logMember = new Array();
   const test = members.map(member => {
     if(onLogInUser.accountId == member.accountId){
@@ -64,7 +65,7 @@ const MyGroupView = ({
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
+          // infinite: true,
           dots: true
         }
       },
@@ -89,6 +90,9 @@ const MyGroupView = ({
   return (
     <div className="myGroup_wrap" >
       <Container>
+        <div style={{margin:"0 auto", width:"40%"}}>
+          <GroupCategorySearch groups={groups} />
+        </div>
         <div className="group_header_text">
           <p className="group_header_headerText">내 그룹</p>
           <p className="group_header_contents">내가 가입한 그룹 목록입니다.</p>

@@ -12172,6 +12172,7 @@ socket.io-client@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-3.0.2.tgz#7984b1cd8e7274f8a53d032b01fb15694a0210d5"
   integrity sha512-SEgeBLWAztLoOIePauBEvY1plhheShoNY7CA5gUnrjBxe+NOYiK+neazrpdXQ2RYYBlXXEosPWCtEhKydVdagA==
+  
   dependencies:
     "@types/component-emitter" "^1.2.10"
     backo2 "1.0.2"

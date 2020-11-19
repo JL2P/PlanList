@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const menuFixed = { background: "rgb(27, 28, 29)" };
 
-const HeaderDesktopView = ({ Media, loginAccount, loginCheck }) => {
+const HeaderDesktopView = ({ Media, loginAccount, loginCheck, accounts }) => {
   const [fixed, setFixed] = useState(false);
 
   const hideFixedMenu = () => setFixed(false);
@@ -27,7 +27,7 @@ const HeaderDesktopView = ({ Media, loginAccount, loginCheck }) => {
           style={menuFixed ? menuFixed : menuFixed}
           size="tiny"
         >
-          <HeaderIconsView />
+          <HeaderIconsView accounts={accounts} />
           {loginCheck && (
             <h2 style={{ color: "white" }}>{loginAccount.accountId}</h2>
           )}
