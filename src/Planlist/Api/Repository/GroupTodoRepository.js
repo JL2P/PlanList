@@ -52,4 +52,19 @@ export default class GroupTodoRepository{
         return axios_auth_DELETE(url)
     }
 
+
+    checkGroupTodoMember = (groupId, groupTodoId)=>{
+        const url = this.URL + `${groupId}/todos/${groupTodoId}/attendCheck`;
+        return axios_auth_POST(url)
+    }
+
+    addGroupTodoMember = (groupId, groupTodoId, todoId)=>{
+        const url = this.URL + `${groupId}/todos/${groupTodoId}/attend`;
+        return axios_auth_POST(url,{"todoId":todoId},{})
+    }
+
+    deleteGroupTodoMember = (groupId, groupTodoId)=>{
+        const url = this.URL + `${groupId}/todos/${groupTodoId}/attend`;
+        return axios_auth_DELETE(url)
+    }
 }

@@ -6,8 +6,6 @@ import TodoModifyModel from "../../Api/model/todo/TodoModifyModel";
 import TodoAddModel from "../../Api/model/todo/TodoAddModel";
 import TodoModel from "../../Api/model/todo/TodoModel";
 
-//테스트용 추가 -승훈-
-import exampleDataset from "../../Sample/Data/MainPage_List_Data";
 import {
   CommentAddModel,
   CommentModel,
@@ -147,7 +145,6 @@ export default class TodoStore {
     await this.todoRepository.todoCreate(todoModel);
     this.getApiTodos();
   }
-  
 
   // API를 호출하여 todo데이터를 수정한다.
   @action

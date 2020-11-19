@@ -8,6 +8,7 @@ const DetailGroupAllListModal = ({
   groupTodo,
   children,
   onAttendGroupTodo,
+  attendAt,
 }) => {
   return (
     <>
@@ -37,19 +38,34 @@ const DetailGroupAllListModal = ({
                 <Icon name="heart" color="red" /> {groupTodo.likePoint}
               </Label>
             </div>
-            <Button
-              fluid
-              style={{
-                marginTop: "0.5em",
-                background: "#ffb517",
-                color: "#ffffff",
-              }}
-              onClick={() => {
-                onAttendGroupTodo();
-              }}
-            >
-              계획 참여하기
-            </Button>
+            {attendAt && (
+              <Button
+                fluid
+                style={{
+                  marginTop: "0.5em",
+                }}
+                onClick={() => {
+                  onAttendGroupTodo("CANCEL");
+                }}
+              >
+                계획 참여 취소하기
+              </Button>
+            )}
+            {!attendAt && (
+              <Button
+                fluid
+                style={{
+                  marginTop: "0.5em",
+                  background: "#ffb517",
+                  color: "#ffffff",
+                }}
+                onClick={() => {
+                  onAttendGroupTodo("ATTEND");
+                }}
+              >
+                계획 참여하기
+              </Button>
+            )}
           </div>
         </div>
       </Modal.Content>

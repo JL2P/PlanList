@@ -7,22 +7,27 @@ import GroupTodoCommentRepository from "../../Api/Repository/GroupTodoCommentRep
 import { GroupTodoCommentAddModel, GroupTodoCommentModel } from '../../Api/model/GroupTodo/GroupTodoCommentModels';
 import { GroupTodoSubCommentAddModel, GroupTodoSubCommentModel } from '../../Api/model/GroupTodo/GroupTodoSubCommentModels';
 import TodoAddModel from '../../Api/model/todo/TodoAddModel';
+import TodoRepository from '../../Api/Repository/TodoRepository';
+import TodoModel from '../../Api/model/todo/TodoModel';
 
 export default class GroupTodoStore {
     constructor(groupStore){
         this.group = groupStore;
         this.groupTodoRepository = new GroupTodoRepository();
         this.groupTodoCommentRepository = new GroupTodoCommentRepository();
+        this.todoRepository = new TodoRepository();
     }
 
     @observable groupTodo = {}
     @observable groupTodos = []
     @observable selectedTodo = [];
     @observable comments = {}
+    @observable groupTodoAttendAt = false;
 
     @computed get getGroupTodo(){return this.groupTodo};
     @computed get getGroupTodos(){return this.groupTodos};
     @computed get getGroupTodoComments(){return this.comments};
+    @computed get getGroupTodoAttendAt(){return this.groupTodoAttendAt};
 
     @action setGroupTodo(groupTodo){
       const grouptodo = new GroupTodoModel(groupTodo)
@@ -154,15 +159,53 @@ export default class GroupTodoStore {
   }
 
 
+  //현재 GroupTodo에 참여중인지 체크
+  @action
+  async checkAttend(groupTodo){
+    const groupId = groupTodo.groupId;
+    const groupTodoId = groupTodo.groupTodoId;
+    const data = await this.groupTodoRepository.checkGroupTodoMember(groupId, groupTodoId);
+    // (ATTEND 참여중 / NONE 미참여) 
+    if(data === "ATTEND"){
+      this.groupTodoAttendAt = true;
+    }else{
+      this.groupTodoAttendAt = false;
+    }
+  }
+
+
   @action
   async attendGroupTodo(){
+    const groupId = this.groupTodo.groupId;
+    const groupTodoId = this.groupTodo.groupTodoId;    
+    const data = await this.groupTodoRepository.checkGroupTodoMember(groupId, groupTodoId)
+    // (ATTEND 참여중 / NONE 미참여) 
+    if(data === "NONE"){
+      const todoModel = new TodoAddModel({...this.groupTodo});
+      todoModel.groupAt = "Y";
+      todoModel.endTime=this.getTomorrow();
+      todoModel.writer = this.group.root.account.getLoginAccount.accountId;
 
-    const todo = new TodoAddModel(this.groupTodo)
-    todo.groupAt = "Y";
-    todo.endTime=this.getTomorrow();
-    
-    this.group.root.todo.saveTodo(todo);
+      // Todo추가
+      const data = await this.todoRepository.todoCreate(todoModel);
+      const newTodo = new TodoModel(data);
 
+      // GroupTodoMember에 추가
+      this.groupTodoRepository.addGroupTodoMember(groupId, groupTodoId, newTodo.todoId);
+      return true;
+    }
+    return false;
+}
+
+  @action
+  async cancelGroupTodo(){
+    const groupId = this.groupTodo.groupId;
+    const groupTodoId = this.groupTodo.groupTodoId;  
+    // GroupTodoMember에서 제거
+    const data = await this.groupTodoRepository.deleteGroupTodoMember(groupId, groupTodoId);
+    const todoId = data.todoId;
+    // todo삭제
+    this.todoRepository.todoDelete(todoId);
   }
 
   getTomorrow=()=> {

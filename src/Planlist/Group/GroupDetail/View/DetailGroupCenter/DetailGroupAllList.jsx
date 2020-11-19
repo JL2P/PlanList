@@ -11,6 +11,7 @@ const DetailGroupAllList = ({
   loginAccount,
   onDeleteComment,
   onAttendGroupTodo,
+  attendAt,
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -47,6 +48,7 @@ const DetailGroupAllList = ({
         setOpen={setOpen}
         groupTodo={groupTodo}
         onAttendGroupTodo={onAttendGroupTodo}
+        attendAt={attendAt}
       >
         <GroupTodoCommentFrame
           comments={selectedTodoComments}
