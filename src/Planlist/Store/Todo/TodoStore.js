@@ -12,6 +12,9 @@ import {
 } from "../../Api/model/comment/CommentModels";
 import { SubCommentAddModel,SubCommentModel } from "../../Api/model/comment/SubCommentModels";
 import FollowRepository from '../../Api/Repository/FollowRepository';
+import AccountRepository from '../../Api/Repository/AccountRepository';
+import AccountModel from '../../Api/model/AccountModel';
+import GroupTodoRepository from '../../Api/Repository/GroupTodoRepository';
 
 export default class TodoStore {
   constructor(root) {
@@ -19,6 +22,8 @@ export default class TodoStore {
     this.todoRepository = new TodoRepository();
     this.commentRepository = new CommentRepository();
     this.followRepository = new FollowRepository();
+    this.accountRepository = new AccountRepository();
+    this.groupTodoRepository = new GroupTodoRepository();
   }
 
   //모델 정의
@@ -116,8 +121,19 @@ export default class TodoStore {
   async getApiTodos() {
     const followings = await this.followRepository.getMyFollowinglistFunction();
     const apiGetTodos = await this.todoRepository.TodoList(followings.map(follow=>follow.accountId));
-    this.todos = apiGetTodos.map((todo) => new TodoModel(todo));
+    apiGetTodos.map((todo) => {
+      const account = this.getApiTodoAccount(todo.writer)
+      return account.then(res=>{
+        todo.accountModel=res
+        this.todos = this.todos.concat(new TodoModel(todo)) 
+      });
+    });
   }
+
+  async getApiTodoAccount(accountId){
+    return await this.accountRepository.accountDetail(accountId);
+  }
+
 
   @action
   async getApiAllTodos() {

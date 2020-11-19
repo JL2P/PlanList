@@ -1,3 +1,4 @@
+import AccountModel from '../AccountModel';
 import { CommentModel } from "../comment/CommentModels";
 
 export default class TodoModel {
@@ -18,5 +19,6 @@ export default class TodoModel {
     );
     this.created = todoObj.created;
     this.modified = todoObj.modified;
+    this.accountModel = todoObj.accountModel !== undefined ? new AccountModel(todoObj.accountModel):{}
   }
 }
