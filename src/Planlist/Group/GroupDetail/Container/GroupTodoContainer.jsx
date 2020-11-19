@@ -29,6 +29,12 @@ class GroupTodoContainer extends Component {
     groupTodoStore.setGroupTodo(groupTodo);
   };
 
+  onAttendGroupTodo = () => {
+    const { group } = this.props.Store;
+    const groupTodoStore = group.groupTodo;
+    groupTodoStore.attendGroupTodo();
+  };
+
   render() {
     const { account, group } = this.props.Store;
     const { item } = this.props;
@@ -42,6 +48,7 @@ class GroupTodoContainer extends Component {
         selectedTodoComments={groupTodoComments}
         loginAccount={account.getLoginAccount}
         onDeleteComment={this.onDeleteComment}
+        onAttendGroupTodo={this.onAttendGroupTodo}
       />
     );
   }

@@ -147,6 +147,7 @@ export default class TodoStore {
     await this.todoRepository.todoCreate(todoModel);
     this.getApiTodos();
   }
+  
 
   // API를 호출하여 todo데이터를 수정한다.
   @action

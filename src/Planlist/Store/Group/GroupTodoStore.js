@@ -6,6 +6,7 @@ import GroupTodoRepository from "../../Api/Repository/GroupTodoRepository"
 import GroupTodoCommentRepository from "../../Api/Repository/GroupTodoCommentRepository"
 import { GroupTodoCommentAddModel, GroupTodoCommentModel } from '../../Api/model/GroupTodo/GroupTodoCommentModels';
 import { GroupTodoSubCommentAddModel, GroupTodoSubCommentModel } from '../../Api/model/GroupTodo/GroupTodoSubCommentModels';
+import TodoAddModel from '../../Api/model/todo/TodoAddModel';
 
 export default class GroupTodoStore {
     constructor(groupStore){
@@ -152,4 +153,38 @@ export default class GroupTodoStore {
     });
   }
 
+
+  @action
+  async attendGroupTodo(){
+
+    const todo = new TodoAddModel(this.groupTodo)
+    todo.groupAt = "Y";
+    todo.endTime=this.getTomorrow();
+    
+    this.group.root.todo.saveTodo(todo);
+
+  }
+
+  getTomorrow=()=> {
+
+    var d = new Date();
+    var s =
+        this.leadingZeros(d.getFullYear(), 4) + '-' +
+        this.leadingZeros(d.getMonth() + 1, 2) + '-' +
+        this.leadingZeros(d.getDate()+1, 2);
+
+    return s;
+  }
+
+  leadingZeros=(n, digits)=> {
+
+      var zero = '';
+      n = n.toString();
+
+      if (n.length < digits) {
+          for (let i = 0; i < digits - n.length; i++)
+              zero += '0';
+      }
+      return zero + n;
+  }
 }
