@@ -23,9 +23,8 @@ class GroupContainer extends Component {
         const { group } = this.props.Store;
         group.getApiGroups();
         group.memberListAll();
-        console.log(group.groups)
-        console.log("렌더링")
-    }
+     }
+    
 
     //그룹 디테일 조회
     onGroupDetail_page = (groupId) => {
