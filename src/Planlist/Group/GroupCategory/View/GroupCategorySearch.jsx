@@ -62,7 +62,7 @@ const GroupCategorySearch = ({groups}) => {
     
         dispatch({
             type: 'FINISH_SEARCH',
-            results: source().slice().filter(val=> {console.log("검색이 나온다"); return re.test(val.title)})
+            // results: source().slice().filter(val=> {console.log("검색이 나온다"); return re.test(val.title)})
         })
         }, 300)
     }, [])
