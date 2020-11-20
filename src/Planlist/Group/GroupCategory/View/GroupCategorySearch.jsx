@@ -3,33 +3,36 @@ import _ from 'lodash'
 import { Search } from "semantic-ui-react";
 import '../../GroupStyle/Search.scss';
 
-const initialState = {
-    loading: false,
-    results: [],
-    value: '',
-}
-
-function exampleReducer(state, action) {
-    switch (action.type) {
-        case 'CLEAN_QUERY':
-        return initialState
-        case 'START_SEARCH':
-        return { ...state, loading: true, value: action.query }
-        case 'FINISH_SEARCH':
-        return { ...state, loading: false, results: action.results }
-        case 'UPDATE_SELECTION':
-        return { ...state, value: action.selection }
-
-        default:
-        throw new Error()
-    }
-}
+var searchList = [];
 
 const GroupCategorySearch = ({groups}) => {
-    console.log(groups)
+    console.log("그룹리스트 검색 ===>",groups);
+    searchList=groups;
+
+    const initialState = {
+      loading: false,
+      results: [],
+      value: '',
+    }
+  
+  function exampleReducer(state, action) {
+      switch (action.type) {
+          case 'CLEAN_QUERY':
+          return initialState
+          case 'START_SEARCH':
+          return { ...state, loading: true, value: action.query }
+          case 'FINISH_SEARCH':
+          return { ...state, loading: false, results: action.results }
+          case 'UPDATE_SELECTION':
+          return { ...state, value: action.selection }
+  
+          default:
+          throw new Error()
+        }
+      }
 
     function source(){
-        let test = groups.map(val => {
+        let test = searchList.map(val => {
           return(
             {
               title: val.title, 
@@ -59,10 +62,9 @@ const GroupCategorySearch = ({groups}) => {
         }
     
         const re = new RegExp(_.escapeRegExp(data.value), 'i')
-    
-        dispatch({
+         dispatch({
             type: 'FINISH_SEARCH',
-            results: source().slice().filter(val=> {console.log("검색이 나온다"); return re.test(val.title)})
+            results: source().slice().filter(val=> {return re.test(val.title)})
         })
         }, 300)
     }, [])
