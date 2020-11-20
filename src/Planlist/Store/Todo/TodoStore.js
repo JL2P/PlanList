@@ -113,7 +113,7 @@ export default class TodoStore {
 
   @action
   setComments(comments) {
-    this.comments = comments;
+    this.comments = comments
   }
 
   // API를 호출하여 todos에 todo리스트 데이터를 넣어준다.
@@ -121,19 +121,9 @@ export default class TodoStore {
   async getApiTodos() {
     const followings = await this.followRepository.getMyFollowinglistFunction();
     const apiGetTodos = await this.todoRepository.TodoList(followings.map(follow=>follow.accountId));
-    apiGetTodos.map((todo) => {
-      const account = this.getApiTodoAccount(todo.writer)
-      return account.then(res=>{
-        todo.accountModel=res
-        this.todos = this.todos.concat(new TodoModel(todo)) 
-      });
-    });
+    const apiTodosAccount = await this.accountRepository.todosAccountMapping(apiGetTodos);
+    this.todos =apiTodosAccount.map(todo=>new TodoModel(todo));
   }
-
-  async getApiTodoAccount(accountId){
-    return await this.accountRepository.accountDetail(accountId);
-  }
-
 
   @action
   async getApiAllTodos() {
@@ -186,6 +176,7 @@ export default class TodoStore {
 
     const data = await this.commentRepository.commentCreate(todoId, commentModel);
     const newComment = new CommentModel(data);
+    newComment.accountModel = this.root.account.getLoginAccount;
     const comments = this.comments.slice('');
     comments.push(newComment)
     this.comments = comments;
@@ -205,10 +196,12 @@ export default class TodoStore {
       subCommentAddModel
     );
     const newSubComment = new SubCommentModel(data);
-
+    newSubComment.accountModel = this.root.account.getLoginAccount;
+    
     this.comments = this.comments.map(comment=>{
       if(comment.commentId === commentId){
         const subComments = comment.subComments;
+        
         subComments.push(newSubComment);
         comment.subComments = subComments;        
       }

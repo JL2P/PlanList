@@ -50,16 +50,16 @@ const MainItemInfoModalView = ({
                     borderRadius: "50%",
                   }}
                 />
-                <b
+                <span
                   style={{
-                    fontSize: "24px",
+                    fontSize: "21px",
                     marginLeft: "0.5em",
                     marginRight: "0.5em",
-                    marginBottom: "0.5em",
+                    marginBottom: "0.3em",
                   }}
                 >
                   {todo.writer}
-                </b>
+                </span>
               </div>
             </Link>
             <Button

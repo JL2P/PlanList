@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {axios_auth_GET } from "../common/CommonAxiosModules"
+import {axios_auth_GET,axios_auth_POST } from "../common/CommonAxiosModules"
 
 const HEADER = {
   headers: {
@@ -56,4 +56,11 @@ export default class AccountRepository {
       .post(this.URL + "/auth", AccountModel)
       .then((request) => request.data || {});
   };
+
+
+  todosAccountMapping = (todoModels)=>{
+    const todoAccountDtos = todoModels
+    const url = this.URL +"/todos/mapping" 
+    return axios_auth_POST(url, todoAccountDtos,[])
+  }
 }
