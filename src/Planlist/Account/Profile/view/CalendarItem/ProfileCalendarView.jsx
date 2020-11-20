@@ -3,10 +3,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
 
-const ProfileCalendarView = ({ selectUser, todos, selectedTodo }) => {
+const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
   const events = [];
   //   const [itemInfoOpen, setItemInfoOpen] = useState(false);
-
+  // #CED4DA #FFF0CD
   todos.map((item) => {
     // const onInfoModal = (trigger) => {
     //   setItemInfoOpen(trigger);
@@ -24,7 +24,12 @@ const ProfileCalendarView = ({ selectUser, todos, selectedTodo }) => {
       title: item.title,
       start: item.startTime,
       end: endTime,
-      color: item.completed === "Y" ? "#CED4DA" : "#FFB517",
+      color:
+        item.completed === "Y"
+          ? "#98895B" // 완료한 일
+          : item.endTime < today
+          ? "#CED4DA" // 하지 못한 일
+          : "#FFB517", // 해야 할 일
       //   dateClick: (
       //     <MainItemInfoContainer
       //       todo={item}

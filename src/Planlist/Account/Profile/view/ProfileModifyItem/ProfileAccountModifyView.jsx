@@ -111,6 +111,7 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
               options={genderOptions}
               value={account.gender}
               onChange={(e, { value }) => onSetAccountProp("gender", value)}
+              placeholder="성별"
             />
           </Grid.Column>
         </Grid.Row>

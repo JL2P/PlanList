@@ -13,6 +13,7 @@ class ProfileCalendarContainer extends Component {
 
   render() {
     const { selectUser, todos } = this.props;
+    const today = this.props.Store.todo.getToday;
 
     return (
       <div>
@@ -20,6 +21,7 @@ class ProfileCalendarContainer extends Component {
           selectUser={selectUser}
           todos={todos}
           selectedTodo={this.selectedTodo}
+          today={today}
         />
       </div>
     );
