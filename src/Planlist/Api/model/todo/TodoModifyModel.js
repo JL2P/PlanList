@@ -5,5 +5,6 @@ export default class TodoModifyModel {
     this.description = todoObj.description;
     this.category = todoObj.category;
     this.endTime = todoObj.endTime;
+    this.startTime = todoObj.startTime;
   }
 }

@@ -28,20 +28,21 @@ const ProfileTodoCardView = ({
     selectedTodo(todo);
   };
 
-  const onCofigModal = (trigger) => {
-    setItemConfigOpen(trigger);
-  };
+  // const onCofigModal = (trigger) => {
+  //   setItemConfigOpen(trigger);
+  // };
 
-  const onTodoUpdateModal = (trigger) => {
-    // 이전에 열려있는 모달 닫기
-    if (itemConfigOpen) {
-      setItemConfigOpen(false);
-      // todoUpdate 모달 열기
-      setTodoUpdateOpen(true);
-    } else {
-      setTodoUpdateOpen(trigger);
-    }
-  };
+  // const onTodoUpdateModal = (trigger) => {
+  //   // 이전에 열려있는 모달 닫기
+  //   if (itemConfigOpen) {
+  //     setItemConfigOpen(false);
+  //     // todoUpdate 모달 열기
+  //     setTodoUpdateOpen(true);
+  //   } else {
+  //     setTodoUpdateOpen(trigger);
+  //   }
+  // };
+
   return (
     <div>
       {/* <TodoUpdateContainer
@@ -114,9 +115,7 @@ const ProfileTodoCardView = ({
                 style={{ width: "117px", textAlign: "center" }}
               >
                 시작&nbsp;
-                {todo.created
-                  ? todo.created.substring(0, 10)
-                  : todo.modified.substring(0, 10)}
+                {todo.startTime}
               </Button>
               {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
 

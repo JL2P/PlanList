@@ -93,8 +93,8 @@ class ProfileTodoView extends Component {
               onClick={this.handleItemClick}
             />
             <Menu.Item
-              name="전체 보기"
-              active={activeItem === "전체 보기"}
+              name="달력 보기"
+              active={activeItem === "달력 보기"}
               onClick={this.handleItemClick}
             />
             <Menu.Item
@@ -144,7 +144,7 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-            {activeItem === "전체 보기" && (
+            {activeItem === "달력 보기" && (
               <ProfileCalendarContainer
                 selectUser={selectUser}
                 todos={selectUserTodos}
