@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Comment, Form, Icon } from "semantic-ui-react";
+import { Comment, Form, Icon, Image } from "semantic-ui-react";
 import TodoCommentContainer from "../../container/TodoCommentContainer";
 import { Link } from "react-router-dom";
 import "./todoCommentFormStyle.css";
@@ -16,50 +16,70 @@ const TodoCommentFormVIew = ({
 
   return (
     <Comment>
-      <Comment.Avatar src="/posts/img_crong.jpg" />
       <Comment.Content>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>
-            <Comment.Author as="a">{comment.writer}</Comment.Author>
-            <Comment.Metadata>
-              <div>{comment.created}</div>
-              {/* <Icon name="heart" /> */}
-            </Comment.Metadata>{" "}
-          </div>
-          {loginAccount.accountId === comment.writer && (
-            <Icon
-              name="x"
-              color="red"
-              style={{ marginRight: "1em", cursor: "pointer" }}
-              onClick={() => {
-                onDeleteComment(comment);
-              }}
-            />
-          )}
-        </div>
-        <Comment.Text>
-          {comment.targetId && (
-            <Link to={`/account/${comment.targetId}`}>
-              <span style={{ color: "#FFB517" }}>@{comment.targetId}</span>
-            </Link>
-          )}{" "}
-          {comment.text}
-        </Comment.Text>
-        <Comment.Actions>
-          <Comment.Action
-            onClick={() => {
-              onReply();
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src={comment.accountModel ? comment.accountModel.imgUrl : ""}
+            bordered
+            centered
+            style={{
+              width: "25px",
+              height: "25px",
+              objectFit: "cover",
+              borderRadius: "50%",
+            }}
+          />
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-between",
             }}
           >
-            Reply
-          </Comment.Action>
-        </Comment.Actions>
+            <div>
+              <Comment.Author as="a">
+                <b style={{ fontSize: "14px", marginLeft: "0.2em" }}>
+                  {comment.writer}
+                </b>
+              </Comment.Author>
+              <Comment.Metadata>
+                <div>{comment.created}</div>
+                {/* <Icon name="heart" /> */}
+              </Comment.Metadata>{" "}
+            </div>
+            {loginAccount.accountId === comment.writer && (
+              <Icon
+                name="x"
+                color="red"
+                style={{ marginRight: "1em", cursor: "pointer" }}
+                onClick={() => {
+                  onDeleteComment(comment);
+                }}
+              />
+            )}
+          </div>
+        </div>
+        <div
+          style={{ display: "flex", alignItems: "center", marginLeft: "0.3em" }}
+        >
+          <Comment.Text>
+            {comment.targetId && (
+              <Link to={`/account/${comment.targetId}`}>
+                <span style={{ color: "#FFB517" }}>@{comment.targetId}</span>
+              </Link>
+            )}{" "}
+            {comment.text}
+          </Comment.Text>
+          <Comment.Actions style={{ marginLeft: "0.5em" }}>
+            <Comment.Action
+              onClick={() => {
+                onReply();
+              }}
+            >
+              댓글 달기
+            </Comment.Action>
+          </Comment.Actions>
+        </div>
         <Form reply className={reply ? "onReply" : "offReply"}>
           <TodoCommentContainer comment={comment} setReply={setReply} />
         </Form>

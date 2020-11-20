@@ -18,9 +18,26 @@ const MainItem = ({ todoModel, onInfoModal }) => {
               alignItems: "center",
             }}
           >
-            <div style={{ marginLeft: "0.5em" }}>
-              <Icon name="user" />
-              {todoModel.writer}
+            <div>
+              <Image
+                src={todoModel.accountModel.imgUrl}
+                bordered
+                centered
+                style={{
+                  width: "35px",
+                  height: "35px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+              <b style={{ fontSize: "18px", marginLeft: "0.5em" }}>
+                {todoModel.writer}
+              </b>
+              {todoModel.groupAt === "Y" && (
+                <Label basic color="orange" style={{ marginLeft: "1em" }}>
+                  <b>그룹계획</b>
+                </Label>
+              )}
             </div>
             <div
               style={{

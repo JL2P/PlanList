@@ -1,3 +1,5 @@
+import AccountModel from '../AccountModel';
+
 // 대댓글 조회시 서버의 DTO와 매핑되는 모델
 export class SubCommentModel{
     constructor(subCommentObj){
@@ -8,6 +10,7 @@ export class SubCommentModel{
         this.writer = subCommentObj.writer;             // 작성자ID
         this.likePoint = subCommentObj.likePoint;       // 좋아요
         this.created = subCommentObj.created;
+        this.accountModel = subCommentObj.accountModel !== undefined ? new AccountModel(subCommentObj.accountModel):{}
     }
 };
 

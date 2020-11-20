@@ -67,4 +67,17 @@ export default class GroupTodoRepository{
         const url = this.URL + `${groupId}/todos/${groupTodoId}/attend`;
         return axios_auth_DELETE(url)
     }
+
+  // todo 좋아요
+  onLike = (groupId, groupTodoId) => {
+   
+    const url = this.URL +`${groupId}/todos/${groupTodoId}/like` 
+    return axios_auth_POST(url);
+  };
+
+  // todo 좋아요 취소
+  cancelLike = (groupId, groupTodoId) => {
+    const url = this.URL +`${groupId}/todos/${groupTodoId}/like` 
+    return axios_auth_DELETE(url);
+  };
 }

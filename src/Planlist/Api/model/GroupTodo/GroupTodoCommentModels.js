@@ -1,3 +1,4 @@
+import AccountModel from '../AccountModel';
 import { GroupTodoSubCommentModel } from './GroupTodoSubCommentModels';
 
 // 댓글 조회시 서버의 DTO와 매핑되는 모델
@@ -10,6 +11,7 @@ export class GroupTodoCommentModel{
         this.likePoint = commentObj.likePoint;
         this.created = commentObj.created;
         this.subComments = commentObj.subComments.map(subComment => new GroupTodoSubCommentModel(subComment));
+        this.accountModel = commentObj.accountModel !== undefined ? new AccountModel(commentObj.accountModel):{}
     }
 };
 

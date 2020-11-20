@@ -1,3 +1,4 @@
+import AccountModel from '../AccountModel';
 import { GroupTodoCommentModel } from './GroupTodoCommentModels';
 
 export class GroupTodoModel {
@@ -15,6 +16,7 @@ export class GroupTodoModel {
     this.comments = groupTodoObj.comments.map(
       (comment) => new GroupTodoCommentModel(comment)
     );
+    this.accountModel = groupTodoObj.accountModel !== undefined ? new AccountModel(groupTodoObj.accountModel):{}
   }
 }
 

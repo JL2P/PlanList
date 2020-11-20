@@ -5,6 +5,16 @@ import DetailGroupAllList from "../View/DetailGroupCenter/DetailGroupAllList";
 @inject("Store")
 @observer
 class GroupTodoContainer extends Component {
+  onLikeButton = (action) => {
+    const { group } = this.props.Store;
+    const groupTodoStore = group.groupTodo;
+    if (action === "ADD") {
+      groupTodoStore.addLike();
+    } else {
+      groupTodoStore.removeLike();
+    }
+  };
+
   onDeleteComment = (comment) => {
     //comment.subCommentId가 존재할 경우는 SubComment임
     const commentType = comment.subCommentId ? "SUBCOMMENT" : "COMMENT";
@@ -67,6 +77,7 @@ class GroupTodoContainer extends Component {
         loginAccount={account.getLoginAccount}
         onDeleteComment={this.onDeleteComment}
         onAttendGroupTodo={this.onAttendGroupTodo}
+        onLikeButton={this.onLikeButton}
         attendAt={groupTodoStore.getGroupTodoAttendAt}
       />
     );

@@ -21,9 +21,9 @@ class DetailGroupAllContainer extends Component {
     groupTodoStore.addGroupTodo(groupTodoObj);
     window.location.reload();
   };
+
   //todo 생성후 모달 닫기
   onDetailGroup_modalCheck = (check) => {
-    console.log(check);
     const { group } = this.props.Store;
     group.detailGroup_modalCheck(check);
   };
@@ -33,8 +33,8 @@ class DetailGroupAllContainer extends Component {
     const { account } = this.props.Store;
     const { getDetailGroup_modalOpen, getCategoryList } = group;
     const { loginAccount } = account;
-    const GroupTodos = group.groupTodo.getGroupTodos;
-    const {member} = this.props
+    const { member } = this.props;
+    const groupTodos = group.groupTodo.getGroupTodos;
 
     return (
       <DetailGroupAll
@@ -43,7 +43,7 @@ class DetailGroupAllContainer extends Component {
         onDetailGroup_modalCheck={this.onDetailGroup_modalCheck}
         onLogInUser={loginAccount}
         group={group.getGroup}
-        groupTodoList={GroupTodos}
+        groupTodos={groupTodos}
         categoryList={getCategoryList}
         member={member}
       />

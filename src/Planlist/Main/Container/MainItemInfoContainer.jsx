@@ -26,9 +26,15 @@ class MainItemInfoContainer extends Component {
 
     const seletedTodoComments = todo.getComments;
 
-    const { open, onModal } = this.props;
+    const { open, onModal, onLikeButton } = this.props;
+
     return (
-      <MainItemInfoModalView todo={seletedTodo} open={open} onModal={onModal}>
+      <MainItemInfoModalView
+        todo={seletedTodo}
+        open={open}
+        onModal={onModal}
+        onLikeButton={onLikeButton}
+      >
         <TodoCommentFrame
           comments={seletedTodoComments}
           loginAccount={loginAccount}
