@@ -1,6 +1,10 @@
 .search .content{margin:0}
 .search .input{width:25em!important;}
-.search .results{width:25em!important;}
+.search .results{
+    width:25em!important;
+    height:300px !important;
+    overflow-y: scroll !important;
+}
 .search .image{float: left !important;}
 .search .image img{border-radius: 100%;}
 .search .title,
