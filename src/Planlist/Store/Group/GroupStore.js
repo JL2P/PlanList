@@ -1,4 +1,4 @@
-import { observable, computed, action } from "mobx";
+import { observable, computed, action, runInAction } from "mobx";
 import CategoryList_Data from "../../Category/CategoryList_Data";
 import GroupModel from "../../Api/model/group/GroupModel";
 import GroupTransferModel from "../../Api/model/group/GroupTransferModel";
@@ -68,16 +68,19 @@ export default class GroupStore {
       categoryList_select = (item) => {
         this.select_Group_categoryList = item
         localStorage.setItem('select_Group_categoryList', JSON.stringify(this.select_Group_categoryList))
-        console.log("스토어")
       }
 
       //그룹 전체 리스트 출력
       @action
       async getApiGroups(){
-        console.log("getApiGroups")
+        
         const apiGetGroups = await this.groupRepository.groupList();
-        this.groups = apiGetGroups.map(group => new GroupModel(group))
 
+        runInAction(()=>{
+          this.groups = apiGetGroups.map(group => new GroupModel(group));
+        });
+        
+        
         //로컬스토리지에 내 그룹 저장 // object를 저장하는 방법
         localStorage.setItem('myGroups', JSON.stringify(this.myGroups));
       }
@@ -196,9 +199,9 @@ export default class GroupStore {
       //멤버 전체 리스트
       @action
       async memberListAll(){
-        console.log("멤버 전체 리스트 출력")
         const memberList = await this.memberRepository.memberList();
-        this.members = memberList.map(member => new MemberModel(member))
+        this.members = memberList.map(member => new MemberModel(member));
+        console.log("GroupStore====>멤버리스트",this.members);
       }
       //그룹장 양도 (그룹원 -> 마스터)
       @action
