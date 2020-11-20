@@ -46,7 +46,6 @@ class ProfileTodoContainer extends Component {
   onIncomplete = (todoId) => {
     const { todo } = this.props.Store;
     todo.todoIncompleted(todoId);
-    console.log("클릭!");
   };
 
   render() {

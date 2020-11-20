@@ -2,7 +2,8 @@ import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import ProfileTodoPastListView from "../view/ProfileManageItem/ProfileTodoPastListView";
-import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
+import ProfileTodoEmptyView from "../view/TodoEmptyItem/ProfileTodoEmptyView";
+
 
 @inject("Store")
 @observer

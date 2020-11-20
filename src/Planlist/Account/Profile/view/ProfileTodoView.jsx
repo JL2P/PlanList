@@ -6,6 +6,7 @@ import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompleted
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
 import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
 import ProfileFollowRequestListContainer from "../container/ProfileFollowRequestListContainer";
+import ProfileCalendarContainer from "../container/ProfileCalendarContainer";
 
 @inject("Store")
 @observer
@@ -81,11 +82,6 @@ class ProfileTodoView extends Component {
               active={activeItem === "해야 할 일"}
               onClick={this.handleItemClick}
             />
-            {/* <Menu.Item
-              name="지난 할 일"
-              active={activeItem === "지난 할 일"}
-              onClick={this.handleItemClick}
-            /> */}
             <Menu.Item
               name="그동안 한 일"
               active={activeItem === "그동안 한 일"}
@@ -96,9 +92,11 @@ class ProfileTodoView extends Component {
               active={activeItem === "하지 못한 일"}
               onClick={this.handleItemClick}
             />
-
-            <Menu.Item />
-
+            <Menu.Item
+              name="전체 보기"
+              active={activeItem === "전체 보기"}
+              onClick={this.handleItemClick}
+            />
             <Menu.Item
               name="새로운 알림"
               active={activeItem === "새로운 알림"}
@@ -128,14 +126,6 @@ class ProfileTodoView extends Component {
                 onIncomplete={onIncomplete}
               />
             )}
-            {/* {activeItem === "지난 할 일" && (
-              <ProfileTodoPastListContainer
-                selectUser={selectUser}
-                selectedTodo={selectedTodo}
-                onLikeButton={onLikeButton}
-                todos={selectUserTodos}
-              />
-            )} */}
             {activeItem === "그동안 한 일" && (
               <ProfileTodoCompletedListContainer
                 selectUser={selectUser}
@@ -154,7 +144,12 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-
+            {activeItem === "전체 보기" && (
+              <ProfileCalendarContainer
+                selectUser={selectUser}
+                todos={selectUserTodos}
+              />
+            )}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer
                 selectUser={selectUser}
