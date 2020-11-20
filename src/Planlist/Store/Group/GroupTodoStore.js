@@ -9,6 +9,7 @@ import { GroupTodoSubCommentAddModel, GroupTodoSubCommentModel } from '../../Api
 import TodoAddModel from '../../Api/model/todo/TodoAddModel';
 import TodoRepository from '../../Api/Repository/TodoRepository';
 import TodoModel from '../../Api/model/todo/TodoModel';
+import AccountRepository from '../../Api/Repository/AccountRepository';
 
 export default class GroupTodoStore {
     constructor(groupStore){
@@ -16,11 +17,11 @@ export default class GroupTodoStore {
         this.groupTodoRepository = new GroupTodoRepository();
         this.groupTodoCommentRepository = new GroupTodoCommentRepository();
         this.todoRepository = new TodoRepository();
+        this.accountRepository = new AccountRepository();
     }
 
     @observable groupTodo = {}
     @observable groupTodos = []
-    @observable selectedTodo = [];
     @observable comments = {}
     @observable groupTodoAttendAt = false;
 
@@ -39,8 +40,9 @@ export default class GroupTodoStore {
     //Group의 GroupTodoList데이터 호출
     @action
     async getApiGroupTodos(groupId){
-        const groupTodoList = await this.groupTodoRepository.groupTodos(groupId);
-        this.groupTodos = groupTodoList.map(groupTodo => new GroupTodoModel(groupTodo))
+        const groupTodoModels = await this.groupTodoRepository.groupTodos(groupId);
+        const apiGroupTodosAccount = await this.accountRepository.groupTodosAccountMapping(groupTodoModels);
+        this.groupTodos = apiGroupTodosAccount.map(groupTodo => new GroupTodoModel(groupTodo))
     }
 
     //GroupTodo 생성
@@ -70,6 +72,8 @@ export default class GroupTodoStore {
       const data = await this.groupTodoCommentRepository.createGroupTodoComment(groupId,todoId,groupTodoCommentAddModel);
 
       const newComment = new GroupTodoCommentModel(data);
+      newComment.accountModel = this.group.root.account.getLoginAccount;
+
       const comments = this.comments.slice('');
       comments.push(newComment)
       this.comments = comments;
@@ -97,6 +101,7 @@ export default class GroupTodoStore {
       const data = await this.groupTodoCommentRepository.createGroupTodoSubComment(groupId,todoId,commentId,groupTodoSubCommentAddModel);
 
       const newSubComment = new GroupTodoSubCommentModel(data);
+      newSubComment.accountModel = this.group.root.account.getLoginAccount;
 
       this.comments = this.comments.map(comment=>{
         if(comment.commentId === commentId){
@@ -130,32 +135,39 @@ export default class GroupTodoStore {
       
   // API를 호출하여 Todo의 좋아요 누름
   @action
-  async addLike(groupTodoId) {
+  async addLike() {
+    const groupId = this.groupTodo.groupId;
+    const groupTodoId = this.groupTodo.groupTodoId;    
     //API호출
-    this.groupTodoRepository.onLike(groupTodoId);
+    this.groupTodoRepository.onLike(groupId, groupTodoId);
+
     //리액트 Store데이터 변경
-    this.groupTodos = this.togroupTodosdos.map((groupTodo) => {
-      if (groupTodo.todoId === groupTodoId) {
+    this.groupTodos = this.groupTodos.map((groupTodo) => {
+      if (groupTodo.groupTodoId === groupTodoId) {
         groupTodo.likeState = true;
         groupTodo.likePoint += 1;
       }
-      return groupTodoId;
+      return new GroupTodoModel(groupTodo);
     });
+    this.getApiGroupTodos(groupId)
   }
 
   // // API를 호출하여 Todo의 좋아요 취소
   @action
-  async removeLike(groupTodoId) {
+  async removeLike() {
+    const groupId = this.groupTodo.groupId;
+    const groupTodoId = this.groupTodo.groupTodoId;    
     //API호출
-    this.groupTodoRepository.cancelLike(groupTodoId);
+    this.groupTodoRepository.cancelLike(groupId, groupTodoId);
     //리액트 Store데이터 변경
     this.groupTodos = this.groupTodos.map((groupTodo) => {
-      if (groupTodo.todoId === groupTodoId) {
+      if (groupTodo.groupTodoId === groupTodoId) {
         groupTodo.likeState = false;
         groupTodo.likePoint = groupTodo.likePoint === 0 ? 0 : (groupTodo.likePoint -= 1);
       }
-      return groupTodo;
+      return new GroupTodoModel(groupTodo);
     });
+    this.getApiGroupTodos(groupId)
   }
 
 
@@ -189,7 +201,7 @@ export default class GroupTodoStore {
       // Todo추가
       const data = await this.todoRepository.todoCreate(todoModel);
       const newTodo = new TodoModel(data);
-
+      
       // GroupTodoMember에 추가
       this.groupTodoRepository.addGroupTodoMember(groupId, groupTodoId, newTodo.todoId);
       return true;

@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import ProfileTodoIncompletedListView from "../view/ProfileManageItem/ProfileTodoIncompletedListView";
-import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
+import ProfileTodoEmptyView from "../view/TodoEmptyItem/ProfileTodoEmptyView";
 import MyIncompletedEmptyView from "../view/TodoEmptyItem/MyIncompletedEmptyView";
 
 @inject("Store")

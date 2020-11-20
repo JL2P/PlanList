@@ -13,7 +13,7 @@ import {
   Button,
 } from "semantic-ui-react";
 import FileUploadFormView from "./FileUploadFormView";
-
+import CategoryList_Data from "../../Category/CategoryList_Data";
 import "./todoInputItemsStyle.css";
 
 const TodoCreateDesktopForm = ({
@@ -28,6 +28,7 @@ const TodoCreateDesktopForm = ({
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState("");
 
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
@@ -35,16 +36,22 @@ const TodoCreateDesktopForm = ({
   const maxNumber = 69;
 
   /* 카테고리 */
-  const options = [
-    { key: "e", text: "운동", value: "exercise" },
-    { key: "s", text: "공부", value: "study" },
-    { key: "o", text: "기타등등", value: "other" },
-  ];
+  const options = CategoryList_Data.slice(3, -1).map((category) => {
+    return {
+      key: category.value,
+      text: category.text,
+      value: category.value,
+    };
+  });
 
   const onChangeImages = (imageList) => setImages(imageList);
-  const onChangeCategory = (e) => setCategory(e.target.value);
+  const onChangeCategory = (e, { value }) => {
+    setCategory(value);
+  };
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
+  const onChangeStartTime = (e) => setStartTime(e.target.value);
+  
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -84,8 +91,8 @@ const TodoCreateDesktopForm = ({
                 </Grid.Column>
                 <Grid.Column width={GRID_RIGHT}>
                   <Form.Field
-                    value={category}
                     control={Select}
+                    value={category}
                     options={options}
                     onChange={onChangeCategory}
                     placeholder="카테고리"
@@ -125,7 +132,23 @@ const TodoCreateDesktopForm = ({
                 </Grid.Column>
               </Grid.Row>
 
-              {/* 날짜 추가 */}
+              {/* 시작일자 추가 */}
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>시작일자</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <input
+                    type="date"
+                    required
+                    value={startTime ? startTime : today}
+                    onChange={onChangeStartTime}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+              {/* 마감일자 추가 */}
               <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
                 <Grid.Column width={GRID_LEFT}>
                   <aside>
@@ -166,6 +189,7 @@ const TodoCreateDesktopForm = ({
                   title: title,
                   description: description,
                   endTime: endTime === "" ? today : endTime,
+                  startTime: startTime === "" ? today : startTime,
                 });
               }}
             >

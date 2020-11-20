@@ -8,7 +8,10 @@ import ProfileTodoView from "../view/ProfileTodoView";
 class ProfileTodoContainer extends Component {
   componentDidMount() {
     const { follow } = this.props.Store;
+    const { selectUser } = this.props;
+    console.log("유저!!", selectUser.accountId);
     follow.getApiNotConfirmFollowers();
+    // follow.followingCheck(selectUser.accountId);
   }
 
   onFollow = (followId) => {
@@ -46,7 +49,6 @@ class ProfileTodoContainer extends Component {
   onIncomplete = (todoId) => {
     const { todo } = this.props.Store;
     todo.todoIncompleted(todoId);
-    console.log("클릭!");
   };
 
   render() {
@@ -57,6 +59,9 @@ class ProfileTodoContainer extends Component {
     const loginCheck = account.getLogCheck;
     const loginAccount = account.getLoginAccount;
     const notConfirmFollowers = follow.getNotConfirmFollowers;
+    // const isFollowing = follow.getIsFollowing;
+    // console.log("체크");
+    // console.log(follow.getIsFollowing);
 
     return (
       <div>

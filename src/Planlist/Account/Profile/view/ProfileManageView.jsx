@@ -165,6 +165,20 @@ const ProfileManageView = ({
                 <Grid.Column width={5}>
                   <span onClick={() => onFollowerModal(true)}>팔로워</span>{" "}
                   &nbsp; {followers.length}
+                  {/* {openAt === "Y" || // 공개 계정이거나
+                  isFollowing === true || // 팔로잉 계정이거나
+                  (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
+                    loginAccount.accountId === selectUser.accountId) ? (
+                    <div>
+                      <span onClick={() => onFollowerModal(true)}>팔로워</span>
+                      &nbsp; {followers.length}
+                    </div>
+                  ) : (
+                    <div>
+                      <span>팔로워</span>
+                      &nbsp; {followers.length}
+                    </div>
+                  )} */}
                 </Grid.Column>
                 {/* 팔로잉 */}
                 <Grid.Column width={5}>

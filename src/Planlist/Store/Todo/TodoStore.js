@@ -12,6 +12,9 @@ import {
 } from "../../Api/model/comment/CommentModels";
 import { SubCommentAddModel,SubCommentModel } from "../../Api/model/comment/SubCommentModels";
 import FollowRepository from '../../Api/Repository/FollowRepository';
+import AccountRepository from '../../Api/Repository/AccountRepository';
+import AccountModel from '../../Api/model/AccountModel';
+import GroupTodoRepository from '../../Api/Repository/GroupTodoRepository';
 
 export default class TodoStore {
   constructor(root) {
@@ -19,6 +22,8 @@ export default class TodoStore {
     this.todoRepository = new TodoRepository();
     this.commentRepository = new CommentRepository();
     this.followRepository = new FollowRepository();
+    this.accountRepository = new AccountRepository();
+    this.groupTodoRepository = new GroupTodoRepository();
   }
 
   //모델 정의
@@ -108,7 +113,7 @@ export default class TodoStore {
 
   @action
   setComments(comments) {
-    this.comments = comments;
+    this.comments = comments
   }
 
   // API를 호출하여 todos에 todo리스트 데이터를 넣어준다.
@@ -116,7 +121,8 @@ export default class TodoStore {
   async getApiTodos() {
     const followings = await this.followRepository.getMyFollowinglistFunction();
     const apiGetTodos = await this.todoRepository.TodoList(followings.map(follow=>follow.accountId));
-    this.todos = apiGetTodos.map((todo) => new TodoModel(todo));
+    const apiTodosAccount = await this.accountRepository.todosAccountMapping(apiGetTodos);
+    this.todos =apiTodosAccount.map(todo=>new TodoModel(todo));
   }
 
   @action
@@ -170,6 +176,7 @@ export default class TodoStore {
 
     const data = await this.commentRepository.commentCreate(todoId, commentModel);
     const newComment = new CommentModel(data);
+    newComment.accountModel = this.root.account.getLoginAccount;
     const comments = this.comments.slice('');
     comments.push(newComment)
     this.comments = comments;
@@ -189,10 +196,12 @@ export default class TodoStore {
       subCommentAddModel
     );
     const newSubComment = new SubCommentModel(data);
-
+    newSubComment.accountModel = this.root.account.getLoginAccount;
+    
     this.comments = this.comments.map(comment=>{
       if(comment.commentId === commentId){
         const subComments = comment.subComments;
+        
         subComments.push(newSubComment);
         comment.subComments = subComments;        
       }

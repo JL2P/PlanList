@@ -1,18 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Header, Label, Icon, Image, Modal } from "semantic-ui-react";
+import { Button, Header, Icon, Image, Modal } from "semantic-ui-react";
 
 const DetailGroupAllListModal = ({
   loginAccount,
   setOpen,
   groupTodo,
-  children,
   onAttendGroupTodo,
+  onLikeButton,
   attendAt,
+  children,
 }) => {
+  const onLike = () => {
+    //좋아요 상태면 좋아요 삭제
+    //좋아요 상태가 아니면 좋아요 추가
+    const action = groupTodo.likeState === false ? "ADD" : "DELETE";
+
+    onLikeButton(action);
+  };
+
   return (
     <>
-      <Modal.Header>Select a Photo</Modal.Header>
+      <Modal.Header>그룹 계획</Modal.Header>
       <Modal.Content image>
         <Image
           size="medium"
@@ -29,15 +38,55 @@ const DetailGroupAllListModal = ({
           <div>
             <div className="modal__description__info">
               <Link to={`/account/${groupTodo.writer}`}>
-                <Label basic image>
-                  <img src={groupTodo.imgUrl} alt="jsx-a11y/alt-text" />
-                  {groupTodo.writer}
-                </Label>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Image
+                    src={groupTodo.imgUrl}
+                    bordered
+                    centered
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "21px",
+                      marginLeft: "0.5em",
+                      marginRight: "0.5em",
+                      marginBottom: "0.3em",
+                    }}
+                  >
+                    {groupTodo.writer}
+                  </span>
+                </div>
               </Link>
-              <Label basic>
-                <Icon name="heart" color="red" /> {groupTodo.likePoint}
-              </Label>
+              <Button
+                style={{ padding: "1em", background: "#ffffff" }}
+                onClick={() => {
+                  onLike();
+                }}
+              >
+                <Icon
+                  name="heart"
+                  size="large"
+                  color={groupTodo.likeState === true ? "red" : "black"}
+                  style={{
+                    marginBottom: "0.2em",
+                  }}
+                />{" "}
+                <b
+                  style={{
+                    fontSize: "16px",
+                    marginRight: "0.2em",
+                  }}
+                >
+                  {groupTodo.likePoint}
+                </b>
+              </Button>
             </div>
+
             {attendAt && (
               <Button
                 fluid
@@ -69,6 +118,7 @@ const DetailGroupAllListModal = ({
           </div>
         </div>
       </Modal.Content>
+
       {children}
 
       {/* 내가 작성한 Todo만 삭제가능 */}

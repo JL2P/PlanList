@@ -73,7 +73,6 @@ export default class GroupStore {
       //그룹 전체 리스트 출력
       @action
       async getApiGroups(){
-        
         const apiGetGroups = await this.groupRepository.groupList();
 
         runInAction(()=>{

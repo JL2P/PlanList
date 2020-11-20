@@ -54,6 +54,7 @@ const MainItemFrame = ({ todoModel, selectedTodo, onLikeButton }) => {
         todo={todoModel}
         open={itemInfoOpen}
         onModal={onInfoModal}
+        onLikeButton={onLikeButton}
       />
 
       <div className="todo">

@@ -13,11 +13,10 @@ const DetailGroupAll = ({
   onDetailGroup_modalCheck,
   onLogInUser,
   group,
-  groupTodoList,
+  groupTodos,
   categoryList,
-  member
+  member,
 }) => {
-  console.log(group)
   const [search, setSearch] = useState("");
 
   const onSearch = (e) => {
@@ -29,14 +28,16 @@ const DetailGroupAll = ({
   };
 
   // 이부분 부터 그룹 투두에 대한 부분을 만들어주는거같음.
-  const Groupitem = groupTodoList.map((item, index) => (
+  const Groupitem = groupTodos.map((item, index) => (
     // 승훈 수정
     <GroupTodoContainer key={index} item={item} />
   ));
   return (
     <div>
-      {group.openAt === "true" &&  member.groupId === group.id && member.confirm === "true" ?
-      // 그룹 공개 여부가 true일 때 && 멤버 그룹id 와 그룹id가 일치할 때 (공개)
+      {group.openAt === "true" &&
+      member.groupId === group.id &&
+      member.confirm === "true" ? (
+        // 그룹 공개 여부가 true일 때 && 멤버 그룹id 와 그룹id가 일치할 때 (공개)
         <div>
           <Segment>
             <Input
@@ -60,7 +61,11 @@ const DetailGroupAll = ({
                       placeholder="새로운 계획을 시작해 보세요!"
                       style={{ width: "100%" }}
                       className="detailGroup_create_input"
-                      icon={{ name: "write square", circular: true, link: true }}
+                      icon={{
+                        name: "write square",
+                        circular: true,
+                        link: true,
+                      }}
                     />
                   </div>
                 }
@@ -85,21 +90,21 @@ const DetailGroupAll = ({
               />
             )}
           </Segment>
-              
+
           <Segment>
             <Grid columns={2} divided style={{ margin: "-0.5rem" }}>
-              {group.groupTodos[0] ? 
+              {group.groupTodos[0] ? (
                 <Grid.Row>{Groupitem}</Grid.Row>
-              : 
+              ) : (
                 <>
-                {/* 그룹투두가 없을 때 사용자에 따른 화면 */}
-                  {member.manager === "true" ? 
+                  {/* 그룹투두가 없을 때 사용자에 따른 화면 */}
+                  {member.manager === "true" ? (
                     <Modal
                       closeIcon
                       open={getDetailGroup_modalOpen}
                       size="tiny"
                       trigger={
-                        <div style={{width:"100%"}}>
+                        <div style={{ width: "100%" }}>
                           <DetailGroupNoTodoM />
                         </div>
                       }
@@ -112,20 +117,19 @@ const DetailGroupAll = ({
                         onLogInUser={onLogInUser}
                         categoryList={categoryList}
                       />
-                    </Modal> 
-                    : 
-                      <DetailGroupNoTodoU />
-                  } 
-                
+                    </Modal>
+                  ) : (
+                    <DetailGroupNoTodoU />
+                  )}
                 </>
-              }
+              )}
             </Grid>
           </Segment>
         </div>
-        :
+      ) : (
         // 그룹 공개 여부가 false일 때 (비공개)
         <DetailGroupPrivate />
-      }
+      )}
     </div>
   );
 };

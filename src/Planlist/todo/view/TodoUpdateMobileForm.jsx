@@ -13,12 +13,13 @@ import {
 import FileUploadFormView from "./FileUploadFormView";
 import "./todoInputItemsStyle.css";
 
-const TodoUpdateMobileForm = ({ todo, open, onModal, updateTodo }) => {
+const TodoUpdateMobileForm = ({ todo, open, onModal, updateTodo, today }) => {
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState(todo.title);
   const [category, setCategory] = useState(todo.category);
   const [description, setDescription] = useState(todo.description);
   const [endTime, setEndTime] = useState(todo.endTime);
+  const [startTime, setStartTime] = useState(todo.startTime);
 
   const maxNumber = 69;
 
@@ -34,6 +35,8 @@ const TodoUpdateMobileForm = ({ todo, open, onModal, updateTodo }) => {
   const onChangeCategory = (e) => setCategory(e.target.value);
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
+  const onChangeStartTime = (e) => setStartTime(e.target.value);
+
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -99,14 +102,26 @@ const TodoUpdateMobileForm = ({ todo, open, onModal, updateTodo }) => {
                 </Form.Field>
               </Grid.Row>
 
-              {/* 날짜 추가 */}
+              {/* 시작 날짜 추가 */}
+              <Grid.Row style={{ marginTop: "0.5em", width: "100%" }}>
+                <Form.Field style={{ width: "100%" }}>
+                  <label>시작일자</label>
+                  <input
+                    type="date"
+                    required
+                    value={startTime ? startTime : today}
+                    onChange={onChangeStartTime}
+                  />
+                </Form.Field>
+              </Grid.Row>
+              {/* 마감 날짜 추가 */}
               <Grid.Row style={{ marginTop: "0.5em", width: "100%" }}>
                 <Form.Field style={{ width: "100%" }}>
                   <label>마감일자</label>
                   <input
                     type="date"
                     required
-                    value={endTime}
+                    value={endTime ? endTime : today}
                     onChange={onChangeEndTime}
                   />
                 </Form.Field>
@@ -135,7 +150,8 @@ const TodoUpdateMobileForm = ({ todo, open, onModal, updateTodo }) => {
                   category: category,
                   title: title,
                   description: description,
-                  endTime: endTime,
+                  endTime: endTime === "" ? today : endTime,
+                  startTime: startTime === "" ? today : startTime,
                 });
               }}
             >
