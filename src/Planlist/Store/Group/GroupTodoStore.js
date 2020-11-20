@@ -20,7 +20,6 @@ export default class GroupTodoStore {
 
     @observable groupTodo = {}
     @observable groupTodos = []
-    @observable selectedTodo = [];
     @observable comments = {}
     @observable groupTodoAttendAt = false;
 
@@ -130,32 +129,39 @@ export default class GroupTodoStore {
       
   // API를 호출하여 Todo의 좋아요 누름
   @action
-  async addLike(groupTodoId) {
+  async addLike() {
+    const groupId = this.groupTodo.groupId;
+    const groupTodoId = this.groupTodo.groupTodoId;    
     //API호출
-    this.groupTodoRepository.onLike(groupTodoId);
+    this.groupTodoRepository.onLike(groupId, groupTodoId);
+
     //리액트 Store데이터 변경
-    this.groupTodos = this.togroupTodosdos.map((groupTodo) => {
-      if (groupTodo.todoId === groupTodoId) {
+    this.groupTodos = this.groupTodos.map((groupTodo) => {
+      if (groupTodo.groupTodoId === groupTodoId) {
         groupTodo.likeState = true;
         groupTodo.likePoint += 1;
       }
-      return groupTodoId;
+      return new GroupTodoModel(groupTodo);
     });
+    this.getApiGroupTodos(groupId)
   }
 
   // // API를 호출하여 Todo의 좋아요 취소
   @action
-  async removeLike(groupTodoId) {
+  async removeLike() {
+    const groupId = this.groupTodo.groupId;
+    const groupTodoId = this.groupTodo.groupTodoId;    
     //API호출
-    this.groupTodoRepository.cancelLike(groupTodoId);
+    this.groupTodoRepository.cancelLike(groupId, groupTodoId);
     //리액트 Store데이터 변경
     this.groupTodos = this.groupTodos.map((groupTodo) => {
-      if (groupTodo.todoId === groupTodoId) {
+      if (groupTodo.groupTodoId === groupTodoId) {
         groupTodo.likeState = false;
         groupTodo.likePoint = groupTodo.likePoint === 0 ? 0 : (groupTodo.likePoint -= 1);
       }
-      return groupTodo;
+      return new GroupTodoModel(groupTodo);
     });
+    this.getApiGroupTodos(groupId)
   }
 
 
@@ -189,7 +195,7 @@ export default class GroupTodoStore {
       // Todo추가
       const data = await this.todoRepository.todoCreate(todoModel);
       const newTodo = new TodoModel(data);
-
+      
       // GroupTodoMember에 추가
       this.groupTodoRepository.addGroupTodoMember(groupId, groupTodoId, newTodo.todoId);
       return true;
