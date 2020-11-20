@@ -16,7 +16,6 @@ const TodoCommentFormVIew = ({
 
   return (
     <Comment>
-      {/* <Comment.Avatar src="/posts/img_crong.jpg" /> */}
       <Comment.Content>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Image

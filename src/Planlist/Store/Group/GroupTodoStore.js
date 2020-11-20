@@ -9,6 +9,7 @@ import { GroupTodoSubCommentAddModel, GroupTodoSubCommentModel } from '../../Api
 import TodoAddModel from '../../Api/model/todo/TodoAddModel';
 import TodoRepository from '../../Api/Repository/TodoRepository';
 import TodoModel from '../../Api/model/todo/TodoModel';
+import AccountRepository from '../../Api/Repository/AccountRepository';
 
 export default class GroupTodoStore {
     constructor(groupStore){
@@ -16,6 +17,7 @@ export default class GroupTodoStore {
         this.groupTodoRepository = new GroupTodoRepository();
         this.groupTodoCommentRepository = new GroupTodoCommentRepository();
         this.todoRepository = new TodoRepository();
+        this.accountRepository = new AccountRepository();
     }
 
     @observable groupTodo = {}
@@ -38,8 +40,9 @@ export default class GroupTodoStore {
     //Group의 GroupTodoList데이터 호출
     @action
     async getApiGroupTodos(groupId){
-        const groupTodoList = await this.groupTodoRepository.groupTodos(groupId);
-        this.groupTodos = groupTodoList.map(groupTodo => new GroupTodoModel(groupTodo))
+        const groupTodoModels = await this.groupTodoRepository.groupTodos(groupId);
+        const apiGroupTodosAccount = await this.accountRepository.groupTodosAccountMapping(groupTodoModels);
+        this.groupTodos = apiGroupTodosAccount.map(groupTodo => new GroupTodoModel(groupTodo))
     }
 
     //GroupTodo 생성
@@ -69,6 +72,8 @@ export default class GroupTodoStore {
       const data = await this.groupTodoCommentRepository.createGroupTodoComment(groupId,todoId,groupTodoCommentAddModel);
 
       const newComment = new GroupTodoCommentModel(data);
+      newComment.accountModel = this.group.root.account.getLoginAccount;
+
       const comments = this.comments.slice('');
       comments.push(newComment)
       this.comments = comments;
@@ -96,6 +101,7 @@ export default class GroupTodoStore {
       const data = await this.groupTodoCommentRepository.createGroupTodoSubComment(groupId,todoId,commentId,groupTodoSubCommentAddModel);
 
       const newSubComment = new GroupTodoSubCommentModel(data);
+      newSubComment.accountModel = this.group.root.account.getLoginAccount;
 
       this.comments = this.comments.map(comment=>{
         if(comment.commentId === commentId){

@@ -59,8 +59,14 @@ export default class AccountRepository {
 
 
   todosAccountMapping = (todoModels)=>{
-    const todoAccountDtos = todoModels
+    const todoAccountDtos = todoModels;
     const url = this.URL +"/todos/mapping" 
     return axios_auth_POST(url, todoAccountDtos,[])
+  }
+
+  groupTodosAccountMapping = (groupTodoModels)=>{
+    const groupTodoAccountDtos = groupTodoModels;
+    const url = this.URL +"/grouptodos/mapping" 
+    return axios_auth_POST(url, groupTodoAccountDtos,[])
   }
 }

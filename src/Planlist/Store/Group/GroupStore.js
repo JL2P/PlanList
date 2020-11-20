@@ -74,7 +74,6 @@ export default class GroupStore {
       //그룹 전체 리스트 출력
       @action
       async getApiGroups(){
-        console.log("getApiGroups")
         const apiGetGroups = await this.groupRepository.groupList();
         this.groups = apiGetGroups.map(group => new GroupModel(group))
 
