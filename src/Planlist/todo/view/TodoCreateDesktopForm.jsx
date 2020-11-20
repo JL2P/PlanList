@@ -28,6 +28,7 @@ const TodoCreateDesktopForm = ({
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState("");
 
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
@@ -49,6 +50,8 @@ const TodoCreateDesktopForm = ({
   };
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
+  const onChangeStartTime = (e) => setStartTime(e.target.value);
+  
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -129,7 +132,23 @@ const TodoCreateDesktopForm = ({
                 </Grid.Column>
               </Grid.Row>
 
-              {/* 날짜 추가 */}
+              {/* 시작일자 추가 */}
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>시작일자</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <input
+                    type="date"
+                    required
+                    value={startTime ? startTime : today}
+                    onChange={onChangeStartTime}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+              {/* 마감일자 추가 */}
               <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
                 <Grid.Column width={GRID_LEFT}>
                   <aside>
@@ -170,6 +189,7 @@ const TodoCreateDesktopForm = ({
                   title: title,
                   description: description,
                   endTime: endTime === "" ? today : endTime,
+                  startTime: startTime === "" ? today : startTime,
                 });
               }}
             >

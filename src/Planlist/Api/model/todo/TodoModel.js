@@ -10,6 +10,7 @@ export default class TodoModel {
     this.category = todoObj.category;
     this.writer = todoObj.writer;
     this.endTime = todoObj.endTime;
+    this.startTime = todoObj.startTime;
     this.groupAt = todoObj.groupAt;
     this.likePoint = todoObj.likePoint;
     this.likeState = todoObj.likeState;

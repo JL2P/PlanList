@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import MainNoTodoContainer from "../../../Main/Container/MainNoTodoContainer";
 import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoFromNowListView from "../view/ProfileManageItem/ProfileTodoFromNowListView";
-import ProfileTodoEmptyView from "../view/ProfileTodoEmptyView";
+import ProfileTodoEmptyView from "../view/TodoEmptyItem/ProfileTodoEmptyView";
 import MyFromNowEmptyView from "../view/TodoEmptyItem/MyFromNowEmptyView";
 
 @inject("Store")

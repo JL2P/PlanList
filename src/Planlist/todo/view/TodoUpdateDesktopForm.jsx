@@ -16,12 +16,13 @@ import FileUploadFormView from "./FileUploadFormView";
 import CategoryList_Data from "../../Category/CategoryList_Data";
 import "./todoInputItemsStyle.css";
 
-const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo }) => {
+const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState(todo.title);
   const [category, setCategory] = useState(todo.category);
   const [description, setDescription] = useState(todo.description);
   const [endTime, setEndTime] = useState(todo.endTime);
+  const [startTime, setStartTime] = useState(todo.startTime);
 
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
@@ -42,6 +43,8 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo }) => {
   const onChangeCategory = (e, { value }) => setCategory(value);
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
+  const onChangeStartTime = (e) => setStartTime(e.target.value);
+
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -122,7 +125,23 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo }) => {
                 </Grid.Column>
               </Grid.Row>
 
-              {/* 날짜 추가 */}
+              {/* 시작 날짜 추가 */}
+              <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
+                <Grid.Column width={GRID_LEFT}>
+                  <aside>
+                    <label>시작일자</label>
+                  </aside>
+                </Grid.Column>
+                <Grid.Column width={GRID_RIGHT}>
+                  <input
+                    type="date"
+                    required
+                    value={startTime ? startTime : today}
+                    onChange={onChangeStartTime}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+              {/* 마감 날짜 추가 */}
               <Grid.Row columns={2} style={{ marginTop: "-1em" }}>
                 <Grid.Column width={GRID_LEFT}>
                   <aside>
@@ -133,7 +152,7 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo }) => {
                   <input
                     type="date"
                     required
-                    value={endTime}
+                    value={endTime ? endTime : today}
                     onChange={onChangeEndTime}
                   />
                 </Grid.Column>
@@ -163,7 +182,8 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo }) => {
                   category: category,
                   title: title,
                   description: description,
-                  endTime: endTime,
+                  endTime: endTime === "" ? today : endTime,
+                  startTime: startTime === "" ? today : startTime,
                 });
               }}
             >

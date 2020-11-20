@@ -6,6 +6,7 @@ import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompleted
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
 import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
 import ProfileFollowRequestListContainer from "../container/ProfileFollowRequestListContainer";
+import ProfileCalendarContainer from "../container/ProfileCalendarContainer";
 
 @inject("Store")
 @observer
@@ -81,11 +82,6 @@ class ProfileTodoView extends Component {
               active={activeItem === "해야 할 일"}
               onClick={this.handleItemClick}
             />
-            {/* <Menu.Item
-              name="지난 할 일"
-              active={activeItem === "지난 할 일"}
-              onClick={this.handleItemClick}
-            /> */}
             <Menu.Item
               name="그동안 한 일"
               active={activeItem === "그동안 한 일"}
@@ -96,22 +92,26 @@ class ProfileTodoView extends Component {
               active={activeItem === "하지 못한 일"}
               onClick={this.handleItemClick}
             />
-
-            <Menu.Item />
-
             <Menu.Item
-              name="새로운 알림"
-              active={activeItem === "새로운 알림"}
+              name="달력 보기"
+              active={activeItem === "달력 보기"}
               onClick={this.handleItemClick}
             />
             {selectUser === loginAccount ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
-              <Menu.Menu position="right">
+              <>
                 <Menu.Item
-                  icon="pencil"
-                  name="할 일 작성"
-                  onClick={() => this.onModal(true)}
+                  name="새로운 알림"
+                  active={activeItem === "새로운 알림"}
+                  onClick={this.handleItemClick}
                 />
-              </Menu.Menu>
+                <Menu.Menu position="right">
+                  <Menu.Item
+                    icon="pencil"
+                    name="할 일 작성"
+                    onClick={() => this.onModal(true)}
+                  />
+                </Menu.Menu>
+              </>
             ) : (
               ""
             )}
@@ -128,14 +128,6 @@ class ProfileTodoView extends Component {
                 onIncomplete={onIncomplete}
               />
             )}
-            {/* {activeItem === "지난 할 일" && (
-              <ProfileTodoPastListContainer
-                selectUser={selectUser}
-                selectedTodo={selectedTodo}
-                onLikeButton={onLikeButton}
-                todos={selectUserTodos}
-              />
-            )} */}
             {activeItem === "그동안 한 일" && (
               <ProfileTodoCompletedListContainer
                 selectUser={selectUser}
@@ -154,7 +146,12 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-
+            {activeItem === "달력 보기" && (
+              <ProfileCalendarContainer
+                selectUser={selectUser}
+                todos={selectUserTodos}
+              />
+            )}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer
                 selectUser={selectUser}

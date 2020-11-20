@@ -20,11 +20,13 @@ const TodoCreateMobileForm = ({
   title,
   onChangeTitle,
   createTodo,
+  today,
 }) => {
   const [images, setImages] = useState([]);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState("");
 
   const maxNumber = 69;
 
@@ -39,6 +41,8 @@ const TodoCreateMobileForm = ({
   const onChangeCategory = (e) => setCategory(e.target.value);
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
+  const onChangeStartTime = (e) => setStartTime(e.target.value);
+  
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -104,14 +108,26 @@ const TodoCreateMobileForm = ({
                 </Form.Field>
               </Grid.Row>
 
-              {/* 날짜 추가 */}
+              {/* 시작 날짜 추가 */}
+              <Grid.Row style={{ marginTop: "0.5em", width: "100%" }}>
+                <Form.Field style={{ width: "100%" }}>
+                  <label>시작일자</label>
+                  <input
+                    type="date"
+                    required
+                    value={startTime ? startTime : today}
+                    onChange={onChangeStartTime}
+                  />
+                </Form.Field>
+              </Grid.Row>
+              {/* 마감 날짜 추가 */}
               <Grid.Row style={{ marginTop: "0.5em", width: "100%" }}>
                 <Form.Field style={{ width: "100%" }}>
                   <label>마감일자</label>
                   <input
                     type="date"
                     required
-                    value={endTime}
+                    value={endTime ? endTime : today}
                     onChange={onChangeEndTime}
                   />
                 </Form.Field>
@@ -140,7 +156,8 @@ const TodoCreateMobileForm = ({
                   category: category,
                   title: title,
                   description: description,
-                  endTime: endTime,
+                  endTime: endTime === "" ? today : endTime,
+                  startTime: startTime === "" ? today : startTime,
                 });
               }}
             >

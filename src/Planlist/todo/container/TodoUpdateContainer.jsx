@@ -17,6 +17,8 @@ class TodoUpdateContainer extends Component {
 
   render() {
     const { todo, open, onModal } = this.props;
+    const today = this.props.Store.todo.getToday;
+
 
     const { MediaContextProvider, Media } = createMedia({
       breakpoints: {
@@ -34,6 +36,7 @@ class TodoUpdateContainer extends Component {
             open={open}
             onModal={onModal}
             updateTodo={this.updateTodo}
+            today={today}
           />
         </Media>
         <Media at="mobile">
@@ -42,6 +45,7 @@ class TodoUpdateContainer extends Component {
             open={open}
             onModal={onModal}
             updateTodo={this.updateTodo}
+            today={today}
           />
         </Media>
       </MediaContextProvider>
