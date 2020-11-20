@@ -53,14 +53,7 @@ class ProfileTodoFromNowListContainer extends Component {
           <div>
             {loginId === selectId ? (
               // 로그인된 계정의 페이지이면 todo 추가 화면
-              <MyFromNowEmptyView
-                selectId={selectId}
-                page={page}
-                onModal={this.onModal}
-                onChangeTitle={this.changeTodoTitle}
-                createTodo={this.createTodo}
-                today={today}
-              />
+              <MyFromNowEmptyView selectId={selectId} />
             ) : (
               // 다른 사용자이면 empty 화면
               <ProfileTodoEmptyView selectId={selectId} page={page} />

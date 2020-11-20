@@ -49,6 +49,7 @@ class ProfileTodoCompletedListContainer extends Component {
           <div>
             {loginId === selectId ? (
               <MyCompletedEmptyView page={page} selectId={selectId} />
+              // <p>hi</p>
             ) : (
               <ProfileTodoEmptyView page={page} selectId={selectId} />
             )}

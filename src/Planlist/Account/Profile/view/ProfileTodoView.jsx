@@ -67,8 +67,8 @@ class ProfileTodoView extends Component {
       <div>
         <TodoCreateDesktopForm
           open={open}
-          onModal={this.onModal}
           title={todoTitle}
+          onModal={this.onModal}
           onChangeTitle={this.changeTodoTitle}
           createTodo={this.createTodo}
           today={today}
@@ -96,6 +96,8 @@ class ProfileTodoView extends Component {
               active={activeItem === "하지 못한 일"}
               onClick={this.handleItemClick}
             />
+
+            <Menu.Item />
 
             <Menu.Item
               name="새로운 알림"
@@ -153,13 +155,12 @@ class ProfileTodoView extends Component {
               />
             )}
 
-            {activeItem === "새로운 알림" &&
-
-            <ProfileFollowRequestListContainer 
-            selectUser={selectUser}
-              onFollowConfirm = {onFollowConfirm}/>
-            } 
-       
+            {activeItem === "새로운 알림" && (
+              <ProfileFollowRequestListContainer
+                selectUser={selectUser}
+                onFollowConfirm={onFollowConfirm}
+              />
+            )}
           </div>
         </Container>
       </div>
