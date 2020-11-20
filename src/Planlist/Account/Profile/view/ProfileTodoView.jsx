@@ -97,19 +97,21 @@ class ProfileTodoView extends Component {
               active={activeItem === "달력 보기"}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
-              name="새로운 알림"
-              active={activeItem === "새로운 알림"}
-              onClick={this.handleItemClick}
-            />
             {selectUser === loginAccount ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
-              <Menu.Menu position="right">
+              <>
                 <Menu.Item
-                  icon="pencil"
-                  name="할 일 작성"
-                  onClick={() => this.onModal(true)}
+                  name="새로운 알림"
+                  active={activeItem === "새로운 알림"}
+                  onClick={this.handleItemClick}
                 />
-              </Menu.Menu>
+                <Menu.Menu position="right">
+                  <Menu.Item
+                    icon="pencil"
+                    name="할 일 작성"
+                    onClick={() => this.onModal(true)}
+                  />
+                </Menu.Menu>
+              </>
             ) : (
               ""
             )}
