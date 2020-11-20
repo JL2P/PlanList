@@ -11,7 +11,7 @@ class ProfileTodoContainer extends Component {
     const { selectUser } = this.props;
     console.log("유저!!", selectUser.accountId);
     follow.getApiNotConfirmFollowers();
-    follow.followingCheck(selectUser.accountId);
+    // follow.followingCheck(selectUser.accountId);
   }
 
   onFollow = (followId) => {
@@ -59,14 +59,14 @@ class ProfileTodoContainer extends Component {
     const loginCheck = account.getLogCheck;
     const loginAccount = account.getLoginAccount;
     const notConfirmFollowers = follow.getNotConfirmFollowers;
-    const isFollowing = follow.getIsFollowing;
-    console.log("체크");
-    console.log(follow.getIsFollowing);
+    // const isFollowing = follow.getIsFollowing;
+    // console.log("체크");
+    // console.log(follow.getIsFollowing);
 
     return (
       <div>
         {openAt === "Y" || // 공개 계정이거나
-        isFollowing === true || // 팔로잉 계정이거나
+        follow.getIsFollowed === true || // 팔로잉 계정이거나
         (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
           loginAccount.accountId === selectUser.accountId) ? (
           // todo 페이지를 보여줌
