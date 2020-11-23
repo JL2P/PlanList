@@ -10,6 +10,9 @@ class ProfileMangeContainer extends Component {
     const { selectUser } = this.props;
     follow.getApiFollowers(selectUser.accountId);
     follow.getApiFollowings(selectUser.accountId);
+
+    //
+    follow.followingPageCheck(selectUser.accountId);
   };
 
   onSetAccountProp = (key, value) => {
@@ -44,6 +47,7 @@ class ProfileMangeContainer extends Component {
     // Store에서 account Store가져오기
     const { account, todo, follow } = this.props.Store;
     const { selectUser, loginAccount, selectUserTodos } = this.props;
+    const openAt = selectUser.openAt;
     const today = todo.getToday;
     // 해야 할 일 개수 count
     const count = selectUserTodos.filter((item) => item.endTime >= today)
@@ -52,6 +56,7 @@ class ProfileMangeContainer extends Component {
     const isFollowing = follow.getIsFollowing;
     const followers = follow.getMyFollowers;
     const followings = follow.getMyFollowings;
+    const isFollowingPage = follow.getIsFollowingPage;
 
     return (
       <div>
@@ -70,6 +75,8 @@ class ProfileMangeContainer extends Component {
           isFollowing={isFollowing}
           followers={followers}
           followings={followings}
+          openAt={openAt}
+          isFollowingPage={isFollowingPage}
         />
       </div>
     );
