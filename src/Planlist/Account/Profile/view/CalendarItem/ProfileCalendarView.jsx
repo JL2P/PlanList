@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
+import categoryList from "../../../../Category/CategoryList_Data";
 
 const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
   const events = [];
@@ -21,7 +22,10 @@ const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
       "-" +
       end.getDate().toString().padStart(2, "0");
     events.push({
-      title: item.title,
+      title:
+        categoryList.find((cate) => cate.value === item.category).text +
+        " : " +
+        item.title,
       start: item.startTime,
       end: endTime,
       color:
