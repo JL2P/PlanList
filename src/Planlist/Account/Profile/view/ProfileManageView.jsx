@@ -26,6 +26,8 @@ const ProfileManageView = ({
   isFollowing,
   followers,
   followings,
+  openAt,
+  isFollowingPage,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
@@ -163,16 +165,8 @@ const ProfileManageView = ({
                 </Grid.Column>
                 {/* 팔로워 */}
                 <Grid.Column width={5}>
-                  <span
-                    onClick={() => {
-                      onFollowerModal(true);
-                    }}
-                  >
-                    팔로워
-                  </span>{" "}
-                  &nbsp; {followers.length}
-                  {/* {openAt === "Y" || // 공개 계정이거나
-                  isFollowing === true || // 팔로잉 계정이거나
+                  {openAt === "Y" || // 공개 계정이거나
+                  isFollowingPage === true || // 팔로잉 계정이거나
                   (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
                     loginAccount.accountId === selectUser.accountId) ? (
                     <div>
@@ -184,12 +178,24 @@ const ProfileManageView = ({
                       <span>팔로워</span>
                       &nbsp; {followers.length}
                     </div>
-                  )} */}
+                  )}
                 </Grid.Column>
                 {/* 팔로잉 */}
                 <Grid.Column width={5}>
-                  <span onClick={() => onFollowingModal(true)}>팔로잉</span>
-                  &nbsp; {followings.length}
+                  {openAt === "Y" || // 공개 계정이거나
+                  isFollowingPage === true || // 팔로잉 계정이거나
+                  (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
+                    loginAccount.accountId === selectUser.accountId) ? (
+                    <div>
+                      <span onClick={() => onFollowingModal(true)}>팔로잉</span>
+                      &nbsp; {followings.length}
+                    </div>
+                  ) : (
+                    <div>
+                      <span>팔로잉</span>
+                      &nbsp; {followings.length}
+                    </div>
+                  )}
                 </Grid.Column>
               </Grid>
             </Segment>
