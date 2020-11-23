@@ -58,6 +58,11 @@ export default class FollowRepository{
         return axios_auth_POST(this.URL+`isfollowing/${FollowId}`,{},{});
     }
 
+    //@PostMapping("/isfollowingPage/{followId}")
+    followingPageCheckFunction = (FollowId) => {
+        return axios_auth_POST(this.URL+`isfollowingPage/${FollowId}`,{},{});
+    }
+
     //@PostMapping("isfollower")
     followerCheckFunction = (FollowId) => {
         return axios_auth_POST(this.URL+`isfollower/${FollowId}`, {},{});

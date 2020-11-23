@@ -10,6 +10,7 @@ class ProfileMangeContainer extends Component {
     const { selectUser } = this.props;
     follow.getApiFollowers(selectUser.accountId);
     follow.getApiFollowings(selectUser.accountId);
+    
   };
 
   onSetAccountProp = (key, value) => {

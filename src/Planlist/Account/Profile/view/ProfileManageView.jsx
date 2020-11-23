@@ -163,7 +163,13 @@ const ProfileManageView = ({
                 </Grid.Column>
                 {/* 팔로워 */}
                 <Grid.Column width={5}>
-                  <span onClick={() => onFollowerModal(true)}>팔로워</span>{" "}
+                  <span
+                    onClick={() => {
+                      onFollowerModal(true);
+                    }}
+                  >
+                    팔로워
+                  </span>{" "}
                   &nbsp; {followers.length}
                   {/* {openAt === "Y" || // 공개 계정이거나
                   isFollowing === true || // 팔로잉 계정이거나
