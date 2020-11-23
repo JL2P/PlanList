@@ -34,6 +34,7 @@ const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
           : item.endTime < today
           ? "#CED4DA" // 하지 못한 일
           : "#FFB517", // 해야 할 일
+      // url: "hi",
       //   dateClick: (
       //     <MainItemInfoContainer
       //       todo={item}
