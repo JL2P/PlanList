@@ -16,7 +16,6 @@ const MyGroupView = ({
     onLogInUser,
     members,
     onMyGroups,
-    onTest
    }) => {
      
   let logMember = new Array();
@@ -49,15 +48,6 @@ const MyGroupView = ({
   useEffect(() => {
     onMyGroups(myGroups)
   },[myGroups]); 
-
-  const [title, setTitle] = useState("")
-  const [filePath, setFilePath] = useState("");
-  const ontitle = e => setTitle(e.target.value);
-  const onImg = e => setFilePath(e.target.files[0]);
-
-    
-  
-
 
   var settings = {
     dots: true,
@@ -96,12 +86,6 @@ const MyGroupView = ({
 
   return (
     <div className="myGroup_wrap" >
-      {/* <form onSubmit={(e) => onTest(e,{title,filePath})} encType="multipart/form-data"> */}
-      <form onSubmit={(e) => onTest(e,filePath)} encType="multipart/form-data">
-        <p>제목 : <input name = "title" value={title} onChange={(e) => ontitle(e)} /></p>
-        <p>파일 : <input type="file" multiple onChange={(e) => {onImg(e)}} name="file" /></p>
-        <button >등록</button>
-      </form>
       <Container>
         <div style={{margin:"0 auto", width:"40%"}}>
           <GroupCategorySearch groups={groups} />
