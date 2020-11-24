@@ -1,5 +1,6 @@
 import MemberModel from '../member/MemberModel';
 import {GroupTodoModel} from '../GroupTodo/GroupTodoModels';
+import GroupGalleryModel from '../groupGallery/GroupGalleryModel';
 
 export default class GroupModel{
     constructor(groupObj){
@@ -14,5 +15,8 @@ export default class GroupModel{
         this.members = groupObj.members.map(member=> new MemberModel(member));
         //프록시로 감싸여 있는 groupTodos를 꺼내는 작업
         this.groupTodos = groupObj.groupTodos.map(groupTodo => new GroupTodoModel(groupTodo));
+        
+        this.galleries = groupObj.galleries.map(groupGallery => new GroupGalleryModel(groupGallery));
+
     }
 }

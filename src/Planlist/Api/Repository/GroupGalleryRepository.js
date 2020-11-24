@@ -14,10 +14,10 @@ export default class MemberRepository{
 
     //member 추가
     //POST /api/groups/
-    galleryAdd = (filePath) => {
+    galleryAdd = (filePath, groupId) => {
         let formData = new FormData()
         formData.append("file", filePath)
-        return axios.post(this.URL+"gallery", formData, HEADER).then(request => request.data||[])
+        return axios.post(this.URL+`${groupId}/gallery`, formData, HEADER).then(request => request.data||[])
     }
     
 }
