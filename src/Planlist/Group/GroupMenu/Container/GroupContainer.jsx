@@ -48,6 +48,14 @@ class GroupContainer extends Component {
         group.myGroups_array(myGroups);
     }
 
+    //이미지 업로드 test
+    onTest = (e,imgObj) => {
+        e.preventDefault();
+        const { group } = this.props.Store;
+        group.test(imgObj)
+        console.log(imgObj)
+    }
+
     render() {
         const { group } = this.props.Store;
         const { account } = this.props.Store;
@@ -69,6 +77,7 @@ class GroupContainer extends Component {
                     onLogInUser={loginAccount}
                     members={getMembers}
                     onMyGroups={this.onMyGroups}
+                    onTest={this.onTest}
                 />
                 
                 <BestGroupView 

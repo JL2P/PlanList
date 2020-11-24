@@ -6,9 +6,11 @@ import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
 import MemberModel from "../../Api/model/member/MemberModel";
 import MemberTransferDto from "../../Api/model/member/MemberModel";
+import GroupGalleryModel from "../../Api/model/groupGallery/GroupGalleryModel"
 
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
+import GroupGalleryRepository from "../../Api/Repository/GroupGalleryRepository"
 
 import GroupTodoStore from './GroupTodoStore';
 
@@ -18,7 +20,8 @@ export default class GroupStore {
         this.groupRepository = new GroupRepository();
         this.memberRepository = new MemberRepository();        
         //승훈 추가 GroupTodoStore를 따로 관리하기위함(소스가 너무 길어짐)
-        this.groupTodo = new GroupTodoStore(this); 
+        this.groupTodo = new GroupTodoStore(this);
+        this.groupGalleryRepository = new GroupGalleryRepository();
       }
 
   
@@ -117,6 +120,7 @@ export default class GroupStore {
           //생성시 해당 그룹으로 연결
           this.groupDetail_page(result.id,accountId);
         });
+        console.log(result)
         
       }
 
@@ -221,6 +225,16 @@ export default class GroupStore {
         await this.memberRepository.memberTranfer(memberModel);
         const result = await this.groupRepository.groupTransfer(groupModel);
         console.log(result);
+      }
+
+      //이미지 업로드 테스트
+      @action
+      async test(filePath){
+        // const galleryModel = new GroupGalleryModel(imgObj);
+        // console.log(galleryModel.filePath)
+        const result = await this.groupGalleryRepository.galleryAdd(filePath);
+        console.log(result)
+        
       }
 
 }
