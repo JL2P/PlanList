@@ -4,9 +4,9 @@ import MainItemConfigCotainer from "../../../../Main/Container/MainItemConfigCot
 import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
 import MainItemCover from "../../../../Main/View/MainItem/MainItemCover";
 import TodoUpdateContainer from "../../../../todo/container/TodoUpdateContainer";
-import "../../../../Main/View/MainItem/itemStyle.css";
-
-import "./ProfileTodoCardView.scss";
+// import "../../../../Main/View/MainItem/itemStyle.css";
+import "./ProfileTodoCardView.css";
+import CardCover from "./CardCover";
 
 const ProfileTodoCardView = ({
   todo,
@@ -28,34 +28,35 @@ const ProfileTodoCardView = ({
     selectedTodo(todo);
   };
 
-  // const onCofigModal = (trigger) => {
-  //   setItemConfigOpen(trigger);
-  // };
+  const onCofigModal = (trigger) => {
+    setItemConfigOpen(trigger);
+  };
 
-  // const onTodoUpdateModal = (trigger) => {
-  //   // 이전에 열려있는 모달 닫기
-  //   if (itemConfigOpen) {
-  //     setItemConfigOpen(false);
-  //     // todoUpdate 모달 열기
-  //     setTodoUpdateOpen(true);
-  //   } else {
-  //     setTodoUpdateOpen(trigger);
-  //   }
-  // };
+  const onTodoUpdateModal = (trigger) => {
+    // 이전에 열려있는 모달 닫기
+    if (itemConfigOpen) {
+      setItemConfigOpen(false);
+      // todoUpdate 모달 열기
+      setTodoUpdateOpen(true);
+    } else {
+      setTodoUpdateOpen(trigger);
+    }
+  };
 
   return (
     <div>
-      {/* <TodoUpdateContainer
+      <TodoUpdateContainer
         todo={todo}
         open={todoUpdateOpen}
         onModal={onTodoUpdateModal}
       />
+
       <MainItemConfigCotainer
         todo={todo}
         open={itemConfigOpen}
         onModal={onCofigModal}
         onTodoUpdateModal={onTodoUpdateModal}
-      /> */}
+      />
 
       {/* todo 상세정보 모달 */}
       <MainItemInfoContainer
@@ -66,13 +67,7 @@ const ProfileTodoCardView = ({
 
       {/* todo Cover */}
       <div className="todo">
-        {/* <MainItemCover
-          todoModel={todo}
-          onCofigModal={onCofigModal}
-          onLikeButton={onCofigModal}
-        /> */}
-
-        <div className="todo__item">
+        <div className="todo__item_2">
           <Card
             style={{
               marginTop: "10px",
@@ -80,13 +75,18 @@ const ProfileTodoCardView = ({
               height: "300px",
             }}
           >
+            <CardCover
+              todoModel={todo}
+              onCofigModal={onCofigModal}
+              onLikeButton={onCofigModal}
+            />
             <Image
               onClick={() => onInfoModal(true)}
               className="ProfileTodoCard__image"
               src={todo.imgUrl}
               wrapped
               ui={false}
-            />
+            ></Image>
             <Card.Content onClick={() => onInfoModal(true)}>
               <Card.Header
                 style={{
