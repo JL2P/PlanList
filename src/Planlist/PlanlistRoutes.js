@@ -17,8 +17,10 @@ export { default as GroupCategory } from "./Group/GroupCategory/GroupCategoryPag
 // Account는 Account 내에서도 Route가 있음
 export { default as Account } from "./Account/AccountRoutes";
 
-// export { default as JoinRoom } from "./Chat/view/JoinRoom/JoinRoom";
-// export { default as JoinRoom } from "./Chat/ChatPage";
-export { default as JoinRoom } from "./Chat/components/Join/Join";
-// export { default as Chat } from "./Chat/view/Chat/Chat";
-export { default as Chat } from "./Chat/components/Chat/Chat";
+// // export { default as JoinRoom } from "./Chat/view/JoinRoom/JoinRoom";
+// // export { default as JoinRoom } from "./Chat/ChatPage";
+// export { default as JoinRoom } from "./Chat/components/Join/Join";
+// // export { default as Chat } from "./Chat/view/Chat/Chat";
+// export { default as Chat } from "./Chat/components/Chat/Chat";
+
+export { default as Ranking } from "./Ranking/RankingPage";
