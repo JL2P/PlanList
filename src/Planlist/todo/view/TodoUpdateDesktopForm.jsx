@@ -136,7 +136,21 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
                   <input
                     type="date"
                     required
-                    value={startTime ? startTime : today}
+                    // value={startTime ? startTime : today}
+                    value={
+                      startTime ? (
+                        startTime > (endTime ? endTime : today) ? (
+                          <div>
+                            {alert("날짜 입력 형식이 틀렸습니다.")}
+                            {today}
+                          </div>
+                        ) : (
+                          startTime
+                        )
+                      ) : (
+                        today
+                      )
+                    }
                     onChange={onChangeStartTime}
                   />
                 </Grid.Column>
@@ -152,7 +166,21 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
                   <input
                     type="date"
                     required
-                    value={endTime ? endTime : today}
+                    // value={endTime ? endTime : today}
+                    value={
+                      endTime ? (
+                        endTime < (startTime ? startTime : today) ? (
+                          <div>
+                            {alert("날짜 입력 형식이 틀렸습니다.")}
+                            {today}
+                          </div>
+                        ) : (
+                          endTime
+                        )
+                      ) : (
+                        today
+                      )
+                    }
                     onChange={onChangeEndTime}
                   />
                 </Grid.Column>
