@@ -11,8 +11,7 @@ import {
   GroupMenu,
   GroupDetail,
   GroupCategory,
-  Chat,
-  JoinRoom,
+  Ranking,
 } from "./Planlist/PlanlistRoutes";
 import Chat_test from "./Planlist/Chat/components/Chat/Chat_test";
 
@@ -34,7 +33,8 @@ const App = withRouter(({ location }) => {
         <Route path="/groupcategory" component={GroupCategory} />
         {/* <Route path="/chat/" exact component={JoinRoom} /> */}
         {/* <Route path="/chat/chat" component={Chat} /> */}
-        <Route path="/chat" component={Chat_test} />
+        {/* <Route path="/chat" component={Chat_test} /> */}
+        <Route path="/ranking" component={Ranking} />
       </Switch>
       {location.pathname !== "/signin" &&
         location.pathname !== "/signup" &&

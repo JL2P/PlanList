@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Menu } from "semantic-ui-react";
-import HeaderSearch from "./HeaderSearch"
+import HeaderSearch from "./HeaderSearch";
 
 const iconStyle = {
   width: "28px",
@@ -10,8 +10,7 @@ const iconStyle = {
   marginBottom: "0.5em",
 };
 
-const HeaderIconsView = ({accounts}) => {
-
+const HeaderIconsView = ({ accounts }) => {
   return (
     <Container>
       <Menu.Item position="left">
@@ -40,9 +39,16 @@ const HeaderIconsView = ({accounts}) => {
             alt="loupe_white"
           />
         </Link>
-        <Link to={"/chat/"}>
+        {/* <Link to={"/chat/"}>
           <img
             src="/images/button/messenger_white.png"
+            style={iconStyle}
+            alt="messenger_white"
+          />
+        </Link> */}
+        <Link to={"/ranking/"}>
+          <img
+            src="/images/button/ranking.png"
             style={iconStyle}
             alt="messenger_white"
           />
