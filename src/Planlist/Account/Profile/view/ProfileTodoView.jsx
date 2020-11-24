@@ -7,6 +7,7 @@ import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowList
 import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
 import ProfileFollowRequestListContainer from "../container/ProfileFollowRequestListContainer";
 import ProfileCalendarContainer from "../container/ProfileCalendarContainer";
+import MyAchievementRateContainer from "../../../Ranking/container/MyAchievementRateContainer";
 
 @inject("Store")
 @observer
@@ -97,6 +98,11 @@ class ProfileTodoView extends Component {
               active={activeItem === "달력 보기"}
               onClick={this.handleItemClick}
             />
+            <Menu.Item
+              name="날짜별 달성률"
+              active={activeItem === "날짜별 달성률"}
+              onClick={this.handleItemClick}
+            />
             {selectUser === loginAccount ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
               <>
                 <Menu.Item
@@ -151,6 +157,9 @@ class ProfileTodoView extends Component {
                 selectUser={selectUser}
                 todos={selectUserTodos}
               />
+            )}
+            {activeItem === "날짜별 달성률" && (
+              <MyAchievementRateContainer />
             )}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer
