@@ -11,10 +11,11 @@ import { inject, observer } from "mobx-react";
 class GroupContainer extends Component {
 
     //그룹 생성
-    onCreateGroup = (e, createObj) => {
+    onCreateGroup = (e, createObj, fileObj) => {
+        console.log(fileObj)
         e.preventDefault();
         const { group } = this.props.Store;
-        group.createGroup(createObj).then(() => 
+        group.createGroup(createObj, fileObj).then(() => 
         this.props.history.push(`/groupDetail/${group.getGroupId}/`));
     }
 
@@ -48,14 +49,6 @@ class GroupContainer extends Component {
         group.myGroups_array(myGroups);
     }
 
-    //이미지 업로드 test
-    onTest = (e,imgObj) => {
-        e.preventDefault();
-        const { group } = this.props.Store;
-        group.test(imgObj)
-        console.log(imgObj)
-    }
-
     render() {
         const { group } = this.props.Store;
         const { account } = this.props.Store;
@@ -77,7 +70,6 @@ class GroupContainer extends Component {
                     onLogInUser={loginAccount}
                     members={getMembers}
                     onMyGroups={this.onMyGroups}
-                    onTest={this.onTest}
                 />
                 
                 <BestGroupView 

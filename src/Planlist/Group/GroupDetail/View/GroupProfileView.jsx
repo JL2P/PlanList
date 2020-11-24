@@ -10,8 +10,10 @@ const GroupProfilView = ({
         onGroupJoin,
         memberConfirm,
         memberManager,
-        onMemberRemove
+        onMemberRemove,
+        groupGallery
     }) => {
+        console.log(groupGallery)
 
     let today = new Date();   
 
@@ -42,7 +44,7 @@ const GroupProfilView = ({
 
     return (
         <Card style={{padding:"1rem"}}>
-            <Image src={group.imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
+            <Image src={groupGallery ? groupGallery : group.imgUrl} style={{borderRadius:"10px",marginBottom:"1rem"}}/>
             <p style={{fontSize:"1.2rem", fontWeight:"bold", wordBreak:"break-all"}}>{group.title}</p>
             <p>그룹장 : <Link to={`/account/${masterMember.accountId}`} style={{fontSize:"1.2rem",color:"#8c8c8c"}}>{group.master}</Link></p>
             <p>멤버 : {detailGroup_memberLength}명</p> 

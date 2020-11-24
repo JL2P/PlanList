@@ -43,6 +43,8 @@ export default class GroupStore {
       @observable confirm = false;
       @observable manager = false;
 
+      @observable groupGallery = {};
+
       @computed get getGroup(){return this.group;}
       @computed get getGroups(){return this.groups;}
       @computed get getDetailGroup_modalOpen(){return this.detailGroup_modalOpen}
@@ -77,7 +79,7 @@ export default class GroupStore {
       @action
       async getApiGroups(){
         const apiGetGroups = await this.groupRepository.groupList();
-
+        console.log(apiGetGroups)
         runInAction(()=>{
           this.groups = apiGetGroups.map(group => new GroupModel(group));
         });
@@ -89,30 +91,39 @@ export default class GroupStore {
 
       //그룹 생성
       @action
-      async createGroup(groupObj){
+      async createGroup(groupObj,file){
+        
+        
         const groupModel = new GroupAddModel(groupObj);
         const result = await this.groupRepository.groupCreate(groupModel);
         
+        
+        
         let today = new Date();   
-
+        
         let year = today.getFullYear(); // 년도
         let month = today.getMonth() + 1;  // 월
         let date = today.getDate();  // 날짜
         let day = today.getDay();  // 요일
-
+        
         const newToday = `${year}.${month}.${date}`
-
+        
         this.groupId = result.id;
         const accountId = result.master;
         this.confirm = true;
         this.manager = true;
         const newMember = {
-                            "accountId":accountId,
-                            "confirm": this.confirm,
-                            "groupId": this.groupId,
-                            "manager": this.manager,
-                            "date": newToday
-                          }
+          "accountId":accountId,
+          "confirm": this.confirm,
+          "groupId": this.groupId,
+          "manager": this.manager,
+          "date": newToday
+        }
+        //이미지 저장
+        if(file){
+          await this.groupGalleryRepository.galleryAdd(file, this.groupId);
+          this.groupGallery = file;
+        } 
 
         this.getApiGroups()
         //생성시 그룹 관리자 생성
@@ -128,7 +139,17 @@ export default class GroupStore {
       @action
       async groupDetail_page(groupId,accountId){
         const result = await this.groupRepository.groupDetail(groupId);
+        console.log(result)
         this.group = new GroupModel(result);
+
+        if(this.group.galleries[0] ){
+          this.groupGallery = this.group.galleries[0].filePath
+          console.log(this.groupGallery)
+        }else{
+          this.groupGallery = null;
+          console.log(this.groupGallery)
+        }
+        
 
         //해당 그룹 아이디 멤버 리스트
         this.detailGroup_memberLength = this.group.members.length;
@@ -225,16 +246,6 @@ export default class GroupStore {
         await this.memberRepository.memberTranfer(memberModel);
         const result = await this.groupRepository.groupTransfer(groupModel);
         console.log(result);
-      }
-
-      //이미지 업로드 테스트
-      @action
-      async test(filePath){
-        // const galleryModel = new GroupGalleryModel(imgObj);
-        // console.log(galleryModel.filePath)
-        const result = await this.groupGalleryRepository.galleryAdd(filePath);
-        console.log(result)
-        
       }
 
 }
