@@ -203,8 +203,11 @@ const NewGroupItemModal = ({
                   master,
                   imgUrl,
                   openAt
-                });
-              }}
+                },
+                images.length>0?images[0].file:null
+                )
+              }
+            }
             >
               저장
             </Button>
