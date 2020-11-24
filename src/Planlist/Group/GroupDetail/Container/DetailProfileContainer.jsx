@@ -42,7 +42,8 @@ class DetailProfileContainer extends Component {
             getGroups,
             getDetailGroup_memberList,
             getConfirm,
-            getManager
+            getManager,
+            groupGallery
         } = group
 
         const {loginAccount} = account;
@@ -59,6 +60,7 @@ class DetailProfileContainer extends Component {
                     memberConfirm={getConfirm}
                     memberManager={getManager}
                     onMemberRemove={this.onMemberRemove}
+                    groupGallery={groupGallery}
                 />
             </div>
         );
