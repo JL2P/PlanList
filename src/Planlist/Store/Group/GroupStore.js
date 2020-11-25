@@ -92,12 +92,9 @@ export default class GroupStore {
       //그룹 생성
       @action
       async createGroup(groupObj,file){
-        
-        
+         
         const groupModel = new GroupAddModel(groupObj);
         const result = await this.groupRepository.groupCreate(groupModel);
-        
-        
         
         let today = new Date();   
         
@@ -173,11 +170,19 @@ export default class GroupStore {
 
       //그룹 디테일 페이지 설정 수정
       @action
-      async settingSave(groupObj){
+      async settingSave(groupObj,file){
+        //이미지 저장
+        if(file){
+          await this.groupGalleryRepository.galleryAdd(file, this.groupId);
+          this.groupGallery = file;
+        } 
         const groupModel = new GroupModifyModel(groupObj);
         console.log(groupModel)
         await this.groupRepository.groupModify(groupModel);
+
+        
       }
+
       //그룹 디테일 페이지 설정에서 그룹 삭제
       @action
       async settingRemove(groupId){
