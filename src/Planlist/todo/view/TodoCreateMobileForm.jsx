@@ -42,7 +42,7 @@ const TodoCreateMobileForm = ({
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => setEndTime(e.target.value);
   const onChangeStartTime = (e) => setStartTime(e.target.value);
-  
+
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -115,7 +115,21 @@ const TodoCreateMobileForm = ({
                   <input
                     type="date"
                     required
-                    value={startTime ? startTime : today}
+                    // value={startTime ? startTime : today}
+                    value={
+                      startTime ? (
+                        startTime > (endTime ? endTime : today) ? (
+                          <div>
+                            {alert("날짜 입력 형식이 틀렸습니다.")}
+                            {today}
+                          </div>
+                        ) : (
+                          startTime
+                        )
+                      ) : (
+                        today
+                      )
+                    }
                     onChange={onChangeStartTime}
                   />
                 </Form.Field>
@@ -127,7 +141,21 @@ const TodoCreateMobileForm = ({
                   <input
                     type="date"
                     required
-                    value={endTime ? endTime : today}
+                    // value={endTime ? endTime : today}
+                    value={
+                      endTime ? (
+                        endTime < (startTime ? startTime : today) ? (
+                          <div>
+                            {alert("날짜 입력 형식이 틀렸습니다.")}
+                            {today}
+                          </div>
+                        ) : (
+                          endTime
+                        )
+                      ) : (
+                        today
+                      )
+                    }
                     onChange={onChangeEndTime}
                   />
                 </Form.Field>

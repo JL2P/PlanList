@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import MyGroupItem from "./GroupItem/MyGroupItem";
 import NewGroupItem from "./GroupItem/NewGroupItem";
 import { Container, Search} from "semantic-ui-react";
@@ -15,7 +15,7 @@ const MyGroupView = ({
     onCategoryDefault,
     onLogInUser,
     members,
-    onMyGroups
+    onMyGroups,
    }) => {
      
   let logMember = new Array();
@@ -48,9 +48,6 @@ const MyGroupView = ({
   useEffect(() => {
     onMyGroups(myGroups)
   },[myGroups]); 
-    
-  
-
 
   var settings = {
     dots: true,

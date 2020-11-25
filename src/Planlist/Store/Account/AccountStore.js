@@ -6,12 +6,15 @@ import AccountModifyModel from "../../Api/model/AccountModifyModel";
 import AccountSigninModel from "../../Api/model/AccountSigninModel";
 import AccountRepository from "../../Api/Repository/AccountRepository";
 import AuthRepository from "../../Api/Repository/AuthRepository";
+import AccountGalleryRepository from "../../Api/Repository/AccountGalleryRepository";
+import AccountGalleryModel from "../../Api/model/accountGallery/AccountGalleryModel";
 
 export default class AccountStore {
   constructor(root) {
     this.root = root;
     this.accountRepository = new AccountRepository();
     this.authRepository = new AuthRepository();
+    this.accountGalleryRepository = new AccountGalleryRepository();
   }
 
   // this.root.todo.
@@ -28,6 +31,10 @@ export default class AccountStore {
   accounts = [];
 
   @observable authModifymove = true;
+
+  //겔러리 저장
+  @observable gallery = "";
+  @observable gallery_filePath = ""
 
   @computed
   get getAccount() {
@@ -89,6 +96,15 @@ export default class AccountStore {
     const data = await this.accountRepository.accountInfo();
     this.loginAccount = new AccountModel(data);
     this.logCheck = true;
+    console.log("로그인 정보")
+    console.log(data);
+    if(data.galleries[0]){
+      this.gallery_filePath = "";
+      this.gallery_filePath = data.galleries[0].filePath;
+    }else{
+      this.gallery_filePath = null;
+    }
+    
   }
 
   @action signout() {
@@ -125,6 +141,14 @@ export default class AccountStore {
   //UserModify
   @action
   async userModify(account) {
+
+    //이미지 저장
+    if(account.galleries){
+      this.gallery = await this.accountGalleryRepository.galleryAdd(account.galleries, account.accountId);
+      this.gallery_filePath = this.gallery.filePath
+      console.log(this.gallery_filePath)
+    } 
+    
     const accountModel = new AccountModifyModel(account);
     // const result = await this.accountRepository.accountModify(accountModel);
     // console.log(result);

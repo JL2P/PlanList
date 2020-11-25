@@ -15,7 +15,9 @@ const ProfileSettingModalView = ({
   onModifyUser,
   onSetAccountProp,
   onDeleteUser,
+  gallery_filePath
 }) => {
+  console.log(account)
   const modal_height = "400px"; // 모달창 높이
 
   // 회원 탈퇴 모달
@@ -131,6 +133,7 @@ const ProfileSettingModalView = ({
                 <ProfileAccountModifyView
                   account={account}
                   onSetAccountProp={onSetAccountProp}
+                  gallery_filePath={gallery_filePath}
                 />
               )}
               {/* {activeItem === "비밀번호 변경" && (

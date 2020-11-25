@@ -8,9 +8,7 @@ import { Route } from "react-router-dom";
 import DetailGroupAllContainer from "../Container/DetailGroupAllContainer";
 
 const GroupCenterView = ({
-  onDetailGroup_create,
-  getDetailGroup_modalOpen,
-  onDetailGroup_modalCheck,
+
   group,
   onSettingSave,
   onSettingRemove,
@@ -23,9 +21,7 @@ const GroupCenterView = ({
   members,
   activeItem,
   onHandleItemClick,
-  groupTodoList,
-  categoryList,
-  onManagerTransfer,
+  onManagerTransfer
 }) => {
   return (
     <div>

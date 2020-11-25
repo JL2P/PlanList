@@ -20,12 +20,12 @@ class DetailCenterlContainer extends Component {
     group.detailGroup_modalCheck(check);
   };
   //설정 수정 저장
-  onSettingSave = (e, groupObj) => {
+  onSettingSave = (e, groupObj,fileObj) => {
     e.preventDefault();
     const { group } = this.props.Store;
     var result = window.confirm("수정 사항을 저장하시겠습니까?");
     if (result) {
-      group.settingSave(groupObj);
+      group.settingSave(groupObj,fileObj);
       alert("수정 사항이 반영되었습니다.");
       window.location.reload();
     }

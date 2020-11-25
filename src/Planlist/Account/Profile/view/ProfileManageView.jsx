@@ -28,9 +28,11 @@ const ProfileManageView = ({
   followings,
   openAt,
   isFollowingPage,
+  gallery_filePath
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
+  console.log(loginAccount)
 
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
@@ -74,6 +76,7 @@ const ProfileManageView = ({
         onModifyUser={onModifyUser}
         onDeleteUser={onDeleteUser}
         onSetAccountProp={onSetAccountProp}
+        gallery_filePath={gallery_filePath}
       />
       {/* 프로필 팔로워 모달 기본 open상태 false */}
       <ProfileFollowerModalView
@@ -91,7 +94,7 @@ const ProfileManageView = ({
           {/* 프로필 이미지 */}
           <Grid.Column width={4}>
             <Image
-              src={selectUser.imgUrl}
+              src={gallery_filePath ? gallery_filePath : selectUser.imgUrl}
               bordered
               centered
               style={{

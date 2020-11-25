@@ -1,3 +1,4 @@
+import AccountGalleryModel from './accountGallery/AccountGalleryModel';
 /*
 Account 데이터를 담는 클래스
 백엔드 서버에서 정의한 Entity클래스와 맞게 작성한다.
@@ -27,5 +28,7 @@ export default class AccountModel {
     this.openAt = accountObj.openAt;
     this.usedAt = accountObj.usedAt;
     this.imgUrl = accountObj.imgUrl;
+
+    this.galleries = accountObj.galleries.map(accountGallery => new AccountGalleryModel(accountGallery));
   }
 }

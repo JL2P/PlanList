@@ -11,10 +11,11 @@ import { inject, observer } from "mobx-react";
 class GroupContainer extends Component {
 
     //그룹 생성
-    onCreateGroup = (e, createObj) => {
+    onCreateGroup = (e, createObj, fileObj) => {
+        console.log(fileObj)
         e.preventDefault();
         const { group } = this.props.Store;
-        group.createGroup(createObj).then(() => 
+        group.createGroup(createObj, fileObj).then(() => 
         this.props.history.push(`/groupDetail/${group.getGroupId}/`));
     }
 

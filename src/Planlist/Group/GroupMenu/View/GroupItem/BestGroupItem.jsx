@@ -9,7 +9,9 @@ const BestGroupItem = ({ item,onGroupDetail_page }) => {
     <Grid.Column className="recommendGroup_column" onClick={() => onGroupDetail_page(item.id)}>
       <Link to={`/groupdetail/${item.id}/`}>
         <Card className="group_card" raised>
-          <Image src={item.imgUrl} className="Group_img" />
+          <Image src={
+            item.galleries[0] ? item.galleries[0].filePath : item.imgUrl
+            } className="Group_img" />
           <Card.Content>
             <Card.Header className="group_Card_header">
               {item.title}

@@ -6,10 +6,12 @@ import {
   Image,
   TextArea,
   Dropdown,
+  Button,
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
+const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath }) => {
+
   const modifyTitle = 4;
   const modifyContent = 10;
   const genderOptions = [
@@ -36,22 +38,36 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp }) => {
         <Grid.Row>
           {/* <Grid.Column width={1}></Grid.Column> */}
           {/* 프로필 이미지 */}
-          <Grid.Column width={4}>
+          <Grid.Column width={6} style={{
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"center",
+              flexDirection:"column"
+            }}>
             <Image
-              src={account.imgUrl}
+              src={gallery_filePath ? gallery_filePath : account.imgUrl}
               bordered
               centered
               style={{
                 width: "80px",
                 height: "80px",
                 objectFit: "cover",
+                marginBottom:"0.5em",
                 borderRadius: "50%",
-                marginLeft: "40px",
               }}
             />
+            <Button 
+              basic
+              as="label"
+              htmlFor="profile_img"
+              style={{fontSize:"0.8em"}}
+            >프로필 사진 바꾸기</Button>
+
+            <input id="profile_img" type="file" multiple hidden onChange={(e) => onSetAccountProp("galleries", e.target.files[0])}/>
+
           </Grid.Column>
           {/* 아이디, 이메일 */}
-          <Grid.Column width={modifyContent}>
+          <Grid.Column width={modifyContent} style={{display:"flex"}}>
             <Grid stackable style={{ marginLeft: "5px" }}>
               <Grid.Row style={{ fontSize: "30px", fontWeight: "bold" }}>
                 {account.accountId}

@@ -6,9 +6,11 @@ import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
 import MemberModel from "../../Api/model/member/MemberModel";
 import MemberTransferDto from "../../Api/model/member/MemberModel";
+import GroupGalleryModel from "../../Api/model/groupGallery/GroupGalleryModel"
 
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
+import GroupGalleryRepository from "../../Api/Repository/GroupGalleryRepository"
 
 import GroupTodoStore from './GroupTodoStore';
 
@@ -18,7 +20,8 @@ export default class GroupStore {
         this.groupRepository = new GroupRepository();
         this.memberRepository = new MemberRepository();        
         //승훈 추가 GroupTodoStore를 따로 관리하기위함(소스가 너무 길어짐)
-        this.groupTodo = new GroupTodoStore(this); 
+        this.groupTodo = new GroupTodoStore(this);
+        this.groupGalleryRepository = new GroupGalleryRepository();
       }
 
   
@@ -39,6 +42,8 @@ export default class GroupStore {
       @observable groupId = 0;
       @observable confirm = false;
       @observable manager = false;
+
+      @observable groupGallery = {};
 
       @computed get getGroup(){return this.group;}
       @computed get getGroups(){return this.groups;}
@@ -74,7 +79,7 @@ export default class GroupStore {
       @action
       async getApiGroups(){
         const apiGetGroups = await this.groupRepository.groupList();
-
+        console.log(apiGetGroups)
         runInAction(()=>{
           this.groups = apiGetGroups.map(group => new GroupModel(group));
         });
@@ -86,30 +91,36 @@ export default class GroupStore {
 
       //그룹 생성
       @action
-      async createGroup(groupObj){
+      async createGroup(groupObj,file){
+         
         const groupModel = new GroupAddModel(groupObj);
         const result = await this.groupRepository.groupCreate(groupModel);
         
         let today = new Date();   
-
+        
         let year = today.getFullYear(); // 년도
         let month = today.getMonth() + 1;  // 월
         let date = today.getDate();  // 날짜
         let day = today.getDay();  // 요일
-
+        
         const newToday = `${year}.${month}.${date}`
-
+        
         this.groupId = result.id;
         const accountId = result.master;
         this.confirm = true;
         this.manager = true;
         const newMember = {
-                            "accountId":accountId,
-                            "confirm": this.confirm,
-                            "groupId": this.groupId,
-                            "manager": this.manager,
-                            "date": newToday
-                          }
+          "accountId":accountId,
+          "confirm": this.confirm,
+          "groupId": this.groupId,
+          "manager": this.manager,
+          "date": newToday
+        }
+        //이미지 저장
+        if(file){
+          await this.groupGalleryRepository.galleryAdd(file, this.groupId);
+          this.groupGallery = file;
+        } 
 
         this.getApiGroups()
         //생성시 그룹 관리자 생성
@@ -117,6 +128,7 @@ export default class GroupStore {
           //생성시 해당 그룹으로 연결
           this.groupDetail_page(result.id,accountId);
         });
+        console.log(result)
         
       }
 
@@ -124,7 +136,17 @@ export default class GroupStore {
       @action
       async groupDetail_page(groupId,accountId){
         const result = await this.groupRepository.groupDetail(groupId);
+        console.log(result)
         this.group = new GroupModel(result);
+
+        if(this.group.galleries[0] ){
+          this.groupGallery = this.group.galleries[0].filePath
+          console.log(this.groupGallery)
+        }else{
+          this.groupGallery = null;
+          console.log(this.groupGallery)
+        }
+        
 
         //해당 그룹 아이디 멤버 리스트
         this.detailGroup_memberLength = this.group.members.length;
@@ -148,11 +170,19 @@ export default class GroupStore {
 
       //그룹 디테일 페이지 설정 수정
       @action
-      async settingSave(groupObj){
+      async settingSave(groupObj,file){
+        //이미지 저장
+        if(file){
+          await this.groupGalleryRepository.galleryAdd(file, this.groupId);
+          this.groupGallery = file;
+        } 
         const groupModel = new GroupModifyModel(groupObj);
         console.log(groupModel)
         await this.groupRepository.groupModify(groupModel);
+
+        
       }
+
       //그룹 디테일 페이지 설정에서 그룹 삭제
       @action
       async settingRemove(groupId){
