@@ -30,21 +30,23 @@ const FileUploadFormView = ({ images, onChangeImages, maxNumber, message }) => {
               />
             </div>
           ))}
-          <div
-            className={`ui ${isDragging ? "red" : ""} button`}
-            style={{
-              width: "100%",
-              height: "80px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "#FFF0CD",
-            }}
-            onClick={onImageUpload}
-            {...dragProps}
-          >
-            <b>{message}</b>
-          </div>
+          {images.length === 0 && (
+            <div
+              className={`ui ${isDragging ? "red" : ""} button`}
+              style={{
+                width: "100%",
+                height: "80px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                background: "#FFF0CD",
+              }}
+              onClick={onImageUpload}
+              {...dragProps}
+            >
+              <b>{message}</b>
+            </div>
+          )}
         </div>
       )}
     </ImageUploading>

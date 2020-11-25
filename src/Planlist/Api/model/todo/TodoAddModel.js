@@ -8,5 +8,7 @@ export default class TodoAddModel{
         this.endTime = todoObj.endTime;
         this.startTime = todoObj.startTime
         this.groupAt =todoObj.groupAt ||"N";
+        this.todoKind = todoObj.todoKind;
+        this.todoSubKind = todoObj.todoSubKind;
     }
 }

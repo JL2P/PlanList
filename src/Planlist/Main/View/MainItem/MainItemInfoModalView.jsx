@@ -1,7 +1,7 @@
 import React from "react";
 import "./itemModalStyle.css";
 import { Link } from "react-router-dom";
-import { Modal, Image, Label, Button, Icon } from "semantic-ui-react";
+import { Modal, Image, Button, Icon } from "semantic-ui-react";
 
 const MainItemInfoModalView = ({
   todo,
@@ -30,7 +30,17 @@ const MainItemInfoModalView = ({
         {todo.groupAt === "Y" ? "그룹 계획" : "개인 계획"}
       </Modal.Header>
       <Modal.Content image>
-        <Image size="medium" src={todo.imgUrl} style={{ maxHeight: "300px" }} />
+        <Image
+          size="medium"
+          src={
+            todo.galleries
+              ? todo.galleries.length > 0
+                ? todo.galleries[0].filePath
+                : todo.imgUrl
+              : null
+          }
+          style={{ maxHeight: "300px" }}
+        />
         <div className="modal__description">
           <Modal.Description>
             <h3>{todo.title}</h3>

@@ -11,13 +11,14 @@ import {
   TextArea,
   Grid,
   Button,
+  // Image,
 } from "semantic-ui-react";
-import FileUploadFormView from "./FileUploadFormView";
+// import FileUploadFormView from "./FileUploadFormView";
 import CategoryList_Data from "../../Category/CategoryList_Data";
 import "./todoInputItemsStyle.css";
 
 const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
   const [title, setTitle] = useState(todo.title);
   const [category, setCategory] = useState(todo.category);
   const [description, setDescription] = useState(todo.description);
@@ -27,7 +28,6 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
   const GRID_RIGHT = 16 - GRID_LEFT;
-  const maxNumber = 69;
 
   /* 카테고리 */
   const options = CategoryList_Data.slice(3, -1).map((category) => {
@@ -38,7 +38,7 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
     };
   });
 
-  const onChangeImages = (imageList) => setImages(imageList);
+  // const onChangeImages = (imageList) => setImages(imageList);
   const onChangeTitle = (e) => setTitle(e.target.value);
   const onChangeCategory = (e, { value }) => setCategory(value);
   const onChangeDescription = (e) => setDescription(e.target.value);
@@ -185,17 +185,21 @@ const TodoUpdateDesktopForm = ({ todo, open, onModal, updateTodo, today }) => {
                   />
                 </Grid.Column>
               </Grid.Row>
+              {/* <Grid.Row
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  wrapped
+                  ui={false}
+                  size="medium"
+                  src={todo.galleries ? todo.galleries[0].filePath : null}
+                />
+              </Grid.Row> */}
             </Grid>
-
-            {/* 이미지 업로드 부분 */}
-            <div style={{ marginTop: "1em" }}>
-              <FileUploadFormView
-                images={images}
-                onChangeImages={onChangeImages}
-                maxNumber={maxNumber}
-                message={"클릭 또는 드래그하여 이미지를 업로드 해주세요"}
-              />
-            </div>
 
             <Button
               fluid

@@ -5,7 +5,15 @@ const MainItem = ({ todoModel, onInfoModal }) => {
   return (
     <div className="todo__item" onClick={() => onInfoModal(true)}>
       <Card style={{ width: "100%", marginTop: "1em" }} raised>
-        <Image src={todoModel.imgUrl} wrapped ui={false} />
+        <Image
+          src={
+            todoModel.galleries.length > 0
+              ? todoModel.galleries[0].filePath
+              : todoModel.imgUrl
+          }
+          wrapped
+          ui={false}
+        />
         <Card.Content>
           <Card.Header>{todoModel.title}</Card.Header>
           <Card.Description>{todoModel.description}</Card.Description>

@@ -33,18 +33,18 @@ class MainTodoCreateDesktopContainer extends Component {
   //Todo 생성
   createTodo = (e, todoObj) => {
     e.preventDefault(); // 기본적인 서브밋 행동을 취소
-
     const { todo } = this.props.Store;
-    const random_image_number = Math.floor(Math.random() * 99 + 1);
 
-    //랜덤 이미지와 가상의 유저명으로 지정
-    const newTodo = {
-      ...todoObj,
-      imgUrl: `/posts/test_img_${random_image_number}.jpg`,
-    };
+    console.log(todoObj);
+    //기간조건이 정상적으로 선택 된 경우
+    if (todoObj.todoKind !== "NONE" && todoObj.todoSubKind !== "NONE") {
+      //기간별 Todo 생성
+      todo.saveTodoByPeriod(todoObj);
+    } else {
+      //기본 todo 생성
+      todo.saveTodo(todoObj);
+    }
 
-    //todo 생성
-    todo.saveTodo(newTodo);
     //입력 모달창 닫기
     this.onModal(false);
   };

@@ -21,5 +21,16 @@ export default class TodoModel {
     this.created = todoObj.created;
     this.modified = todoObj.modified;
     this.accountModel = todoObj.accountModel !== undefined ? new AccountModel(todoObj.accountModel):{}
+    this.galleries = todoObj.galleries.map(gallery=>new GalleryModel(gallery));
+  }
+}
+
+
+class GalleryModel{
+  constructor(galleryObj){
+    this.galleryId = galleryObj.id;
+    this.title = galleryObj.title;
+    this.filePath = galleryObj.filePath;
+    this.todoId = galleryObj.todoId;
   }
 }

@@ -43,6 +43,16 @@ export default class TodoRepository {
     return axios_auth_POST(this.URL, TodoModel, {});
   };
 
+  //기간별 Todo생성
+  createDayTodo=(TodoAddModel)=>{
+    return axios_auth_POST(this.URL+"/day", TodoAddModel, []);
+  }
+
+  //요일별 Todo생성
+  createWeekTodo=(TodoAddModel)=>{
+    return axios_auth_POST(this.URL+"/week", TodoAddModel, []);
+  }
+
   // account 수정
   // PUT /api/account/
   todoUpdate = (TodoModel) => {
@@ -74,4 +84,11 @@ export default class TodoRepository {
   incompleteTodo = (todoId) => {
     return axios_auth_POST(this.URL + `/${todoId}/incomplete`);
   };
+
+  todoImageUpload=(todoId, file)=>{
+    let formData = new FormData();
+    formData.append("file", file);
+
+    return axios_auth_POST(this.URL + `/${todoId}/gallery`, formData,{});
+  }
 }

@@ -1,0 +1,29 @@
+.MainBox {
+  position: relative;
+  background-image: url("/images/main/space_1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  z-index: 1;
+}
+
+.SubMainBox {
+  position: absolute;
+  background-image: radial-gradient(50% 176%, #1b1b1b 60%, #000000 100%);
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.SubMainBox2 {
+  position: absolute;
+  z-index: 3;
+  top: 40%;
+  left: 50%;
+  width: 40%;
+  transform: translateX(-50%);
+}
+
+.MainInput {
+  width: 100%;
+}
