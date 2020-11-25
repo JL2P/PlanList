@@ -12,17 +12,22 @@ class ProfileTodoContainer extends Component {
     console.log("유저!!", selectUser.accountId);
     follow.getApiNotConfirmFollowers();
     follow.followingPageCheck(selectUser.accountId);
-    
+
     // const loginId = account.getLoginAccount.accountId;
     // point.allPoints(loginId);
-
   }
 
   // todo 완료를 누르면 점수 부여
-  onAddPoint = (pointObj)=>{
-    const {point} = this.props.Store;
-    point.addPoint(pointObj)
-  }
+  onAddPoint = (pointObj) => {
+    const { point } = this.props.Store;
+    point.addPoint(pointObj);
+  };
+
+  // todo 완료를 취소하면 점수 회수
+  onDeletePoint = (pointObj) => {
+    const { point } = this.props.Store;
+    point.deletePoint(pointObj);
+  };
 
   onFollow = (followId) => {
     const { follow } = this.props.Store;
@@ -88,6 +93,7 @@ class ProfileTodoContainer extends Component {
             onComplete={this.onComplete}
             onIncomplete={this.onIncomplete}
             onAddPoint={this.onAddPoint}
+            onDeletePoint={this.onDeletePoint}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌

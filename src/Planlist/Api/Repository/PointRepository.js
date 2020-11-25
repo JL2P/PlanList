@@ -13,12 +13,16 @@ export default class PointRepository {
     return axios_auth_POST(this.URL + `/addPoint`, pointObj, {});
   };
 
+  // 완료 취소하면 점수 회수
+  deletePoint = (pointObj) => {
+    return axios_auth_DELETE(this.URL + `/cancel`, pointObj, null);
+  };
+
   // 유저의 전체 점수를 전체 조회
   getUserAllPoint = (accountId) => {
     return axios_auth_GET(this.URL + `/${accountId}`, []);
   };
 
-  
   getUserPointByDate = (pointObj) => {
     return axios_auth_POST(this.URL + `/date`, pointObj, {});
   };

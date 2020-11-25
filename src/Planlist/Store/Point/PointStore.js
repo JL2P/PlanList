@@ -31,6 +31,11 @@ export default class PointStore {
     // this.allPoints();
   }
 
+  @action
+  async deletePoint(pointObj) {
+    await this.pointRepository.deletePoint(pointObj);
+  }
+
   // 유저의 모든 점수 조회
   @action
   async allPoints(accountId) {

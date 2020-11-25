@@ -9,11 +9,11 @@ class RankingPage extends Component {
     account.getApiAccountInfo();
     const id = account.getLoginAccount.accountId;
     console.log("로그인!!", id);
-    
+
     // 유저의 모든 점수 조회
     point.allPoints(id);
-    console.log("점수!!", point.getMyPoints[0]);
-    const pointObj = point.getMyPoints[0];
+    const pointObj = point.getMyPoints[6];
+    console.log("점수!!", typeof pointObj, pointObj);
     point.toodayPoint({
       accountId: "hello",
       created: "2020-11-25T05:46:36.957Z",
@@ -28,6 +28,7 @@ class RankingPage extends Component {
     //   likeCount: 1,
     //   todoId: "string 4",
     // });
+    point.deletePoint(pointObj);
   }
 
   render() {

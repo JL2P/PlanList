@@ -62,6 +62,7 @@ class ProfileTodoView extends Component {
       onComplete,
       onIncomplete,
       onAddPoint,
+      onDeletePoint,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -134,6 +135,7 @@ class ProfileTodoView extends Component {
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
                 onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint}
               />
             )}
             {activeItem === "그동안 한 일" && (
@@ -145,6 +147,7 @@ class ProfileTodoView extends Component {
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
                 onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint}
               />
             )}
             {activeItem === "하지 못한 일" && (
