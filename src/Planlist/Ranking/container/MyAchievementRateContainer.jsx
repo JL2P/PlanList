@@ -5,6 +5,21 @@ import MyAchievementRateView from "../view/MyAchievementRateView";
 import ReactHighmaps from "react-highcharts/ReactHighmaps";
 import Highcharts from "highcharts";
 
+Highcharts.setOptions({
+  colors: [
+    "#FFB517",
+    "#058DC7",
+    "#50B432",
+    "#ED561B",
+    "#DDDF00",
+    "#24CBE5",
+    "#64E572",
+    "#FF9655",
+    "#FFF263",
+    "#6AF9C4",
+  ],
+});
+
 class MyAchievementRateContainer extends Component {
   state = {
     configBar: {
