@@ -146,24 +146,62 @@ export default class TodoStore {
   @action
   async saveTodo(todoObj) {
     const todoModel = new TodoAddModel(todoObj);
+    //작성자는 로그인한 유저로 추가
     todoModel.writer = this.root.account.getLoginAccount.accountId;
-    const todo = await this.todoRepository.todoCreate(todoModel);
-    console.log(todoObj)
-    console.log(todo)
+
+    //업로드한 이미지가 없는 경우 기본 이미지 설정
     if(todoObj.images.length ===0){
-      //이미지 업로드가 없을 경우 기본 이미지
       const random_image_number = Math.floor(Math.random() * 99 + 1);
       todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`
-    }else{
-      //이미지가 있는경우
-      const file = todoObj.images[0].file;
-      const imgUrl = await this.todoRepository.todoImageUpload(todo.todoId, file);
-      todoModel.imgUrl = imgUrl;
     }
-    
+
+    //Todo 생성
+    const todo = await this.todoRepository.todoCreate(todoModel);
+
+    //Todo생성시 업로드한 이미지가 존재하는 경우 파일업로드 실행
+    if(todoObj.images.length !==0){
+      const file = todoObj.images[0].file;
+      this.todoRepository.todoImageUpload(todo.todoId, file);
+    }
     
     this.getApiTodos();
   }
+
+  // 정해진 기간 내의 특정 조건에 따라 생성
+  @action
+  async saveTodoByPeriod(todoObj) {
+    const todoModel = new TodoAddModel(todoObj);
+    //작성자는 로그인한 유저로 추가
+    todoModel.writer = this.root.account.getLoginAccount.accountId;
+
+    //업로드한 이미지가 없는 경우 기본 이미지 설정
+    if(todoObj.images.length ===0){
+      const random_image_number = Math.floor(Math.random() * 99 + 1);
+      todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`
+    }
+
+    //기간별 Todo 생성
+    let addedTodos = [];    
+    console.log(todoModel.todoKind);
+    if(todoModel.todoKind ==="DAY") addedTodos = await this.todoRepository.createDayTodo(todoModel);
+    if(todoModel.todoKind ==="WEEK") addedTodos = await this.todoRepository.createWeekTodo(todoModel);
+    console.log(addedTodos);
+
+    //Todo생성시 업로드한 이미지가 존재하는 경우
+    if(todoObj.images.length !==0){
+      //생성된 Todo가 존재할 경우
+      if(addedTodos !== null && addedTodos.length > 0){ 
+        //생성된 각 Todo에 이미지 업로드 시작
+        addedTodos.forEach(todo => {
+          const file = todoObj.images[0].file;
+          this.todoRepository.todoImageUpload(todo.todoId, file);
+        });
+      }
+    }
+
+    this.getApiTodos();
+  }
+
 
   // API를 호출하여 todo데이터를 수정한다.
   @action

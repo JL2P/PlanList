@@ -54,6 +54,7 @@ const TodoCreateDesktopForm = ({
   const onChangeDescription = (e) => setDescription(e.target.value);
   const onChangeEndTime = (e) => {
     setTodoKindOpen(today !== e.target.value ? true : false);
+    setEndTime(e.target.value);
   };
   const onChangeStartTime = (e) => setStartTime(e.target.value);
 
@@ -90,8 +91,6 @@ const TodoCreateDesktopForm = ({
     { key: "SAT", value: "SAT", text: "토요일" },
     { key: "SUN", value: "SUN", text: "일요일" },
   ];
-
-  console.log(todoKind);
 
   return (
     <Modal
