@@ -30,7 +30,11 @@ const MainItemInfoModalView = ({
         {todo.groupAt === "Y" ? "그룹 계획" : "개인 계획"}
       </Modal.Header>
       <Modal.Content image>
-        <Image size="medium" src={todo.imgUrl} style={{ maxHeight: "300px" }} />
+        <Image
+          size="medium"
+          src={todo.galleries ? todo.galleries[0].filePath : null}
+          style={{ maxHeight: "300px" }}
+        />
         <div className="modal__description">
           <Modal.Description>
             <h3>{todo.title}</h3>

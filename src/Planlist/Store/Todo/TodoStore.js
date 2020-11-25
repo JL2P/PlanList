@@ -13,7 +13,6 @@ import {
 import { SubCommentAddModel,SubCommentModel } from "../../Api/model/comment/SubCommentModels";
 import FollowRepository from '../../Api/Repository/FollowRepository';
 import AccountRepository from '../../Api/Repository/AccountRepository';
-import AccountModel from '../../Api/model/AccountModel';
 import GroupTodoRepository from '../../Api/Repository/GroupTodoRepository';
 
 export default class TodoStore {
@@ -148,7 +147,21 @@ export default class TodoStore {
   async saveTodo(todoObj) {
     const todoModel = new TodoAddModel(todoObj);
     todoModel.writer = this.root.account.getLoginAccount.accountId;
-    await this.todoRepository.todoCreate(todoModel);
+    const todo = await this.todoRepository.todoCreate(todoModel);
+    console.log(todoObj)
+    console.log(todo)
+    if(todoObj.images.length ===0){
+      //이미지 업로드가 없을 경우 기본 이미지
+      const random_image_number = Math.floor(Math.random() * 99 + 1);
+      todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`
+    }else{
+      //이미지가 있는경우
+      const file = todoObj.images[0].file;
+      const imgUrl = await this.todoRepository.todoImageUpload(todo.todoId, file);
+      todoModel.imgUrl = imgUrl;
+    }
+    
+    
     this.getApiTodos();
   }
 

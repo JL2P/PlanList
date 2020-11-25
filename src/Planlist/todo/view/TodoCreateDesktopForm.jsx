@@ -29,6 +29,9 @@ const TodoCreateDesktopForm = ({
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
   const [startTime, setStartTime] = useState("");
+  const [todoKindOpen, setTodoKindOpen] = useState(false);
+  const [todoKind, setTodoKind] = useState("NONE");
+  const [todoSubKind, setTodoSubKind] = useState("NONE");
 
   //그리드 사이즈 지정
   const GRID_LEFT = 4;
@@ -49,9 +52,47 @@ const TodoCreateDesktopForm = ({
     setCategory(value);
   };
   const onChangeDescription = (e) => setDescription(e.target.value);
-  const onChangeEndTime = (e) => setEndTime(e.target.value);
+  const onChangeEndTime = (e) => {
+    setTodoKindOpen(today !== e.target.value ? true : false);
+  };
   const onChangeStartTime = (e) => setStartTime(e.target.value);
-  
+
+  const onChangeTodoKind = (e, { value }) => {
+    setTodoKind(value);
+    setTodoSubKind(null);
+  };
+  const onChangeTodoSubKind = (e, { value }) => {
+    setTodoSubKind(value);
+  };
+
+  const todoKindList = [
+    { key: "NONE", value: "NONE", text: "기본" },
+    { key: "DAY", value: "DAY", text: "일별 계획" },
+    { key: "WEEK", value: "WEEK", text: "요일별 계획" },
+  ];
+
+  const none_list = [{ key: "NONE", value: "NONE", text: "기본" }];
+
+  const day_list = [
+    { key: "DAY1", value: "DAY1", text: "매일" },
+    { key: "DAY2", value: "DAY2", text: "2일 간격" },
+    { key: "DAY3", value: "DAY3", text: "3일 간격" },
+    { key: "DAY4", value: "DAY4", text: "4일 간격" },
+    { key: "DAY5", value: "DAY5", text: "5일 간격" },
+  ];
+
+  const week_list = [
+    { key: "MON", value: "MON", text: "월요일" },
+    { key: "TUE", value: "TUE", text: "화요일" },
+    { key: "WEN", value: "WEN", text: "수요일" },
+    { key: "THU", value: "THU", text: "목요일" },
+    { key: "FRI", value: "FRI", text: "금요일" },
+    { key: "SAT", value: "SAT", text: "토요일" },
+    { key: "SUN", value: "SUN", text: "일요일" },
+  ];
+
+  console.log(todoKind);
+
   return (
     <Modal
       onClose={() => onModal(false)}
@@ -164,6 +205,41 @@ const TodoCreateDesktopForm = ({
                   />
                 </Grid.Column>
               </Grid.Row>
+
+              {todoKindOpen && (
+                <Grid.Row style={{ marginTop: "-1em" }}>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Select
+                      placeholder="계획단위"
+                      options={todoKindList}
+                      value={todoKind}
+                      onChange={onChangeTodoKind}
+                      style={{ marginRight: "1em" }}
+                    />
+
+                    <Select
+                      placeholder={todoKind === "DAY" ? "기간" : "요일"}
+                      value={todoSubKind}
+                      options={
+                        todoKind === "NONE"
+                          ? none_list
+                          : todoKind === "DAY"
+                          ? day_list
+                          : week_list
+                      }
+                      onChange={onChangeTodoSubKind}
+                      style={{ marginLeft: "1em" }}
+                    />
+                  </div>
+                </Grid.Row>
+              )}
             </Grid>
 
             {/* 이미지 업로드 부분 */}
@@ -190,6 +266,9 @@ const TodoCreateDesktopForm = ({
                   description: description,
                   endTime: endTime === "" ? today : endTime,
                   startTime: startTime === "" ? today : startTime,
+                  images: images,
+                  todoKind: todoKind,
+                  todoSubKind: todoSubKind,
                 });
               }}
             >

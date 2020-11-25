@@ -74,4 +74,12 @@ export default class TodoRepository {
   incompleteTodo = (todoId) => {
     return axios_auth_POST(this.URL + `/${todoId}/incomplete`);
   };
+
+  todoImageUpload=(todoId, file)=>{
+    console.log(todoId,file)
+    let formData = new FormData();
+    formData.append("file", file);
+
+    return axios_auth_POST(this.URL + `/${todoId}/gallery`, formData,{});
+  }
 }
