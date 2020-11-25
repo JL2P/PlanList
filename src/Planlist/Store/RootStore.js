@@ -2,6 +2,7 @@ import AccountStore from "./Account/AccountStore";
 import TodoStore from "./Todo/TodoStore";
 import GroupStore from "./Group/GroupStore";
 import FollowStore from "./Follow/FollowStore";
+import PointStore from "./Point/PointStore";
 
 class RootStore {
   constructor() {
@@ -9,6 +10,7 @@ class RootStore {
     this.todo = new TodoStore(this);
     this.group = new GroupStore(this);
     this.follow = new FollowStore(this);
+    this.point = new PointStore(this);
   }
 }
 

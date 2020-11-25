@@ -61,6 +61,8 @@ class ProfileTodoView extends Component {
       onFollowConfirm,
       onComplete,
       onIncomplete,
+      onAddPoint,
+      onDeletePoint,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -132,6 +134,8 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
+                onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint}
               />
             )}
             {activeItem === "그동안 한 일" && (
@@ -142,6 +146,8 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
+                onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint}
               />
             )}
             {activeItem === "하지 못한 일" && (
@@ -158,9 +164,7 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-            {activeItem === "날짜별 달성률" && (
-              <MyAchievementRateContainer />
-            )}
+            {activeItem === "날짜별 달성률" && <MyAchievementRateContainer />}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer
                 selectUser={selectUser}

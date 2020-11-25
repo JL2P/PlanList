@@ -10,6 +10,8 @@ const ProfileTodoFromNowListView = ({
   onComplete,
   onIncomplete,
   loginId,
+  onAddPoint,
+  onDeletePoint,
 }) => {
   return (
     <div>
@@ -36,6 +38,8 @@ const ProfileTodoFromNowListView = ({
                 onIncomplete={onIncomplete}
                 loginId={loginId}
                 today={today}
+                onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint}
               />
             ))}
           </Card.Group>
