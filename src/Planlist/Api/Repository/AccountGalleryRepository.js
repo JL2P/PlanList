@@ -7,16 +7,16 @@ const HEADER = {
   };
 
 //member관련 Api와 연동하는 클래스
-export default class GroupGalleryRepository{
+export default class AccountGalleryRepository{
     //공통 적으로 사용되는 URL
-    URL = "/api/groups/";
+    URL = "/api/accounts/";
 
 
-    //POST /api/groups/
-    galleryAdd = (filePath, groupId) => {
+    //POST /api/account/
+    galleryAdd = (filePath, accountId) => {
         let formData = new FormData()
         formData.append("file", filePath)
-        return axios.post(this.URL+`${groupId}/gallery`, formData, HEADER).then(request => request.data||[])
+        return axios.post(this.URL+`${accountId}/gallery`, formData, HEADER).then(request => request.data||[])
     }
     
 }

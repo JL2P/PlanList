@@ -46,7 +46,9 @@ class ProfileMangeContainer extends Component {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
     const { account, todo, follow } = this.props.Store;
-    const { selectUser, loginAccount, selectUserTodos } = this.props;
+    const { selectUser, loginAccount, selectUserTodos,} = this.props;
+    const {gallery_filePath} = account;
+
     const openAt = selectUser.openAt;
     const today = todo.getToday;
     // 해야 할 일 개수 count
@@ -77,6 +79,7 @@ class ProfileMangeContainer extends Component {
           followings={followings}
           openAt={openAt}
           isFollowingPage={isFollowingPage}
+          gallery_filePath={gallery_filePath}
         />
       </div>
     );
