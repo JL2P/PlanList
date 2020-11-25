@@ -26,7 +26,11 @@ const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
         categoryList.find((cate) => cate.value === item.category).text +
         " : " +
         item.title,
-      start: item.startTime,
+      start: item.startTime
+        ? item.startTime
+        : today > endTime
+        ? endTime
+        : today,
       end: endTime,
       color:
         item.completed === "Y"

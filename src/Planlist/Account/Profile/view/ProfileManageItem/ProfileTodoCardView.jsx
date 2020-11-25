@@ -15,6 +15,7 @@ const ProfileTodoCardView = ({
   onComplete,
   onIncomplete,
   loginId,
+  onAddPoint,
 }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
@@ -128,7 +129,14 @@ const ProfileTodoCardView = ({
                     animated="vertical"
                     color="yellow"
                     basic
-                    onClick={() => onComplete(todo.todoId)}
+                    onClick={() => {
+                      onComplete(todo.todoId);
+                      onAddPoint({
+                        accountId: loginId,
+                        likeCount: todo.likePoint,
+                        todoId: todo.todoId,
+                      });
+                    }}
                   >
                     <Button.Content hidden>
                       <Icon name="check" />

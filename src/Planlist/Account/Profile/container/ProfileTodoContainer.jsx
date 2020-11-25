@@ -7,13 +7,21 @@ import ProfileTodoView from "../view/ProfileTodoView";
 @observer
 class ProfileTodoContainer extends Component {
   componentDidMount() {
-    const { follow } = this.props.Store;
+    const { account, follow, point } = this.props.Store;
     const { selectUser } = this.props;
     console.log("유저!!", selectUser.accountId);
     follow.getApiNotConfirmFollowers();
-
-    //
     follow.followingPageCheck(selectUser.accountId);
+    
+    // const loginId = account.getLoginAccount.accountId;
+    // point.allPoints(loginId);
+
+  }
+
+  // todo 완료를 누르면 점수 부여
+  onAddPoint = (pointObj)=>{
+    const {point} = this.props.Store;
+    point.addPoint(pointObj)
   }
 
   onFollow = (followId) => {
@@ -79,6 +87,7 @@ class ProfileTodoContainer extends Component {
             onLikeButton={this.onLikeButton}
             onComplete={this.onComplete}
             onIncomplete={this.onIncomplete}
+            onAddPoint={this.onAddPoint}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌
