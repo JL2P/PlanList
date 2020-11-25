@@ -2,7 +2,6 @@
 const proxy = require("http-proxy-middleware");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
-
   // Chat;
   app.use(
     "/api/chat",
@@ -48,6 +47,15 @@ module.exports = function (app) {
     })
   );
 
+  // Point Service
+  app.use(
+    "/api/points",
+    createProxyMiddleware({
+      target: "http://localhost:9004",
+      changeOrigin: true,
+    })
+  );
+
   // // Chat;
   // app.use(
   //   "/api/chat",
@@ -56,6 +64,4 @@ module.exports = function (app) {
   //     changeOrigin: true,
   //   })
   // );
-
-
 };
