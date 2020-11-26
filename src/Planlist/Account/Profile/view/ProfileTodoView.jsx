@@ -63,6 +63,7 @@ class ProfileTodoView extends Component {
       onIncomplete,
       onAddPoint,
       onDeletePoint,
+      account
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -105,7 +106,7 @@ class ProfileTodoView extends Component {
               active={activeItem === "날짜별 달성률"}
               onClick={this.handleItemClick}
             />
-            {selectUser === loginAccount ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
+            {selectUser === loginAccount || account.accountId === loginAccount.accountId ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
               <>
                 <Menu.Item
                   name="새로운 알림"

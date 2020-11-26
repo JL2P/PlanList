@@ -140,16 +140,34 @@ export default class AccountStore {
   async userModify(account) {
 
     //이미지 저장
-    if(account.galleries){
-      this.gallery = await this.accountGalleryRepository.galleryAdd(account.galleries, account.accountId);
-      this.gallery_filePath = this.gallery.filePath
+    // account에 filepath데이터를 받아야 실행
+    if(account.galleries.length !== 0){
+      console.log(account.galleries)
       console.log(this.gallery_filePath)
+      // 프로필 이미지가 기본일 때 이미지 변경 안 하고 수정
+      if(this.gallery_filePath === null){
+        console.log(11111111111111111111111)
+        this.gallery = await this.accountGalleryRepository.galleryAdd(account.galleries, account.accountId);
+        this.gallery_filePath = this.gallery.filePath
+      }else if(account.galleries !== this.gallery_filePath){
+        console.log(222222222222222222222222222)
+        console.log(account.galleries)
+        console.log(this.gallery_filePath)
+        // 프로필 이미지 변경할 때 기존 이미지랑 다를 때만 변경
+        this.gallery = await this.accountGalleryRepository.galleryAdd(account.galleries, account.accountId);
+        this.gallery_filePath = this.gallery.filePath
+        console.log(this.gallery_filePath)
+      }
     } 
     
     const accountModel = new AccountModifyModel(account);
+    console.log(">>",accountModel)
     // const result = await this.accountRepository.accountModify(accountModel);
     // console.log(result);
-    await this.accountRepository.accountModify(accountModel);
+    const result = await this.accountRepository.accountModify(accountModel);
+    console.log("저장 완료")
+    console.log(result)
+
     this.selectAll();
   }
 
