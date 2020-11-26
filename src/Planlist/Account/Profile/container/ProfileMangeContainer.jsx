@@ -22,7 +22,7 @@ class ProfileMangeContainer extends Component {
 
   onModifyUser = (user) => {
     const { account } = this.props.Store;
-    account.userModify(user);
+    account.userModify(user)
   };
 
   onDeleteUser = (accountId) => {
@@ -47,7 +47,7 @@ class ProfileMangeContainer extends Component {
     // Store에서 account Store가져오기
     const { account, todo, follow } = this.props.Store;
     const { selectUser, loginAccount, selectUserTodos,} = this.props;
-    const {gallery_filePath} = account;
+    const {gallery_filePath , getAccount} = account;
 
     const openAt = selectUser.openAt;
     const today = todo.getToday;
@@ -80,6 +80,7 @@ class ProfileMangeContainer extends Component {
           openAt={openAt}
           isFollowingPage={isFollowingPage}
           gallery_filePath={gallery_filePath}
+          account={getAccount}
         />
       </div>
     );
