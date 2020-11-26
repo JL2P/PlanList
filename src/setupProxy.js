@@ -1,15 +1,7 @@
 //프록시 서버 설정
-const proxy = require("http-proxy-middleware");
+// const proxy = require("http-proxy-middleware");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
-  // Chat;
-  app.use(
-    "/api/chat",
-    createProxyMiddleware({
-      target: "http://localhost:8000",
-      changeOrigin: true,
-    })
-  );
 
   // Authentication Service
   app.use(
@@ -19,6 +11,7 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+
 
   // Account Service
   app.use(
@@ -56,12 +49,4 @@ module.exports = function (app) {
     })
   );
 
-  // // Chat;
-  // app.use(
-  //   "/api/chat",
-  //   createProxyMiddleware({
-  //     target: "http://localhost:5000",
-  //     changeOrigin: true,
-  //   })
-  // );
 };
