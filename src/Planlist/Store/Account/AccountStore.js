@@ -96,8 +96,7 @@ export default class AccountStore {
     const data = await this.accountRepository.accountInfo();
     this.loginAccount = new AccountModel(data);
     this.logCheck = true;
-    console.log("로그인 정보")
-    console.log(data);
+
     if(data.galleries[0]){
       this.gallery_filePath = null;
       this.gallery_filePath = data.galleries[0].filePath;
@@ -156,8 +155,13 @@ export default class AccountStore {
 
   @action
   async selectUser(accountId) {
-    console.log(this.loginAccount)
 
+    //accountId가 없으면 서버로 요청
+    if(accountId===undefined){
+      const data = await this.accountRepository.accountInfo();
+      this.loginAccount = new AccountModel(data);
+      accountId = this.loginAccount.accountId;
+    }
 
     const account = await this.accountRepository.accountDetail(accountId);
     console.log(account)

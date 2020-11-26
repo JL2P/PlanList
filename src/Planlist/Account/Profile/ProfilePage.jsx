@@ -13,6 +13,7 @@ class ProfilePage extends Component {
   componentDidMount() {
     const { account, todo, follow } = this.props.Store;
     const id = this.props.match.params.id;
+    console.log(account.loginAccount)
     
     account.selectUser(id); // url의 id와 일치하는 계정을 선택
     account.selectAll();
