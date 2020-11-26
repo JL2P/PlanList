@@ -65,7 +65,7 @@ const HeaderIconsView = ({ accounts,loginAccount }) => {
             alt="ufo_white"
           />
         </Link>
-        <Link to={`/account`}>
+        <Link to={`/account/`}>
           <img
             src="/images/button/user_white.png"
             style={iconStyle}

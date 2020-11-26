@@ -76,6 +76,7 @@ class ProfileTodoContainer extends Component {
     //기능들구현해서 prop로 넘겨주는 작업
     const { account, follow, point, todo } = this.props.Store;
     const { selectUser, selectUserTodos } = this.props;
+    const {getAccount} = account;
     const openAt = selectUser.openAt;
     const loginCheck = account.getLogCheck;
     const loginAccount = account.getLoginAccount;
@@ -146,6 +147,7 @@ class ProfileTodoContainer extends Component {
             onAddPoint={this.onAddPoint}
             onDeletePoint={this.onDeletePoint}
             heat={heat}
+            account={getAccount}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌

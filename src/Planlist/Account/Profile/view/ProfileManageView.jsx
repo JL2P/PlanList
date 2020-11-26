@@ -29,10 +29,12 @@ const ProfileManageView = ({
   openAt,
   isFollowingPage,
   gallery_filePath,
+  account,
   myTotalPoint,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
+
 
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
@@ -74,6 +76,7 @@ const ProfileManageView = ({
         onDeleteUser={onDeleteUser}
         onSetAccountProp={onSetAccountProp}
         gallery_filePath={gallery_filePath}
+        detailAccount={account}
       />
       {/* 프로필 팔로워 모달 기본 open상태 false */}
       <ProfileFollowerModalView
@@ -208,7 +211,7 @@ const ProfileManageView = ({
         </Grid.Row>
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
-        {selectUser.introduce}
+        {account.introduce}
       </Segment>
     </Container>
   );
