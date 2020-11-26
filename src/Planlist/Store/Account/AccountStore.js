@@ -34,7 +34,7 @@ export default class AccountStore {
 
   //겔러리 저장
   @observable gallery = "";
-  @observable gallery_filePath = ""
+  @observable gallery_filePath = null;
 
   @computed
   get getAccount() {
@@ -99,10 +99,8 @@ export default class AccountStore {
     console.log("로그인 정보")
     console.log(data);
     if(data.galleries[0]){
-      this.gallery_filePath = "";
-      this.gallery_filePath = data.galleries[0].filePath;
-    }else{
       this.gallery_filePath = null;
+      this.gallery_filePath = data.galleries[0].filePath;
     }
     
   }
@@ -158,7 +156,11 @@ export default class AccountStore {
 
   @action
   async selectUser(accountId) {
+    console.log(this.loginAccount)
+
+
     const account = await this.accountRepository.accountDetail(accountId);
+    console.log(account)
     this.account = new AccountModel(account);
   }
 
