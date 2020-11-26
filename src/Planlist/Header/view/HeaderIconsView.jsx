@@ -10,7 +10,7 @@ const iconStyle = {
   marginBottom: "0.5em",
 };
 
-const HeaderIconsView = ({ accounts }) => {
+const HeaderIconsView = ({ accounts,loginAccount }) => {
   return (
     <Container>
       <Menu.Item position="left">
@@ -65,7 +65,7 @@ const HeaderIconsView = ({ accounts }) => {
             alt="ufo_white"
           />
         </Link>
-        <Link to={"/account/"}>
+        <Link to={`/account/${loginAccount.accountId}`}>
           <img
             src="/images/button/user_white.png"
             style={iconStyle}

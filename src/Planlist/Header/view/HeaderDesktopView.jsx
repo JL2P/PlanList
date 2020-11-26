@@ -27,7 +27,7 @@ const HeaderDesktopView = ({ Media, loginAccount, loginCheck, accounts }) => {
           style={menuFixed ? menuFixed : menuFixed}
           size="tiny"
         >
-          <HeaderIconsView accounts={accounts} />
+          <HeaderIconsView accounts={accounts} loginAccount={loginAccount} />
           {loginCheck && (
             <h2 style={{ color: "white" }}>{loginAccount.accountId}</h2>
           )}
