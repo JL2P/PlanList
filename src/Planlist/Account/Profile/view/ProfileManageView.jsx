@@ -35,7 +35,6 @@ const ProfileManageView = ({
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
 
-
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
   //팔로워
@@ -210,9 +209,10 @@ const ProfileManageView = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Segment basic style={{ paddingTop: "1em" }}>
+      {/* 일부러만든거아닌가? */}
+      {/* <Segment basic style={{ paddingTop: "1em" }}>
         {account.introduce}
-      </Segment>
+      </Segment> */}
     </Container>
   );
 };
