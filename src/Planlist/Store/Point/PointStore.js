@@ -32,8 +32,8 @@ export default class PointStore {
   }
 
   @action
-  async deletePoint(pointObj) {
-    await this.pointRepository.deletePoint(pointObj);
+  async deletePoint(accountId, todoId) {
+    await this.pointRepository.deletePoint(accountId, todoId);
   }
 
   // 유저의 모든 점수 조회

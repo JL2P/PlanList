@@ -24,9 +24,9 @@ class ProfileTodoContainer extends Component {
   };
 
   // todo 완료를 취소하면 점수 회수
-  onDeletePoint = (pointObj) => {
+  onDeletePoint = (accountId, todoId) => {
     const { point } = this.props.Store;
-    point.deletePoint(pointObj);
+    point.deletePoint(accountId, todoId);
   };
 
   onFollow = (followId) => {
