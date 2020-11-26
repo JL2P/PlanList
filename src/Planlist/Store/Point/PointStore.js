@@ -9,14 +9,18 @@ export default class PointStore {
     this.pointRepository = new PointRepository();
   }
 
-  // 유저의 모든 점수 리스트
-  @observable myPoints = [];
+  @observable myPoints = []; // 유저의 모든 점수 리스트
+  @observable myTotal = 0; // 유저의 총점(누적 점수)
 
   //
   @observable myTodayPoint = 0;
 
   @computed get getMyPoints() {
     return this.myPoints;
+  }
+
+  @computed get getMyTotal() {
+    return this.myTotal;
   }
 
   @computed get getMyTodayPoint() {
@@ -31,9 +35,10 @@ export default class PointStore {
     // this.allPoints();
   }
 
+  // 완료 취소하면 점수 삭제
   @action
-  async deletePoint(pointObj) {
-    await this.pointRepository.deletePoint(pointObj);
+  async deletePoint(accountId, todoId) {
+    await this.pointRepository.deletePoint(accountId, todoId);
   }
 
   // 유저의 모든 점수 조회
@@ -41,6 +46,14 @@ export default class PointStore {
   async allPoints(accountId) {
     const myAllPoints = await this.pointRepository.getUserAllPoint(accountId);
     this.myPoints = myAllPoints.map((item) => new PointModel(item));
+  }
+
+  // 유저의 총점(누적 점수) 조회
+  @action
+  async myTotalPoint(accountId) {
+    const totalPoint = await this.pointRepository.getUserTotalPoint(accountId);
+    console.log("토탈", totalPoint);
+    this.myTotal = totalPoint;
   }
 
   @action

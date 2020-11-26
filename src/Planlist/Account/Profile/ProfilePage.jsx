@@ -1,7 +1,5 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import MyAchievementRateContainer from "../../Ranking/container/MyAchievementRateContainer";
-import MyAchievementRateView from "../../Ranking/view/MyAchievementRateView";
 import ProfileMangeContainer from "./container/ProfileMangeContainer";
 import ProfileTodoContainer from "./container/ProfileTodoContainer";
 import ProfileNonMemberView from "./view/ProfileNonMemberView";

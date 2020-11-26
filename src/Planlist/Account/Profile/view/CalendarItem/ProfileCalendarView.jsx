@@ -23,8 +23,8 @@ const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
       end.getDate().toString().padStart(2, "0");
     events.push({
       title:
-        categoryList.find((cate) => cate.value === item.category).text +
-        " : " +
+        // categoryList.find((cate) => cate.value === item.category).text +
+        // " : " +
         item.title,
       start: item.startTime
         ? item.startTime

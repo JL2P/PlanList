@@ -155,7 +155,7 @@ const ProfileTodoCardView = ({
                     style={{ width: "119px" }}
                     onClick={() => {
                       onIncomplete(todo.todoId);
-                      onDeletePoint(todo);
+                      onDeletePoint(loginId, todo.todoId);
                     }}
                   >
                     <Icon name="check" />

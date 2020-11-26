@@ -12,7 +12,7 @@ class RankingPage extends Component {
 
     // 유저의 모든 점수 조회
     point.allPoints(id);
-    const pointObj = point.getMyPoints[6];
+    const pointObj = point.getMyPoints;
     console.log("점수!!", typeof pointObj, pointObj);
     point.toodayPoint({
       accountId: "hello",
@@ -32,6 +32,38 @@ class RankingPage extends Component {
   }
 
   render() {
+    const { point, todo } = this.props.Store;
+    const today = todo.getToday;
+    const daily = new Date(todo.getToday);
+    const myPoints = point.getMyPoints;
+
+    const date2 = [];
+    const dailyList = [today];
+    const dailyPoint = [];
+    for (var i = 1; i < 7; i++) {
+      var temp = new Date(daily.setDate(daily.getDate() - 1));
+      var temp2 =
+        temp.getFullYear() +
+        "-" +
+        (temp.getMonth() + 1).toString().padStart(2, "0") +
+        "-" +
+        temp.getDate().toString().padStart(2, "0");
+      dailyList.push(temp2);
+    }
+
+    for (var i = 0; i < dailyList.length; i++) {
+      let count = 0;
+      for (var j = 0; j < myPoints.length; j++) {
+        if (dailyList[i] === myPoints[j].created.toString().substring(0, 10)) {
+          count += myPoints[j].point;
+          // console.log(myPoints[j].point, count);
+        }
+      }
+      dailyPoint.push(count);
+    }
+    console.log(dailyList);
+    console.log(dailyPoint);
+
     return (
       <div>
         <h1>Hi</h1>

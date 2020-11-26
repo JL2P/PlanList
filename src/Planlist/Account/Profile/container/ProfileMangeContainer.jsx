@@ -6,16 +6,19 @@ import { inject, observer } from "mobx-react";
 @observer
 class ProfileMangeContainer extends Component {
   componentDidMount = () => {
-    const { follow } = this.props.Store;
+    const { follow, point } = this.props.Store;
     const { selectUser } = this.props;
     follow.getApiFollowers(selectUser.accountId);
     follow.getApiFollowings(selectUser.accountId);
 
     //
     follow.followingPageCheck(selectUser.accountId);
+
+    point.myTotalPoint(selectUser.accountId);
   };
 
   onSetAccountProp = (key, value) => {
+    console.log("dddddddd", key, value);
     const { account } = this.props.Store;
     account.setAccountProp(key, value);
   };
@@ -45,8 +48,8 @@ class ProfileMangeContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     // Store에서 account Store가져오기
-    const { account, todo, follow } = this.props.Store;
-    const { selectUser, loginAccount, selectUserTodos,} = this.props;
+    const { account, todo, follow, point } = this.props.Store;
+    const { selectUser, loginAccount, selectUserTodos } = this.props;
     const {gallery_filePath , getAccount} = account;
 
     const openAt = selectUser.openAt;
@@ -59,6 +62,7 @@ class ProfileMangeContainer extends Component {
     const followers = follow.getMyFollowers;
     const followings = follow.getMyFollowings;
     const isFollowingPage = follow.getIsFollowingPage;
+    const myTotalPoint = point.getMyTotal;
 
     return (
       <div>
@@ -80,6 +84,7 @@ class ProfileMangeContainer extends Component {
           openAt={openAt}
           isFollowingPage={isFollowingPage}
           gallery_filePath={gallery_filePath}
+          myTotalPoint={myTotalPoint}
           account={getAccount}
         />
       </div>
