@@ -7,7 +7,7 @@ import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowList
 import ProfileTodoIncompletedListContainer from "../container/ProfileTodoIncompletedListContainer";
 import ProfileFollowRequestListContainer from "../container/ProfileFollowRequestListContainer";
 import ProfileCalendarContainer from "../container/ProfileCalendarContainer";
-import MyAchievementRateContainer from "../../../Ranking/container/MyAchievementRateContainer";
+import MyAchievementRateContainer from "../container/MyAchievementRateContainer";
 
 @inject("Store")
 @observer
@@ -63,6 +63,7 @@ class ProfileTodoView extends Component {
       onIncomplete,
       onAddPoint,
       onDeletePoint,
+      heat,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -164,7 +165,9 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-            {activeItem === "날짜별 달성률" && <MyAchievementRateContainer />}
+            {activeItem === "날짜별 달성률" && (
+              <MyAchievementRateContainer heat={heat} />
+            )}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer
                 selectUser={selectUser}
