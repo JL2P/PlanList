@@ -28,11 +28,10 @@ const ProfileManageView = ({
   followings,
   openAt,
   isFollowingPage,
-  gallery_filePath
+  gallery_filePath,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
-  console.log(loginAccount)
 
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
@@ -58,9 +57,6 @@ const ProfileManageView = ({
   const handleItemClick = (activeItem) => {
     setActiveItem(activeItem);
   };
-
-  console.log(followers.length);
-  console.log(followings.length);
 
   return (
     <Container text style={{ marginTop: "3em" }}>
@@ -94,7 +90,7 @@ const ProfileManageView = ({
           {/* 프로필 이미지 */}
           <Grid.Column width={4}>
             <Image
-              src={gallery_filePath ? gallery_filePath : selectUser.imgUrl}
+              src={selectUser.galleries.length>0 ? selectUser.galleries[0].filePath : selectUser.imgUrl}
               bordered
               centered
               style={{
