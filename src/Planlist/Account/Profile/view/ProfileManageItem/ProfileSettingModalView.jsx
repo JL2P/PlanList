@@ -16,10 +16,49 @@ const ProfileSettingModalView = ({
   onSetAccountProp,
   onDeleteUser,
   gallery_filePath,
-  detailAccount
+  detailAccount,
 }) => {
-  console.log(account)
   const modal_height = "400px"; // 모달창 높이
+
+  //회원 정보
+  const [file, setFile] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [name, setName] = useState("");
+  const [birth, setBirth] = useState("");
+  const [gender, setGender] = useState("");
+  const [introduce, setIntroduce] = useState("");
+  // account 공개 여부를 체크하기 위함
+  const [check, setChecked] = useState(null);
+
+  const onChangeImage = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      setFile(file);
+      setImgUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const onChangeName = (e) => setName(e.target.value);
+  const onChangeBirth = (e) => setBirth(e.target.value);
+  const onChangeGender = (e, { value }) => setGender(value);
+  const onChangeIntroduce = (e) => setIntroduce(e.target.value);
+
+  const onChecked = () => {
+    if (check === null) {
+      setChecked(account.openAt === "Y" ? false : true);
+    } else {
+      setChecked(!check);
+    }
+
+    // if (account.openAt === "Y") {
+    //   setChecked(false);
+    // } else {
+    //   setChecked(true);
+    // }
+  };
 
   // 회원 탈퇴 모달
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
@@ -31,18 +70,6 @@ const ProfileSettingModalView = ({
   const [signoutOpen, setSignoutOpen] = useState(false);
   const onSignoutModal = (trigger) => {
     setSignoutOpen(trigger);
-  };
-
-  // account 공개 여부를 체크하기 위함
-  const [check, setChecked] = useState();
-  const onChecked = () => {
-    if (account.openAt === "Y") {
-      setChecked(false);
-      onSetAccountProp("openAt", "N");
-    } else {
-      setChecked(true);
-      onSetAccountProp("openAt", "Y");
-    }
   };
 
   return (
@@ -123,7 +150,7 @@ const ProfileSettingModalView = ({
           </Modal.Content>
         </Grid.Column>
 
-        <Grid.Column stretched width={13} margin-right={2} stackable>
+        <Grid.Column stretched width={13} margin-right={2}>
           <Modal.Content
             scrolling
             image
@@ -136,6 +163,16 @@ const ProfileSettingModalView = ({
                   onSetAccountProp={onSetAccountProp}
                   gallery_filePath={gallery_filePath}
                   detailAccount={detailAccount}
+                  onChangeImage={onChangeImage}
+                  onChangeName={onChangeName}
+                  onChangeBirth={onChangeBirth}
+                  onChangeGender={onChangeGender}
+                  onChangeIntroduce={onChangeIntroduce}
+                  imgUrl={imgUrl}
+                  name={name}
+                  birth={birth}
+                  gender={gender}
+                  introduce={introduce}
                 />
               )}
               {/* {activeItem === "비밀번호 변경" && (
@@ -147,7 +184,6 @@ const ProfileSettingModalView = ({
                   onSetAccountProp={onSetAccountProp}
                   check={check}
                   onChecked={onChecked}
-                  setChecked={setChecked}
                 />
               )}
               {activeItem === "로그아웃"}
@@ -164,7 +200,17 @@ const ProfileSettingModalView = ({
           // href="/account"
           style={{ background: "#FFB517" }}
           onClick={() => {
-            onModifyUser(account);
+            onModifyUser(
+              {
+                accountId: account.accountId,
+                name: name ? name : account.name,
+                birth: birth ? birth : account.birth,
+                gender: gender ? gender : account.gender,
+                introduce: introduce ? introduce : account.introduce,
+                openAt: check !== null ? (check ? "Y" : "N") : account.openAt,
+              },
+              file
+            );
             onSettingModal(false);
           }}
         >
