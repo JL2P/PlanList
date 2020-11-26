@@ -5,6 +5,7 @@ import { Button, Form, Icon } from "semantic-ui-react";
 import { sign_submitBtn, sign_btn_text } from "../../style/Btn";
 
 import "./signinStyle.css";
+import axios from "axios";
 
 const SigninView = ({ onSignin }) => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,19 @@ const SigninView = ({ onSignin }) => {
 
   const onEmail = (e) => setEmail(e.target.value);
   const onPassword = (e) => setPassword(e.target.value);
+
+  const header = {
+    headers: {
+      "Access-Control-Allow-Origin":
+        "http://localhost:9000/oauth2/authorization/google",
+    },
+  };
+
+  const onGoogleLogin = () => {
+    const url = "/api/auth/signin/google";
+    const url2 = "http://localhost:9000/oauth2/authorization/google";
+    window.location.href = url2;
+  };
 
   const sign_forgetPassword = {
     display: "block",
@@ -54,22 +68,26 @@ const SigninView = ({ onSignin }) => {
         <Button color="yellow" style={sign_submitBtn}>
           <b style={sign_btn_text}>Log In</b>
         </Button>
-        <b style={{ ...sign_btn_text, marginTop: "5px" }}>or</b>
-        <Button color="facebook" style={sign_submitBtn}>
-          <Icon name="facebook" size="large" />
-          <b style={sign_btn_text}>Continue with Facebook</b>
-        </Button>
-        <Button color="google plus" style={sign_submitBtn}>
-          <Icon name="google plus" size="large" />
-          <b style={sign_btn_text}>Continue with Google</b>
-        </Button>
-
-        <Link to="signup">
-          <b style={{ ...sign_btn_text, marginTop: "25px", color: "black" }}>
-            Sign Up Page
-          </b>
-        </Link>
       </Form>
+      <b style={{ ...sign_btn_text, marginTop: "5px" }}>or</b>
+      <Button color="facebook" style={sign_submitBtn}>
+        <Icon name="facebook" size="large" />
+        <b style={sign_btn_text}>Continue with Facebook</b>
+      </Button>
+      <Button
+        color="google plus"
+        style={sign_submitBtn}
+        onClick={() => onGoogleLogin()}
+      >
+        <Icon name="google plus" size="large" />
+        <b style={sign_btn_text}>Continue with Google</b>
+      </Button>
+
+      <Link to="signup">
+        <b style={{ ...sign_btn_text, marginTop: "25px", color: "black" }}>
+          Sign Up Page
+        </b>
+      </Link>
     </AuthTemplate>
   );
 };

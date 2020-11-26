@@ -13,7 +13,6 @@ import {
   GroupCategory,
   Ranking,
 } from "./Planlist/PlanlistRoutes";
-import Chat_test from "./Planlist/Chat/components/Chat/Chat_test";
 
 const App = withRouter(({ location }) => {
   return (
