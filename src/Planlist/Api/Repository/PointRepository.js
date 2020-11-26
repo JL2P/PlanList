@@ -23,6 +23,11 @@ export default class PointRepository {
     return axios_auth_GET(this.URL + `/pointList/${accountId}`, []);
   };
 
+  // 유저의 총점(누적 점수) 조회
+  getUserTotalPoint = (accountId) => {
+    return axios_auth_GET(this.URL + `/${accountId}`);
+  };
+
   getUserPointByDate = (pointObj) => {
     return axios_auth_POST(this.URL + `/date`, pointObj, {});
   };

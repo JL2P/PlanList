@@ -107,7 +107,7 @@ class ProfileTodoView extends Component {
               active={activeItem === "날짜별 달성률"}
               onClick={this.handleItemClick}
             />
-            {selectUser.accountId === loginAccount.accountId ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
+            {selectUser === loginAccount ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
               <>
                 <Menu.Item
                   name="새로운 알림"
