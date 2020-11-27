@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProfileManageView from "../view/ProfileManageView";
 import { inject, observer } from "mobx-react";
+import badgeIcon from "../../../Ranking/badgeData";
 
 @inject("Store")
 @observer
@@ -23,9 +24,11 @@ class ProfileMangeContainer extends Component {
     account.setAccountProp(key, value);
   };
 
-  onModifyUser = (user) => {
+  //승훈 수정
+  //정보 수정시 파일이 있을경우도 추가
+  onModifyUser = (user, file) => {
     const { account } = this.props.Store;
-    account.userModify(user)
+    account.userModify(user, file);
   };
 
   onDeleteUser = (accountId) => {
@@ -50,7 +53,7 @@ class ProfileMangeContainer extends Component {
     // Store에서 account Store가져오기
     const { account, todo, follow, point } = this.props.Store;
     const { selectUser, loginAccount, selectUserTodos } = this.props;
-    const {gallery_filePath , getAccount} = account;
+    const { gallery_filePath, getAccount } = account;
 
     const openAt = selectUser.openAt;
     const today = todo.getToday;
@@ -63,6 +66,7 @@ class ProfileMangeContainer extends Component {
     const followings = follow.getMyFollowings;
     const isFollowingPage = follow.getIsFollowingPage;
     const myTotalPoint = point.getMyTotal;
+    const myLevel = point.getMyLevel;
 
     return (
       <div>
@@ -85,6 +89,7 @@ class ProfileMangeContainer extends Component {
           isFollowingPage={isFollowingPage}
           gallery_filePath={gallery_filePath}
           myTotalPoint={myTotalPoint}
+          myLevel={myLevel}
           account={getAccount}
         />
       </div>

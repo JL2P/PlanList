@@ -10,8 +10,21 @@ import {
 } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
-const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath }) => {
-
+const ProfileAccountModifyView = ({
+  account,
+  onSetAccountProp,
+  gallery_filePath,
+  onChangeImage,
+  onChangeName,
+  onChangeBirth,
+  onChangeGender,
+  onChangeIntroduce,
+  imgUrl,
+  name,
+  birth,
+  gender,
+  introduce,
+}) => {
   const modifyTitle = 4;
   const modifyContent = 10;
   const genderOptions = [
@@ -38,37 +51,54 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath 
         <Grid.Row>
           {/* <Grid.Column width={1}></Grid.Column> */}
           {/* 프로필 이미지 */}
-          <Grid.Column width={6} style={{
-              display:"flex",
-              alignItems:"center",
-              justifyContent:"center",
-              flexDirection:"column"
-            }}>
+          <Grid.Column
+            width={6}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             <Image
-              src={gallery_filePath ? gallery_filePath : account.imgUrl}
+              src={
+                imgUrl
+                  ? imgUrl
+                  : gallery_filePath
+                  ? gallery_filePath
+                  : account.imgUrl
+              }
               bordered
               centered
               style={{
                 width: "80px",
                 height: "80px",
                 objectFit: "cover",
-                marginBottom:"0.5em",
+                marginBottom: "0.5em",
                 borderRadius: "50%",
               }}
             />
-            <Button 
+            <Button
               basic
               as="label"
               htmlFor="profile_img"
-              style={{fontSize:"0.8em"}}
-            >프로필 사진 바꾸기</Button>
+              style={{ fontSize: "0.8em" }}
+            >
+              프로필 사진 바꾸기
+            </Button>
 
-            <input id="profile_img" type="file" multiple hidden onChange={(e) => onSetAccountProp("galleries", e.target.files[0])}/>
-
+            <input
+              id="profile_img"
+              type="file"
+              multiple
+              hidden
+              onChange={onChangeImage}
+              // onChange={(e) => onSetAccountProp("galleries", e.target.files[0])}
+            />
           </Grid.Column>
           {/* 아이디, 이메일 */}
-          <Grid.Column width={modifyContent} style={{display:"flex"}}>
-            <Grid stackable style={{ marginLeft: "5px" }}>
+          <Grid.Column width={modifyContent} style={{ display: "flex" }}>
+            <Grid style={{ marginLeft: "5px" }}>
               <Grid.Row style={{ fontSize: "30px", fontWeight: "bold" }}>
                 {account.accountId}
               </Grid.Row>
@@ -89,8 +119,9 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath 
             <Input
               fluid
               placeholder={account.name}
-              value={account.name}
-              onChange={(e) => onSetAccountProp("name", e.target.value)}
+              value={name ? name : account.name}
+              onChange={onChangeName}
+              // onChange={(e) => onSetAccountProp("name", e.target.value)}
             />
           </Grid.Column>
         </Grid.Row>
@@ -104,12 +135,12 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath 
           <Grid.Column width={modifyContent}>
             <Input
               fluid
-              placeholder={account.birth}
-              value={account.birth}
+              value={birth ? birth : account.birth}
               type="date"
-              onChange={(e) => {
-                onSetAccountProp("birth", e.target.value);
-              }}
+              onChange={onChangeBirth}
+              // onChange={(e) => {
+              //   onSetAccountProp("birth", e.target.value);
+              // }}
             />
           </Grid.Column>
         </Grid.Row>
@@ -125,8 +156,9 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath 
               fluid
               selection
               options={genderOptions}
-              value={account.gender}
-              onChange={(e, { value }) => onSetAccountProp("gender", value)}
+              value={gender ? gender : account.gender}
+              onChange={onChangeGender}
+              // onChange={(e, { value }) => onSetAccountProp("gender", value)}
               placeholder="성별"
             />
           </Grid.Column>
@@ -140,10 +172,10 @@ const ProfileAccountModifyView = ({ account, onSetAccountProp, gallery_filePath 
           </Grid.Column>
           <Grid.Column width={modifyContent}>
             <TextArea
-              placeholder={account.introduce}
-              value={account.introduce}
+              value={introduce ? introduce : account.introduce}
               style={{ minHeight: 150 }}
-              onChange={(e) => onSetAccountProp("introduce", e.target.value)}
+              onChange={onChangeIntroduce}
+              // onChange={(e) => onSetAccountProp("introduce", e.target.value)}
             />
           </Grid.Column>
         </Grid.Row>
