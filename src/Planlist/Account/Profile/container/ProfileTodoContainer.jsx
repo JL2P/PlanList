@@ -38,6 +38,7 @@ class ProfileTodoContainer extends Component {
   onFollow = (followId) => {
     const { follow } = this.props.Store;
     follow.follow(followId);
+    alert("팔로우 요청되었습니다.");
     window.location.reload();
   };
 
@@ -57,9 +58,11 @@ class ProfileTodoContainer extends Component {
   };
 
   onDeleteMyFollowing = (followId) => {
-    alert("삭제되었습니다");
     const { follow } = this.props.Store;
-    follow.deleteMyFollowing(followId);
+    follow.deleteMyFollowing(followId).then((res) => {
+      alert("팔로우 요청이 취소되었습니다.");
+      window.location.reload();
+    });
   };
 
   onComplete = (todoId) => {

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Button, Container, Header, Segment } from "semantic-ui-react";
-import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
-import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
 
 class ProfilePrivateAccountTodoView extends Component {
   render() {

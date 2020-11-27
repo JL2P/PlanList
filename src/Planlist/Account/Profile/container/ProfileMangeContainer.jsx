@@ -40,9 +40,16 @@ class ProfileMangeContainer extends Component {
   };
 
   onFollow = (followId) => {
-    alert(followId);
     const { follow } = this.props.Store;
     follow.follow(followId);
+    alert("팔로우 요청되었습니다.");
+    window.location.reload();
+  };
+
+  onDeleteMyFollowing = (followId) => {
+    const { follow } = this.props.Store;
+    follow.deleteMyFollowing(followId);
+    alert("팔로우 요청이 취소되었습니다.");
     window.location.reload();
   };
 
@@ -87,6 +94,7 @@ class ProfileMangeContainer extends Component {
           gallery_filePath={gallery_filePath}
           myTotalPoint={myTotalPoint}
           account={getAccount}
+          onDeleteMyFollowing={this.onDeleteMyFollowing}
         />
       </div>
     );

@@ -7,10 +7,11 @@ import ProfileFollowingView from "../view/ProfileManageFollowing/ProfileFollowin
 @observer
 class ProfileFollowingListContainer extends Component {
   onDeleteMyFollowing = (followId) => {
-    alert("삭제되었습니다");
     const { follow } = this.props.Store;
-    follow.deleteMyFollowing(followId);
-    window.location.reload();
+    follow.deleteMyFollowing(followId).then((res) => {
+      alert("팔로우 요청이 취소되었습니다.");
+      window.location.reload();
+    });
   };
 
   render() {
