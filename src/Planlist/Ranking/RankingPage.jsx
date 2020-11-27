@@ -1,5 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import GroupRankingListContainer from "./Container/GroupRankingListContainer";
+
 
 @inject("Store")
 @observer
@@ -67,6 +69,7 @@ class RankingPage extends Component {
     return (
       <div>
         <h1>Hi</h1>
+        <GroupRankingListContainer></GroupRankingListContainer>
       </div>
     );
   }
