@@ -18,7 +18,6 @@ class ProfileMangeContainer extends Component {
   };
 
   onSetAccountProp = (key, value) => {
-    console.log("dddddddd", key, value);
     const { account } = this.props.Store;
     account.setAccountProp(key, value);
   };

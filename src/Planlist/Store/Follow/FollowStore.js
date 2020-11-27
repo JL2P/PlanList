@@ -81,8 +81,6 @@ export default class FollowStore {
   @action
   async getApiNotConfirmFollowers() {
     const data = await this.followRepository.notConfirmFollowersFunction();
-    console.log("getApiNotConfirmFollowers");
-    console.log(data);
     this.notConfirmFollowers = data.map(
       (follower) => new AccountModel(follower)
     );
@@ -91,16 +89,8 @@ export default class FollowStore {
   @action
   async getApiMyFollowers() {
     const data = await this.followRepository.getMyFollowersFunction();
-    console.log("getApiMyfollowers");
-    console.log(data);
     this.followers = data.map((follower) => new AccountModel(follower));
   }
-
-  // @action
-  // async getfollowinglist(){
-  //   const accounId = this.root.account.getLoginAccount.accountId;
-  //   this.followRepository.getFollowerlistFunction(accounId)
-  // }
 
   //승훈 생성
   //내가 팔로우를 신청한 사람들중에 나를 수락한 사람들의 데이터를 가져온다.
@@ -108,9 +98,7 @@ export default class FollowStore {
   @action
   async getApiMyFollowings() {
     const data = await this.followRepository.getMyFollowinglistFunction();
-    console.log("getApiMyfollowings");
     this.followings = data.map((following) => new AccountModel(following));
-    console.log(this.followings);
   }
 
   @action
@@ -119,7 +107,6 @@ export default class FollowStore {
       followerId
     );
 
-    console.log("FLAG " + followStateObj.followState);
     this.isFollowed = followStateObj.followState;
   }
 
@@ -129,7 +116,6 @@ export default class FollowStore {
       followerId
     );
 
-    console.log("FLAG " + followStateObj.followState);
     this.isFollowing = followStateObj.followState;
   }
 
@@ -174,16 +160,12 @@ export default class FollowStore {
 
   @action
   async getApiFollowers(accountId) {
-    console.log("getApiFollowers");
-    console.log(accountId);
     const data = await this.followRepository.getFollowersFunction(accountId);
     this.followers = data.map((follower) => new AccountModel(follower));
   }
 
   @action
   async getApiFollowings(accountId) {
-    console.log("getApiFollowings");
-    console.log(accountId);
     const data = await this.followRepository.getFollowingsFunction(accountId);
     this.followings = data.map((following) => new AccountModel(following));
   }

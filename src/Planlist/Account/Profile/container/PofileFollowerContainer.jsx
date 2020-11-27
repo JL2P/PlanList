@@ -48,8 +48,6 @@ class PofileFollowerContainer extends Component {
     //follower True Following True
     // 팔로우 취소버튼
     const flag = isFollower && isFollowing ? true : false;
-    console.log(isFollower, isFollowing);
-    console.log(flag);
 
     //follower false Following True
     // 팔로우하기 버튼

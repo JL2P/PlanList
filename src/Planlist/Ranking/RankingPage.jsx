@@ -8,12 +8,10 @@ class RankingPage extends Component {
     const { account, point } = this.props.Store;
     account.getApiAccountInfo();
     const id = account.getLoginAccount.accountId;
-    console.log("로그인!!", id);
 
     // 유저의 모든 점수 조회
     point.allPoints(id);
     const pointObj = point.getMyPoints;
-    console.log("점수!!", typeof pointObj, pointObj);
     point.toodayPoint({
       accountId: "hello",
       created: "2020-11-25T05:46:36.957Z",
@@ -22,7 +20,7 @@ class RankingPage extends Component {
       pointId: 0,
       todoId: "string",
     });
-    console.log("오잉", point.getMyTodayPoint);
+
     // point.addPoint({
     //   accountId: "hello",
     //   likeCount: 1,
@@ -61,9 +59,6 @@ class RankingPage extends Component {
       }
       dailyPoint.push(count);
     }
-    console.log(dailyList);
-    console.log(dailyPoint);
-
     return (
       <div>
         <h1>Hi</h1>

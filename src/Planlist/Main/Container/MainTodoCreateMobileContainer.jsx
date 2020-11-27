@@ -31,9 +31,7 @@ class MainTodoCreateMobileContainer extends Component {
   };
 
   //Todo 생성
-  createTodo = () => {
-    console.log("Todo Create");
-  };
+  createTodo = () => {};
 
   render() {
     const { open, todoTitle } = this.state;

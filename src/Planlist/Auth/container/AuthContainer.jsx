@@ -21,7 +21,6 @@ class AuthContainer extends Component {
     const { account } = this.props.Store;
     const returnValue = window.confirm("정말로 삭제하겠습니까?");
     if (returnValue) {
-      console.log("아이디 삭제");
       account.userRemove(accountId);
       alert("아이디가 삭제되었습니다.");
       this.props.history.push("/signin");
@@ -47,11 +46,9 @@ class AuthContainer extends Component {
     account.userModify(accountObj);
     const returnValue = window.confirm("내용을 수정 하시겠습니까?");
     if (returnValue) {
-      console.log("내용 수정");
       account.userRemove(accountObj);
       alert("회원 정보가 변경되었습니다. 로그인 페이지로 이동합니다.");
       account.authModifymove = true;
-      console.log(account.authModifymove);
       account.logCheck = false;
       this.props.history.push("/signin");
     } else {
@@ -60,7 +57,6 @@ class AuthContainer extends Component {
   };
 
   render() {
-    console.log("render");
     const { account } = this.props.Store;
 
     return (

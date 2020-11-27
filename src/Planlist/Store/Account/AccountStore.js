@@ -124,7 +124,6 @@ export default class AccountStore {
   @action
   async userRemove(accountId) {
     await this.accountRepository.accountDelete(accountId);
-    console.log("아이디 삭제 완료");
     this.selectAll();
   }
 
@@ -132,7 +131,6 @@ export default class AccountStore {
   @action
   btn_change() {
     this.authModifymove = false;
-    console.log(this.authModifymove);
   }
 
   //UserModify
@@ -190,7 +188,6 @@ export default class AccountStore {
     }
 
     const account = await this.accountRepository.accountDetail(accountId);
-    console.log(account)
     this.account = new AccountModel(account);
   }
 

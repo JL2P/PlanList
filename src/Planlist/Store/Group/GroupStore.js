@@ -79,7 +79,6 @@ export default class GroupStore {
       @action
       async getApiGroups(){
         const apiGetGroups = await this.groupRepository.groupList();
-        console.log(apiGetGroups)
         runInAction(()=>{
           this.groups = apiGetGroups.map(group => new GroupModel(group));
         });
@@ -128,7 +127,6 @@ export default class GroupStore {
           //생성시 해당 그룹으로 연결
           this.groupDetail_page(result.id,accountId);
         });
-        console.log(result)
         
       }
 
@@ -136,15 +134,12 @@ export default class GroupStore {
       @action
       async groupDetail_page(groupId,accountId){
         const result = await this.groupRepository.groupDetail(groupId);
-        console.log(result)
         this.group = new GroupModel(result);
 
         if(this.group.galleries[0] ){
           this.groupGallery = this.group.galleries[0].filePath
-          console.log(this.groupGallery)
         }else{
           this.groupGallery = null;
-          console.log(this.groupGallery)
         }
         
 
@@ -177,7 +172,6 @@ export default class GroupStore {
           this.groupGallery = file;
         } 
         const groupModel = new GroupModifyModel(groupObj);
-        console.log(groupModel)
         await this.groupRepository.groupModify(groupModel);
 
         
@@ -205,9 +199,7 @@ export default class GroupStore {
       //그룹원 생성
       @action
       async groupMember(memberObj){
-        console.log(memberObj)
         const memberModel = new MemberModel(memberObj);
-        console.log(memberModel);
         await this.memberRepository.memberCreate(memberModel);
       }
 
@@ -222,7 +214,6 @@ export default class GroupStore {
       @action
       async memberRemove(groupId,memberId){
         const result = await this.memberRepository.memberDelete(groupId,memberId);
-        console.log(result);
       }
 
       //멤버 전체 리스트
@@ -230,17 +221,14 @@ export default class GroupStore {
       async memberListAll(){
         const memberList = await this.memberRepository.memberList();
         this.members = memberList.map(member => new MemberModel(member));
-        console.log("GroupStore====>멤버리스트",this.members);
       }
       //그룹장 양도 (그룹원 -> 마스터)
       @action
       async managerTransfer_U(memberObj,groupObj){
         const memberModel = new MemberTransferDto(memberObj);
         const groupModel = new GroupTransferModel(groupObj);
-        console.log(groupModel)
         await this.memberRepository.memberTranfer(memberModel);
         const result = await this.groupRepository.groupTransfer(groupModel);
-        console.log(result)
       }
 
       //그룹장 양도 (마스터 -> 유저)
@@ -250,7 +238,6 @@ export default class GroupStore {
         const groupModel = new GroupTransferModel(groupObj)
         await this.memberRepository.memberTranfer(memberModel);
         const result = await this.groupRepository.groupTransfer(groupModel);
-        console.log(result);
       }
 
 }

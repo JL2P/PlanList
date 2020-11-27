@@ -182,10 +182,8 @@ export default class TodoStore {
 
     //기간별 Todo 생성
     let addedTodos = [];    
-    console.log(todoModel.todoKind);
     if(todoModel.todoKind ==="DAY") addedTodos = await this.todoRepository.createDayTodo(todoModel);
     if(todoModel.todoKind ==="WEEK") addedTodos = await this.todoRepository.createWeekTodo(todoModel);
-    console.log(addedTodos);
 
     //Todo생성시 업로드한 이미지가 존재하는 경우
     if(todoObj.images.length !==0){

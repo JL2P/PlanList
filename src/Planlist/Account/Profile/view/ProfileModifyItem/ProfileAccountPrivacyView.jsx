@@ -3,7 +3,6 @@ import { Checkbox, Form, Grid } from "semantic-ui-react";
 import "./ProfileModify.scss";
 
 const ProfileAccountPrivacyView = ({ account, check, onChecked }) => {
-  console.log(check);
   const getCheckState = () => {
     //Account에 체크정보가 존재할 경우
     if (check === null) {
@@ -13,7 +12,6 @@ const ProfileAccountPrivacyView = ({ account, check, onChecked }) => {
   };
 
   const checkValue = getCheckState();
-  console.log(typeof checkValue);
   return (
     <Form style={{ width: "95%" }}>
       <Grid stackable>
