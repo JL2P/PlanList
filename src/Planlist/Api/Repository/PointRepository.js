@@ -32,5 +32,8 @@ export default class PointRepository {
     return axios_auth_POST(this.URL + `/date`, pointObj, {});
   };
 
-  //
+  // 모든 유저의 랭킹 조회
+  getAllRank = () => {
+    return axios_auth_GET(this.URL + `/all/ranking`, []);
+  };
 }
