@@ -13,6 +13,7 @@ class DetailCenterlContainer extends Component {
     groupTodoStore.addGroupTodo(groupTodoObj);
     window.location.reload();
   };
+
   //todo 생성후 모달 닫기
   onDetailGroup_modalCheck = (check) => {
     const { group } = this.props.Store;

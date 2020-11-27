@@ -47,11 +47,18 @@ export default class GroupTodoStore {
 
     //GroupTodo 생성
     @action
-    async addGroupTodo(groupTodoObj){
+    async addGroupTodo(groupTodoObj, file){
       const grouptodoAddModel = new GroupTodoAddModel(groupTodoObj);
-      await this.groupTodoRepository.createGroupTodo(grouptodoAddModel);
+      const addedGroupTodo = await this.groupTodoRepository.createGroupTodo(grouptodoAddModel);
+     
+      const groupId = addedGroupTodo.groupId
+      const groupTodoId = addedGroupTodo.groupTodoId
+
+      if(file) await this.groupTodoRepository.groupTodoImageUpload(groupId, groupTodoId, file)
+
       //groupStore에 있는 함수 실행
       this.group.detailGroup_modalCheck(false);
+      this.getApiGroupTodos(groupId)
     }
 
     //GroupTodo 수정

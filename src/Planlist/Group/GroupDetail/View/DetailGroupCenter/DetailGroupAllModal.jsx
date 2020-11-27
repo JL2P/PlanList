@@ -162,14 +162,18 @@ const DetailGroupAllModal = ({
                   color: "#ffffff",
                 }}
                 onClick={(e) => {
-                  onDetailGroup_create(e, {
-                    groupId: group.id,
-                    category,
-                    title,
-                    description,
-                    master,
-                    imgUrl,
-                  });
+                  onDetailGroup_create(
+                    e,
+                    {
+                      groupId: group.id,
+                      category,
+                      title,
+                      description,
+                      master,
+                      imgUrl,
+                    },
+                    images.length > 0 ? images[0].file : null
+                  );
                 }}
               >
                 저장
