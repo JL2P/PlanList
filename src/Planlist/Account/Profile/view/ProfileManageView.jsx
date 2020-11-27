@@ -214,10 +214,9 @@ const ProfileManageView = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      {/* 일부러만든거아닌가? */}
       <Segment basic style={{ paddingTop: "1em" }}>
         {account.introduce}
-      </Segment>
+      </Segment> */}
     </Container>
   );
 };
