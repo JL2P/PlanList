@@ -137,27 +137,6 @@ export default class AccountStore {
   @action
   async userModify(account, file) {
 
-    //이미지 저장
-    // account에 filepath데이터를 받아야 실행
-    // if(account.galleries.length !== 0){
-    //   console.log(account.galleries)
-    //   console.log(this.gallery_filePath)
-    //   // 프로필 이미지가 기본일 때 이미지 변경 안 하고 수정
-    //   if(this.gallery_filePath === null){
-    //     console.log(11111111111111111111111)
-    //     this.gallery = await this.accountGalleryRepository.galleryAdd(account.galleries, account.accountId);
-    //     this.gallery_filePath = this.gallery.filePath
-    //   }else if(account.galleries !== this.gallery_filePath){
-    //     console.log(222222222222222222222222222)
-    //     console.log(account.galleries)
-    //     console.log(this.gallery_filePath)
-    //     // 프로필 이미지 변경할 때 기존 이미지랑 다를 때만 변경
-    //     this.gallery = await this.accountGalleryRepository.galleryAdd(account.galleries, account.accountId);
-    //     this.gallery_filePath = this.gallery.filePath
-    //     console.log(this.gallery_filePath)
-    //   }
-    // } 
-
     //업로드할 파일이 있을 경우에만 업데이트
     if(file){
       this.account.galleries = await this.accountGalleryRepository.galleryAdd(file, account.accountId);
