@@ -6,11 +6,14 @@ import {
   Icon,
   Segment,
   Button,
+  Form,
 } from "semantic-ui-react";
 // import TestModal from "./TestModal";
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
+import badgeIcon from "../../../Ranking/badgeData";
+import Badge from "./ProfileManageItem/Badge";
 
 const ProfileManageView = ({
   selectUser,
@@ -31,10 +34,10 @@ const ProfileManageView = ({
   gallery_filePath,
   account,
   myTotalPoint,
+  myLevel,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
   let pText2 = "19px"; // 두 번째 Row fontSize
-
 
   // modal open 상태 관리 (true: open, false: hide)
   const [settingOpen, setSettingOpen] = useState(false);
@@ -121,7 +124,7 @@ const ProfileManageView = ({
                     {/* 사용자 아이디 */}
                     <Grid.Column width={13} style={{ fontSize: pText1 }}>
                       {selectUser.accountId}
-                      점수{myTotalPoint}
+                      <Badge myLevel={myLevel} />
                     </Grid.Column>
                     {/* setting */}
                     <Grid.Column width={2} style={{ fontSize: pText1 }}>
@@ -135,7 +138,8 @@ const ProfileManageView = ({
                   // 다른 사용자 페이지 - 팔로우 버튼을 보여줌
                   <>
                     <Grid.Column width={10} style={{ fontSize: pText1 }}>
-                      {selectUser.accountId}점수{myTotalPoint}
+                      {selectUser.accountId}
+                      <Badge myLevel={myLevel} />
                     </Grid.Column>
                     <Grid.Column width={6} style={{ fontSize: pText1 }}>
                       {/* 팔로우 상태일 경우 */}
@@ -210,6 +214,7 @@ const ProfileManageView = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      {/* 일부러만든거아닌가? */}
       <Segment basic style={{ paddingTop: "1em" }}>
         {account.introduce}
       </Segment>
