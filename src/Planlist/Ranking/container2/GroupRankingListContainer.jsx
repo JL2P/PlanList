@@ -15,7 +15,6 @@ class GroupRankingListContainer extends Component {
 
     render() {
         const { group, groupPoint } = this.props.Store;
-        const groupRanks = groupPoint.getGroupRanks;
     
 
       
