@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { Menu, Container } from "semantic-ui-react";
+import { Menu, Container, Label } from "semantic-ui-react";
 import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompletedListContainer";
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
@@ -65,6 +65,7 @@ class ProfileTodoView extends Component {
       onDeletePoint,
       heat,
       account,
+      notConfirmFollowers,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
@@ -114,7 +115,15 @@ class ProfileTodoView extends Component {
                   name="새로운 알림"
                   active={activeItem === "새로운 알림"}
                   onClick={this.handleItemClick}
-                />
+                >
+                  새로운 알림
+                  {notConfirmFollowers.length > 0 && (
+                    <Label color="red" floating>
+                      {notConfirmFollowers.length}
+                    </Label>
+                  )}
+                </Menu.Item>
+
                 <Menu.Menu position="right">
                   <Menu.Item
                     icon="pencil"

@@ -14,6 +14,8 @@ const AuthTemplateBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  z-index: 10;
 `;
 
 /* 흰색 박스 */
@@ -25,13 +27,13 @@ const WhiteBox = styled.div`
     font-weight: bold;
     letter-spacing: 1.5px;
   }
-  box-shadow: 0px 0px 8px rgba(230, 144, 73, 0.4),
-    0px 0px 8px rgba(230, 144, 73, 0.4);
+  box-shadow: 0px 0px 28px rgba(230, 144, 73, 0.4),
+    0px 0px 28px rgba(230, 144, 73, 0.4);
   padding: 3rem 2rem;
   width: 500px;
   ovarflow: hidden;
-  background: rgba(255, 255, 255, 0);
-
+  // background: rgba(255, 255, 255, 0);
+  background: #ffffff;
   border-radius: 10px;
 
   @media only screen and (max-width: 767px) {

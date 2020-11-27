@@ -1,6 +1,5 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfilePrivateAccountTodoView from "../view/ProfilePrivateAccountTodoView";
 import ProfileTodoView from "../view/ProfileTodoView";
 
@@ -150,6 +149,7 @@ class ProfileTodoContainer extends Component {
             onDeletePoint={this.onDeletePoint}
             heat={heat}
             account={getAccount}
+            notConfirmFollowers={notConfirmFollowers}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌

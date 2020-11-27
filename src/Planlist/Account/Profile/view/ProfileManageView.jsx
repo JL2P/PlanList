@@ -177,7 +177,7 @@ const ProfileManageView = ({
                   isFollowingPage === true || // 팔로잉 계정이거나
                   (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
                     loginAccount.accountId === selectUser.accountId) ? (
-                    <div>
+                    <div style={{ cursor: "pointer" }}>
                       <span onClick={() => onFollowerModal(true)}>
                         팔로워 &nbsp; {followers.length}
                       </span>
@@ -196,7 +196,10 @@ const ProfileManageView = ({
                   (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
                     loginAccount.accountId === selectUser.accountId) ? (
                     <div>
-                      <span onClick={() => onFollowingModal(true)}>
+                      <span
+                        onClick={() => onFollowingModal(true)}
+                        style={{ cursor: "pointer" }}
+                      >
                         팔로잉 &nbsp; {followings.length}
                       </span>
                     </div>
