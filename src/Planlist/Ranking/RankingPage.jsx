@@ -1,5 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import GroupRankingListContainer from "./Container/GroupRankingListContainer";
 import RankingAllUserContainer from "./container/RankingAllUserContainer";
 
 @inject("Store")
@@ -8,6 +9,7 @@ class RankingPage extends Component {
   render() {
     return (
       <div>
+        <GroupRankingListContainer></GroupRankingListContainer>
         <RankingAllUserContainer />
       </div>
     );

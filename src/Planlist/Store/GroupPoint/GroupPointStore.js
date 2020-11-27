@@ -1,28 +1,40 @@
 import {observable, computed, action } from "mobx";
 import GroupPointRepository from "../../Api/Repository/GroupPointRepository";
+import GroupRepository from "../../Api/Repository/GroupRepository"
 import GroupPointAddModel from "../../Api/model/groupPoint/GroupPointAddModel";
 import GroupPointModel from "../../Api/model/groupPoint/GroupPointModel";
 import GroupRankModel from "../../Api/model/groupPoint/GroupRankModel";
 import InGroupRankModel from "../../Api/model/groupPoint/InGroupRankModel";
+import { map } from "highcharts";
+import GroupModel from "../../Api/model/group/GroupModel";
 
 export default class GroupPointStore {
     constructor(root) {
         this.root = root;
         this.GroupPointRepository = new GroupPointRepository();
+        this.groupRepository = new GroupRepository();
 
     }
-
     //그룹의 모든 점수 리스트
     @observable groupPoints = [];
 
     @observable groupTodayPoint = 0;
     @observable groupTotalPoint = 0;
 
-    //그룹의
+    //그룹 랭킹 리스트
     @observable groupRanks = [];
     @observable inGroupRanks = [];
+    @observable groupRank = {};
 
+    
 
+    @computed get getGroupRanks() {
+        return this.groupRanks;
+      }
+    @computed get getGroupRank() {
+        return this.groupRank;
+    }
+    
     @computed getGroupPoints() {
         return this.groupPoints;
     }
@@ -55,7 +67,16 @@ export default class GroupPointStore {
     @action
     async getGroupsAllRankings () {
         const groupsAllRankings = await this.groupPointRepository.getGroupsAllRankings();
-        this.groupRanks = groupsAllRankings.map((item) => new GroupRankModel(item));
+        this.groupRanks = await groupsAllRankings.map(async(groupRanking) => 
+        {
+            const newGroupRanking = new GroupRankModel(groupRanking);
+            const groupObj = await this.groupRepository.groupDetail(newGroupRanking.groupId)
+            newGroupRanking.groupModel = new GroupModel(groupObj);
+
+            return newGroupRanking;
+         });
+
+         console.log(this.groupRanks)
     }
 
     //특정 그룹 내 랭킹 전체 조회
