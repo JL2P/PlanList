@@ -37,19 +37,23 @@ const starPointList = [
   { x: "887", y: "598.5" },
 ];
 
-const MainBackgroundView = () => {
+const MainBackgroundView = ({ type }) => {
   return (
-    <div class="hero">
-      <div class="snow">
+    <div className={`hero${type ? "__" + type : ""}`}>
+      <div className="snow">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1024 1536"
           preserveAspectRatio="xMidYMax slice"
         >
-          <g fill="#FFF" fill-opacity=".15" transform="translate(55 42)">
+          <g fill="#FFF" fillOpacity=".15" transform="translate(55 42)">
             <g id="snow-bottom-layer">
               {starPointList.map((starPoint) => (
-                <MainStar x={starPoint.x} y={starPoint.y} />
+                <MainStar
+                  key={starPoint.x * starPoint.y}
+                  x={starPoint.x}
+                  y={starPoint.y}
+                />
               ))}
               <image
                 href="/images/main/satellite.svg"
@@ -61,7 +65,7 @@ const MainBackgroundView = () => {
               />
             </g>
           </g>
-          <g fill="#FFF" fill-opacity=".3" transform="translate(65 63)">
+          <g fill="#FFF" fillOpacity=".3" transform="translate(65 63)">
             <g id="snow-top-layer">
               <image
                 href="/images/main/astronomy.svg"
@@ -150,9 +154,9 @@ const MainBackgroundView = () => {
         </svg>
       </div>
 
-      <div class="hero__content">
+      {/* <div className="hero__content">
         <circle cx="100" cy="100" r="100" />
-      </div>
+      </div> */}
     </div>
   );
 };

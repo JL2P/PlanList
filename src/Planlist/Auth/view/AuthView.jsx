@@ -27,7 +27,6 @@ const AuthView = ({
   });
 
   const sign_move = { padding: "0" };
-  console.log("authModifymove : " + authModifymove);
   const authComponent = authModifymove ? (
     <Form>
       <Form.Field>
@@ -91,7 +90,11 @@ const AuthView = ({
       >
         수정
       </Button>
-      <Button onClick={(e) => onUserRemove(e,getAccount.accountId)} color="yellow" style={{color:"#000"}}>
+      <Button
+        onClick={(e) => onUserRemove(e, getAccount.accountId)}
+        color="yellow"
+        style={{ color: "#000" }}
+      >
         삭제
       </Button>
     </Form>

@@ -105,7 +105,6 @@ export default class PointStore {
   @action
   async myTotalPoint(accountId) {
     const totalPoint = await this.pointRepository.getUserTotalPoint(accountId);
-    // console.log("토탈", totalPoint);
     this.myTotal = totalPoint;
   }
 
@@ -114,7 +113,6 @@ export default class PointStore {
     const myTodayPoint = await this.pointRepository.getUserPointByDate(
       pointObj
     );
-    // console.log();
     this.myTodayPoint = myTodayPoint;
   }
 }

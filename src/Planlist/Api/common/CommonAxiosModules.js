@@ -27,14 +27,12 @@ export const axios_auth_GET = (url, defualtReturnValue="")=>{
 
 // GET요청을 보낼 때 body에 데이터를 넣어서 보내야 하는 경우 사용
 export const axios_auth_body_GET = (url, list, defualtReturnValue="")=>{
-    console.log(axios_auth_body_GET);
     const data = {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
         },
         var:list
     }
-    console.log(data)
     return axios.get(url, data)
         .then(res=>{
             return res.data ||defualtReturnValue})

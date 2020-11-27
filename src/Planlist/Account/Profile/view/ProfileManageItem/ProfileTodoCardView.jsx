@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Image, Button, Icon } from "semantic-ui-react";
 import MainItemConfigCotainer from "../../../../Main/Container/MainItemConfigCotainer";
 import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
-import MainItemCover from "../../../../Main/View/MainItem/MainItemCover";
+
 import TodoUpdateContainer from "../../../../todo/container/TodoUpdateContainer";
 // import "../../../../Main/View/MainItem/itemStyle.css";
 import "./ProfileTodoCardView.css";
@@ -11,7 +11,6 @@ import CardCover from "./CardCover";
 const ProfileTodoCardView = ({
   todo,
   selectedTodo,
-  onLikeButton,
   onComplete,
   onIncomplete,
   loginId,

@@ -34,6 +34,7 @@ const ProfileManageView = ({
   gallery_filePath,
   account,
   myTotalPoint,
+  onDeleteMyFollowing,
   myLevel,
 }) => {
   let pText1 = "32px"; // 첫 번째 Row fontSize
@@ -149,7 +150,7 @@ const ProfileManageView = ({
                           style={{ background: "#c8c8c8" }}
                           content="팔로우 취소"
                           onClick={() => {
-                            alert("팔로우취소");
+                            onDeleteMyFollowing(selectUser.accountId);
                           }}
                         />
                       )}
@@ -181,9 +182,10 @@ const ProfileManageView = ({
                   isFollowingPage === true || // 팔로잉 계정이거나
                   (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
                     loginAccount.accountId === selectUser.accountId) ? (
-                    <div>
-                      <span onClick={() => onFollowerModal(true)}>팔로워</span>
-                      &nbsp; {followers.length}
+                    <div style={{ cursor: "pointer" }}>
+                      <span onClick={() => onFollowerModal(true)}>
+                        팔로워 &nbsp; {followers.length}
+                      </span>
                     </div>
                   ) : (
                     <div>
@@ -199,8 +201,12 @@ const ProfileManageView = ({
                   (loginCheck === true && // 로그인한 사용자 본인의 페이지인 경우,
                     loginAccount.accountId === selectUser.accountId) ? (
                     <div>
-                      <span onClick={() => onFollowingModal(true)}>팔로잉</span>
-                      &nbsp; {followings.length}
+                      <span
+                        onClick={() => onFollowingModal(true)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        팔로잉 &nbsp; {followings.length}
+                      </span>
                     </div>
                   ) : (
                     <div>

@@ -68,16 +68,24 @@ export default class GroupTodoRepository{
         return axios_auth_DELETE(url)
     }
 
-  // todo 좋아요
-  onLike = (groupId, groupTodoId) => {
-   
-    const url = this.URL +`${groupId}/todos/${groupTodoId}/like` 
-    return axios_auth_POST(url);
-  };
+    // todo 좋아요
+    onLike = (groupId, groupTodoId) => {
+    
+        const url = this.URL +`${groupId}/todos/${groupTodoId}/like` 
+        return axios_auth_POST(url);
+    };
 
-  // todo 좋아요 취소
-  cancelLike = (groupId, groupTodoId) => {
-    const url = this.URL +`${groupId}/todos/${groupTodoId}/like` 
-    return axios_auth_DELETE(url);
-  };
+    // todo 좋아요 취소
+    cancelLike = (groupId, groupTodoId) => {
+        const url = this.URL +`${groupId}/todos/${groupTodoId}/like` 
+        return axios_auth_DELETE(url);
+    };
+
+    // {groupId}/todos/{groupTodoId}
+    groupTodoImageUpload = (groupId, groupTodoId, file)=>{
+        console.log(file)
+        let formData = new FormData()
+        formData.append("file", file)
+        return axios_auth_POST(this.URL+`${groupId}/todos/${groupTodoId}`,formData,[]);
+    }
 }

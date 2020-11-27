@@ -31,7 +31,14 @@ const DetailGroupAllList = ({
       trigger={
         <Grid.Column className="recommendGroup_column">
           <Card className="group_card" raised>
-            <Image src={groupTodo.imgUrl} className="Group_img" />
+            <Image
+              src={
+                groupTodo.galleries.length > 0
+                  ? groupTodo.galleries[0].filePath
+                  : groupTodo.imgUrl
+              }
+              className="Group_img"
+            />
             <Card.Content>
               <Card.Header className="group_Card_header">
                 {groupTodo.title}

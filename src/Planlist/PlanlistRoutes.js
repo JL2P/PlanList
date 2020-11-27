@@ -1,6 +1,7 @@
 export { default as Header } from "./Header/HeaderPage";
 export { default as Footer } from "./Footer/Footer";
 export { default as Main } from "./Main/MainPage";
+export { default as MainSearchPage} from "./Main/MainSearchPage"
 
 export { default as SignIn } from "./Sign/Signin/SigninPage";
 export { default as SignUp } from "./Sign/Signup/SignupPage";

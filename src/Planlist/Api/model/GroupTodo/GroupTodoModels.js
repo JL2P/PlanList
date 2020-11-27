@@ -17,6 +17,8 @@ export class GroupTodoModel {
       (comment) => new GroupTodoCommentModel(comment)
     );
     this.accountModel = groupTodoObj.accountModel !== undefined ? new AccountModel(groupTodoObj.accountModel):{}
+    this.galleries = groupTodoObj.galleries.map(groupTodoGallery => new GroupTodoGalleryModel(groupTodoGallery));
+
   }
 }
 
@@ -44,5 +46,15 @@ class GroupTodoMemberModel{
   constructor(memberObj){
     this.groupTodoMemberId = memberObj.groupTodoMemberId;
     this.attender = memberObj.attender;
+  }
+}
+
+class GroupTodoGalleryModel{
+  constructor(groupTodoGalleryObj){
+    this.galleryId = groupTodoGalleryObj.id;
+    this.title = groupTodoGalleryObj.title;
+    this.filePath = groupTodoGalleryObj.filePath; //AWS에 저장된 파일 경로를 DB에 저장
+    this.file = groupTodoGalleryObj.filePath
+    this.todoId = groupTodoGalleryObj.todoId;
   }
 }

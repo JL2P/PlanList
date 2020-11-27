@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Image, Container, Header, Icon, Segment } from "semantic-ui-react";
-import MainNoTodoContainer from "../../../../Main/Container/MainNoTodoContainer";
-import TodoCreateDesktopForm from "../../../../todo/view/TodoCreateDesktopForm";
+import React from "react";
+import { Container, Header, Icon, Segment } from "semantic-ui-react";
 
 const MyFromNowEmptyView = ({ selectId }) => {
   return (

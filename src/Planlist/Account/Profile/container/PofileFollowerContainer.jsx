@@ -26,7 +26,7 @@ class PofileFollowerContainer extends Component {
   };
 
   onFollow = (followId) => {
-    alert("팔로잉 요청되었습니다.");
+    alert("팔로우 요청되었습니다.");
     const { follow } = this.props.Store;
     follow.follow(followId);
     window.location.reload();
@@ -48,8 +48,6 @@ class PofileFollowerContainer extends Component {
     //follower True Following True
     // 팔로우 취소버튼
     const flag = isFollower && isFollowing ? true : false;
-    console.log(isFollower, isFollowing);
-    console.log(flag);
 
     //follower false Following True
     // 팔로우하기 버튼

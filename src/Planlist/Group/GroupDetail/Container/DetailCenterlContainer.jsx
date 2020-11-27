@@ -13,19 +13,19 @@ class DetailCenterlContainer extends Component {
     groupTodoStore.addGroupTodo(groupTodoObj);
     window.location.reload();
   };
+
   //todo 생성후 모달 닫기
   onDetailGroup_modalCheck = (check) => {
-    console.log(check);
     const { group } = this.props.Store;
     group.detailGroup_modalCheck(check);
   };
   //설정 수정 저장
-  onSettingSave = (e, groupObj,fileObj) => {
+  onSettingSave = (e, groupObj, fileObj) => {
     e.preventDefault();
     const { group } = this.props.Store;
     var result = window.confirm("수정 사항을 저장하시겠습니까?");
     if (result) {
-      group.settingSave(groupObj,fileObj);
+      group.settingSave(groupObj, fileObj);
       alert("수정 사항이 반영되었습니다.");
       window.location.reload();
     }
@@ -45,7 +45,6 @@ class DetailCenterlContainer extends Component {
   //멤버 그룹 가입 신청
   onMemberApply = (e, memberObj) => {
     e.preventDefault();
-    console.log(memberObj);
     const { group } = this.props.Store;
     var result = window.confirm("가입 신청을 허용하시겠습니까?");
     if (result) {
@@ -90,7 +89,6 @@ class DetailCenterlContainer extends Component {
 
   //그룹장 양도
   onManagerTransfer = (e, userObj, masterObj, groupObj) => {
-    console.log(groupObj);
     const { group } = this.props.Store;
     var result = window.confirm("정말로 그룹장을 양도하시겠습니까?");
     if (result) {

@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import { Menu, Container } from "semantic-ui-react";
+import { Menu, Container, Label } from "semantic-ui-react";
 import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfileTodoCompletedListContainer from "../container/ProfileTodoCompletedListContainer";
 import ProfileTodoFromNowListContainer from "../container/ProfileTodoFromNowListContainer";
@@ -64,12 +64,12 @@ class ProfileTodoView extends Component {
       onAddPoint,
       onDeletePoint,
       heat,
-      account
+      account,
+      notConfirmFollowers,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
 
-    console.log("얍얍", selectUser.accountId === loginAccount.accountId);
     return (
       <div>
         <TodoCreateDesktopForm
@@ -108,13 +108,22 @@ class ProfileTodoView extends Component {
               active={activeItem === "날짜별 달성률"}
               onClick={this.handleItemClick}
             />
-            {selectUser === loginAccount || account.accountId === loginAccount.accountId ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
+            {selectUser === loginAccount ||
+            account.accountId === loginAccount.accountId ? ( // 로그인된 account의 마이페이지에서만 할 일 작성할 수 있음
               <>
                 <Menu.Item
                   name="새로운 알림"
                   active={activeItem === "새로운 알림"}
                   onClick={this.handleItemClick}
-                />
+                >
+                  새로운 알림
+                  {notConfirmFollowers.length > 0 && (
+                    <Label color="red" floating>
+                      {notConfirmFollowers.length}
+                    </Label>
+                  )}
+                </Menu.Item>
+
                 <Menu.Menu position="right">
                   <Menu.Item
                     icon="pencil"

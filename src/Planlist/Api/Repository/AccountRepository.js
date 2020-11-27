@@ -28,8 +28,6 @@ export default class AccountRepository {
   //account 조회
   // GET /api/account/{accountId}/
   accountDetail = (accountId) => {
-    console.log("GET /api/account/{accountId}/")
-    console.log(accountId)
     return axios
       .get(this.URL + `/${accountId}`, HEADER)
       .then((request) => request.data || {});
@@ -62,6 +60,7 @@ export default class AccountRepository {
 
   todosAccountMapping = (todoModels)=>{
     const todoAccountDtos = todoModels;
+    console.log(todoAccountDtos)
     const url = this.URL +"/todos/mapping" 
     return axios_auth_POST(url, todoAccountDtos,[])
   }

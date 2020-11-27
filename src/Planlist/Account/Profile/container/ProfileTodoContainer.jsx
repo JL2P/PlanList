@@ -1,6 +1,5 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import TodoCreateDesktopForm from "../../../todo/view/TodoCreateDesktopForm";
 import ProfilePrivateAccountTodoView from "../view/ProfilePrivateAccountTodoView";
 import ProfileTodoView from "../view/ProfileTodoView";
 
@@ -38,6 +37,7 @@ class ProfileTodoContainer extends Component {
   onFollow = (followId) => {
     const { follow } = this.props.Store;
     follow.follow(followId);
+    alert("팔로우 요청되었습니다.");
     window.location.reload();
   };
 
@@ -57,9 +57,11 @@ class ProfileTodoContainer extends Component {
   };
 
   onDeleteMyFollowing = (followId) => {
-    alert("삭제되었습니다");
     const { follow } = this.props.Store;
-    follow.deleteMyFollowing(followId);
+    follow.deleteMyFollowing(followId).then((res) => {
+      alert("팔로우 요청이 취소되었습니다.");
+      window.location.reload();
+    });
   };
 
   onComplete = (todoId) => {
@@ -76,7 +78,7 @@ class ProfileTodoContainer extends Component {
     //기능들구현해서 prop로 넘겨주는 작업
     const { account, follow, point, todo } = this.props.Store;
     const { selectUser, selectUserTodos } = this.props;
-    const {getAccount} = account;
+    const { getAccount } = account;
     const openAt = selectUser.openAt;
     const loginCheck = account.getLogCheck;
     const loginAccount = account.getLoginAccount;
@@ -104,7 +106,6 @@ class ProfileTodoContainer extends Component {
       for (var j = 0; j < myPoints.length; j++) {
         if (dailyList[i] === myPoints[j].created.toString().substring(0, 10)) {
           count += myPoints[j].point;
-          // console.log(myPoints[j].point, count);
         }
       }
       dailyPoint.push(count);
@@ -148,6 +149,7 @@ class ProfileTodoContainer extends Component {
             onDeletePoint={this.onDeletePoint}
             heat={heat}
             account={getAccount}
+            notConfirmFollowers={notConfirmFollowers}
           />
         ) : (
           // 비공개된 계정의 다른 사용자의 페이지인 경우, 비공개 화면을 보여줌

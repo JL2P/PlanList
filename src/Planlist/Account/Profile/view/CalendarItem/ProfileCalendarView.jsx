@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
-import categoryList from "../../../../Category/CategoryList_Data";
 
 const ProfileCalendarView = ({ selectUser, todos, selectedTodo, today }) => {
   const events = [];

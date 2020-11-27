@@ -4,6 +4,7 @@ import {
   Header,
   Footer,
   Main,
+  MainSearchPage,
   Account,
   SignIn,
   SignUp,
@@ -22,6 +23,7 @@ const App = withRouter(({ location }) => {
         location.pathname !== "/auth" && <Header />}
       <Switch>
         <Route exact path="/" component={Main} />
+        <Route exact path="/search" component={MainSearchPage} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
