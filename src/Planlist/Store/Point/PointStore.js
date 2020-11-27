@@ -13,6 +13,7 @@ export default class PointStore {
   @observable myPoints = []; // 유저의 모든 점수 리스트
   @observable myTotal = 0; // 유저의 총점(누적 점수)
   @observable ranking = []; // 모든 유저의 랭킹 리스트
+  // @observable rankingForChart = [];
   //
   @observable myTodayPoint = 0;
 
@@ -25,12 +26,17 @@ export default class PointStore {
   }
 
   @computed get getRanking() {
+    console.log("얍3", this.ranking);
     return this.ranking;
   }
 
   @computed get getMyTodayPoint() {
     return this.myTodayPoint;
   }
+
+  // @computed get getRankingForChart() {
+  //   // this.rankingForChart.push({z:,y:,color:});
+  // }
 
   @computed get getMyLevel() {
     if (this.myTotal < 120 * 3) {
@@ -90,14 +96,16 @@ export default class PointStore {
   @action
   async allRanking() {
     const allRanking = await this.pointRepository.getAllRank();
+    // console.log("얍", allRanking);
     this.ranking = allRanking.map((item) => new RankModel(item));
+    console.log("얍2", this.ranking);
   }
 
   // 유저의 총점(누적 점수) 조회
   @action
   async myTotalPoint(accountId) {
     const totalPoint = await this.pointRepository.getUserTotalPoint(accountId);
-    console.log("토탈", totalPoint);
+    // console.log("토탈", totalPoint);
     this.myTotal = totalPoint;
   }
 
