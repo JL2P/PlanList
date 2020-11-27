@@ -26,7 +26,6 @@ export default class PointStore {
   }
 
   @computed get getRanking() {
-    console.log("얍3", this.ranking);
     return this.ranking;
   }
 
@@ -96,9 +95,7 @@ export default class PointStore {
   @action
   async allRanking() {
     const allRanking = await this.pointRepository.getAllRank();
-    // console.log("얍", allRanking);
     this.ranking = allRanking.map((item) => new RankModel(item));
-    console.log("얍2", this.ranking);
   }
 
   // 유저의 총점(누적 점수) 조회
