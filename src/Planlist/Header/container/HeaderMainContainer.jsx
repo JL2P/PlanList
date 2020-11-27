@@ -3,6 +3,7 @@ import { createMedia } from "@artsy/fresnel";
 import HeaderDesktopView from "../view/HeaderDesktopView";
 import HeaderMobileView from "../view/HeaderMobileView";
 import { inject, observer } from "mobx-react";
+import HeaderFollowerRequestView from "../view/HeaderFollowerRequestView";
 
 @inject("Store")
 @observer
@@ -45,6 +46,23 @@ class HeaderMainContainer extends Component {
     const { group } = this.props.Store;
     group.getApiGroups();
 
+    const { follow } = this.props.Store;
+    follow.getApiNotConfirmFollowers();
+  }
+
+
+  onFollowConfirm = (followId) => {
+    alert('팔로잉요청 수락되었습니다.');
+    const { follow } = this.props.Store;
+    follow.followConfirm(followId);
+    window.location.reload();
+  };
+
+  onFollowRefuse = (followId) => {
+    alert('팔로잉요청 거절되었습니다.');
+    const { follow } = this.props.Store;
+    follow.followRefuse(followId);
+    window.location.reload();
   }
 
   render() {
@@ -60,6 +78,22 @@ class HeaderMainContainer extends Component {
     const loginAccount = account.getLoginAccount;
     const loginCheck = account.getLogCheck;
     const accounts = account.getAccounts;
+    const selectUser = account.selectUser;
+
+    const { follow } = this.props.Store;
+    const {getNotConfirmFollowers} = follow
+
+    const element = getNotConfirmFollowers.map((notConfirmFollower) => {
+
+      return(
+        <HeaderFollowerRequestView key={notConfirmFollower.accountId} 
+        selectUser={selectUser}
+        follower={notConfirmFollower}
+        onFollowConfirm={this.onFollowConfirm}
+        onFollowRefuse={this.onFollowRefuse}/>
+      )
+    });
+    console.log(getNotConfirmFollowers)
 
     return (
       <MediaContextProvider>
@@ -68,6 +102,8 @@ class HeaderMainContainer extends Component {
           loginAccount={loginAccount}
           loginCheck={loginCheck}
           accounts={accounts}
+          notConfirmFollowers={getNotConfirmFollowers}
+          element={element}
         />
         <HeaderMobileView Media={Media} />
       </MediaContextProvider>

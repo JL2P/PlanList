@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProfileManageView from "../view/ProfileManageView";
 import { inject, observer } from "mobx-react";
+import badgeIcon from "../../../Ranking/badgeData";
 
 @inject("Store")
 @observer
@@ -71,6 +72,7 @@ class ProfileMangeContainer extends Component {
     const followings = follow.getMyFollowings;
     const isFollowingPage = follow.getIsFollowingPage;
     const myTotalPoint = point.getMyTotal;
+    const myLevel = point.getMyLevel;
 
     return (
       <div>
@@ -93,6 +95,7 @@ class ProfileMangeContainer extends Component {
           isFollowingPage={isFollowingPage}
           gallery_filePath={gallery_filePath}
           myTotalPoint={myTotalPoint}
+          myLevel={myLevel}
           account={getAccount}
           onDeleteMyFollowing={this.onDeleteMyFollowing}
         />
