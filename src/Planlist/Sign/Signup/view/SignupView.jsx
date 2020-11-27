@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import AuthTemplate from "../../AuthTemplate";
 import { Link } from "react-router-dom";
-import { Button, Checkbox, Form, Icon } from "semantic-ui-react";
-import { sign_move_text, sign_btn_text, sign_submitBtn } from "../../style/Btn";
+import { Button, Form } from "semantic-ui-react";
+import { sign_btn_text, sign_submitBtn } from "../../style/Btn";
 
 const SignupView = ({ onSignup }) => {
   //승훈 추가 나중에 주석은 지워도되요!
@@ -19,11 +19,11 @@ const SignupView = ({ onSignup }) => {
   const onName = (e) => setName(e.target.value);
   const onBirth = (e) => setBirth(e.target.value);
 
-  const sign_move = {
-    float: "right",
-    padding: "0",
-    marginTop: "2rem",
-  };
+  // const sign_move = {
+  //   float: "right",
+  //   padding: "0",
+  //   marginTop: "2rem",
+  // };
 
   return (
     <AuthTemplate name="Sign up">

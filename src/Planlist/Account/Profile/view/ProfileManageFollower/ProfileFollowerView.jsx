@@ -1,26 +1,11 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Item,
-  Button,
-  Image,
-  Modal,
-  Divider,
-  Header,
-  Icon,
-} from "semantic-ui-react";
+import React from "react";
+import { Container, Item, Image } from "semantic-ui-react";
 
-const ProfileFollowerView = ({
-  follower,
-  isFollowing,
-  onFollowRefuse,
-  onBtn,
-  children,
-}) => {
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const onConfirmModal = (trigger) => {
-    setConfirmOpen(trigger);
-  };
+const ProfileFollowerView = ({ follower, onBtn, children }) => {
+  // const [confirmOpen, setConfirmOpen] = useState(false);
+  // const onConfirmModal = (trigger) => {
+  //   setConfirmOpen(trigger);
+  // };
 
   return (
     <div>

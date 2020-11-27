@@ -138,24 +138,18 @@ export default class FollowStore {
 
   @action
   async followConfirm(followerId) {
-    const followStateObj = await this.followRepository.followConfirmFunction(
-      followerId
-    );
+    this.followRepository.followConfirmFunction(followerId);
   }
 
   //팔로잉요청 거절/ 팔로워리스트에서 팔로워 삭제한다.
   @action
   async followRefuse(followerId) {
-    const followStateObj = await this.followRepository.followRefuseFunction(
-      followerId
-    );
+    this.followRepository.followRefuseFunction(followerId);
   }
 
   @action
   async deleteMyFollowing(followingId) {
-    const followStateObj = await this.followRepository.deleteMyFollowingFunction(
-      followingId
-    );
+    this.followRepository.deleteMyFollowingFunction(followingId);
   }
 
   @action

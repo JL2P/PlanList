@@ -6,7 +6,6 @@ import GroupAddModel from "../../Api/model/group/GroupAddModel";
 import GroupModifyModel from "../../Api/model/group/GroupModifyModel";
 import MemberModel from "../../Api/model/member/MemberModel";
 import MemberTransferDto from "../../Api/model/member/MemberModel";
-import GroupGalleryModel from "../../Api/model/groupGallery/GroupGalleryModel"
 
 import GroupRepository from "../../Api/Repository/GroupRepository"
 import MemberRepository from "../../Api/Repository/MemberRepository"
@@ -100,7 +99,7 @@ export default class GroupStore {
         let year = today.getFullYear(); // 년도
         let month = today.getMonth() + 1;  // 월
         let date = today.getDate();  // 날짜
-        let day = today.getDay();  // 요일
+        // let day = today.getDay();  // 요일
         
         const newToday = `${year}.${month}.${date}`
         
@@ -213,7 +212,7 @@ export default class GroupStore {
       //멤버 제거
       @action
       async memberRemove(groupId,memberId){
-        const result = await this.memberRepository.memberDelete(groupId,memberId);
+        await this.memberRepository.memberDelete(groupId,memberId);
       }
 
       //멤버 전체 리스트
@@ -228,7 +227,7 @@ export default class GroupStore {
         const memberModel = new MemberTransferDto(memberObj);
         const groupModel = new GroupTransferModel(groupObj);
         await this.memberRepository.memberTranfer(memberModel);
-        const result = await this.groupRepository.groupTransfer(groupModel);
+        await this.groupRepository.groupTransfer(groupModel);
       }
 
       //그룹장 양도 (마스터 -> 유저)
@@ -237,7 +236,7 @@ export default class GroupStore {
         const memberModel = new MemberTransferDto(memberObj);
         const groupModel = new GroupTransferModel(groupObj)
         await this.memberRepository.memberTranfer(memberModel);
-        const result = await this.groupRepository.groupTransfer(groupModel);
+        await this.groupRepository.groupTransfer(groupModel);
       }
 
 }
