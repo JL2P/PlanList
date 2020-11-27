@@ -54,10 +54,10 @@ class ProfileFollowRequestListContainer extends Component {
         
           
         const element = notConfirmFollowers.map((notConfirmFollower) => <ProfileFollowerRequestView key={notConfirmFollower.accountId} 
-        selectUser={selectUser}        
-        follower={notConfirmFollower} 
-        onFollowConfirm={this.onFollowConfirm} 
-        onFollowRefuse={this.onFollowRefuse}/>);   
+        selectUser={selectUser}
+        follower={notConfirmFollower}
+        onFollowConfirm={this.onFollowConfirm}
+        onFollowRefuse={this.onFollowRefuse}/>);
         
         return (
             <div style={{height:"600px", textAlign:"center"}}>
