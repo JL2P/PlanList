@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
-import GroupRankingListContainer from "./Container/GroupRankingListContainer";
+import GroupRankingListContainer from "./container/GroupRankingListContainer";
 import RankingAllUserContainer from "./container/RankingAllUserContainer";
 
 @inject("Store")
