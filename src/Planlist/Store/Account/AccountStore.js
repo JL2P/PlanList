@@ -184,11 +184,12 @@ export default class AccountStore {
     if(accountId===undefined){
       const data = await this.accountRepository.accountInfo();
       this.loginAccount = new AccountModel(data);
-      accountId = this.loginAccount.accountId;
-    }
+      this.account = new AccountModel(data);
+    }else{
+      const account = await this.accountRepository.accountDetail(accountId);
+      this.account = new AccountModel(account);
 
-    const account = await this.accountRepository.accountDetail(accountId);
-    this.account = new AccountModel(account);
+    }
   }
 
   @action

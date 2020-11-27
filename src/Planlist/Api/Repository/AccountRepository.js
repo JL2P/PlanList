@@ -60,6 +60,7 @@ export default class AccountRepository {
 
   todosAccountMapping = (todoModels)=>{
     const todoAccountDtos = todoModels;
+    console.log(todoAccountDtos)
     const url = this.URL +"/todos/mapping" 
     return axios_auth_POST(url, todoAccountDtos,[])
   }

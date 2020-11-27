@@ -64,6 +64,20 @@ export default class TodoStore {
     return this.comments;
   }
 
+  @computed get getAllTodosFrame() {
+    //Frame Column갯수
+    const columns = 3;
+
+    //메인화면에서 보여지는 column수에 따라 frame갯수 나누기
+    const frame = [...Array(columns).keys()].map((_) => []);
+
+    //각 frame에 item넣어주기
+    for (let i = 0; i < this.allTodos.length; i++) {
+      frame[Math.floor(i % columns)].push(this.allTodos[i]);
+    }
+    return frame;
+  }
+
   @computed get getTodosFrame() {
     //Frame Column갯수
     const columns = 3;
@@ -126,8 +140,11 @@ export default class TodoStore {
 
   @action
   async getApiAllTodos() {
-    const allTodos = await this.todoRepository.TodoAll();
-    this.allTodos = allTodos.map((todo) => new TodoModel(todo));
+    const apiGetAllTodos = await this.todoRepository.TodoAll();
+    // console.log(apiGetAllTodos)
+    const apiAllTodosAccount = await this.accountRepository.todosAccountMapping(apiGetAllTodos);
+    // console.log(apiAllTodosAccount)
+    this.allTodos = apiAllTodosAccount.map(todo => new TodoModel(todo));
   }
 
   @action
