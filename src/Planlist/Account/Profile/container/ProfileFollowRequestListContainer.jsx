@@ -59,8 +59,8 @@ class ProfileFollowRequestListContainer extends Component {
     ));
 
     return (
-      <div style={{ height: "600px", textAlign: "center" }}>
-        <Header as="h3" dividing style={{ marginTop: "0.5em" }}>
+      <div style={{ height: "600px", textAlign: "center"}}>
+        <Header as="h3" dividing style={{paddingBottom:"0.5em" }}>
           팔로우 요청
         </Header>
         <div>
