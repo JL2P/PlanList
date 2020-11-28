@@ -150,6 +150,7 @@ const ProfileFollowerRequestView = ({
                       height: "70px",
                       objectFit: "cover",
                       borderRadius: "50%",
+                      marginRight:"2em"
                     }}
 
                     alt="profile"
@@ -159,8 +160,8 @@ const ProfileFollowerRequestView = ({
                
                 <div className="part_b2">
                     
-                <div>{follower.accountId}</div>
-                <div>{follower.name}</div>
+                <div style={{textAlign:"left",fontSize:"1.2em"}}>{follower.accountId}</div>
+                <div><strong style={{fontSize:"1.2em"}}>{`${follower.name}`}</strong>님이 팔로우를 신청하셨습니다.</div>
                     
                     
                 </div>
