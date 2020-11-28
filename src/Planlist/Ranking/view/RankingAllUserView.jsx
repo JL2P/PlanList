@@ -4,18 +4,13 @@ import HighchartsReact from "highcharts-react-official";
 import { Container } from "semantic-ui-react";
 // require("highcharts/modules/variwide")(Highcharts);
 
-const RankingAllUserView = ({
-  rankingForChart,
-  rankingData,
-  myRank,
-  loginId,
-}) => {
+const RankingAllUserView = ({ rankingData, myRank, loginId }) => {
   const options = {
     chart: {
       type: "column",
     },
     title: {
-      text: `${loginId} 회원님, 계획 달성률 상위 ${myRank}에 들었습니다`,
+      text: `${loginId} 회원님, 계획 달성률 상위 ${myRank}%에 들었습니다`,
     },
     // subtitle: {
     //   text:
