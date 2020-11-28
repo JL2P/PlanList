@@ -27,7 +27,7 @@ export default class GroupPointRepository {
 
     //모든 그룹 랭킹 전체 조회
     getGroupsAllRankings = () => {
-        return axios_auth_GET(this.URL+`groupRanking`, []);
+        return axios_auth_GET(this.URL+`all/groupRanking`, []);
     }
     //특정 그룹 내 랭킹 전체 조회
     getInGroupAllRankings = (groupId) => {

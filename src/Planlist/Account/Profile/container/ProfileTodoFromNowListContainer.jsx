@@ -21,6 +21,8 @@ class ProfileTodoFromNowListContainer extends Component {
       onIncomplete,
       onAddPoint,
       onDeletePoint,
+      onAddGroupPoint,
+      onDeleteGroupPoint,
     } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
@@ -74,6 +76,8 @@ class ProfileTodoFromNowListContainer extends Component {
             loginId={loginId}
             onAddPoint={onAddPoint}
             onDeletePoint={onDeletePoint}
+            onAddGroupPoint={onAddGroupPoint}
+            onDeleteGroupPoint={onDeleteGroupPoint}
           />
         )}
       </div>

@@ -63,6 +63,8 @@ class ProfileTodoView extends Component {
       onIncomplete,
       onAddPoint,
       onDeletePoint,
+      onAddGroupPoint,
+      onDeleteGroupPoint,
       heat,
       account,
       notConfirmFollowers,
@@ -148,6 +150,8 @@ class ProfileTodoView extends Component {
                 onIncomplete={onIncomplete}
                 onAddPoint={onAddPoint}
                 onDeletePoint={onDeletePoint}
+                onAddGroupPoint={onAddGroupPoint}
+                onDeleteGroupPoint={onDeleteGroupPoint}
               />
             )}
             {activeItem === "그동안 한 일" && (
@@ -160,6 +164,8 @@ class ProfileTodoView extends Component {
                 onIncomplete={onIncomplete}
                 onAddPoint={onAddPoint}
                 onDeletePoint={onDeletePoint}
+                onAddGroupPoint={onAddGroupPoint}
+                onDeleteGroupPoint={onDeleteGroupPoint}
               />
             )}
             {activeItem === "하지 못한 일" && (

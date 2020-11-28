@@ -11,8 +11,8 @@ import GroupModel from "../../Api/model/group/GroupModel";
 export default class GroupPointStore {
     constructor(root) {
         this.root = root;
-        this.GroupPointRepository = new GroupPointRepository();
-        this.groupRepository = new GroupRepository();
+      
+        this.groupPointRepository = new GroupPointRepository();
 
     }
     //그룹의 모든 점수 리스트
@@ -25,6 +25,7 @@ export default class GroupPointStore {
     @observable groupRanks = [];
     @observable inGroupRanks = [];
     @observable groupRank = {};
+    @observable inGroupRank = {};
 
     
 
@@ -34,12 +35,20 @@ export default class GroupPointStore {
     @computed get getGroupRank() {
         return this.groupRank;
     }
+
+    @computed get getInGroupRanks() {
+        return this.ingroupRanks;
+    }
+
+    @computed get getInGroupRank() {
+        return this.ingroupRanks;
+    }
     
-    @computed getGroupPoints() {
+    @computed get getGroupPoints() {
         return this.groupPoints;
     }
 
-    @computed getGroupTodayPoints() {
+    @computed get getGroupTodayPoints() {
         return this.groupTodayPoint;
     }
 
@@ -59,30 +68,24 @@ export default class GroupPointStore {
     //특정 그룹의 전체 점수를 전체 조회
     @action
     async getGroupAllPoints (groupId) {
-        const groupAllPoints = await this.groupPointRepository.getGroupAllPoint(groupId);
-        this.groupPoints = groupAllPoints.map((item) =>  new GroupPointModel(item));
+        const groupPointData = await this.groupPointRepository.getGroupAllPoint(groupId);
+        this.groupPoints = groupPointData.map((groupPoint) =>  new GroupPointModel(groupPoint));
     }
 
     //모든 그룹 랭킹 전체 조회
     @action
-    async getGroupsAllRankings () {
-        const groupsAllRankings = await this.groupPointRepository.getGroupsAllRankings();
-        this.groupRanks = await groupsAllRankings.map(async(groupRanking) => 
-        {
-            const newGroupRanking = new GroupRankModel(groupRanking);
-            const groupObj = await this.groupRepository.groupDetail(newGroupRanking.groupId)
-            newGroupRanking.groupModel = new GroupModel(groupObj);
+    async groupsAllRankings () {
+        const groupRankingData = await this.groupPointRepository.getGroupsAllRankings();
+        this.groupRanks = groupRankingData.map((item)=> new GroupRankModel(item));
 
-            return newGroupRanking;
-         });
-
-         console.log(this.groupRanks)
+         console.log(this.groupRanks);
     }
 
     //특정 그룹 내 랭킹 전체 조회
     @action
     async getInGroupAllRankings (groupId) {
-        await this.groupPointRepository.getInGroupAllRankings(groupId);
+        const inGroupRankData = await this.groupPointRepository.getInGroupAllRankings(groupId);
+        this.ingroupRanks = inGroupRankData.map((inGroupRank) => new InGroupRankModel(inGroupRank));
     }
 
 }
