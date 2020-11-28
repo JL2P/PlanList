@@ -4,7 +4,12 @@ import HighchartsReact from "highcharts-react-official";
 import { Container } from "semantic-ui-react";
 // require("highcharts/modules/variwide")(Highcharts);
 
-const RankingAllUserView = () => {
+const RankingAllUserView = ({ rankingForChart, rankingData }) => {
+  console.log("따란~", rankingForChart);
+  const sd = [];
+  for (var i = 0; i < 10; i++) {
+    sd.push({ x: i, y: i * 2 });
+  }
   const options = {
     // chart: {
     //   type: "variwide",
@@ -68,7 +73,7 @@ const RankingAllUserView = () => {
     //     colorByPoint: true,
     //   },
     // ],
-
+    /*********************/
     chart: {
       type: "column",
     },
@@ -85,6 +90,8 @@ const RankingAllUserView = () => {
       },
     },
     xAxis: {
+      minPadding: 0.5,
+      maxPadding: 0.5,
       type: "category",
     },
     yAxis: {
@@ -97,11 +104,13 @@ const RankingAllUserView = () => {
     },
     plotOptions: {
       series: {
-        borderWidth: 0,
+        pointPadding: 0,
+        groupPadding: 0, // 간격
+        // borderWidth: 0,
         dataLabels: {
           enabled: true,
-          // format: "{point.y:.1f}%",
-          format: "{x}%", // 그래프에 표시
+          // format: "상위 {x}% 평균 {y} 점",
+          format: "{y}",
         },
       },
     },
@@ -116,54 +125,30 @@ const RankingAllUserView = () => {
       {
         name: "Browsers",
         colorByPoint: false,
-        data: [
-          {
-            // name: "Chrome",
-            x: 1,
-            y: 62.74,
-            // drilldown: "Chrome",
-            // color: "FFFFFF",
-          },
-          {
-            // name: "Chrome",
-            x: 2,
-            y: 100,
-            // drilldown: "Chrome",
-            color: "FFFFFF",
-          },
-          {
-            // name: "Firefox",
-            y: 10.57,
-            color: "",
-            x: 3,
-            // drilldown: "Firefox",
-          },
-          // {
-          //   name: "Internet Explorer",
-          //   y: 7.23,
-          //   drilldown: "Internet Explorer",
-          // },
-          // {
-          //   name: "Safari",
-          //   y: 5.58,
-          //   drilldown: "Safari",
-          // },
-          // {
-          //   name: "Edge",
-          //   y: 4.02,
-          //   drilldown: "Edge",
-          // },
-          // {
-          //   name: "Opera",
-          //   y: 1.92,
-          //   drilldown: "Opera",
-          // },
-          // {
-          //   name: "Other",
-          //   y: 7.62,
-          //   drilldown: null,
-          // },
-        ],
+        data: rankingData,
+        // data: [
+        //   {
+        //     // name: "Chrome",
+        //     x: 1,
+        //     y: 62.74,
+        //     // drilldown: "Chrome",
+        //     // color: "FFFFFF",
+        //   },
+        //   {
+        //     // name: "Chrome",
+        //     x: 2,
+        //     y: 100,
+        //     // drilldown: "Chrome",
+        //     color: "FFFFFF",
+        //   },
+        //   {
+        //     // name: "Firefox",
+        //     y: 10.57,
+        //     color: "",
+        //     x: 3,
+        //     // drilldown: "Firefox",
+        //   },
+        // ],
       },
     ],
     // drilldown: {

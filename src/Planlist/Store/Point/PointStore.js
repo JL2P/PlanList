@@ -13,8 +13,7 @@ export default class PointStore {
   @observable myPoints = []; // 유저의 모든 점수 리스트
   @observable myTotal = 0; // 유저의 총점(누적 점수)
   @observable ranking = []; // 모든 유저의 랭킹 리스트
-  // @observable rankingForChart = [];
-  //
+
   @observable myTodayPoint = 0;
 
   @computed get getMyPoints() {
@@ -33,9 +32,19 @@ export default class PointStore {
     return this.myTodayPoint;
   }
 
-  // @computed get getRankingForChart() {
-  //   // this.rankingForChart.push({z:,y:,color:});
-  // }
+  @computed get getRankingForChart() {
+    const rankingForChart = [];
+    if (this.ranking.length < 10) {
+      var i = 0;
+      this.ranking.map((item) => {
+        rankingForChart.push({ x: i, y: item.total });
+        i += 1;
+        console.log("아이", i);
+      });
+    }
+    // this.rankingForChart = temp;
+    return rankingForChart;
+  }
 
   @computed get getMyLevel() {
     if (this.myTotal < 120 * 3) {
