@@ -13,8 +13,7 @@ export default class PointStore {
   @observable myPoints = []; // 유저의 모든 점수 리스트
   @observable myTotal = 0; // 유저의 총점(누적 점수)
   @observable ranking = []; // 모든 유저의 랭킹 리스트
-  // @observable rankingForChart = [];
-  //
+
   @observable myTodayPoint = 0;
 
   @computed get getMyPoints() {
@@ -32,10 +31,6 @@ export default class PointStore {
   @computed get getMyTodayPoint() {
     return this.myTodayPoint;
   }
-
-  // @computed get getRankingForChart() {
-  //   // this.rankingForChart.push({z:,y:,color:});
-  // }
 
   @computed get getMyLevel() {
     if (this.myTotal < 120 * 3) {
@@ -75,7 +70,6 @@ export default class PointStore {
   async addPoint(pointObj) {
     const pointAddModel = new PointAddModel(pointObj);
     await this.pointRepository.createPoint(pointAddModel);
-    // this.allPoints();
   }
 
   // 완료 취소하면 점수 삭제

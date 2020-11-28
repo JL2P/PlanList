@@ -8,8 +8,12 @@ import { DataGrid } from "@material-ui/data-grid";
 class GroupRankingListContainer extends Component {
   componentDidMount() {
     const { group, groupPoint } = this.props.Store;
+
     groupPoint.groupsAllRankings();
     
+
+    // groupPoint.getGroupsAllRankings();
+
   }
 
   render() {

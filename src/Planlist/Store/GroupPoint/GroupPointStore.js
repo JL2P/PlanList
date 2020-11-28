@@ -1,6 +1,6 @@
-import {observable, computed, action } from "mobx";
+import { observable, computed, action } from "mobx";
 import GroupPointRepository from "../../Api/Repository/GroupPointRepository";
-import GroupRepository from "../../Api/Repository/GroupRepository"
+import GroupRepository from "../../Api/Repository/GroupRepository";
 import GroupPointAddModel from "../../Api/model/groupPoint/GroupPointAddModel";
 import GroupPointModel from "../../Api/model/groupPoint/GroupPointModel";
 import GroupRankModel from "../../Api/model/groupPoint/GroupRankModel";
@@ -9,6 +9,7 @@ import { map } from "highcharts";
 import GroupModel from "../../Api/model/group/GroupModel";
 
 export default class GroupPointStore {
+
     constructor(root) {
         this.root = root;
       
@@ -89,5 +90,3 @@ export default class GroupPointStore {
     }
 
 }
-
-
