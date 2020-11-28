@@ -7,27 +7,7 @@ import ReactHighmaps from "react-highcharts/ReactHighmaps";
 import Highcharts from "highcharts";
 
 const MyAchievementRateView = ({ heat }) => {
-  // const options = {
-  //   title: {
-  //     text: "My chart",
-  //   },
-  //   series: [
-  //     {
-  //       data: [1, 2, 3],
-  //     },
-  //   ],
-  // };
   const hi = {
-    // configBar: {
-    //   series: [
-    //     {
-    //       type: "column",
-    //       name: "Other",
-    //       data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111],
-    //     },
-    //   ],
-    // },
-
     configMap: {
       chart: {
         type: "heatmap",
@@ -37,7 +17,7 @@ const MyAchievementRateView = ({ heat }) => {
       },
 
       title: {
-        text: "매일 매일 완료한 달성률을 확인해 보세요.",
+        text: "매일 매일 나의 점수를 확인해 보세요.",
       },
 
       xAxis: {
@@ -85,13 +65,14 @@ const MyAchievementRateView = ({ heat }) => {
       tooltip: {
         formatter: function () {
           return (
-            "<b>" +
-            this.series.xAxis.categories[this.point.x] +
-            "</b> sold <br><b>" +
-            this.point.value +
-            "</b> items on <br><b>" +
-            this.series.yAxis.categories[this.point.y] +
-            "</b>"
+            this.point.value + "</b> 점 <br><b>"
+            // "<b>" +
+            // this.series.xAxis.categories[this.point.x] +
+            // "</b> sold <br><b>" +
+            // this.point.value +
+            // "</b> 점 <br><b>" +
+            // this.series.yAxis.categories[this.point.y] +
+            // "</b>"
           );
         },
       },

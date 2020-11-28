@@ -8,7 +8,7 @@ import { GroupRankingListView } from "../view/GroupRankingListView";
 class GroupRankingListContainer extends Component {
   componentDidMount() {
     const { group, groupPoint } = this.props.Store;
-    groupPoint.getGroupsAllRankings();
+    // groupPoint.getGroupsAllRankings();
   }
 
   render() {

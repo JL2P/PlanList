@@ -11,9 +11,8 @@ class ProfileTodoContainer extends Component {
     const { selectUser } = this.props;
 
     account.getApiAccountInfo();
-    const id = account.getLoginAccount.accountId;
     // 유저의 모든 점수 조회
-    point.allPoints(id);
+    point.allPoints(selectUser.accountId);
 
     follow.getApiNotConfirmFollowers();
     follow.followingPageCheck(selectUser.accountId);

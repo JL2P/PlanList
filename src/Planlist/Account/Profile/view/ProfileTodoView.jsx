@@ -104,8 +104,8 @@ class ProfileTodoView extends Component {
               onClick={this.handleItemClick}
             />
             <Menu.Item
-              name="날짜별 달성률"
-              active={activeItem === "날짜별 달성률"}
+              name="나의 점수표"
+              active={activeItem === "나의 점수표"}
               onClick={this.handleItemClick}
             />
             {selectUser === loginAccount ||
@@ -176,7 +176,7 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
               />
             )}
-            {activeItem === "날짜별 달성률" && (
+            {activeItem === "나의 점수표" && (
               <MyAchievementRateContainer heat={heat} />
             )}
             {activeItem === "새로운 알림" && (
