@@ -32,20 +32,6 @@ export default class PointStore {
     return this.myTodayPoint;
   }
 
-  @computed get getRankingForChart() {
-    const rankingForChart = [];
-    if (this.ranking.length < 10) {
-      var i = 0;
-      this.ranking.map((item) => {
-        rankingForChart.push({ x: i, y: item.total });
-        i += 1;
-        console.log("아이", i);
-      });
-    }
-    // this.rankingForChart = temp;
-    return rankingForChart;
-  }
-
   @computed get getMyLevel() {
     if (this.myTotal < 120 * 3) {
       // 3일
@@ -84,7 +70,6 @@ export default class PointStore {
   async addPoint(pointObj) {
     const pointAddModel = new PointAddModel(pointObj);
     await this.pointRepository.createPoint(pointAddModel);
-    // this.allPoints();
   }
 
   // 완료 취소하면 점수 삭제
