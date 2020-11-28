@@ -33,6 +33,19 @@ class ProfileTodoContainer extends Component {
     point.deletePoint(accountId, todoId);
   };
 
+  // group todo 완료를 누르면 점수 부여
+  onAddGroupPoint = (groupPointObj) => {
+    const { groupPoint } = this.props.Store;
+    groupPoint.addGroupPoint(groupPointObj);
+  }
+
+  // group todo 완료를 취소하면 그룹 점수 회수
+  onDeleteGroupPoint = (accountId, groupId, todoId) => {
+    const { groupPoint } = this.props.Store;
+    groupPoint.deleteGroupPoint(accountId, groupId, todoId);
+  }
+ 
+
   onFollow = (followId) => {
     const { follow } = this.props.Store;
     follow.follow(followId);
@@ -75,7 +88,7 @@ class ProfileTodoContainer extends Component {
 
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
-    const { account, follow, point, todo } = this.props.Store;
+    const { account, follow, point, groupPoint, todo } = this.props.Store;
     const { selectUser, selectUserTodos } = this.props;
     const { getAccount } = account;
     const openAt = selectUser.openAt;
@@ -87,6 +100,7 @@ class ProfileTodoContainer extends Component {
     const today = todo.getToday;
     const daily = new Date(todo.getToday);
     const myPoints = point.getMyPoints;
+    const groupPoints = groupPoint.getGroupPoints;
     const dailyList = [today];
     const dailyPoint = [];
     for (var i = 1; i < 50; i++) {
@@ -146,6 +160,8 @@ class ProfileTodoContainer extends Component {
             onIncomplete={this.onIncomplete}
             onAddPoint={this.onAddPoint}
             onDeletePoint={this.onDeletePoint}
+            onAddGroupPoint={this.onAddGroupPoint}
+            onDeleteGroupPoint={this.onDeleteGroupPoint}
             heat={heat}
             account={getAccount}
             notConfirmFollowers={notConfirmFollowers}

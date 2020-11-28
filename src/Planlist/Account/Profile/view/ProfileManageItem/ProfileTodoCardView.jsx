@@ -16,6 +16,8 @@ const ProfileTodoCardView = ({
   loginId,
   onAddPoint,
   onDeletePoint,
+  onAddGroupPoint,
+  onDeleteGroupPoint,
 }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
