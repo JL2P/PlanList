@@ -222,7 +222,7 @@ const ProfileManageView = ({
       </Grid>
       <Segment basic style={{ paddingTop: "1em" }}>
         {account.introduce}
-      </Segment> */}
+      </Segment>
     </Container>
   );
 };
