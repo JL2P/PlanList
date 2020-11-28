@@ -93,7 +93,6 @@ class HeaderMainContainer extends Component {
         onFollowRefuse={this.onFollowRefuse}/>
       )
     });
-    console.log(getNotConfirmFollowers)
 
     return (
       <MediaContextProvider>

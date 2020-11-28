@@ -172,8 +172,6 @@ export default class GroupStore {
         } 
         const groupModel = new GroupModifyModel(groupObj);
         await this.groupRepository.groupModify(groupModel);
-
-        
       }
 
       //그룹 디테일 페이지 설정에서 그룹 삭제
