@@ -15,15 +15,18 @@ import {
   Ranking,
 } from "./Planlist/PlanlistRoutes";
 
-const App = withRouter(({ location }) => {
+const App = withRouter(({match, location }) => {
+
   return (
     <>
       {location.pathname !== "/signin" &&
         location.pathname !== "/signup" &&
+        location.pathname !== `/signin/${location.pathname.split('/')[2]}` &&
         location.pathname !== "/auth" && <Header />}
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/search" component={MainSearchPage} />
+        <Route exact path="/signin/:email" component={SignIn} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />

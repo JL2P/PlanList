@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Image, Button, Icon } from "semantic-ui-react";
+import { Card, Image, Button, Icon, Label } from "semantic-ui-react";
 import MainItemConfigCotainer from "../../../../Main/Container/MainItemConfigCotainer";
 import MainItemInfoContainer from "../../../../Main/Container/MainItemInfoContainer";
 
@@ -19,6 +19,7 @@ const ProfileTodoCardView = ({
   onAddGroupPoint,
   onDeleteGroupPoint,
 }) => {
+  console.log(todo);
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
@@ -112,14 +113,32 @@ const ProfileTodoCardView = ({
             </Card.Content>
             <Card.Content extra>
               <Icon name="clock outline" />
-              <Button
+              {todo.groupAt === "Y" && (
+                <Label
+                  basic
+                  color="orange"
+                  style={{ marginLeft: "1em", marginRight: "1em" }}
+                >
+                  <b>그룹계획</b>
+                </Label>
+              )}
+              {todo.groupAt !== "Y" && (
+                <Label
+                  basic
+                  color="green"
+                  style={{ marginLeft: "1em", marginRight: "1em" }}
+                >
+                  <b>개인계획</b>
+                </Label>
+              )}
+              {/* <Button
                 basic
                 size="mini"
                 style={{ width: "117px", textAlign: "center" }}
               >
-                시작&nbsp;
+                시작 &nbsp;
                 {todo.startTime}
-              </Button>
+              </Button> */}
               {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
 
               {loginId === todo.writer ? (

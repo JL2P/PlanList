@@ -1,7 +1,7 @@
 import React from "react";
 import { createMedia } from "@artsy/fresnel";
 import MainTodoCreateDesktopContainer from "./Container/MainTodoCreateDesktopContainer";
-import MainTodoCreateMobileContainer from "./Container/MainTodoCreateMobileContainer";
+// import MainTodoCreateMobileContainer from "./Container/MainTodoCreateMobileContainer";
 import MainListContainer from "./Container/MainListContainer";
 
 //rsf hook
@@ -16,12 +16,7 @@ const MainPage = () => {
   return (
     <>
       <MediaContextProvider>
-        <Media greaterThan="mobile">
-          <MainTodoCreateDesktopContainer />
-        </Media>
-        <Media at="mobile">
-          <MainTodoCreateMobileContainer />
-        </Media>
+        <MainTodoCreateDesktopContainer />
       </MediaContextProvider>
       <MainListContainer />
     </>

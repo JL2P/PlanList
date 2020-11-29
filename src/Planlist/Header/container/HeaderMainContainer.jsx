@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { createMedia } from "@artsy/fresnel";
 import HeaderDesktopView from "../view/HeaderDesktopView";
-import HeaderMobileView from "../view/HeaderMobileView";
+// import HeaderMobileView from "../view/HeaderMobileView";
 import { inject, observer } from "mobx-react";
 import HeaderFollowerRequestView from "../view/HeaderFollowerRequestView";
 
@@ -36,7 +36,7 @@ class HeaderMainContainer extends Component {
       //카테고리 네비게이션 저장
       if (localStorage.getItem("select_Group_categoryList")) {
         const { group } = this.props.Store;
-        var selectCategory = localStorage.getItem("select_Group_categoryList")
+        var selectCategory = localStorage.getItem("select_Group_categoryList");
         group.categoryList_select(JSON.parse(selectCategory));
       }
     }
@@ -50,20 +50,19 @@ class HeaderMainContainer extends Component {
     follow.getApiNotConfirmFollowers();
   }
 
-
   onFollowConfirm = (followId) => {
-    alert('팔로잉요청 수락되었습니다.');
+    alert("팔로잉요청 수락되었습니다.");
     const { follow } = this.props.Store;
     follow.followConfirm(followId);
     window.location.reload();
   };
 
   onFollowRefuse = (followId) => {
-    alert('팔로잉요청 거절되었습니다.');
+    alert("팔로잉요청 거절되었습니다.");
     const { follow } = this.props.Store;
     follow.followRefuse(followId);
     window.location.reload();
-  }
+  };
 
   render() {
     const { MediaContextProvider, Media } = createMedia({
@@ -81,30 +80,29 @@ class HeaderMainContainer extends Component {
     const selectUser = account.selectUser;
 
     const { follow } = this.props.Store;
-    const {getNotConfirmFollowers} = follow
+    const { getNotConfirmFollowers } = follow;
 
     const element = getNotConfirmFollowers.map((notConfirmFollower) => {
-
-      return(
-        <HeaderFollowerRequestView key={notConfirmFollower.accountId} 
-        selectUser={selectUser}
-        follower={notConfirmFollower}
-        onFollowConfirm={this.onFollowConfirm}
-        onFollowRefuse={this.onFollowRefuse}/>
-      )
+      return (
+        <HeaderFollowerRequestView
+          key={notConfirmFollower.accountId}
+          selectUser={selectUser}
+          follower={notConfirmFollower}
+          onFollowConfirm={this.onFollowConfirm}
+          onFollowRefuse={this.onFollowRefuse}
+        />
+      );
     });
 
     return (
       <MediaContextProvider>
         <HeaderDesktopView
-          Media={Media}
           loginAccount={loginAccount}
           loginCheck={loginCheck}
           accounts={accounts}
           notConfirmFollowers={getNotConfirmFollowers}
           element={element}
         />
-        <HeaderMobileView Media={Media} />
       </MediaContextProvider>
     );
   }
