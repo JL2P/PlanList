@@ -61,9 +61,9 @@ const RankingAllUserView = ({ rankingData, myRank, loginId }) => {
       {/* <Divider style={{ marginTop: "30px" }} /> */}
       <h3 style={{ textAlign: "center" }}>
         <span>
-          {loginId} 회원님,&emsp;
+          {loginId} 님,&emsp;
           <Image
-            href="/"
+            // href="/"
             src="/images/logo/logo2.png"
             size="tiny"
             verticalAlign="bottom"

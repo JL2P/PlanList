@@ -3,14 +3,16 @@ import { Container, Grid, Image, Segment } from "semantic-ui-react";
 import badge from "../badgeData";
 
 const RankingBadgeView = ({ myLevel, loginId }) => {
-  console.log("레벨", badge[0].id === myLevel);
   return (
     <Container style={{ width: "900px", marginTop: "3em" }}>
+      <h2 style={{ textAlign: "center" }}>
+        현재, {loginId} 님의 레벨은 "{badge[myLevel - 1].level}" 입니다.
+      </h2>
       <h3 style={{ textAlign: "center" }}>
-        현재, {loginId} 회원님의 레벨은 "{badge[myLevel - 1].level}" 입니다.
+        계획들을 완료하여 레벨을 높여 보세요!
       </h3>
       <Segment color="yellow">
-        <Grid stackable>
+        <Grid>
           <Grid.Row>
             {badge.map((item, index) => (
               <div
@@ -31,8 +33,7 @@ const RankingBadgeView = ({ myLevel, loginId }) => {
               <div
                 style={{
                   width: item.id === myLevel ? "90px" : "30px",
-                  // marginTop: item.id === myLevel ? "1px" : "20px",
-                  marginLeft: "40px",
+                  marginLeft: "49px",
                 }}
               >
                 <Grid.Column>

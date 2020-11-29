@@ -1,12 +1,12 @@
 import React from "react";
-// import Highcharts from "highcharts";
-// import HighchartsReact from "highcharts-react-official";
-import { Container } from "semantic-ui-react";
-
+import { Container, Segment } from "semantic-ui-react";
 import ReactHighmaps from "react-highcharts/ReactHighmaps";
 import Highcharts from "highcharts";
 
-const MyAchievementRateView = ({ heat, dailyList }) => {
+Highcharts.setOptions({
+  colors: ["#FFB517"],
+});
+const RankingHeatmapView = ({ heat, dailyList, loginId }) => {
   const hi = {
     configMap: {
       chart: {
@@ -17,32 +17,7 @@ const MyAchievementRateView = ({ heat, dailyList }) => {
       },
 
       title: {
-        text: "매일 매일 나의 점수를 확인해 보세요.",
-      },
-
-      xAxis: {
-        // labels: {
-        //   enable: false,
-        // },
-        // type: "category",
-        categories: [
-          "Alexander",
-          "Marie",
-          "Maximilian",
-          "Sophia",
-          "Lukas",
-          "Maria",
-          "Leon",
-          "Anna",
-          "Tim",
-          "Laura",
-        ],
-        // title: { text: "hi" },
-      },
-
-      yAxis: {
-        categories: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        title: null,
+        text: "",
       },
 
       // 색상 지정
@@ -81,14 +56,6 @@ const MyAchievementRateView = ({ heat, dailyList }) => {
             "</b><br><b>점수 : " +
             this.point.value +
             "</b> 점 <b>"
-
-            // "<b>" +
-            // this.series.xAxis.categories[this.point.x] +
-            // "</b> sold <br><b>" +
-            // this.point.value +
-            // "</b> 점 <br><b>" +
-            // this.series.yAxis.categories[this.point.y] +
-            // "</b>"
           );
         },
       },
@@ -111,14 +78,16 @@ const MyAchievementRateView = ({ heat, dailyList }) => {
 
   return (
     <div>
-      <Container style={{ width: "900px", marginTop: "2em" }}>
-        {/* <HighchartsReact highcharts={Highcharts} options={options} /> */}
-
-        {/* <ReactHighmaps config={config} constructorType={"chart"} /> */}
-        <ReactHighmaps config={hi.configMap} constructorType={"chart"} />
+      <Container style={{ width: "900px", marginTop: "5em" }}>
+        <h3 style={{ textAlign: "center" }}>
+          매일 매일 {loginId} 님의 점수를 확인해 보세요.
+        </h3>
+        <Segment color="yellow">
+          <ReactHighmaps config={hi.configMap} constructorType={"chart"} />
+        </Segment>
       </Container>
     </div>
   );
 };
 
-export default MyAchievementRateView;
+export default RankingHeatmapView;

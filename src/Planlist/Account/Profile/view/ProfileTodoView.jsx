@@ -65,8 +65,6 @@ class ProfileTodoView extends Component {
       onDeletePoint,
       onAddGroupPoint,
       onDeleteGroupPoint,
-      heat,
-      dailyList,
       account,
       notConfirmFollowers,
     } = this.props;
@@ -184,7 +182,7 @@ class ProfileTodoView extends Component {
               />
             )}
             {activeItem === "나의 점수표" && (
-              <MyAchievementRateContainer heat={heat} dailyList={dailyList} />
+              <MyAchievementRateContainer selectUser={selectUser} />
             )}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer
