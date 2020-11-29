@@ -16,9 +16,6 @@ class ProfileTodoContainer extends Component {
 
     follow.getApiNotConfirmFollowers();
     follow.followingPageCheck(selectUser.accountId);
-
-    // const loginId = account.getLoginAccount.accountId;
-    // point.allPoints(loginId);
   }
 
   // todo 완료를 누르면 점수 부여
@@ -37,14 +34,13 @@ class ProfileTodoContainer extends Component {
   onAddGroupPoint = (groupPointObj) => {
     const { groupPoint } = this.props.Store;
     groupPoint.addGroupPoint(groupPointObj);
-  }
+  };
 
   // group todo 완료를 취소하면 그룹 점수 회수
   onDeleteGroupPoint = (accountId, groupId, todoId) => {
     const { groupPoint } = this.props.Store;
     groupPoint.deleteGroupPoint(accountId, groupId, todoId);
-  }
- 
+  };
 
   onFollow = (followId) => {
     const { follow } = this.props.Store;
@@ -163,6 +159,7 @@ class ProfileTodoContainer extends Component {
             onAddGroupPoint={this.onAddGroupPoint}
             onDeleteGroupPoint={this.onDeleteGroupPoint}
             heat={heat}
+            dailyList={dailyList}
             account={getAccount}
             notConfirmFollowers={notConfirmFollowers}
           />

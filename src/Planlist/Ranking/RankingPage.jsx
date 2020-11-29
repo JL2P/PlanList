@@ -6,9 +6,8 @@ import RankingAllUserContainer from "./container/RankingAllUserContainer";
 @inject("Store")
 @observer
 class RankingPage extends Component {
-  //테스트
   componentDidMount() {
-    const { groupPoint } = this.props.Store;
+    const { groupPoint, account, point } = this.props.Store;
     groupPoint.testGroupAllRankings();
   }
 

@@ -1,28 +1,31 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
+import { Container } from "semantic-ui-react";
 import RankingAllUserView from "../view/RankingAllUserView";
+import RankingBadgeView from "../view/RankingBadgeView";
 
 @inject("Store")
 @observer
 class RankingAllUserContainer extends Component {
   componentDidMount() {
-    const { point } = this.props.Store;
-    const { account } = this.props.Store;
-
+    const { point, account } = this.props.Store;
     point.allRanking();
-    account.getApiAccountInfo();
+    account.getApiAccountInfo().then(() => {
+      const loginId = account.getLoginAccount.accountId;
+      point.myRanking(loginId);
+    });
   }
 
   render() {
     const { point, account } = this.props.Store;
     const rankingList = point.getRanking;
     const loginId = account.getLoginAccount.accountId;
+    const myLevel = point.getMyLevel;
     const idx = rankingList.findIndex((item) => {
       return item.accountId === loginId;
     });
     const myRank = ((idx / rankingList.length) * 100).toFixed(0);
     // console.log("따란~", typeof idx, idx, myRank);
-
     const rankingData = [];
     if (rankingList.length <= 10) {
       var i = 100 / rankingList.length;
@@ -41,7 +44,7 @@ class RankingAllUserContainer extends Component {
       var i = 0;
       var j = 0;
       const section = rankingList.length / 10;
-      console.log("section", section);
+      // console.log("section", section);
 
       for (var k = 0; k < 10; k++) {
         rankingData.push({
@@ -50,9 +53,7 @@ class RankingAllUserContainer extends Component {
           y: rankingList[(i + section / 2).toFixed(0)].total, // 중앙값
           color:
             // section * i <= idx && idx < section * (i + 1)
-            (i + 1) * 10 <= myRank && myRank < (i + 2) * 10
-              ? "#FFB517"
-              : "#FFF0CD",
+            i * 10 <= myRank && myRank < (i + 1) * 10 ? "#FFB517" : "#FFF0CD",
         });
         i += 1;
         j += 1;
@@ -61,6 +62,7 @@ class RankingAllUserContainer extends Component {
 
     return (
       <div>
+        <RankingBadgeView myLevel={myLevel} loginId={loginId} />
         <RankingAllUserView
           rankingData={rankingData}
           loginId={loginId}
