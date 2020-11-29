@@ -12,7 +12,6 @@ import {
 import ProfileSettingModalView from "./ProfileManageItem/ProfileSettingModalView";
 import ProfileFollowerModalView from "./ProfileManageFollower/ProfileFollowerModalView";
 import ProfileFollowingModalView from "./ProfileManageFollowing/ProfileFollowingModalView";
-import badgeIcon from "../../../Ranking/badgeData";
 import Badge from "./ProfileManageItem/Badge";
 
 const ProfileManageView = ({

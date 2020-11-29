@@ -36,4 +36,9 @@ export default class PointRepository {
   getAllRank = () => {
     return axios_auth_GET(this.URL + `/all/ranking`, []);
   };
+
+  //
+  getMyRank = (accountId) => {
+    return axios_auth_GET(this.URL + `/myRanking/${accountId}`, {});
+  };
 }

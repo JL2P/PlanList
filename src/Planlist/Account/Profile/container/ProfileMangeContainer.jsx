@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ProfileManageView from "../view/ProfileManageView";
 import { inject, observer } from "mobx-react";
-import badgeIcon from "../../../Ranking/badgeData";
 
 @inject("Store")
 @observer
@@ -15,7 +14,8 @@ class ProfileMangeContainer extends Component {
     //
     follow.followingPageCheck(selectUser.accountId);
 
-    point.myTotalPoint(selectUser.accountId);
+    // point.myTotalPoint(selectUser.accountId);
+    point.myRanking(selectUser.accountId);
   };
 
   onSetAccountProp = (key, value) => {
@@ -71,9 +71,11 @@ class ProfileMangeContainer extends Component {
     const followers = follow.getMyFollowers;
     const followings = follow.getMyFollowings;
     const isFollowingPage = follow.getIsFollowingPage;
-    const myTotalPoint = point.getMyTotal;
+    // const myTotalPoint = point.getMyTotal;
+    const myTotalPoint = point.getMyRanking.total;
     const myLevel = point.getMyLevel;
 
+    // console.log("토탈", myTotalPoint);
     return (
       <div>
         <ProfileManageView

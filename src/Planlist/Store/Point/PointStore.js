@@ -13,6 +13,7 @@ export default class PointStore {
   @observable myPoints = []; // 유저의 모든 점수 리스트
   @observable myTotal = 0; // 유저의 총점(누적 점수)
   @observable ranking = []; // 모든 유저의 랭킹 리스트
+  @observable myRank = {};
 
   @observable myTodayPoint = 0;
 
@@ -20,6 +21,7 @@ export default class PointStore {
     return this.myPoints;
   }
 
+  // 나의 누적 점수
   @computed get getMyTotal() {
     return this.myTotal;
   }
@@ -32,37 +34,48 @@ export default class PointStore {
     return this.myTodayPoint;
   }
 
+  // 나의 랭크
+  @computed get getMyRanking() {
+    return this.myRank;
+  }
+
   @computed get getMyLevel() {
-    if (this.myTotal < 120 * 3) {
+    if (this.myRank.total < 120 * 3) {
       // 3일
       return 1;
-    } else if (this.myTotal < 120 * 7) {
+    } else if (this.myRank.total < 120 * 7) {
       // 일주일
       return 2;
-    } else if (this.myTotal < 120 * 14) {
+    } else if (this.myRank.total < 120 * 14) {
       // 이주
       return 3;
-    } else if (this.myTotal < 120 * 30) {
+    } else if (this.myRank.total < 120 * 30) {
       // 한달
       return 4;
-    } else if (this.myTotal < 120 * 90) {
+    } else if (this.myRank.total < 120 * 90) {
       // 3달
       return 5;
-    } else if (this.myTotal < 120 * 180) {
+    } else if (this.myRank.total < 120 * 180) {
       // 6달
       return 6;
-    } else if (this.myTotal < 120 * 30 * 9) {
+    } else if (this.myRank.total < 120 * 30 * 9) {
       // 9달
       return 7;
-    } else if (this.myTotal < 120 * 365) {
+    } else if (this.myRank.total < 120 * 365) {
       // 1년
       return 8;
-    } else if (this.myTotal < 120 * (365 + 180)) {
+    } else if (this.myRank.total < 120 * (365 + 180)) {
       // 1년 반
       return 9;
     } else {
       return 10;
     }
+  }
+
+  @action
+  async myRanking(accountId) {
+    const rank = await this.pointRepository.getMyRank(accountId);
+    this.myRank = new RankModel(rank);
   }
 
   // 완료하면 점수 추가
