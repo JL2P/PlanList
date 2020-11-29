@@ -14,12 +14,12 @@ const ProfileTodoCardView = ({
   onComplete,
   onIncomplete,
   loginId,
+  selectId,
   onAddPoint,
   onDeletePoint,
   onAddGroupPoint,
   onDeleteGroupPoint,
 }) => {
-  console.log(todo);
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
@@ -83,6 +83,9 @@ const ProfileTodoCardView = ({
               todoModel={todo}
               onCofigModal={onCofigModal}
               onLikeButton={onCofigModal}
+              todo={todo}
+              selectId={selectId}
+              loginId={loginId}
             />
             <Image
               onClick={() => onInfoModal(true)}
@@ -113,7 +116,7 @@ const ProfileTodoCardView = ({
             </Card.Content>
             <Card.Content extra>
               <Icon name="clock outline" />
-              {todo.groupAt === "Y" && (
+              {/* {todo.groupAt === "Y" && (
                 <Label
                   basic
                   color="orange"
@@ -130,22 +133,22 @@ const ProfileTodoCardView = ({
                 >
                   <b>개인계획</b>
                 </Label>
-              )}
-              {/* <Button
+              )} */}
+              <Button
                 basic
                 size="mini"
-                style={{ width: "117px", textAlign: "center" }}
+                style={{ width: "118px", textAlign: "center" }}
               >
                 시작 &nbsp;
                 {todo.startTime}
-              </Button> */}
-              {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
+              </Button>
 
+              {/* 완료하기 버튼은 로그인된 사용자의 마이페이지에서만 활성화 */}
               {loginId === todo.writer ? (
                 // 로그인된 유저가 todo 작성자이면 완료하기 버튼을 활성화
                 todo.completed === "N" ? (
                   <Button
-                    style={{ width: "119px", textAlign: "center" }}
+                    style={{ width: "118px", textAlign: "center" }}
                     size="mini"
                     animated="vertical"
                     color="yellow"
@@ -172,7 +175,7 @@ const ProfileTodoCardView = ({
                     size="mini"
                     animated="vertical"
                     color="yellow"
-                    style={{ width: "119px" }}
+                    style={{ width: "118px" }}
                     onClick={() => {
                       onIncomplete(todo.todoId);
                       onDeletePoint(loginId, todo.todoId);
@@ -185,7 +188,7 @@ const ProfileTodoCardView = ({
               ) : // todo 작성자가 아니면 버튼 비활성화
               todo.completed === "N" ? (
                 <Button
-                  style={{ width: "119px", textAlign: "center" }}
+                  style={{ width: "118px", textAlign: "center" }}
                   size="mini"
                   animated="vertical"
                   color="yellow"
@@ -198,7 +201,7 @@ const ProfileTodoCardView = ({
                   size="mini"
                   animated="vertical"
                   color="yellow"
-                  style={{ width: "119px" }}
+                  style={{ width: "118px" }}
                 >
                   <Icon name="check" />
                   완료

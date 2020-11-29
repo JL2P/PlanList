@@ -65,14 +65,11 @@ class ProfileTodoView extends Component {
       onDeletePoint,
       onAddGroupPoint,
       onDeleteGroupPoint,
-      heat,
-      dailyList,
       account,
       notConfirmFollowers,
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
-
     return (
       <div>
         <TodoCreateDesktopForm
@@ -163,6 +160,7 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
+                onDeletePoint={onDeletePoint}
                 onAddPoint={onAddPoint}
                 onDeletePoint={onDeletePoint}
                 onAddGroupPoint={onAddGroupPoint}
@@ -172,6 +170,7 @@ class ProfileTodoView extends Component {
             {activeItem === "하지 못한 일" && (
               <ProfileTodoIncompletedListContainer
                 selectUser={selectUser}
+                loginAccount={loginAccount}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 todos={selectUserTodos}
@@ -184,7 +183,7 @@ class ProfileTodoView extends Component {
               />
             )}
             {activeItem === "나의 점수표" && (
-              <MyAchievementRateContainer heat={heat} dailyList={dailyList} />
+              <MyAchievementRateContainer selectUser={selectUser} />
             )}
             {activeItem === "새로운 알림" && (
               <ProfileFollowRequestListContainer

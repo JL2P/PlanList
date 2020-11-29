@@ -7,7 +7,10 @@ const ProfileTodoIncompletedListView = ({
   selectedTodo,
   onLikeButton,
   today,
+  selectId,
+  loginId,
 }) => {
+  console.log("로그", selectId, loginId);
   return (
     <div>
       {incompleted_list.map((date, index) => (
@@ -28,6 +31,8 @@ const ProfileTodoIncompletedListView = ({
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 today={today}
+                selectId={selectId}
+                loginId={loginId}
               />
             ))}
           </Card.Group>

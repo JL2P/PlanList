@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+import RankingHeatmapView from "../view/RankingHeatmapView";
 import Highcharts from "highcharts";
-import MyAchievementRateView from "../view/MyAchievementRateView";
 
 Highcharts.setOptions({
   colors: ["#FFB517"],
@@ -9,15 +9,10 @@ Highcharts.setOptions({
 
 @inject("Store")
 @observer
-class MyAchievementRateContainer extends Component {
-  componentDidMount() {
-    const { point } = this.props.Store;
-    const { selectUser } = this.props;
-    point.allPoints(selectUser.accountId);
-  }
-
+class RankingHeatmapContainer extends Component {
   render() {
-    const { todo, point } = this.props.Store;
+    const { point, todo, account } = this.props.Store;
+    const loginId = account.getLoginAccount.accountId;
     const today = todo.getToday;
     const daily = new Date(todo.getToday);
     const myPoints = point.getMyPoints;
@@ -44,8 +39,8 @@ class MyAchievementRateContainer extends Component {
       dailyPoint.push(count);
     }
     const heat = [];
-    let row = 6;
-    var col = 19;
+    let row = 6; //4;
+    var col = 19; //9;
     for (var i = 0; i < dailyPoint.length; i++) {
       let temp = [];
       temp.push(col);
@@ -57,16 +52,20 @@ class MyAchievementRateContainer extends Component {
       if (row > 0) {
         row -= 1;
       } else {
-        row = 6;
+        row = 6; //4;
         col -= 1;
       }
     }
     return (
       <div>
-        <MyAchievementRateView heat={heat} dailyList={dailyList} />
+        <RankingHeatmapView
+          heat={heat}
+          dailyList={dailyList}
+          loginId={loginId}
+        />
       </div>
     );
   }
 }
 
-export default MyAchievementRateContainer;
+export default RankingHeatmapContainer;

@@ -10,6 +10,7 @@ const ProfileTodoFromNowListView = ({
   onComplete,
   onIncomplete,
   loginId,
+  selectId,
   onAddPoint,
   onDeletePoint,
   onAddGroupPoint,
@@ -39,7 +40,7 @@ const ProfileTodoFromNowListView = ({
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
                 loginId={loginId}
-                today={today}
+                selectId={selectId}
                 onAddPoint={onAddPoint}
                 onDeletePoint={onDeletePoint}
                 onAddGroupPoint={onAddGroupPoint}
