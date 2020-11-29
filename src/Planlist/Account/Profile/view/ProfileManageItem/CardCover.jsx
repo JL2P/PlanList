@@ -2,7 +2,14 @@ import React from "react";
 import { Icon, Button, Label } from "semantic-ui-react";
 import "./ProfileTodoCardView.css";
 
-const CardCover = ({ todoModel, onCofigModal, onLikeButton, todo }) => {
+const CardCover = ({
+  todoModel,
+  onCofigModal,
+  onLikeButton,
+  todo,
+  selectId,
+  loginId,
+}) => {
   return (
     <div>
       <div className="todo__groupAt">
@@ -24,19 +31,21 @@ const CardCover = ({ todoModel, onCofigModal, onLikeButton, todo }) => {
           </Label>
         )}
       </div>
-      <div className="todo__subitem_2">
-        <Button
-          inverted
-          basic
-          icon
-          // style={{ padding: "1em" }}
-          onClick={() => {
-            onCofigModal(true);
-          }}
-        >
-          <Icon basic name="ellipsis horizontal" />
-        </Button>
-      </div>
+      {selectId === loginId && (
+        <div className="todo__subitem_2">
+          <Button
+            inverted
+            basic
+            icon
+            // style={{ padding: "1em" }}
+            onClick={() => {
+              onCofigModal(true);
+            }}
+          >
+            <Icon basic name="ellipsis horizontal" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

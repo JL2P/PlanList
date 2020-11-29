@@ -74,6 +74,7 @@ class ProfileTodoFromNowListContainer extends Component {
             onComplete={onComplete}
             onIncomplete={onIncomplete}
             loginId={loginId}
+            selectId={selectId}
             onAddPoint={onAddPoint}
             onDeletePoint={onDeletePoint}
             onAddGroupPoint={onAddGroupPoint}

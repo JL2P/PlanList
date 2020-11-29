@@ -14,12 +14,12 @@ const ProfileTodoCardView = ({
   onComplete,
   onIncomplete,
   loginId,
+  selectId,
   onAddPoint,
   onDeletePoint,
   onAddGroupPoint,
   onDeleteGroupPoint,
 }) => {
-  console.log(todo);
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
@@ -84,6 +84,8 @@ const ProfileTodoCardView = ({
               onCofigModal={onCofigModal}
               onLikeButton={onCofigModal}
               todo={todo}
+              selectId={selectId}
+              loginId={loginId}
             />
             <Image
               onClick={() => onInfoModal(true)}

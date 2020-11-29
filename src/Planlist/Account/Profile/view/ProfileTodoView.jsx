@@ -70,7 +70,6 @@ class ProfileTodoView extends Component {
     } = this.props;
     const { open, todoTitle } = this.state;
     const today = this.props.Store.todo.getToday;
-
     return (
       <div>
         <TodoCreateDesktopForm
@@ -171,6 +170,7 @@ class ProfileTodoView extends Component {
             {activeItem === "하지 못한 일" && (
               <ProfileTodoIncompletedListContainer
                 selectUser={selectUser}
+                loginAccount={loginAccount}
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 todos={selectUserTodos}

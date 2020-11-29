@@ -10,9 +10,14 @@ class ProfileTodoIncompletedListContainer extends Component {
   render() {
     //기능들구현해서 prop로 넘겨주는 작업
     const { todo, account } = this.props.Store;
-    const { selectUser, selectedTodo, onLikeButton, todos } = this.props;
+    const {
+      selectUser,
+      loginAccount,
+      selectedTodo,
+      onLikeButton,
+      todos,
+    } = this.props;
     const selectId = selectUser.accountId;
-    const loginId = account.getLoginAccount.accountId;
     const today = todo.getToday;
 
     // 기간 내에 못한 일 리스트를 정렬
@@ -42,7 +47,7 @@ class ProfileTodoIncompletedListContainer extends Component {
       <div>
         {count === 0 ? (
           <div>
-            {loginId === selectId ? (
+            {loginAccount.accountId === selectId ? (
               <MyIncompletedEmptyView page={page} selectId={selectId} />
             ) : (
               <ProfileTodoEmptyView page={page} selectId={selectId} />
@@ -55,6 +60,8 @@ class ProfileTodoIncompletedListContainer extends Component {
             selectedTodo={selectedTodo}
             onLikeButton={onLikeButton}
             today={todo.getToday}
+            selectId={selectUser.accountId}
+            loginId={loginAccount.accountId}
           />
         )}
       </div>

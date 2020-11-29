@@ -65,6 +65,7 @@ class ProfileTodoCompletedListContainer extends Component {
             onComplete={onComplete}
             onIncomplete={onIncomplete}
             loginId={loginId}
+            selectId={selectId}
             onDeletePoint={onDeletePoint}
           />
         )}

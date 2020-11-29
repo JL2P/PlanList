@@ -10,6 +10,7 @@ const ProfileTodoCompletedListView = ({
   onComplete,
   onIncomplete,
   loginId,
+  selectId,
   onDeletePoint,
 }) => {
   return (
@@ -35,6 +36,7 @@ const ProfileTodoCompletedListView = ({
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
                 loginId={loginId}
+                selectId={selectId}
                 onDeletePoint={onDeletePoint}
               />
             ))}
