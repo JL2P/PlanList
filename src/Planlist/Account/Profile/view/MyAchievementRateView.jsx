@@ -6,7 +6,7 @@ import { Container } from "semantic-ui-react";
 import ReactHighmaps from "react-highcharts/ReactHighmaps";
 import Highcharts from "highcharts";
 
-const MyAchievementRateView = ({ heat }) => {
+const MyAchievementRateView = ({ heat, dailyList }) => {
   const hi = {
     configMap: {
       chart: {
@@ -64,8 +64,21 @@ const MyAchievementRateView = ({ heat }) => {
 
       tooltip: {
         formatter: function () {
+          var col = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+          var row = [4, 3, 2, 1, 0];
+          var index = col.indexOf(this.point.x) * 5 + row.indexOf(this.point.y);
           return (
-            this.point.value + "</b> 점 <br><b>"
+            "<b>날짜 : " +
+            dailyList[index].substring(0, 4) +
+            "년 " +
+            dailyList[index].substring(5, 7) +
+            "월 " +
+            dailyList[index].substring(8, 10) +
+            "일" +
+            "</b><br><b>점수 : " +
+            this.point.value +
+            "</b> 점 <b>"
+
             // "<b>" +
             // this.series.xAxis.categories[this.point.x] +
             // "</b> sold <br><b>" +
@@ -83,72 +96,9 @@ const MyAchievementRateView = ({ heat }) => {
           name: "Sales per employee",
           borderWidth: 1,
           data: heat,
-          // [
-          //   [0, 0, 10],
-          //   [0, 1, 19],
-          //   [0, 2, 8],
-          //   [0, 3, 8],
-          //   [0, 4, 24],
-          //   [0, 5, 67],
-          //   [1, 0, 92],
-          //   [1, 1, 58],
-          //   [1, 1, 58],
-          //   [1, 2, 78],
-          //   [1, 3, 500],
-          //   [1, 4, 48],
-          //   [2, 0, 35],
-          //   [2, 1, 15],
-          //   [2, 1, 15],
-          //   [2, 2, 123],
-          //   [2, 3, 64],
-          //   [2, 4, 52],
-          //   [3, 0, 72],
-          //   [3, 1, 132],
-          //   [3, 2, 114],
-          //   [3, 2, 114],
-          //   [3, 3, 19],
-          //   [3, 4, 16],
-          //   [4, 0, 38],
-          //   [4, 1, 5],
-          //   [4, 2, 8],
-          //   [4, 2, 8],
-          //   [4, 3, 117],
-          //   [4, 4, 115],
-          //   [5, 0, 88],
-          //   [5, 1, 32],
-          //   [5, 1, 32],
-          //   [5, 2, 12],
-          //   [5, 3, 6],
-          //   [5, 4, 120],
-          //   [6, 0, 13],
-          //   [6, 1, 44],
-          //   [6, 2, 88],
-          //   [6, 3, 98],
-          //   [6, 3, 98],
-          //   [6, 4, 96],
-          //   [7, 0, 31],
-          //   [7, 1, 1],
-          //   [7, 2, 82],
-          //   [7, 3, 32],
-          //   [7, 3, 32],
-          //   [7, 4, 30],
-          //   [8, 0, 85],
-          //   [8, 1, 97],
-          //   [8, 2, 123],
-          //   [8, 3, 64],
-          //   [8, 3, 64],
-          //   [8, 4, 84],
-          //   [9, 0, 47],
-          //   [9, 1, 114],
-          //   [9, 2, 31],
-          //   [9, 3, 48],
-          //   [9, 3, 48],
-          //   [9, 4, 91],
-          // ],
-
           // 데이터 수치 표시
           dataLabels: {
-            enabled: true,
+            enabled: false,
             color: "#000000",
           },
         },

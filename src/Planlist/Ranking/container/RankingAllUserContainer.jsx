@@ -50,9 +50,7 @@ class RankingAllUserContainer extends Component {
           y: rankingList[(i + section / 2).toFixed(0)].total, // 중앙값
           color:
             // section * i <= idx && idx < section * (i + 1)
-            (i + 1) * 10 <= myRank && myRank < (i + 2) * 10
-              ? "#FFB517"
-              : "#FFF0CD",
+            i * 10 <= myRank && myRank < (i + 1) * 10 ? "#FFB517" : "#FFF0CD",
         });
         i += 1;
         j += 1;
