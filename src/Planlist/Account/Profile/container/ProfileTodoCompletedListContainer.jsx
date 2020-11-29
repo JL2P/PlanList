@@ -17,6 +17,7 @@ class ProfileTodoCompletedListContainer extends Component {
       todos,
       onComplete,
       onIncomplete,
+      onDeletePoint,
     } = this.props;
     const selectId = selectUser.accountId;
     const loginId = account.getLoginAccount.accountId;
@@ -64,6 +65,7 @@ class ProfileTodoCompletedListContainer extends Component {
             onComplete={onComplete}
             onIncomplete={onIncomplete}
             loginId={loginId}
+            onDeletePoint={onDeletePoint}
           />
         )}
       </div>

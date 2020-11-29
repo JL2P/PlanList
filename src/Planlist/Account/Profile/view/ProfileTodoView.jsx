@@ -161,6 +161,7 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
+                onDeletePoint={onDeletePoint}
                 onAddPoint={onAddPoint}
                 onDeletePoint={onDeletePoint}
                 onAddGroupPoint={onAddGroupPoint}

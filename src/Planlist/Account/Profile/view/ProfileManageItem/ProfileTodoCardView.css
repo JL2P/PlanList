@@ -23,6 +23,17 @@
   transition: 0.5s;
 }
 
+.todo__groupAt {
+  position: absolute;
+  margin: 1em;
+  left: 0;
+  z-index: 10;
+  /* 투명도 */
+  opacity: 1;
+  /* 속도 */
+  transition: 0.5s;
+}
+
 /* 마우스 위치시 투명도를 조절하여 보이도록함! */
 .todo:hover > .todo__item_2 {
   opacity: 0.75;
