@@ -21,7 +21,8 @@ class RankingAllUserContainer extends Component {
     const idx = rankingList.findIndex((item) => {
       return item.accountId === loginId;
     });
-    const myRank = ((idx / rankingList.length) * 100).toFixed(0);
+    console.log(rankingList);
+    const myRank = (((idx + 1) / rankingList.length) * 100).toFixed(0);
     // console.log("따란~", typeof idx, idx, myRank);
     const rankingData = [];
     if (rankingList.length <= 10) {
