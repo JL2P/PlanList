@@ -66,6 +66,7 @@ class GroupTodoContainer extends Component {
   render() {
     const { account, group } = this.props.Store;
     const { item } = this.props;
+    const { getMember } = group
     const groupTodoStore = group.groupTodo;
     const groupTodoComments = groupTodoStore.getGroupTodoComments;
 
@@ -79,6 +80,7 @@ class GroupTodoContainer extends Component {
         onAttendGroupTodo={this.onAttendGroupTodo}
         onLikeButton={this.onLikeButton}
         attendAt={groupTodoStore.getGroupTodoAttendAt}
+        member = {getMember}
       />
     );
   }

@@ -13,6 +13,7 @@ const DetailGroupAllList = ({
   onAttendGroupTodo,
   onLikeButton,
   attendAt,
+  member
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -58,6 +59,7 @@ const DetailGroupAllList = ({
         onAttendGroupTodo={onAttendGroupTodo}
         onLikeButton={onLikeButton}
         attendAt={attendAt}
+        member={member}
       >
         <GroupTodoCommentFrame
           comments={selectedTodoComments}
