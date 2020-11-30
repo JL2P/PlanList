@@ -2,6 +2,7 @@ import React from 'react';
 import _ from "lodash";
 import { Search } from "semantic-ui-react";
 import "../../../GroupStyle/Search.scss";
+import DetailGroupAllList from "../../View/DetailGroupCenter/DetailGroupAllList";
 
 var searchList = [];
 
@@ -75,17 +76,15 @@ const DetailGroupAllSearch = ({ groupTodos }) => {
         };
     }, []);
 
-    // //검색 후 이동
-    // const onMove = (groupId) => {
-    //     window.location.replace(`/groupDetail/${groupId}`);
-    // };
+    //검색 후 이동
+    // const onMove = (groupTodo) => {console.log(groupTodo); return(<DetailGroupAllList groupTodo={groupTodo} />)};
 
     return (
         <Search
             style={{ height: "3.2em" }}
             loading={loading}
             onResultSelect={(e, data) => {
-                // onMove(data.result.id);
+                // onMove(data.result);
                 dispatch({ type: "UPDATE_SELECTION", selection: data.result.title });
             }}
             onSearchChange={handleSearchChange}
