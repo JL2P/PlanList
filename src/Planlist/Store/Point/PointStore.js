@@ -40,31 +40,31 @@ export default class PointStore {
   }
 
   @computed get getMyLevel() {
-    if (this.myRank.total < 120 * 3) {
+    if (this.myRank.total < 105 * 3) { // 하루 최대 취득 가능한 점수 105점
       // 3일
       return 1;
-    } else if (this.myRank.total < 120 * 7) {
+    } else if (this.myRank.total < 105 * 7) {
       // 일주일
       return 2;
-    } else if (this.myRank.total < 120 * 14) {
+    } else if (this.myRank.total < 105 * 14) {
       // 이주
       return 3;
-    } else if (this.myRank.total < 120 * 30) {
+    } else if (this.myRank.total < 105 * 30) {
       // 한달
       return 4;
-    } else if (this.myRank.total < 120 * 90) {
+    } else if (this.myRank.total < 105 * 90) {
       // 3달
       return 5;
-    } else if (this.myRank.total < 120 * 180) {
+    } else if (this.myRank.total < 105 * 180) {
       // 6달
       return 6;
-    } else if (this.myRank.total < 120 * 30 * 9) {
+    } else if (this.myRank.total < 105 * 30 * 9) {
       // 9달
       return 7;
-    } else if (this.myRank.total < 120 * 365) {
+    } else if (this.myRank.total < 105 * 365) {
       // 1년
       return 8;
-    } else if (this.myRank.total < 120 * (365 + 180)) {
+    } else if (this.myRank.total < 105 * (365 + 180)) {
       // 1년 반
       return 9;
     } else {
