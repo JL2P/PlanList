@@ -69,7 +69,7 @@ const MyAchievementRateView = ({ heat, dailyList }) => {
             col.push(k);
           }
           var row = [6, 5, 4, 3, 2, 1, 0];
-          var index = col.indexOf(this.point.x) * 5 + row.indexOf(this.point.y);
+          var index = col.indexOf(this.point.x) * 7 + row.indexOf(this.point.y);
           return (
             "<b>날짜 : " +
             dailyList[index].substring(0, 4) +
