@@ -13,3 +13,12 @@
 .GroupSearch .title,
 .GroupSearch .description{font-size: 1.2em !important;}
 
+
+.GroupTodoSearch .content{margin:0}
+.GroupTodoSearch .input{width:100%!important;}
+.GroupTodoSearch .result{display: flex !important; align-items: center !important;}
+.GroupTodoSearch .title{font-size: 1.2em !important;}
+.GroupTodoSearch .results{
+    height:300px !important;
+    overflow-y: scroll !important;
+}
