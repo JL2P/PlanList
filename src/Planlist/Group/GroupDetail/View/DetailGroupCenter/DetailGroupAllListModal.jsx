@@ -10,7 +10,9 @@ const DetailGroupAllListModal = ({
   onLikeButton,
   attendAt,
   children,
+  member
 }) => {
+
   const onLike = () => {
     //좋아요 상태면 좋아요 삭제
     //좋아요 상태가 아니면 좋아요 추가
@@ -100,7 +102,7 @@ const DetailGroupAllListModal = ({
                 계획 참여 취소하기
               </Button>
             )}
-            {!attendAt && (
+            {!attendAt && member.accountId === loginAccount.accountId && (
               <Button
                 fluid
                 style={{

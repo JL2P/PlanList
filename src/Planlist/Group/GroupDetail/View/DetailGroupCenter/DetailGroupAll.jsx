@@ -6,6 +6,7 @@ import GroupTodoContainer from "../../Container/GroupTodoContainer";
 import DetailGroupPrivate from "./DetailGroupPrivate";
 import DetailGroupNoTodoM from "./DetailGroupNoTodoM";
 import DetailGroupNoTodoU from "./DetailGroupNoTodoU";
+import DetailGroupAllSearch from "./DetailGroupAllSearch";
 
 const DetailGroupAll = ({
   onDetailGroup_create,
@@ -34,19 +35,19 @@ const DetailGroupAll = ({
   ));
   return (
     <div>
-      {group.openAt === "true" &&
-      member.groupId === group.id &&
+      {group.openAt === "true" ||
       member.confirm === "true" ? (
-        // 그룹 공개 여부가 true일 때 && 멤버 그룹id 와 그룹id가 일치할 때 (공개)
+        // 그룹 공개 여부가 true일 때 || 멤버 그룹id 와 그룹id가 일치할 때 (공개)
         <div>
           <Segment>
-            <Input
+            <DetailGroupAllSearch  groupTodos={groupTodos} />
+            {/* <Input
               icon={{ name: "search", circular: true, link: true }}
               placeholder="작성자, 게시물을 입력해주세요."
               style={{ width: "100%" }}
               value={search}
               onChange={onSearch}
-            />
+            /> */}
           </Segment>
 
           <Segment>
