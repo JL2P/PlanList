@@ -9,6 +9,10 @@ const ProfileTodoIncompletedListView = ({
   today,
   selectId,
   loginId,
+  onComplete,
+  onIncomplete,
+  onAddPoint,
+  onDeletePoint,
 }) => {
   console.log("로그", selectId, loginId);
   return (
@@ -33,6 +37,10 @@ const ProfileTodoIncompletedListView = ({
                 today={today}
                 selectId={selectId}
                 loginId={loginId}
+                onComplete={onComplete}
+                onIncomplete={onIncomplete}
+                onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint} 
               />
             ))}
           </Card.Group>

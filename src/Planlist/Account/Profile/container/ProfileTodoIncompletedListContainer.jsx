@@ -16,6 +16,10 @@ class ProfileTodoIncompletedListContainer extends Component {
       selectedTodo,
       onLikeButton,
       todos,
+      onComplete,
+      onIncomplete,
+      onAddPoint,
+      onDeletePoint,
     } = this.props;
     const selectId = selectUser.accountId;
     const today = todo.getToday;
@@ -62,6 +66,10 @@ class ProfileTodoIncompletedListContainer extends Component {
             today={todo.getToday}
             selectId={selectUser.accountId}
             loginId={loginAccount.accountId}
+            onComplete={onComplete}
+            onIncomplete={onIncomplete}
+            onAddPoint={onAddPoint}
+            onDeletePoint={onDeletePoint}
           />
         )}
       </div>

@@ -160,7 +160,6 @@ class ProfileTodoView extends Component {
                 todos={selectUserTodos}
                 onComplete={onComplete}
                 onIncomplete={onIncomplete}
-                onDeletePoint={onDeletePoint}
                 onAddPoint={onAddPoint}
                 onDeletePoint={onDeletePoint}
                 onAddGroupPoint={onAddGroupPoint}
@@ -174,6 +173,10 @@ class ProfileTodoView extends Component {
                 selectedTodo={selectedTodo}
                 onLikeButton={onLikeButton}
                 todos={selectUserTodos}
+                onComplete={onComplete}
+                onIncomplete={onIncomplete}
+                onAddPoint={onAddPoint}
+                onDeletePoint={onDeletePoint}
               />
             )}
             {activeItem === "달력 보기" && (
