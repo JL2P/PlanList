@@ -61,6 +61,7 @@ class MyAchievementRateContainer extends Component {
         col -= 1;
       }
     }
+    // console.log(heat);
     return (
       <div>
         <MyAchievementRateView heat={heat} dailyList={dailyList} />
