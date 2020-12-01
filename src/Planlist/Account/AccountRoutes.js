@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import ProfilePage from "./Profile/ProfilePage";
-import TodosPage from "./Todos/TodosPage";
+
 // import ModifyPage from "./ProfileModify/ProfileModifyPage";
 
 const AccountRouter = ({ match }) => {
