@@ -6,7 +6,6 @@ import { sign_submitBtn, sign_btn_text } from "../../style/Btn";
 import MainBackgroundView from "../../../Main/View/MainBackgroundView";
 
 import "./signinStyle.css";
-import axios from "axios";
 
 const SigninView = ({ onSignin }) => {
   const [email, setEmail] = useState("");
@@ -14,13 +13,6 @@ const SigninView = ({ onSignin }) => {
 
   const onEmail = (e) => setEmail(e.target.value);
   const onPassword = (e) => setPassword(e.target.value);
-
-  const header = {
-    headers: {
-      "Access-Control-Allow-Origin":
-        "http://localhost:9000/oauth2/authorization/google",
-    },
-  };
 
   const onGoogleLogin = () => {
     const url = "/api/auth/signin/google";
@@ -81,12 +73,13 @@ const SigninView = ({ onSignin }) => {
         </Form>
         <b style={{ ...sign_btn_text, marginTop: "5px" }}>or</b>
         <Button
-          color="yellow"
-          style={sign_submitBtn}
+          style={{ ...sign_submitBtn, background: "#ffe812" }}
           onClick={() => onKakaoLogin()}
         >
-          <Icon name="yellow" size="large" />
-          <b style={sign_btn_text}>Continue with Kakao</b>
+          <Icon name="comment" size="large" />
+          <b style={{ ...sign_btn_text, color: "#000000" }}>
+            Continue with Kakao
+          </b>
         </Button>
         <Button
           color="google plus"
