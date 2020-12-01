@@ -30,6 +30,7 @@ const ProfileFollowerView = ({ follower, onBtn, children }) => {
                 alignItems: "center",
               }}
             >
+              {/* 팔로워 유저 이미지 */}
               <div className="part_b">
                 {/* <Link to={{pathname:`/account/${follower.accountId}`,state:{fromDashboard:true}}} >  */}
                 <a href={"/account/" + follower.accountId}>
@@ -55,12 +56,16 @@ const ProfileFollowerView = ({ follower, onBtn, children }) => {
                 </a>
                 {/* </Link>     */}
               </div>
-
+              {/* 팔로워 유저 정보 */}
               <div className="part_b2">
                 <a href={"/account/" + follower.accountId}>
-                  <div>&emsp;{follower.accountId}</div>
+                  <div style={{ fontSize: "18px" }}>
+                    &emsp;{follower.accountId}
+                  </div>
                 </a>
-                <div>&emsp;{follower.name}</div>
+                <div style={{ fontSize: "18px", color: "gray" }}>
+                  &emsp;{follower.name}
+                </div>
               </div>
               <div></div>
             </div>

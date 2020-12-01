@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Header, Item } from "semantic-ui-react";
-import ProfileFollowingView from "../view/ProfileManageFollowing/ProfileFollowingView";
+import { Item } from "semantic-ui-react";
 import ProfileFollowingContainer from "./ProfileFollowingContainer";
 
 @inject("Store")
@@ -15,7 +14,7 @@ class ProfileFollowingListContainer extends Component {
   onDeleteMyFollowing = (followId) => {
     const { follow } = this.props.Store;
     follow.deleteMyFollowing(followId).then((res) => {
-      alert("팔로우 요청이 취소되었습니다.");
+      alert("팔로우 취소되었습니다.");
       window.location.reload();
     });
   };
@@ -39,14 +38,6 @@ class ProfileFollowingListContainer extends Component {
         loginId={loginId}
         onFollow={this.onFollow}
       />
-      // <ProfileFollowingView
-      //   key={following.accountId}
-      //   following={following}
-      //   onDeleteMyFollowing={this.onDeleteMyFollowing}
-      //   loginId={loginId}
-      //   isFollowing={follow.getIsFollowing}
-      //   onFollow={this.onFollow}
-      // />
     ));
 
     return (

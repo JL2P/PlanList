@@ -17,12 +17,6 @@ class ProfileFollowingContainer extends Component {
     const { following, onDeleteMyFollowing, loginId, onFollow } = this.props;
     const { follow } = this.props.Store;
     const isFollowing = follow.getIsFollowing;
-    console.log(
-      "으아아아아",
-      following.accountId,
-      isFollowing,
-      follow.getIsFollower
-    );
 
     return (
       <div>

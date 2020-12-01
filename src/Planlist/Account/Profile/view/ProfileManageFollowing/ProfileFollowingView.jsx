@@ -7,7 +7,7 @@ import {
   Modal,
   Divider,
 } from "semantic-ui-react";
-
+import "../ATagTextColor.scss";
 const ProfileFollowingView = ({
   isFollowing,
   following,
@@ -16,7 +16,6 @@ const ProfileFollowingView = ({
   onFollow,
 }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-  console.log("팔로잉이냐", isFollowing);
   const onConfirmModal = (trigger) => {
     setConfirmOpen(trigger);
   };
@@ -69,7 +68,7 @@ const ProfileFollowingView = ({
                 />
               </div>
               <div style={{ padding: "1.2em" }}>
-                <text>박민재님의 팔로우를 취소하시겠어요?</text>
+                <text>{following.accountId}님의 팔로우를 취소하시겠어요?</text>
               </div>
             </div>
           </Modal.Content>
@@ -173,9 +172,13 @@ const ProfileFollowingView = ({
               {/* 팔로잉 유저 정보 */}
               <div className="part_b">
                 <a href={"/account/" + following.accountId}>
-                  <div>&emsp;{following.accountId}</div>
+                  <div style={{ fontSize: "18px" }}>
+                    &emsp;{following.accountId}
+                  </div>
                 </a>
-                <div>&emsp;{following.name}</div>
+                <div style={{ fontSize: "18px", color: "gray" }}>
+                  &emsp;{following.name}
+                </div>
               </div>
             </div>
             <div className="part_a2">
