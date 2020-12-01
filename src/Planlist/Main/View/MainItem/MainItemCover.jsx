@@ -9,7 +9,7 @@ const MainItemCover = ({ loginId, todoModel, onCofigModal, onLikeButton }) => {
 
     onLikeButton(todoId, action);
   };
-  console.log("투두투두", todoModel.writer);
+
   return (
     <div className="todo__subitem">
       <Button
