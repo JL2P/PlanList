@@ -28,7 +28,7 @@ class ProfileTodoContainer extends Component {
       groupPoint.addGroupPoint(pointObj);
     }
     else{
-      console.log("NOMAL")
+      console.log("NORMAL")
       // nomal Point
       point.addPoint(pointObj);
     }
