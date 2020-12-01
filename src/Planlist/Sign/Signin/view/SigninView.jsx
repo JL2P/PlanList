@@ -29,7 +29,7 @@ const SigninView = ({ onSignin }) => {
   };
 
   const onKakaoLogin = () => {
-    const url = "http://localhost:9000/api/auth/social/login/kakao";
+    const url = "http://myplanit.co.kr/api/auth/social/login/kakao";
     window.location.href = url;
     // axios.get(url);
   };
