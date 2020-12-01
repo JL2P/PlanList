@@ -16,7 +16,6 @@ const ProfileFollowingView = ({
   onFollow,
 }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-  console.log("팔로잉이냐", isFollowing);
   const onConfirmModal = (trigger) => {
     setConfirmOpen(trigger);
   };
@@ -69,7 +68,7 @@ const ProfileFollowingView = ({
                 />
               </div>
               <div style={{ padding: "1.2em" }}>
-                <text>박민재님의 팔로우를 취소하시겠어요?</text>
+                <text>{following.accountId}님의 팔로우를 취소하시겠어요?</text>
               </div>
             </div>
           </Modal.Content>

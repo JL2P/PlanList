@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerView";
-import { Button, Modal } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import { inject, observer } from "mobx-react";
-import FollowerCancelModal from "../view/ProfileManageFollower/FollowerCancelModal";
 import FollowingCancelModal from "../view/ProfileManageFollower/FollowingCancelModal";
+
 @inject("Store")
 @observer
 class PofileFollowerContainer extends Component {
@@ -34,11 +34,9 @@ class PofileFollowerContainer extends Component {
   };
 
   onFollowRefuse = (followId) => {
-    // alert("삭제되었습니다.");
     const { follow } = this.props.Store;
-    // follow.followRefuse(followId);
     follow.deleteMyFollowing(followId).then((res) => {
-      alert("팔로잉이 취소되었습니다.");
+      alert("팔로우 취소되었습니다.");
       window.location.reload();
     });
     window.location.reload();
@@ -50,7 +48,6 @@ class PofileFollowerContainer extends Component {
     const loginId = account.getLoginAccount.accountId;
     const isFollower = follow.getIsFollower;
     const isFollowing = follow.getIsFollowing;
-    console.log("팔로워가 맞느냐", follower.accountId, isFollower, isFollowing);
     //follower True Following True
     // 팔로우 취소버튼
     const flag = isFollower && isFollowing ? true : false;

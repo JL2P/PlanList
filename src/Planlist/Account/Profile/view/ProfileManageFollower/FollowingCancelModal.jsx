@@ -1,5 +1,5 @@
 import React from "react";
-import {  Modal, Image, Divider } from "semantic-ui-react";
+import { Modal, Image, Divider } from "semantic-ui-react";
 
 const FollowingCancelModal = ({ following, open, onModal, onFollowRefuse }) => {
   return (
@@ -51,7 +51,7 @@ const FollowingCancelModal = ({ following, open, onModal, onFollowRefuse }) => {
                 />
               </div>
               <div style={{ padding: "1.2em" }}>
-                <span>박민재님의 팔로우를 취소하시겠어요?</span>
+                <span>{following.accountId}님의 팔로우를 취소하시겠어요?</span>
               </div>
             </div>
           </Modal.Content>
