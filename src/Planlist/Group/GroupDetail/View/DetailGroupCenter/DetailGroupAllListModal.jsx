@@ -102,7 +102,7 @@ const DetailGroupAllListModal = ({
                 계획 참여 취소하기
               </Button>
             )}
-            {!attendAt && member.accountId === loginAccount.accountId && (
+            {!attendAt && member.accountId === loginAccount.accountId && member.confirm === "true" && (
               <Button
                 fluid
                 style={{
