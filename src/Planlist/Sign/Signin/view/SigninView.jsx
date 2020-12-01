@@ -28,6 +28,12 @@ const SigninView = ({ onSignin }) => {
     window.location.href = url2;
   };
 
+  const onKakaoLogin = () => {
+    const url = "http://myplanit.co.kr/api/auth/social/login/kakao";
+    window.location.href = url;
+    // axios.get(url);
+  };
+
   const sign_forgetPassword = {
     display: "block",
     color: "#000000",
@@ -74,9 +80,13 @@ const SigninView = ({ onSignin }) => {
           </Button>
         </Form>
         <b style={{ ...sign_btn_text, marginTop: "5px" }}>or</b>
-        <Button color="facebook" style={sign_submitBtn}>
-          <Icon name="facebook" size="large" />
-          <b style={sign_btn_text}>Continue with Facebook</b>
+        <Button
+          color="yellow"
+          style={sign_submitBtn}
+          onClick={() => onKakaoLogin()}
+        >
+          <Icon name="yellow" size="large" />
+          <b style={sign_btn_text}>Continue with Kakao</b>
         </Button>
         <Button
           color="google plus"
