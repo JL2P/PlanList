@@ -86,7 +86,13 @@ const ProfileTodoCardView = ({
             <Image
               onClick={() => onInfoModal(true)}
               className="ProfileTodoCard__image"
-              src={todo.imgUrl}
+              src={
+                todo
+                  ? todo.galleries.length > 0
+                    ? todo.galleries[0].filePath
+                    : todo.imgUrl
+                  : null
+              }
               wrapped
               ui={false}
             ></Image>

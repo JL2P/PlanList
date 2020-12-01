@@ -25,7 +25,13 @@ const DetailGroupAllListModal = ({
       <Modal.Content image>
         <Image
           size="medium"
-          src={groupTodo.imgUrl}
+          src={
+            groupTodo.galleries
+              ? groupTodo.galleries.length > 0
+                ? groupTodo.galleries[0].filePath
+                : groupTodo.imgUrl
+              : null
+          }
           wrapped
           style={{ maxHeight: "360px" }}
         />
@@ -40,7 +46,13 @@ const DetailGroupAllListModal = ({
               <Link to={`/account/${groupTodo.writer}`}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Image
-                    src={groupTodo.imgUrl}
+                    src={
+                      groupTodo.galleries
+                        ? groupTodo.galleries.length > 0
+                          ? groupTodo.galleries[0].filePath
+                          : groupTodo.imgUrl
+                        : null
+                    }
                     bordered
                     centered
                     style={{

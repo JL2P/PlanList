@@ -150,13 +150,15 @@ export default class TodoStore {
   @action
   async getApiSelectTodos(selectId) {
     const selectTodos = await this.todoRepository.selectTodoList(selectId);
-    this.selectTodos = selectTodos.map((todo) => new TodoModel(todo));
+    const selectAccountMappingTodos = await this.accountRepository.todosAccountMapping(selectTodos);
+    this.selectTodos = selectAccountMappingTodos.map((todo) => new TodoModel(todo));
   }
 
   @action
   async getApiLoginTodos() {
     const loginTodos = await this.todoRepository.loginTodoList();
-    this.loginTodos = loginTodos.map((todo) => new TodoModel(todo));
+    const loginAccountMappingTodos = await this.accountRepository.todosAccountMapping(loginTodos);
+    this.loginTodos = loginAccountMappingTodos.map((todo) => new TodoModel(todo));
   }
 
   // API를 호출하여 todo데이터를 저장한다.

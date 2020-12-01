@@ -28,7 +28,13 @@ const MainItem = ({ todoModel, onInfoModal }) => {
           >
             <div>
               <Image
-                src={todoModel.accountModel.imgUrl}
+                src={
+                  todoModel.accountModel
+                    ? todoModel.accountModel.galleries.length > 0
+                      ? todoModel.accountModel.galleries[0].filePath
+                      : todoModel.accountModel.imgUrl
+                    : ""
+                }
                 bordered
                 centered
                 style={{
