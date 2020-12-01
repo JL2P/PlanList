@@ -31,7 +31,8 @@ const HeaderSearch = ({ accounts }) => {
       return {
         title: val.accountId,
         description: val.email,
-        image: val.imgUrl,
+        image:
+          val.galleries.length > 0 ? val.galleries[0].filePath : val.imgUrl,
       };
     });
 

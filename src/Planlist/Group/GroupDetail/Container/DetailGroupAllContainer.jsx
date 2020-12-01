@@ -21,7 +21,7 @@ class DetailGroupAllContainer extends Component {
 
     groupTodoStore.addGroupTodo(groupTodoObj, file).then((res) => {
       alert("그룹 계획이 생성되었습니다.");
-      // window.location.reload();
+      window.location.reload();
     });
   };
 
