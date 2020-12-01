@@ -34,7 +34,7 @@ const App = withRouter(({ match, location }) => {
         <Route exact path="/auth" component={Auth} />
         {/* <Route exact path="/todo" component={Todo} /> */}
         <Route path="/groupmenu" component={GroupMenu} />
-        <Route path="/groupdetail" component={GroupDetail} />
+        <Route path="/groupdetail/:id" component={GroupDetail} />
         <Route path="/groupcategory" component={GroupCategory} />
         <Route path="/ranking" component={Ranking} />
         <Route render={() => <PageNotFound />} />

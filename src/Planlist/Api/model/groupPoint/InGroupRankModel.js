@@ -1,8 +1,8 @@
 export default class InGroupRankModel {
     constructor(inGroupRankObj) {
-        this.inGroupRankId = inGroupRankObj.inGroupRankId;
+        this.groupPointId = inGroupRankObj.groupPointId;
         this.accountId = inGroupRankObj.accountId;
         this.groupId = inGroupRankObj.groupId;
-        this.inGroupTotal = inGroupRankObj.inGroupTotal;
+        this.point = inGroupRankObj.point;
     } 
 }

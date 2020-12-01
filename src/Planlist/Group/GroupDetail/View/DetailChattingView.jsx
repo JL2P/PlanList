@@ -1,60 +1,69 @@
-import React,{useState} from 'react';
-import { Card, Icon, TextArea, Form, Button } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Card, Image, List, Header } from "semantic-ui-react";
 
-const DetailChattingView = () => {
-    const [IconCheck, setIconCheck] = useState(false);
-    
-    const onToggle = () => {
-        if(IconCheck === false){
-            setIconCheck(true)
-        }else{
-            setIconCheck(false)
-        }
-    }
+const DetailChattingView = ({ groupRanks }) => {
+  const TopThreeRankComponent = () => {
+    return groupRanks.map((groupRank, idx) => {
+      return (
+        <List.Item key={groupRank.accountId}>
+          <Link to={`/account/${groupRank.accountId}`}>
+            <List.Content>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {idx < 3 && (
+                    <Image
+                      src={`/images/badge/crown_${idx + 1}.png`}
+                      alt="crown"
+                      style={{
+                        width: "25px",
+                        height: "25px",
+                        marginRight: "0.5em",
+                      }}
+                    />
+                  )}
+                  <Header>{groupRank.accountId}</Header>
+                </div>
+                <Header color="red">{groupRank.total}</Header>
+              </div>
+            </List.Content>
+          </Link>
+        </List.Item>
+      );
+    });
+  };
 
-    return (
-        <Card>
-            <Card.Content onClick={onToggle} style={{cursor:"pointer"}} >
-                <h3 style={{marginBottom:"0",display:"inline-block"}}> Group Chatting</h3>
-                {IconCheck ? 
-                    (
-                        <Icon style={{
-                            fontSize:"2em", 
-                            float:"right",
-                            display:"flex",
-                            alignItems:"center",
-                        }} name="angle up" />
-                    ) : 
-                    (
-                        <Icon style={{
-                            fontSize:"2em", 
-                            float:"right",
-                            display:"flex",
-                            alignItems:"center",
-                        }} name="angle down" />
-                    )
-                }
-                
-            </Card.Content>
-            {IconCheck ? (
-                <>
-                    <Card.Content>
-                        <Form>
-                            <TextArea style={{height:"300px"}} />
-                        </Form>
-                    </Card.Content>
+  return (
+    <Card>
+      <Card.Content style={{ cursor: "pointer" }}>
+        <h3 style={{ marginBottom: "0", display: "inline-block" }}>
+          {" "}
+          Group Ranking
+        </h3>
+      </Card.Content>
 
-                    <Card.Content>
-                        <Form>
-                            <TextArea style={{height:"50px"}} placeholder='채팅을 시작하세요' />
-                            <Button style={{float:"right",margin:"1rem 0 0 0 ",width:"100%"}} color='yellow'>전송</Button>
-                        </Form>
-                    </Card.Content>
-                </>
-            ) : "" }
-            
-        </Card>
-    );
+      <>
+        <Card.Content>
+          <Header>BEST3</Header>
+          <List selection verticalAlign="middle">
+            {TopThreeRankComponent()}
+          </List>
+        </Card.Content>
+      </>
+    </Card>
+  );
 };
 
 export default DetailChattingView;
