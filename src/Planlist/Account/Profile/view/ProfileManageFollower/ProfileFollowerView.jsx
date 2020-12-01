@@ -33,7 +33,6 @@ const ProfileFollowerView = ({ follower, onBtn, children }) => {
               <div className="part_b">
                 {/* <Link to={{pathname:`/account/${follower.accountId}`,state:{fromDashboard:true}}} >  */}
                 <a href={"/account/" + follower.accountId}>
-                  {" "}
                   <Image
                     src={
                       follower.galleries
@@ -59,9 +58,9 @@ const ProfileFollowerView = ({ follower, onBtn, children }) => {
 
               <div className="part_b2">
                 <a href={"/account/" + follower.accountId}>
-                  <div>{follower.accountId}</div>
+                  <div>&emsp;{follower.accountId}</div>
                 </a>
-                <div>{follower.name}</div>
+                <div>&emsp;{follower.name}</div>
               </div>
               <div></div>
             </div>

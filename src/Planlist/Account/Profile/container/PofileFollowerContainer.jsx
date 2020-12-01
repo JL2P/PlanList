@@ -16,9 +16,10 @@ class PofileFollowerContainer extends Component {
 
   componentDidMount() {
     const { follower } = this.props;
-    const { follow } = this.props.Store;
+    const { follow, account } = this.props.Store;
     follow.followingCheck(follower.accountId);
     follow.followerCheck(follower.accountId);
+    account.getApiAccountInfo();
   }
 
   onModal = (flag) => {
@@ -41,18 +42,20 @@ class PofileFollowerContainer extends Component {
 
   render() {
     const { follower } = this.props;
-    const { follow } = this.props.Store;
-
+    const { follow, account } = this.props.Store;
+    const loginId = account.getLoginAccount.accountId;
     const isFollower = follow.getIsFollower;
     const isFollowing = follow.getIsFollowing;
+    console.log(follower.accountId, isFollower);
     //follower True Following True
     // 팔로우 취소버튼
     const flag = isFollower && isFollowing ? true : false;
-
     //follower false Following True
     // 팔로우하기 버튼
     const btn =
-      flag === true ? (
+      follower.accountId === loginId ? (
+        ""
+      ) : flag === true ? (
         <Button
           size="tiny"
           basic
@@ -81,6 +84,7 @@ class PofileFollowerContainer extends Component {
         follower={follower}
         onFollowRefuse={this.onFollowRefuse}
         onBtn={btn}
+        loginId={loginId}
       >
         <FollowerCancelModal
           follower={follower}
