@@ -8,13 +8,18 @@ import {
   Divider,
 } from "semantic-ui-react";
 
-const ProfileFollowingView = ({ following, onDeleteMyFollowing }) => {
+const ProfileFollowingView = ({
+  isFollowing,
+  following,
+  onDeleteMyFollowing,
+  loginId,
+  onFollow,
+}) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-
+  console.log("팔로잉이냐", isFollowing);
   const onConfirmModal = (trigger) => {
     setConfirmOpen(trigger);
   };
-
   return (
     <div>
       <Modal
@@ -121,6 +126,7 @@ const ProfileFollowingView = ({ following, onDeleteMyFollowing }) => {
           </div>
         </div>
       </Modal>
+      {/* 팔로잉 유저 정보 */}
       <Container>
         <Item>
           <div
@@ -143,6 +149,7 @@ const ProfileFollowingView = ({ following, onDeleteMyFollowing }) => {
             >
               <div className="part_b">
                 <a href={"/account/" + following.accountId}>
+                  {/* 팔로잉 유저 이미지 */}
                   <Image
                     src={
                       following.galleries
@@ -163,25 +170,40 @@ const ProfileFollowingView = ({ following, onDeleteMyFollowing }) => {
                   />
                 </a>
               </div>
-
+              {/* 팔로잉 유저 정보 */}
               <div className="part_b">
                 <a href={"/account/" + following.accountId}>
-                  <div>{following.accountId}</div>
+                  <div>&emsp;{following.accountId}</div>
                 </a>
-                <div>{following.name}</div>
+                <div>&emsp;{following.name}</div>
               </div>
             </div>
             <div className="part_a2">
-              <Button
-                size="tiny"
-                basic
-                color="grey"
-                onClick={() => {
-                  onConfirmModal(true);
-                }}
-              >
-                팔로잉 취소
-              </Button>
+              {following.accountId === loginId ? (
+                ""
+              ) : isFollowing ? (
+                <Button
+                  size="tiny"
+                  basic
+                  color="grey"
+                  onClick={() => {
+                    onConfirmModal(true);
+                  }}
+                >
+                  팔로잉 취소
+                </Button>
+              ) : (
+                <Button
+                  size="tiny"
+                  basic
+                  color="grey"
+                  onClick={() => {
+                    onFollow(following.accountId);
+                  }}
+                >
+                  팔로잉
+                </Button>
+              )}
             </div>
           </div>
         </Item>
