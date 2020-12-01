@@ -50,7 +50,13 @@ const MainItemInfoModalView = ({
             <Link to={`/account/${todo.writer}`}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Image
-                  src={todo.accountModel ? todo.accountModel.imgUrl : ""}
+                  src={
+                    todo.accountModel
+                      ? todo.accountModel.galleries.length > 0
+                        ? todo.accountModel.galleries[0].filePath
+                        : todo.accountModel.imgUrl
+                      : ""
+                  }
                   bordered
                   centered
                   style={{

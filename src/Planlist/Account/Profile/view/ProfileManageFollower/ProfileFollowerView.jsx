@@ -35,7 +35,13 @@ const ProfileFollowerView = ({ follower, onBtn, children }) => {
                 <a href={"/account/" + follower.accountId}>
                   {" "}
                   <Image
-                    src={follower.imgUrl}
+                    src={
+                      follower.galleries
+                        ? follower.galleries.length > 0
+                          ? follower.galleries[0].filePath
+                          : follower.imgUrl
+                        : null
+                    }
                     bordered
                     centered
                     style={{

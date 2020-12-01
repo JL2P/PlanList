@@ -17,7 +17,13 @@ const GroupTodoCommentFormVIew = ({
       <Comment.Content>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Image
-            src={comment.accountModel ? comment.accountModel.imgUrl : ""}
+            src={
+              comment.galleries
+                ? comment.galleries.length > 0
+                  ? comment.galleries[0].filePath
+                  : comment.imgUrl
+                : null
+            }
             bordered
             centered
             style={{

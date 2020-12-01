@@ -13,13 +13,19 @@ const TodoCommentFormVIew = ({
   const [reply, setReply] = useState(false);
 
   const onReply = () => setReply(!reply);
-
+  console.log(comment);
   return (
     <Comment>
       <Comment.Content>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Image
-            src={comment.accountModel ? comment.accountModel.imgUrl : ""}
+            src={
+              comment.accountModel
+                ? comment.accountModel.galleries.length > 0
+                  ? comment.accountModel.galleries[0].filePath
+                  : comment.accountModel.imgUrl
+                : ""
+            }
             bordered
             centered
             style={{

@@ -147,6 +147,7 @@ export default class AccountStore {
     
     const accountModel = new AccountModifyModel(account);
     const result = await this.accountRepository.accountModify(accountModel);
+    
     //업데이트된 정보로 변경
     this.account = new AccountModel(result);
     
