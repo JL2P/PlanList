@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Header, Item } from "semantic-ui-react";
-import ProfileFollowingView from "../view/ProfileManageFollowing/ProfileFollowingView";
+import {  Item } from "semantic-ui-react";
 import ProfileFollowingContainer from "./ProfileFollowingContainer";
 
 @inject("Store")

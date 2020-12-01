@@ -3,7 +3,7 @@ import ProfileFollowerView from "../view/ProfileManageFollower/ProfileFollowerVi
 import { Button, Modal } from "semantic-ui-react";
 import { inject, observer } from "mobx-react";
 import FollowerCancelModal from "../view/ProfileManageFollower/FollowerCancelModal";
-
+import FollowingCancelModal from "../view/ProfileManageFollower/FollowingCancelModal";
 @inject("Store")
 @observer
 class PofileFollowerContainer extends Component {
@@ -34,9 +34,13 @@ class PofileFollowerContainer extends Component {
   };
 
   onFollowRefuse = (followId) => {
-    alert("삭제되었습니다.");
+    // alert("삭제되었습니다.");
     const { follow } = this.props.Store;
-    follow.followRefuse(followId);
+    // follow.followRefuse(followId);
+    follow.deleteMyFollowing(followId).then((res) => {
+      alert("팔로잉이 취소되었습니다.");
+      window.location.reload();
+    });
     window.location.reload();
   };
 
@@ -86,8 +90,14 @@ class PofileFollowerContainer extends Component {
         onBtn={btn}
         loginId={loginId}
       >
-        <FollowerCancelModal
+        {/* <FollowerCancelModal
           follower={follower}
+          open={this.state.open}
+          onModal={this.onModal}
+          onFollowRefuse={this.onFollowRefuse}
+        /> */}
+        <FollowingCancelModal
+          following={follower}
           open={this.state.open}
           onModal={this.onModal}
           onFollowRefuse={this.onFollowRefuse}
