@@ -10,10 +10,13 @@ import {
   CommentAddModel,
   CommentModel,
 } from "../../Api/model/comment/CommentModels";
-import { SubCommentAddModel,SubCommentModel } from "../../Api/model/comment/SubCommentModels";
-import FollowRepository from '../../Api/Repository/FollowRepository';
-import AccountRepository from '../../Api/Repository/AccountRepository';
-import GroupTodoRepository from '../../Api/Repository/GroupTodoRepository';
+import {
+  SubCommentAddModel,
+  SubCommentModel,
+} from "../../Api/model/comment/SubCommentModels";
+import FollowRepository from "../../Api/Repository/FollowRepository";
+import AccountRepository from "../../Api/Repository/AccountRepository";
+import GroupTodoRepository from "../../Api/Repository/GroupTodoRepository";
 
 export default class TodoStore {
   constructor(root) {
@@ -126,39 +129,53 @@ export default class TodoStore {
 
   @action
   setComments(comments) {
-    this.comments = comments
+    this.comments = comments;
   }
 
   // API를 호출하여 todos에 todo리스트 데이터를 넣어준다.
   @action
   async getApiTodos() {
     const followings = await this.followRepository.getMyFollowinglistFunction();
-    const apiGetTodos = await this.todoRepository.TodoList(followings.map(follow=>follow.accountId));
-    const apiTodosAccount = await this.accountRepository.todosAccountMapping(apiGetTodos);
-    this.todos =apiTodosAccount.map(todo=>new TodoModel(todo));
+    const apiGetTodos = await this.todoRepository.TodoList(
+      followings.map((follow) => follow.accountId)
+    );
+    const apiTodosAccount = await this.accountRepository.todosAccountMapping(
+      apiGetTodos
+    );
+    this.todos = apiTodosAccount.map((todo) => new TodoModel(todo));
   }
 
   @action
   async getApiAllTodos() {
     const apiGetAllTodos = await this.todoRepository.TodoAll();
     // console.log(apiGetAllTodos)
-    const apiAllTodosAccount = await this.accountRepository.todosAccountMapping(apiGetAllTodos);
+    const apiAllTodosAccount = await this.accountRepository.todosAccountMapping(
+      apiGetAllTodos
+    );
     // console.log(apiAllTodosAccount)
-    this.allTodos = apiAllTodosAccount.map(todo => new TodoModel(todo));
+    this.allTodos = apiAllTodosAccount.map((todo) => new TodoModel(todo));
   }
 
   @action
   async getApiSelectTodos(selectId) {
     const selectTodos = await this.todoRepository.selectTodoList(selectId);
-    const selectAccountMappingTodos = await this.accountRepository.todosAccountMapping(selectTodos);
-    this.selectTodos = selectAccountMappingTodos.map((todo) => new TodoModel(todo));
+    const selectAccountMappingTodos = await this.accountRepository.todosAccountMapping(
+      selectTodos
+    );
+    this.selectTodos = selectAccountMappingTodos.map(
+      (todo) => new TodoModel(todo)
+    );
   }
 
   @action
   async getApiLoginTodos() {
     const loginTodos = await this.todoRepository.loginTodoList();
-    const loginAccountMappingTodos = await this.accountRepository.todosAccountMapping(loginTodos);
-    this.loginTodos = loginAccountMappingTodos.map((todo) => new TodoModel(todo));
+    const loginAccountMappingTodos = await this.accountRepository.todosAccountMapping(
+      loginTodos
+    );
+    this.loginTodos = loginAccountMappingTodos.map(
+      (todo) => new TodoModel(todo)
+    );
   }
 
   // API를 호출하여 todo데이터를 저장한다.
@@ -169,20 +186,20 @@ export default class TodoStore {
     todoModel.writer = this.root.account.getLoginAccount.accountId;
 
     //업로드한 이미지가 없는 경우 기본 이미지 설정
-    if(todoObj.images.length ===0){
+    if (todoObj.images.length === 0) {
       const random_image_number = Math.floor(Math.random() * 99 + 1);
-      todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`
+      todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`;
     }
 
     //Todo 생성
     const todo = await this.todoRepository.todoCreate(todoModel);
 
     //Todo생성시 업로드한 이미지가 존재하는 경우 파일업로드 실행
-    if(todoObj.images.length !==0){
+    if (todoObj.images.length !== 0) {
       const file = todoObj.images[0].file;
       this.todoRepository.todoImageUpload(todo.todoId, file);
     }
-    
+    this.getApiLoginTodos();
     this.getApiTodos();
   }
 
@@ -194,31 +211,32 @@ export default class TodoStore {
     todoModel.writer = this.root.account.getLoginAccount.accountId;
 
     //업로드한 이미지가 없는 경우 기본 이미지 설정
-    if(todoObj.images.length ===0){
+    if (todoObj.images.length === 0) {
       const random_image_number = Math.floor(Math.random() * 99 + 1);
-      todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`
+      todoModel.imgUrl = `/posts/test_img_${random_image_number}.jpg`;
     }
 
     //기간별 Todo 생성
-    let addedTodos = [];    
-    if(todoModel.todoKind ==="DAY") addedTodos = await this.todoRepository.createDayTodo(todoModel);
-    if(todoModel.todoKind ==="WEEK") addedTodos = await this.todoRepository.createWeekTodo(todoModel);
+    let addedTodos = [];
+    if (todoModel.todoKind === "DAY")
+      addedTodos = await this.todoRepository.createDayTodo(todoModel);
+    if (todoModel.todoKind === "WEEK")
+      addedTodos = await this.todoRepository.createWeekTodo(todoModel);
 
     //Todo생성시 업로드한 이미지가 존재하는 경우
-    if(todoObj.images.length !==0){
+    if (todoObj.images.length !== 0) {
       //생성된 Todo가 존재할 경우
-      if(addedTodos !== null && addedTodos.length > 0){ 
+      if (addedTodos !== null && addedTodos.length > 0) {
         //생성된 각 Todo에 이미지 업로드 시작
-        addedTodos.forEach(todo => {
+        addedTodos.forEach((todo) => {
           const file = todoObj.images[0].file;
           this.todoRepository.todoImageUpload(todo.todoId, file);
         });
       }
     }
-
+    this.getApiLoginTodos();
     this.getApiTodos();
   }
-
 
   // API를 호출하여 todo데이터를 수정한다.
   @action
@@ -226,6 +244,7 @@ export default class TodoStore {
     const todoModel = new TodoModifyModel(todoObj);
     await this.todoRepository.todoUpdate(todoModel);
     this.getApiTodos();
+    this.getApiLoginTodos();
   }
 
   // API를 호출하여 todo데이터를 삭제한다.
@@ -233,7 +252,11 @@ export default class TodoStore {
   async deleteTodo(todoId) {
     await this.todoRepository.todoDelete(todoId);
     const newMaintodo = this.todos.filter((todo) => todo.todoId !== todoId);
+    const newLogintodo = this.loginTodos.filter(
+      (todo) => todo.todoId !== todoId
+    );
     this.todos = newMaintodo;
+    this.loginTodos = newLogintodo;
   }
 
   // API를 호출하여 해당 todo의 댓글을 생성한다.
@@ -242,14 +265,18 @@ export default class TodoStore {
     const commentModel = new CommentAddModel(commentObj);
     commentModel.writer = this.root.account.getLoginAccount.accountId;
 
-    const data = await this.commentRepository.commentCreate(todoId, commentModel);
+    const data = await this.commentRepository.commentCreate(
+      todoId,
+      commentModel
+    );
     const newComment = new CommentModel(data);
     newComment.accountModel = this.root.account.getLoginAccount;
-    const comments = this.comments.slice('');
-    comments.push(newComment)
+    const comments = this.comments.slice("");
+    comments.push(newComment);
     this.comments = comments;
 
     this.getApiTodos();
+    this.getApiLoginTodos();
   }
 
   // API를 호출하여 해당 댓글의 대댓글을 생성한다.
@@ -265,55 +292,75 @@ export default class TodoStore {
     );
     const newSubComment = new SubCommentModel(data);
     newSubComment.accountModel = this.root.account.getLoginAccount;
-    
-    this.comments = this.comments.map(comment=>{
-      if(comment.commentId === commentId){
+
+    this.comments = this.comments.map((comment) => {
+      if (comment.commentId === commentId) {
         const subComments = comment.subComments;
-        
+
         subComments.push(newSubComment);
-        comment.subComments = subComments;        
+        comment.subComments = subComments;
       }
       return comment;
     });
 
     this.getApiTodos();
+    this.getApiLoginTodos();
   }
 
   // API를 호출하여 해당 댓글 삭제
   @action
-  async deleteComment(comment){
+  async deleteComment(comment) {
     const todoId = this.todo.todoId;
     const commentId = comment.commentId;
     this.commentRepository.commentDelete(todoId, comment.commentId);
-    this.comments = this.comments.filter(comment=>comment.commentId!==commentId);
+    this.comments = this.comments.filter(
+      (comment) => comment.commentId !== commentId
+    );
 
     this.getApiTodos();
+    this.getApiLoginTodos();
   }
 
   // API를 호출하여 해당 대댓글 삭제
   @action
-  async deleteSubComment(subComment){
+  async deleteSubComment(subComment) {
     const todoId = this.todo.todoId;
     const commentId = subComment.commentId;
     const subCommentId = subComment.subCommentId;
 
-    this.commentRepository.subCommentDelete(todoId, commentId ,subCommentId)
-    this.comments = this.comments.map(comment=>{
-      if(comment.commentId === commentId){
-        comment.subComments = comment.subComments.filter(subComment => subComment.subCommentId !==subCommentId)
+    this.commentRepository.subCommentDelete(todoId, commentId, subCommentId);
+    this.comments = this.comments.map((comment) => {
+      if (comment.commentId === commentId) {
+        comment.subComments = comment.subComments.filter(
+          (subComment) => subComment.subCommentId !== subCommentId
+        );
       }
       return comment;
     });
 
     this.getApiTodos();
+    this.getApiLoginTodos();
   }
-
 
   // API를 호출하여 Todo의 좋아요 누름
   @action
   async addLike(todoId) {
     this.todoRepository.onLike(todoId);
     this.todos = this.todos.map((todo) => {
+      if (todo.todoId === todoId) {
+        todo.likeState = true;
+        todo.likePoint += 1;
+      }
+      return todo;
+    });
+    this.loginTodos = this.loginTodos.map((todo) => {
+      if (todo.todoId === todoId) {
+        todo.likeState = true;
+        todo.likePoint += 1;
+      }
+      return todo;
+    });
+    this.allTodos = this.allTodos.map((todo) => {
       if (todo.todoId === todoId) {
         todo.likeState = true;
         todo.likePoint += 1;
@@ -327,6 +374,20 @@ export default class TodoStore {
   async removeLike(todoId) {
     this.todoRepository.cancelLike(todoId);
     this.todos = this.todos.map((todo) => {
+      if (todo.todoId === todoId) {
+        todo.likeState = false;
+        todo.likePoint = todo.likePoint === 0 ? 0 : (todo.likePoint -= 1);
+      }
+      return todo;
+    });
+    this.loginTodos = this.loginTodos.map((todo) => {
+      if (todo.todoId === todoId) {
+        todo.likeState = false;
+        todo.likePoint = todo.likePoint === 0 ? 0 : (todo.likePoint -= 1);
+      }
+      return todo;
+    });
+    this.allTodos = this.allTodos.map((todo) => {
       if (todo.todoId === todoId) {
         todo.likeState = false;
         todo.likePoint = todo.likePoint === 0 ? 0 : (todo.likePoint -= 1);
