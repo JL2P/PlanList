@@ -87,12 +87,6 @@ class PofileFollowerContainer extends Component {
         onBtn={btn}
         loginId={loginId}
       >
-        {/* <FollowerCancelModal
-          follower={follower}
-          open={this.state.open}
-          onModal={this.onModal}
-          onFollowRefuse={this.onFollowRefuse}
-        /> */}
         <FollowingCancelModal
           following={follower}
           open={this.state.open}
