@@ -16,6 +16,7 @@ const RankingBadgeView = ({ myLevel, loginId }) => {
           <Grid.Row>
             {badge.map((item, index) => (
               <div
+                key={index}
                 style={{
                   width: item.id === myLevel ? "90px" : "30px",
                   marginTop: item.id === myLevel ? "1px" : "30px",
@@ -31,6 +32,7 @@ const RankingBadgeView = ({ myLevel, loginId }) => {
           <Grid.Row>
             {badge.map((item, index) => (
               <div
+                key={index}
                 style={{
                   width: item.id === myLevel ? "90px" : "30px",
                   marginLeft: "49px",

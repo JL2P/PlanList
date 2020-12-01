@@ -35,9 +35,6 @@ const App = withRouter(({match, location }) => {
         <Route path="/groupmenu" component={GroupMenu} />
         <Route path="/groupdetail" component={GroupDetail} />
         <Route path="/groupcategory" component={GroupCategory} />
-        {/* <Route path="/chat/" exact component={JoinRoom} /> */}
-        {/* <Route path="/chat/chat" component={Chat} /> */}
-        {/* <Route path="/chat" component={Chat_test} /> */}
         <Route path="/ranking" component={Ranking} />
       </Switch>
       {location.pathname !== "/signin" &&
