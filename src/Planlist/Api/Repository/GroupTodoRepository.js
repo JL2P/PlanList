@@ -88,4 +88,9 @@ export default class GroupTodoRepository{
         formData.append("file", file)
         return axios_auth_POST(this.URL+`${groupId}/todos/${groupTodoId}`,formData,[]);
     }
+
+    getGroupTodoGroupInfo = (todoId)=>{
+        return axios_auth_GET(this.URL+`/todos/members/${todoId}`)
+    }
+
 }

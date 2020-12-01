@@ -18,8 +18,23 @@ class ProfileTodoContainer extends Component {
 
   // todo 완료를 누르면 점수 부여
   onAddPoint = (pointObj) => {
-    const { point } = this.props.Store;
-    point.addPoint(pointObj);
+    const {point, groupPoint} = this.props.Store;
+    console.log(pointObj);
+    const isGroupTodo = pointObj.groupAt;
+
+    if(isGroupTodo ==="Y"){
+      // GroupPoint
+      console.log("GROUP")
+      groupPoint.addGroupPoint(pointObj);
+    }
+    else{
+      console.log("NOMAL")
+      // nomal Point
+      point.addPoint(pointObj);
+    }
+
+    //const { point } = this.props.Store;
+    //point.addPoint(pointObj);
   };
 
   // todo 완료를 취소하면 점수 회수

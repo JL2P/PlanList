@@ -7,6 +7,7 @@ import GroupRankModel from "../../Api/model/groupPoint/GroupRankModel";
 import InGroupRankModel from "../../Api/model/groupPoint/InGroupRankModel";
 import { map } from "highcharts";
 import GroupModel from "../../Api/model/group/GroupModel";
+import GroupTodoRepository from "../../Api/Repository/GroupTodoRepository";
 
 export default class GroupPointStore {
 
@@ -15,6 +16,7 @@ export default class GroupPointStore {
       
         this.groupPointRepository = new GroupPointRepository();
         this.groupRepository = new GroupRepository();
+        this.groupTodoRepository = new GroupTodoRepository();
 
     }
     //그룹의 모든 점수 리스트
@@ -57,8 +59,12 @@ export default class GroupPointStore {
     //완료하면 그룹 점수 추가
     @action 
     async addGroupPoint(groupPointObj) {
+        const group = await this.groupTodoRepository.getGroupTodoGroupInfo(groupPointObj.todoId);
+        console.log(group)
         const groupPointAddModel = new GroupPointAddModel(groupPointObj);
-        await this.groupPointRepository.createGroupPoint(groupPointAddModel);
+        groupPointAddModel.groupId = group.id;
+        console.log(groupPointAddModel)
+        this.groupPointRepository.createGroupPoint(groupPointAddModel);
     }
 
     //완료 취소하면 그룹 점수 회수(해당 유저 점수도 같이 회수)
@@ -78,7 +84,9 @@ export default class GroupPointStore {
     @action
     async groupsAllRankings () {
         const groupRankingData = await this.groupPointRepository.getGroupsAllRankings();
-        this.groupRanks = groupRankingData.map((item)=> new GroupRankModel(item));
+        const groupRankingGroupMappingDatas = await this.groupRepository.groupPointMappingToGroup(groupRankingData);
+
+        this.groupRanks = groupRankingGroupMappingDatas.map((item)=> new GroupRankModel(item));
 
          console.log(this.groupRanks);
     }
