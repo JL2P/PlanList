@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { Header, Item } from "semantic-ui-react";
 import ProfileFollowingView from "../view/ProfileManageFollowing/ProfileFollowingView";
+import ProfileFollowingContainer from "./ProfileFollowingContainer";
 
 @inject("Store")
 @observer
@@ -31,14 +32,21 @@ class ProfileFollowingListContainer extends Component {
     const loginId = account.getLoginAccount.accountId;
     const myFollowings = follow.getMyFollowings;
     const element = myFollowings.map((following) => (
-      <ProfileFollowingView
+      <ProfileFollowingContainer
         key={following.accountId}
         following={following}
         onDeleteMyFollowing={this.onDeleteMyFollowing}
         loginId={loginId}
-        isFollowing={follow.getIsFollowing}
         onFollow={this.onFollow}
       />
+      // <ProfileFollowingView
+      //   key={following.accountId}
+      //   following={following}
+      //   onDeleteMyFollowing={this.onDeleteMyFollowing}
+      //   loginId={loginId}
+      //   isFollowing={follow.getIsFollowing}
+      //   onFollow={this.onFollow}
+      // />
     ));
 
     return (

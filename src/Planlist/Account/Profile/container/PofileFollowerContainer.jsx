@@ -46,7 +46,7 @@ class PofileFollowerContainer extends Component {
     const loginId = account.getLoginAccount.accountId;
     const isFollower = follow.getIsFollower;
     const isFollowing = follow.getIsFollowing;
-    console.log(follower.accountId, isFollower);
+    console.log("팔로워가 맞느냐", follower.accountId, isFollower, isFollowing);
     //follower True Following True
     // 팔로우 취소버튼
     const flag = isFollower && isFollowing ? true : false;
