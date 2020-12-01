@@ -5,7 +5,14 @@
     height:300px !important;
     overflow-y: scroll !important;
 }
-.search .image{float: left !important;}
-.search .image img{border-radius: 100%;}
+.search .result{display: flex; align-items: center;}
+.search .image{
+    float: left !important;
+    width: 40px!important; 
+    height: 40px!important; 
+    margin-right: 1rem!important;
+    object-fit: cover;
+}
+.search .image img{border-radius: 100%; width: 100%!important;}
 .search .title,
 .search .description{font-size: 1.2em !important;}
