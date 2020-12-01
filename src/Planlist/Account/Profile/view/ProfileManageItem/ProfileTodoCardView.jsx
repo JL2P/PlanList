@@ -12,6 +12,7 @@ const ProfileTodoCardView = ({
   selectedTodo,
   onComplete,
   onIncomplete,
+  onLikeButton,
   loginId,
   selectId,
   onAddPoint,
@@ -66,6 +67,7 @@ const ProfileTodoCardView = ({
         todo={todo}
         open={itemInfoOpen}
         onModal={onInfoModal}
+        onLikeButton={onLikeButton}
       />
 
       {/* todo Cover */}

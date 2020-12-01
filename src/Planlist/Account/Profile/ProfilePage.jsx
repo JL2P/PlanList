@@ -32,7 +32,6 @@ class ProfilePage extends Component {
       id === undefined ? account.getLoginAccount : account.getAccount;
     const selectUserTodos =
       id === undefined ? todo.getLoginTodos : todo.getSelectTodos;
-
     return (
       <div>
         {!loginCheck && id === undefined ? (

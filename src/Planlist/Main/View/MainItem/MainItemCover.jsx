@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, Button } from "semantic-ui-react";
-const MainItemCover = ({ todoModel, onCofigModal, onLikeButton }) => {
+const MainItemCover = ({ loginId, todoModel, onCofigModal, onLikeButton }) => {
   const onLike = () => {
     const todoId = todoModel.todoId;
     //좋아요 상태면 좋아요 삭제
@@ -24,16 +24,17 @@ const MainItemCover = ({ todoModel, onCofigModal, onLikeButton }) => {
         />
         {todoModel.likePoint}
       </Button>
-
-      <Button
-        icon
-        style={{ padding: "1em", background: "#ffffff" }}
-        onClick={() => {
-          onCofigModal(true);
-        }}
-      >
-        <Icon name="ellipsis horizontal" />
-      </Button>
+      {todoModel.writer === loginId && (
+        <Button
+          icon
+          style={{ padding: "1em", background: "#ffffff" }}
+          onClick={() => {
+            onCofigModal(true);
+          }}
+        >
+          <Icon name="ellipsis horizontal" />
+        </Button>
+      )}
     </div>
   );
 };

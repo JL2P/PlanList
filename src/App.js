@@ -14,15 +14,15 @@ import {
   GroupCategory,
   Ranking,
 } from "./Planlist/PlanlistRoutes";
+import PageNotFound from "./Planlist/PageNotFound/PageNotFound";
 import Loading from './Planlist/Sign/Signin/Loading';
 
-const App = withRouter(({match, location }) => {
-
+const App = withRouter(({ match, location }) => {
   return (
     <>
       {location.pathname !== "/signin" &&
         location.pathname !== "/signup" &&
-        location.pathname !== `/signin/${location.pathname.split('/')[2]}` &&
+        location.pathname !== `/signin/${location.pathname.split("/")[2]}` &&
         location.pathname !== "/auth" && <Header />}
       <Switch>
         <Route exact path="/" component={Main} />
@@ -37,6 +37,7 @@ const App = withRouter(({match, location }) => {
         <Route path="/groupdetail" component={GroupDetail} />
         <Route path="/groupcategory" component={GroupCategory} />
         <Route path="/ranking" component={Ranking} />
+        <Route render={() => <PageNotFound />} />
       </Switch>
       {location.pathname !== "/signin" &&
         location.pathname !== "/signup" &&
