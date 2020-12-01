@@ -164,6 +164,7 @@ const ProfileTodoCardView = ({
                         accountId: loginId,
                         likeCount: todo.likePoint,
                         todoId: todo.todoId,
+                        groupAt: todo.groupAt,
                       });
                     }}
                   >

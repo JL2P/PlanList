@@ -4,6 +4,7 @@ import GroupRankingListContainer from "./container/GroupRankingListContainer";
 import RankingAllUserContainer from "./container/RankingAllUserContainer";
 import RankingBadgeContainer from "./container/RankingBadgeContainer";
 import RankingHeatmapContainer from "./container/RankingHeatmapContainer";
+import GroupRankingListView from "./view/GroupRankingListView";
 
 @inject("Store")
 @observer
@@ -24,6 +25,7 @@ class RankingPage extends Component {
     return (
       <div>
         <GroupRankingListContainer></GroupRankingListContainer>
+        <GroupRankingListView></GroupRankingListView>
         <RankingBadgeContainer />
         <RankingAllUserContainer />
         <RankingHeatmapContainer />
