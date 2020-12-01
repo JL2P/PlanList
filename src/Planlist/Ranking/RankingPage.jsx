@@ -24,11 +24,12 @@ class RankingPage extends Component {
   render() {
     return (
       <div>
-        <GroupRankingListContainer></GroupRankingListContainer>
+       
         <GroupRankingListView></GroupRankingListView>
         <RankingBadgeContainer />
         <RankingAllUserContainer />
         <RankingHeatmapContainer />
+        <GroupRankingListContainer></GroupRankingListContainer>
       </div>
     );
   }
