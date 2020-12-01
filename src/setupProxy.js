@@ -12,7 +12,6 @@ module.exports = function (app) {
     })
   );
 
-
   // Account Service
   app.use(
     "/api/accounts",
