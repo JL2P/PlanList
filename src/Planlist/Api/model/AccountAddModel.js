@@ -25,7 +25,7 @@ Account 데이터를 담는 클래스
 */
 export default class AccountAddModel {
     constructor(accountObj) {
-      this.imgUrl = img_list[Math.floor(Math.random() * 8)]
+      this.imgUrl = accountObj.imgUrl === undefined? img_list[Math.floor(Math.random() * 8)]: accountObj.imgUrl
       this.accountId = accountObj.accountId; 
       this.email = accountObj.email; 
       this.name = accountObj.name;
