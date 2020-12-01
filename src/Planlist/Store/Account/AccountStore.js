@@ -164,9 +164,10 @@ export default class AccountStore {
   async selectUser(accountId) {
     const account = await this.accountRepository.accountDetail(accountId);
 
+    // 요청한 accountId가 없다면 undefined를 반환
     if (account.message === "No value present") {
       return undefined;
-    } else {
+    } else { 
       this.account = new AccountModel(account);
     }
   }
