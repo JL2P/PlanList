@@ -22,6 +22,10 @@ class MainPageContainer extends Component {
 
   componentDidMount() {
     this.props.Store.todo.getApiTodos();
+
+    // 나의 todo만 수정, 삭제할 수 있도록
+    const { account } = this.props.Store;
+    account.getApiAccountInfo();
   }
 
   componentDidUpdate() {
@@ -66,6 +70,10 @@ class MainPageContainer extends Component {
   divisonToItemGroup = (data, n) => {
     const MainItemGroupList = [];
 
+    // 나의 todo만 수정, 삭제할 수 있도록
+    const { account } = this.props.Store;
+    const loginId = account.getLoginAccount.accountId;
+
     //데이터를 이용하여 메인 아이템 리스트 생성
     const MainItemViewList = data.map((column) =>
       column.map((todoModel, idx) => (
@@ -75,6 +83,7 @@ class MainPageContainer extends Component {
           onDeleteTodo={this.onDeleteTodo}
           selectedTodo={this.selectedTodo}
           onLikeButton={this.onLikeButton}
+          loginId={loginId}
         />
       ))
     );

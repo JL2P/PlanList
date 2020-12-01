@@ -7,7 +7,7 @@ import MainItemConfigCotainer from "../../Container/MainItemConfigCotainer";
 
 import MainItem from "./MainItem";
 import MainItemCover from "./MainItemCover";
-const MainItemFrame = ({ todoModel, selectedTodo, onLikeButton }) => {
+const MainItemFrame = ({ loginId, todoModel, selectedTodo, onLikeButton }) => {
   // Item 정보 모달
   const [itemInfoOpen, setItemInfoOpen] = useState(false);
   // Item 설정 모달
@@ -62,6 +62,7 @@ const MainItemFrame = ({ todoModel, selectedTodo, onLikeButton }) => {
           todoModel={todoModel}
           onCofigModal={onCofigModal}
           onLikeButton={onLikeButton}
+          loginId={loginId}
         />
         <MainItem todoModel={todoModel} onInfoModal={onInfoModal} />
       </div>
