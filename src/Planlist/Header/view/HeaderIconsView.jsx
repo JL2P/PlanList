@@ -10,8 +10,7 @@ const iconStyle = {
   marginBottom: "0.5em",
 };
 
-const HeaderIconsView = ({ accounts,notConfirmFollowers,element }) => {
-
+const HeaderIconsView = ({ accounts, notConfirmFollowers, element }) => {
   return (
     <Container>
       <Menu.Item position="left">
@@ -55,48 +54,78 @@ const HeaderIconsView = ({ accounts,notConfirmFollowers,element }) => {
           />
         </Link>
 
-        <Menu.Item as='a' style={{padding:"0", position:"relative"}}>
+        <Menu.Item as="a" style={{ padding: "0", position: "relative" }}>
           <img
             src="/images/button/heart_white.png"
             style={iconStyle}
             alt="heart_white"
           />
-          {notConfirmFollowers.length !== 0 ?
+          {notConfirmFollowers.length !== 0 ? (
             <>
-              <Label style={{opacity:"0.9"}} floating color='red'>
+              <Label style={{ opacity: "0.9" }} floating color="red">
                 {notConfirmFollowers.length}
               </Label>
-              <Dropdown icon="" style={{position:"absolute",bottom:"0",left:"0",width:"100%",height:"100%"}}>
+              <Dropdown
+                icon=""
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
                 <Dropdown.Menu>
                   <Dropdown.Menu scrolling>
                     {notConfirmFollowers.map((option) => (
-                        <Dropdown.Item 
-                          key={option.accountId} 
-                          style={{cursor:"default", display:"flex", borderBottom:"1px solid #d9d9d9"}}
-                        >
-                          <img src={option.imgUrl} alt="" style={{borderRadius:"100%", marginRight:"1em"}} />
-                          {`${option.accountId} 님이 팔로우 신청을 하셨습니다.`}
-                          {element.filter(list => 
-                            list.key === option.accountId
-                          )}
-                        </Dropdown.Item>
+                      <Dropdown.Item
+                        key={option.accountId}
+                        style={{
+                          cursor: "default",
+                          display: "flex",
+                          borderBottom: "1px solid #d9d9d9",
+                        }}
+                      >
+                        <img
+                          src={
+                            option.galleries.length > 0
+                              ? option.galleries[0].filePath
+                              : option.imgUrl
+                          }
+                          alt=""
+                          style={{ borderRadius: "100%", marginRight: "1em" }}
+                        />
+                        {`${option.accountId} 님이 팔로우 신청을 하셨습니다.`}
+                        {element.filter(
+                          (list) => list.key === option.accountId
+                        )}
+                      </Dropdown.Item>
                     ))}
                   </Dropdown.Menu>
                 </Dropdown.Menu>
               </Dropdown>
             </>
-            :
-              <Dropdown icon="" style={{position:"absolute",bottom:"0",left:"0",width:"100%",height:"100%"}}>
-                  <Dropdown.Menu>
-                    <Dropdown.Menu scrolling>
-                        <Dropdown.Item 
-                          text={"새로운 알람이 없습니다."}
-                          style={{cursor:"default"}}
-                        />
-                    </Dropdown.Menu>
-                  </Dropdown.Menu>
-              </Dropdown>
-          }
+          ) : (
+            <Dropdown
+              icon=""
+              style={{
+                position: "absolute",
+                bottom: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Dropdown.Menu>
+                <Dropdown.Menu scrolling>
+                  <Dropdown.Item
+                    text={"새로운 알람이 없습니다."}
+                    style={{ cursor: "default" }}
+                  />
+                </Dropdown.Menu>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
         </Menu.Item>
 
         <Link to={"/groupmenu/"}>

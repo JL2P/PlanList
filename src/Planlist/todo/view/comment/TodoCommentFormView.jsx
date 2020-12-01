@@ -13,7 +13,7 @@ const TodoCommentFormVIew = ({
   const [reply, setReply] = useState(false);
 
   const onReply = () => setReply(!reply);
-  console.log(comment);
+
   return (
     <Comment>
       <Comment.Content>
