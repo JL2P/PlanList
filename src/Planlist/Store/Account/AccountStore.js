@@ -97,11 +97,10 @@ export default class AccountStore {
     this.loginAccount = new AccountModel(data);
     this.logCheck = true;
 
-    if(data.galleries[0]){
+    if (data.galleries[0]) {
       this.gallery_filePath = null;
       this.gallery_filePath = data.galleries[0].filePath;
     }
-    
   }
 
   @action signout() {
@@ -136,39 +135,39 @@ export default class AccountStore {
   //UserModify
   @action
   async userModify(account, file) {
-
     //업로드할 파일이 있을 경우에만 업데이트
-    if(file){
-      this.account.galleries = await this.accountGalleryRepository.galleryAdd(file, account.accountId);
+    if (file) {
+      this.account.galleries = await this.accountGalleryRepository.galleryAdd(
+        file,
+        account.accountId
+      );
 
       //로그인한 유저랑 같다면 로그인유저정보도 변경
-      if(this.account.accountId === this.loginAccount.accountId) this.loginAccount= this.account
+      if (this.account.accountId === this.loginAccount.accountId)
+        this.loginAccount = this.account;
     }
-    
+
     const accountModel = new AccountModifyModel(account);
     const result = await this.accountRepository.accountModify(accountModel);
-    
+
     //업데이트된 정보로 변경
     this.account = new AccountModel(result);
-    
+
     //로그인한 유저랑 같다면 로그인유저정보도 변경
-    if(this.account.accountId === this.loginAccount.accountId) this.loginAccount= new AccountModel(result);
+    if (this.account.accountId === this.loginAccount.accountId)
+      this.loginAccount = new AccountModel(result);
 
     this.selectAll();
   }
 
   @action
   async selectUser(accountId) {
+    const account = await this.accountRepository.accountDetail(accountId);
 
-    //accountId가 없으면 서버로 요청
-    if(accountId===undefined){
-      const data = await this.accountRepository.accountInfo();
-      this.loginAccount = new AccountModel(data);
-      this.account = new AccountModel(data);
-    }else{
-      const account = await this.accountRepository.accountDetail(accountId);
+    if (account.message === "No value present") {
+      return undefined;
+    } else {
       this.account = new AccountModel(account);
-
     }
   }
 

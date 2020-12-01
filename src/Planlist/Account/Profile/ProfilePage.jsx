@@ -12,7 +12,9 @@ class ProfilePage extends Component {
     const { account, todo, follow } = this.props.Store;
     const id = this.props.match.params.id;
 
+    // account.selectUser(id); // url의 id와 일치하는 계정을 선택
     account.selectUser(id); // url의 id와 일치하는 계정을 선택
+    console.log("아아", account.getAccount);
     account.selectAll();
 
     // todo.getApiTodos(); // 로그인된 계정의 todos
@@ -32,7 +34,7 @@ class ProfilePage extends Component {
       id === undefined ? account.getLoginAccount : account.getAccount;
     const selectUserTodos =
       id === undefined ? todo.getLoginTodos : todo.getSelectTodos;
-
+    console.log("뭐가 나오나", selectUser.accountId);
     return (
       <div>
         {!loginCheck && id === undefined ? (
