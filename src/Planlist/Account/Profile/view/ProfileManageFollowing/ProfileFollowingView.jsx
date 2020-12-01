@@ -7,7 +7,7 @@ import {
   Modal,
   Divider,
 } from "semantic-ui-react";
-
+import "../ATagTextColor.scss";
 const ProfileFollowingView = ({
   isFollowing,
   following,
@@ -172,9 +172,13 @@ const ProfileFollowingView = ({
               {/* 팔로잉 유저 정보 */}
               <div className="part_b">
                 <a href={"/account/" + following.accountId}>
-                  <div>&emsp;{following.accountId}</div>
+                  <div style={{ fontSize: "18px" }}>
+                    &emsp;{following.accountId}
+                  </div>
                 </a>
-                <div>&emsp;{following.name}</div>
+                <div style={{ fontSize: "18px", color: "gray" }}>
+                  &emsp;{following.name}
+                </div>
               </div>
             </div>
             <div className="part_a2">
