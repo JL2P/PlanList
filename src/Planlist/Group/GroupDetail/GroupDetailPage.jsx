@@ -5,7 +5,7 @@ import DetailProfileContainer from "./Container/DetailProfileContainer";
 
 import { Container, Grid } from "semantic-ui-react";
 
-const GroupDetailPage = ({ history }) => {
+const GroupDetailPage = ({ match, history }) => {
   const boxShadowRemove = { boxShadow: "none" };
   return (
     <div className="groupDetailWrap">
@@ -21,7 +21,7 @@ const GroupDetailPage = ({ history }) => {
             </Grid.Column>
 
             <Grid.Column width={4} style={boxShadowRemove}>
-              <DetailChattingContainer />
+              <DetailChattingContainer groupId={match.params.id} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

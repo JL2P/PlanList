@@ -40,12 +40,13 @@ export default class GroupPointStore {
         return this.groupRank;
     }
 
-    @computed get getInGroupRanks() {
+    //Computed로 하면 원하는 시점에 가져오지 못함
+    getInGroupRanks() {
         return this.ingroupRanks;
     }
 
     @computed get getInGroupRank() {
-        return this.ingroupRanks;
+        return this.ingroupRank;
     }
     
     @computed get getGroupPoints() {
