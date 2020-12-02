@@ -106,6 +106,7 @@ export default class AccountStore {
   @action signout() {
     this.loginAccount = {};
     this.logCheck = false;
+    localStorage.removeItem('jwt_token');
   }
 
   //auth

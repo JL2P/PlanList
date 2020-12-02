@@ -43,14 +43,23 @@ class PofileFollowerContainer extends Component {
   };
 
   render() {
+    console.log("render");
     const { follower } = this.props;
     const { follow, account } = this.props.Store;
     const loginId = account.getLoginAccount.accountId;
-    const isFollower = follow.getIsFollower;
-    const isFollowing = follow.getIsFollowing;
+    const myFollowings = follow.getMyFollowings;
+
+    // const isFollower = follow.getIsFollower;
+    // const isFollowing = follow.getIsFollowing;
     //follower True Following True
     // 팔로우 취소버튼
-    const flag = isFollower && isFollowing ? true : false;
+
+    const isFollower = myFollowings.filter(
+      (following) => following.accountId === follower.accountId
+    );
+
+    const flag = isFollower.length > 0 ? true : false;
+
     //follower false Following True
     // 팔로우하기 버튼
     const btn =
