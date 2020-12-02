@@ -25,6 +25,7 @@ const ProfileFollowerView = ({
               justifyContent: "space-between" /* 양옆으로 벌리는 기능 */,
               alignItems: "center" /* 높이의 정중앙 */,
               margin: "1em",
+              marginTop: "15px",
             }}
           >
             <div
@@ -51,8 +52,8 @@ const ProfileFollowerView = ({
                     bordered
                     centered
                     style={{
-                      width: "70px",
-                      height: "70px",
+                      width: "55px",
+                      height: "55px",
                       objectFit: "cover",
                       borderRadius: "50%",
                     }}
@@ -65,11 +66,11 @@ const ProfileFollowerView = ({
               {/* 팔로워 유저 정보 */}
               <div className="part_b2">
                 <a href={"/account/" + follower.accountId}>
-                  <div style={{ fontSize: "18px" }}>
+                  <div style={{ fontSize: "17px" }}>
                     &emsp;{follower.accountId}
                   </div>
                 </a>
-                <div style={{ fontSize: "18px", color: "gray" }}>
+                <div style={{ fontSize: "17px", color: "gray" }}>
                   &emsp;{follower.name}
                 </div>
               </div>

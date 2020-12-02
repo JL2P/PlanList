@@ -13,7 +13,8 @@ const ProfileFollowerModalView = ({
       onClose={() => onFollowerModal(false)}
       onOpen={() => onFollowerModal(true)}
       open={followerOpen}
-      size="tiny"
+      // size="tiny"
+      style={{ width: "420px" }}
     >
       <div style={{ margin: "1em" }}>
         <Header
@@ -28,7 +29,7 @@ const ProfileFollowerModalView = ({
           content="팔로워"
         />
 
-        <Modal.Content scrolling style={{ width: "100%" }}>
+        <Modal.Content scrolling style={{ width: "100%", height: "420px" }}>
           <ProfileFollowerListContainer selectUser={selectUser} />
         </Modal.Content>
       </div>

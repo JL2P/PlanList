@@ -33,7 +33,8 @@ const ProfileFollowingView = ({
             display: "flex" /* flex로 지정*/,
             justifyContent: "center",
             alignItems: "center" /* 높이의 정중앙 */,
-            marginTop: "1em",
+            margin: "1em",
+            marginTop: "15px",
           }}
         >
           <Modal.Content>
@@ -161,8 +162,8 @@ const ProfileFollowingView = ({
                     bordered
                     centered
                     style={{
-                      width: "70px",
-                      height: "70px",
+                      width: "55px",
+                      height: "55px",
                       objectFit: "cover",
                       borderRadius: "50%",
                     }}
@@ -173,11 +174,11 @@ const ProfileFollowingView = ({
               {/* 팔로잉 유저 정보 */}
               <div className="part_b">
                 <a href={"/account/" + following.accountId}>
-                  <div style={{ fontSize: "18px" }}>
+                  <div style={{ fontSize: "17px" }}>
                     &emsp;{following.accountId}
                   </div>
                 </a>
-                <div style={{ fontSize: "18px", color: "gray" }}>
+                <div style={{ fontSize: "17px", color: "gray" }}>
                   &emsp;{following.name}
                 </div>
               </div>
