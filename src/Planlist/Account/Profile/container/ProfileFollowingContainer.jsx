@@ -14,7 +14,13 @@ class ProfileFollowingContainer extends Component {
     account.getApiAccountInfo();
   }
   render() {
-    const { following, onDeleteMyFollowing, loginId, onFollow } = this.props;
+    const {
+      following,
+      onDeleteMyFollowing,
+      loginId,
+      onFollow,
+      selectUser,
+    } = this.props;
     const { follow } = this.props.Store;
     const isFollowing = follow.getIsFollowing;
 
@@ -27,6 +33,7 @@ class ProfileFollowingContainer extends Component {
           onDeleteMyFollowing={onDeleteMyFollowing}
           loginId={loginId}
           onFollow={onFollow}
+          selectUser={selectUser}
         />
       </div>
     );

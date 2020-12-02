@@ -14,6 +14,7 @@ const ProfileFollowingView = ({
   onDeleteMyFollowing,
   loginId,
   onFollow,
+  selectUser,
 }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const onConfirmModal = (trigger) => {
@@ -32,7 +33,8 @@ const ProfileFollowingView = ({
             display: "flex" /* flex로 지정*/,
             justifyContent: "center",
             alignItems: "center" /* 높이의 정중앙 */,
-            marginTop: "1em",
+            margin: "1em",
+            marginTop: "15px",
           }}
         >
           <Modal.Content>
@@ -160,8 +162,8 @@ const ProfileFollowingView = ({
                     bordered
                     centered
                     style={{
-                      width: "70px",
-                      height: "70px",
+                      width: "55px",
+                      height: "55px",
                       objectFit: "cover",
                       borderRadius: "50%",
                     }}
@@ -172,42 +174,46 @@ const ProfileFollowingView = ({
               {/* 팔로잉 유저 정보 */}
               <div className="part_b">
                 <a href={"/account/" + following.accountId}>
-                  <div style={{ fontSize: "18px" }}>
+                  <div style={{ fontSize: "17px" }}>
                     &emsp;{following.accountId}
                   </div>
                 </a>
-                <div style={{ fontSize: "18px", color: "gray" }}>
+                <div style={{ fontSize: "17px", color: "gray" }}>
                   &emsp;{following.name}
                 </div>
               </div>
             </div>
-            <div className="part_a2">
-              {following.accountId === loginId ? (
-                ""
-              ) : isFollowing ? (
-                <Button
-                  size="tiny"
-                  basic
-                  color="grey"
-                  onClick={() => {
-                    onConfirmModal(true);
-                  }}
-                >
-                  팔로잉 취소
-                </Button>
-              ) : (
-                <Button
-                  size="tiny"
-                  basic
-                  color="grey"
-                  onClick={() => {
-                    onFollow(following.accountId);
-                  }}
-                >
-                  팔로잉
-                </Button>
-              )}
-            </div>
+            {selectUser.accountId === loginId ? (
+              <div className="part_a2">
+                {following.accountId === loginId ? (
+                  ""
+                ) : isFollowing ? (
+                  <Button
+                    size="tiny"
+                    basic
+                    color="grey"
+                    onClick={() => {
+                      onConfirmModal(true);
+                    }}
+                  >
+                    팔로잉 취소
+                  </Button>
+                ) : (
+                  <Button
+                    size="tiny"
+                    basic
+                    color="grey"
+                    onClick={() => {
+                      onFollow(following.accountId);
+                    }}
+                  >
+                    팔로잉
+                  </Button>
+                )}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </Item>
       </Container>

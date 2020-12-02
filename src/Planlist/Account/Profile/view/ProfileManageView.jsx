@@ -85,11 +85,13 @@ const ProfileManageView = ({
       <ProfileFollowerModalView
         followerOpen={followerOpen}
         onFollowerModal={onFollowerModal}
+        selectUser={selectUser}
       />
       {/* 프로필 팔로잉 모달 기본 open상태 false */}
       <ProfileFollowingModalView
         followingOpen={followingOpen}
         onFollowingModal={onFollowingModal}
+        selectUser={selectUser}
       />
 
       <Grid stackable>
