@@ -35,4 +35,8 @@ export default class AuthRepository{
             }
         });
     }
+
+    authSignout=(accountId)=>{
+        axios.delete(this.URL+`/${accountId}`).then(request=>request.data||{});
+    }
 }

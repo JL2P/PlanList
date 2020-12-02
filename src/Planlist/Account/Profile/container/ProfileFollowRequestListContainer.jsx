@@ -22,12 +22,18 @@ class ProfileFollowRequestListContainer extends Component {
 
   onDeleteUser = (accountId) => {
     const { account } = this.props.Store;
-    account.userRemove(accountId);
+    account.userRemove(accountId).then((res) => {
+      alert("회원탈퇴 되었습니다.");
+      window.location.href = "/signin";
+    });
   };
 
   onSignout = () => {
     const { account } = this.props.Store;
-    account.signout();
+    account.signout().then((res) => {
+      alert("회원탈퇴 되었습니다.");
+      window.location.href = "/signin";
+    });
   };
 
   onFollowConfirm = (followId) => {
@@ -59,8 +65,8 @@ class ProfileFollowRequestListContainer extends Component {
     ));
 
     return (
-      <div style={{ height: "600px", textAlign: "center"}}>
-        <Header as="h3" dividing style={{paddingBottom:"0.5em" }}>
+      <div style={{ height: "600px", textAlign: "center" }}>
+        <Header as="h3" dividing style={{ paddingBottom: "0.5em" }}>
           팔로우 요청
         </Header>
         <div>

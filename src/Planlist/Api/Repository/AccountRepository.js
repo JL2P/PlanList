@@ -45,7 +45,7 @@ export default class AccountRepository {
   // DELETE /api/account/{accountId}/
   accountDelete = (accountId) => {
     return axios
-      .delete(this.URL + `/signout/${accountId}`)
+      .delete(this.URL + `/signout/${accountId}`,HEADER)
       .then((request) => request.data || null);
   };
 

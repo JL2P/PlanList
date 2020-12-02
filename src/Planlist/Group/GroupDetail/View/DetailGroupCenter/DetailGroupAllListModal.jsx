@@ -10,9 +10,8 @@ const DetailGroupAllListModal = ({
   onLikeButton,
   attendAt,
   children,
-  member
+  member,
 }) => {
-
   const onLike = () => {
     //좋아요 상태면 좋아요 삭제
     //좋아요 상태가 아니면 좋아요 추가
@@ -45,7 +44,7 @@ const DetailGroupAllListModal = ({
           </Modal.Description>
           <div>
             <div className="modal__description__info">
-              <Link to={`/account/${groupTodo.writer}`}>
+              {/* <Link to={`/account/${groupTodo.writer}`}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Image
                     src={
@@ -75,7 +74,7 @@ const DetailGroupAllListModal = ({
                     {groupTodo.writer}
                   </span>
                 </div>
-              </Link>
+              </Link> */}
               <Button
                 style={{ padding: "1em", background: "#ffffff" }}
                 onClick={() => {
@@ -114,28 +113,30 @@ const DetailGroupAllListModal = ({
                 계획 참여 취소하기
               </Button>
             )}
-            {!attendAt && member.accountId === loginAccount.accountId && member.confirm === "true" && (
-              <Button
-                fluid
-                style={{
-                  marginTop: "0.5em",
-                  background: "#ffb517",
-                  color: "#ffffff",
-                }}
-                onClick={() => {
-                  onAttendGroupTodo("ATTEND");
-                }}
-              >
-                계획 참여하기
-              </Button>
-            )}
+            {!attendAt &&
+              member.accountId === loginAccount.accountId &&
+              member.confirm === "true" && (
+                <Button
+                  fluid
+                  style={{
+                    marginTop: "0.5em",
+                    background: "#ffb517",
+                    color: "#ffffff",
+                  }}
+                  onClick={() => {
+                    onAttendGroupTodo("ATTEND");
+                  }}
+                >
+                  계획 참여하기
+                </Button>
+              )}
           </div>
         </div>
       </Modal.Content>
 
       {children}
 
-      {/* 내가 작성한 Todo만 삭제가능 */}
+      {/* 내가 작성한 Todo만 삭제가능
       {loginAccount.accountId === groupTodo.writer && (
         <Modal.Actions>
           <Button color="black" onClick={() => setOpen(false)}>
@@ -145,7 +146,7 @@ const DetailGroupAllListModal = ({
             삭제
           </Button>
         </Modal.Actions>
-      )}
+      )} */}
     </>
   );
 };
