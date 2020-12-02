@@ -14,6 +14,7 @@ const ProfileFollowingView = ({
   onDeleteMyFollowing,
   loginId,
   onFollow,
+  selectUser,
 }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const onConfirmModal = (trigger) => {
@@ -181,33 +182,37 @@ const ProfileFollowingView = ({
                 </div>
               </div>
             </div>
-            <div className="part_a2">
-              {following.accountId === loginId ? (
-                ""
-              ) : isFollowing ? (
-                <Button
-                  size="tiny"
-                  basic
-                  color="grey"
-                  onClick={() => {
-                    onConfirmModal(true);
-                  }}
-                >
-                  팔로잉 취소
-                </Button>
-              ) : (
-                <Button
-                  size="tiny"
-                  basic
-                  color="grey"
-                  onClick={() => {
-                    onFollow(following.accountId);
-                  }}
-                >
-                  팔로잉
-                </Button>
-              )}
-            </div>
+            {selectUser.accountId === loginId ? (
+              <div className="part_a2">
+                {following.accountId === loginId ? (
+                  ""
+                ) : isFollowing ? (
+                  <Button
+                    size="tiny"
+                    basic
+                    color="grey"
+                    onClick={() => {
+                      onConfirmModal(true);
+                    }}
+                  >
+                    팔로잉 취소
+                  </Button>
+                ) : (
+                  <Button
+                    size="tiny"
+                    basic
+                    color="grey"
+                    onClick={() => {
+                      onFollow(following.accountId);
+                    }}
+                  >
+                    팔로잉
+                  </Button>
+                )}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </Item>
       </Container>

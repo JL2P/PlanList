@@ -1,7 +1,13 @@
 import React from "react";
 import { Container, Item, Image } from "semantic-ui-react";
 
-const ProfileFollowerView = ({ follower, onBtn, children }) => {
+const ProfileFollowerView = ({
+  follower,
+  onBtn,
+  children,
+  selectUser,
+  loginId,
+}) => {
   // const [confirmOpen, setConfirmOpen] = useState(false);
   // const onConfirmModal = (trigger) => {
   //   setConfirmOpen(trigger);
@@ -69,7 +75,11 @@ const ProfileFollowerView = ({ follower, onBtn, children }) => {
               </div>
               <div></div>
             </div>
-            <div className="part_a2">{onBtn}</div>
+            {selectUser.accountId === loginId ? (
+              <div className="part_a2">{onBtn}</div>
+            ) : (
+              ""
+            )}
           </div>
         </Item>
       </Container>

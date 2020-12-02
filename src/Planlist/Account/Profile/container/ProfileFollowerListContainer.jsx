@@ -11,11 +11,17 @@ class ProfileFollowerListContainer extends Component {
   }
 
   render() {
+    const { selectUser } = this.props;
     const { account, follow } = this.props.Store;
-    const myFollowers = follow.getMyFollowers;
+    const myFollowers = follow.getMyFollowers; // 페이지 주인의 팔로워 목록
 
+    console.log("팔로워", myFollowers);
     const element = myFollowers.map((follower) => (
-      <PofileFollowerContainer key={follower.accountId} follower={follower} />
+      <PofileFollowerContainer
+        key={follower.accountId}
+        follower={follower}
+        selectUser={selectUser}
+      />
     ));
 
     return (

@@ -44,7 +44,8 @@ class PofileFollowerContainer extends Component {
 
   render() {
     console.log("render");
-    const { follower } = this.props;
+    const { follower, selectUser } = this.props;
+    console.log("누구냐", follower);
     const { follow, account } = this.props.Store;
     const loginId = account.getLoginAccount.accountId;
     const myFollowings = follow.getMyFollowings;
@@ -57,6 +58,9 @@ class PofileFollowerContainer extends Component {
     const isFollower = myFollowings.filter(
       (following) => following.accountId === follower.accountId
     );
+
+    console.log("myFollowings", myFollowings);
+    console.log("isFollower", isFollower);
 
     const flag = isFollower.length > 0 ? true : false;
 
@@ -95,6 +99,7 @@ class PofileFollowerContainer extends Component {
         onFollowRefuse={this.onFollowRefuse}
         onBtn={btn}
         loginId={loginId}
+        selectUser={selectUser}
       >
         <FollowingCancelModal
           following={follower}

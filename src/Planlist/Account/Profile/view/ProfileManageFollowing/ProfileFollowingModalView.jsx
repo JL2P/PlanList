@@ -2,7 +2,11 @@ import React from "react";
 import { Modal, Header } from "semantic-ui-react";
 import ProfileFollowingListContainer from "../../container/ProfileFollowingListContainer";
 
-const ProfileFollowingModalView = ({ followingOpen, onFollowingModal }) => {
+const ProfileFollowingModalView = ({
+  followingOpen,
+  onFollowingModal,
+  selectUser,
+}) => {
   return (
     <Modal
       closeIcon
@@ -25,7 +29,7 @@ const ProfileFollowingModalView = ({ followingOpen, onFollowingModal }) => {
         />
 
         <Modal.Content scrolling style={{ width: "100%" }}>
-          <ProfileFollowingListContainer />
+          <ProfileFollowingListContainer selectUser={selectUser} />
         </Modal.Content>
       </div>
     </Modal>

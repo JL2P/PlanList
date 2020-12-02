@@ -27,6 +27,7 @@ class ProfileFollowingListContainer extends Component {
   };
 
   render() {
+    const { selectUser } = this.props;
     const { follow, account } = this.props.Store;
     const loginId = account.getLoginAccount.accountId;
     const myFollowings = follow.getMyFollowings;
@@ -36,6 +37,7 @@ class ProfileFollowingListContainer extends Component {
         following={following}
         onDeleteMyFollowing={this.onDeleteMyFollowing}
         loginId={loginId}
+        selectUser={selectUser}
         onFollow={this.onFollow}
       />
     ));
