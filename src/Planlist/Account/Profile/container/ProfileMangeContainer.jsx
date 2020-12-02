@@ -32,7 +32,10 @@ class ProfileMangeContainer extends Component {
 
   onDeleteUser = (accountId) => {
     const { account } = this.props.Store;
-    account.userRemove(accountId);
+    account.userRemove(accountId).then((res) => {
+      alert("회원탈퇴 되었습니다.");
+      window.location.href = "/signin";
+    });
   };
 
   onSignout = () => {

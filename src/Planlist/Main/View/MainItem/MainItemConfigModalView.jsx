@@ -18,7 +18,7 @@ const MainItemConfigModalView = ({
         <Icon name="cog" />
       </Header>
       <Modal.Content>
-        <Button
+        {/* <Button
           fluid
           basic
           inverted
@@ -26,7 +26,7 @@ const MainItemConfigModalView = ({
           style={{ marginBottom: "1em" }}
         >
           <Icon name="star" /> 추천하기
-        </Button>
+        </Button> */}
         <Button
           fluid
           basic

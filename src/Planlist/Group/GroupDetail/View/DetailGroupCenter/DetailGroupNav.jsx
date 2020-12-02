@@ -37,7 +37,7 @@ const DetailGroupNav = ({
           onClick={() => onHandleItemClick("멤버")}
           onMouseDown={navAlert}
         />
-        <Menu.Item
+        {/* <Menu.Item
           name="사진첩"
           active={activeItem === "사진첩"}
           onClick={() => onHandleItemClick("사진첩")}
@@ -46,7 +46,7 @@ const DetailGroupNav = ({
           name="첨부파일"
           active={activeItem === "첨부파일"}
           onClick={() => onHandleItemClick("첨부파일")}
-        />
+        /> */}
         <Menu.Menu position="right">
           {group.master === onLogInUser.accountId ? (
             <Menu.Item

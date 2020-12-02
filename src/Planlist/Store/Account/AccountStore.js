@@ -124,6 +124,8 @@ export default class AccountStore {
   @action
   async userRemove(accountId) {
     await this.accountRepository.accountDelete(accountId);
+    await this.authRepository.authSignout(accountId);
+    localStorage.removeItem('jwt_token');
     this.selectAll();
   }
 
