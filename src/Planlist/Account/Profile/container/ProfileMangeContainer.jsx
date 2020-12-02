@@ -41,6 +41,8 @@ class ProfileMangeContainer extends Component {
   onSignout = () => {
     const { account } = this.props.Store;
     account.signout();
+    alert("로그아웃 되었습니다.");
+    window.location.href = "/signin";
   };
 
   onFollow = (followId) => {
