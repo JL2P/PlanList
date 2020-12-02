@@ -65,7 +65,7 @@ class GroupRankingListContainer extends Component {
       
           <div style={{ height: 400, width: '900px' }}>
           <DataGrid  style={{ marginTop: "30px" }} rows={this.createDataGridDataSet(groupRankingList)} columns={columns}
-          pageSize={1}>
+          pageSize={10}>
         </DataGrid> </div>
       
       </Container>
