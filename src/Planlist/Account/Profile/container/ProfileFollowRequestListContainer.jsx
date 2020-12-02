@@ -30,10 +30,9 @@ class ProfileFollowRequestListContainer extends Component {
 
   onSignout = () => {
     const { account } = this.props.Store;
-    account.signout().then((res) => {
-      alert("회원탈퇴 되었습니다.");
-      window.location.href = "/signin";
-    });
+    account.signout();
+    alert("로그아웃 되었습니다.");
+    window.location.href = "/signin";
   };
 
   onFollowConfirm = (followId) => {
