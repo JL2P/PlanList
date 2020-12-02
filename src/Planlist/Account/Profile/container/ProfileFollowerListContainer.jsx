@@ -13,6 +13,7 @@ class ProfileFollowerListContainer extends Component {
   render() {
     const { account, follow } = this.props.Store;
     const myFollowers = follow.getMyFollowers;
+
     const element = myFollowers.map((follower) => (
       <PofileFollowerContainer key={follower.accountId} follower={follower} />
     ));
