@@ -34,12 +34,14 @@ class DetailChattingContainer extends Component {
 
   render() {
     const { group, groupPoint } = this.props.Store;
+    const {getDetailGroup_memberList} = group
     const groupMembers = group.getGroup.members;
     const groupRanks = groupPoint.getInGroupRanks();
 
     return (
       <div>
         <DetailChattingView
+          members ={getDetailGroup_memberList}
           groupRanks={
             groupMembers !== undefined && groupRanks !== undefined
               ? this.groupAccountRankingDataSet(groupMembers, groupRanks)
