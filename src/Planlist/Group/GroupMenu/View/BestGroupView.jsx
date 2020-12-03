@@ -11,7 +11,14 @@ const BestGroupView = ({
     categoryList,
     onGroupDetail_page
     }) => {
-  const Groupitem = groups.map((item, index) => {
+
+  let groupSort = groups.sort((beforeStudent, nextStudent) => {
+    if (beforeStudent.members.length > nextStudent.members.length) return -1;
+    else if (beforeStudent.members.length < nextStudent.members.length) return 1;
+    return 0;
+  });
+
+  const Groupitem = groupSort.map((item, index) => {
     if(index < 12){
       return(
         <BestGroupItem key={index} item={item} onGroupDetail_page={onGroupDetail_page} />
