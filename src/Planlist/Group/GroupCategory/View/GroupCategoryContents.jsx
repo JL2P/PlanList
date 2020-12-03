@@ -18,6 +18,13 @@ const GroupCategoryContents = ({
     return a.id > b.id ? -1 : a.id < b.id ? 1 : 0;
   });
 
+  //인기 그룹 정렬
+  let groupSort = groups.sort((beforeStudent, nextStudent) => {
+    if (beforeStudent.members.length > nextStudent.members.length) return -1;
+    else if (beforeStudent.members.length < nextStudent.members.length) return 1;
+    return 0;
+  });
+
   //내 그룹 16개 제한
   let myGroups_limit = [];
   myGroups.map((myGroup, index) => {
@@ -34,7 +41,7 @@ const GroupCategoryContents = ({
   });
   //인기 그룹 16개 제한
   let bestgroups_limit = [];
-  descending.map((group, index) => {
+  groupSort.map((group, index) => {
     if (index < item) {
       bestgroups_limit.push(group);
     }
