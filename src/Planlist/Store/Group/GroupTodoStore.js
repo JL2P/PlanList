@@ -200,7 +200,9 @@ export default class GroupTodoStore {
     const data = await this.groupTodoRepository.checkGroupTodoMember(groupId, groupTodoId)
     // (ATTEND 참여중 / NONE 미참여) 
     if(data === "NONE"){
-      const todoModel = new TodoAddModel({...this.groupTodo});
+      const addGroupTodo = this.groupTodo;
+      addGroupTodo.imgUrl = addGroupTodo.galleries.length>0?addGroupTodo.galleries[0].filePath : addGroupTodo.imgUrl;
+      const todoModel = new TodoAddModel({...addGroupTodo});
       todoModel.groupAt = "Y";
       todoModel.endTime=this.getTomorrow();
       todoModel.writer = this.group.root.account.getLoginAccount.accountId;
@@ -214,7 +216,7 @@ export default class GroupTodoStore {
       return true;
     }
     return false;
-}
+  }
 
   @action
   async cancelGroupTodo(){
