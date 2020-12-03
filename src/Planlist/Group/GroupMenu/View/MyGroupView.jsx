@@ -33,7 +33,7 @@ const MyGroupView = ({
         myGroups.push(item);
 
         //내 그룹 목록 갯수 제한
-        if (index < 12) {
+        if (myGroups.length < 12) {
           return item.master === onLogInUser.accountId || joinMember ? (
             <MyGroupItem
               key={index}
