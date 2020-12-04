@@ -5,7 +5,7 @@
     height:300px !important;
     overflow-y: scroll !important;
 }
-.search .result{display: flex; align-items: center;}
+.search .result{display: flex!important; align-items: center;}
 .search .image{
     float: left !important;
     width: 40px!important; 
