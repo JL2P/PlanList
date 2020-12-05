@@ -90,7 +90,7 @@ export default class GroupTodoRepository{
     }
 
     getGroupTodoGroupInfo = (todoId)=>{
-        return axios_auth_GET(this.URL+`/todos/members/${todoId}`)
+        return axios_auth_GET(this.URL+`todos/members/${todoId}`)
     }
 
 }
