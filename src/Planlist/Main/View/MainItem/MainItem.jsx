@@ -49,7 +49,7 @@ const MainItem = ({ todoModel, onInfoModal }) => {
               </b>
               {todoModel.groupAt === "Y" && (
                 <Label basic color="orange" style={{ marginLeft: "1em" }}>
-                  <b>그룹계획</b>
+                  <b>그룹</b>
                 </Label>
               )}
             </div>

@@ -148,11 +148,11 @@ export default class TodoStore {
   @action
   async getApiAllTodos() {
     const apiGetAllTodos = await this.todoRepository.TodoAll();
-    // console.log(apiGetAllTodos)
+    console.log(apiGetAllTodos)
     const apiAllTodosAccount = await this.accountRepository.todosAccountMapping(
       apiGetAllTodos
     );
-    // console.log(apiAllTodosAccount)
+    console.log(apiAllTodosAccount)
     this.allTodos = apiAllTodosAccount.map((todo) => new TodoModel(todo));
   }
 

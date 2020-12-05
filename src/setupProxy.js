@@ -3,7 +3,8 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
 
-  // Authentication Service
+  //Build시 주석해야함
+  //Authentication Service
   app.use(
     "/api/auth",
     createProxyMiddleware({

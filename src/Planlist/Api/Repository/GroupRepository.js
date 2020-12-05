@@ -53,7 +53,7 @@ export default class GroupRepository{
         const groupRankGroupDtos = GroupRankModelList;
         //GroupService백엔드에 매핑할 수 있는 controller와 dto를 추가한다.
         //그룹서비스 GroupController 117번라인
-        const url = this.URL +"/groupRank/mapping" 
+        const url = this.URL +"groupRank/mapping" 
         return axios_auth_POST(url, groupRankGroupDtos,[])
     }
 }

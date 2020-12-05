@@ -5,52 +5,52 @@ import { Card, Image, List, Header } from "semantic-ui-react";
 const DetailChattingView = ({ groupRanks, members }) => {
   const TopThreeRankComponent = () => {
     return groupRanks.map((groupRank, idx) => {
-      return members.map(member => {
-
-        let memberConfirm = ""
-        if(member.confirm === "true"){
-          memberConfirm = groupRank.accountId === member.accountId
+      return members.map((member) => {
+        let memberConfirm = "";
+        if (member.confirm === "true") {
+          memberConfirm = groupRank.accountId === member.accountId;
         }
-        
-        return memberConfirm === true &&  (
-          <List.Item key={groupRank.accountId}>
-            <Link to={`/account/${groupRank.accountId}`}>
-              <List.Content>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
+
+        return (
+          memberConfirm === true && (
+            <List.Item key={groupRank.accountId}>
+              <Link to={`/account/${groupRank.accountId}`}>
+                <List.Content>
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "center",
+                      justifyContent: "space-between",
                       alignItems: "center",
                     }}
                   >
-                    {idx < 3 && (
-                      <Image
-                        src={`/images/badge/crown_${idx + 1}.png`}
-                        alt="crown"
-                        style={{
-                          width: "25px",
-                          height: "25px",
-                          marginRight: "0.5em",
-                        }}
-                      />
-                    )}
-                    <Header>{groupRank.accountId}</Header>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      {idx < 3 && (
+                        <Image
+                          src={`/images/badge/crown_${idx + 1}.png`}
+                          alt="crown"
+                          style={{
+                            width: "25px",
+                            height: "25px",
+                            marginRight: "0.5em",
+                          }}
+                        />
+                      )}
+                      <Header>{groupRank.accountId}</Header>
+                    </div>
+                    <Header color="red">{groupRank.total}</Header>
                   </div>
-                  <Header color="red">{groupRank.total}</Header>
-                </div>
-              </List.Content>
-            </Link>
-          </List.Item>
+                </List.Content>
+              </Link>
+            </List.Item>
+          )
         );
-      })
-      
+      });
     });
   };
 
@@ -65,7 +65,6 @@ const DetailChattingView = ({ groupRanks, members }) => {
 
       <>
         <Card.Content>
-          <Header>BEST3</Header>
           <List selection verticalAlign="middle">
             {TopThreeRankComponent()}
           </List>
