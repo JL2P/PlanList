@@ -9,7 +9,7 @@ const HEADER = {
 //member관련 Api와 연동하는 클래스
 export default class AccountGalleryRepository{
     //공통 적으로 사용되는 URL
-    URL = "/api/accounts/";
+    URL = "/api/accounts";
 
 
     //POST /api/account/

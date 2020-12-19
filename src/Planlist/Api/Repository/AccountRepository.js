@@ -14,7 +14,8 @@ export default class AccountRepository {
 
   accountInfo = ()=>{
       return axios_auth_GET(this.URL+"/info",{}).then(data=>{ 
-        if(data.message === "account not found") window.location.href="/signin";  
+        console.log(data.message)
+        if(data.message === "account not found") window.location.href="http://ec2-3-35-119-242.ap-northeast-2.compute.amazonaws.com/signin";  
         return data;
       });
   }

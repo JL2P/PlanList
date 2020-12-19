@@ -13,7 +13,6 @@ export default class AuthRepository{
 
     // POST /api/auth/signup
     authSignup = (AccountAddModel) => {
-
         const AuthAddModel= {
             uid: AccountAddModel.email,
             password:AccountAddModel.password,

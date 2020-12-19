@@ -21,7 +21,7 @@ const SigninView = ({ onSignin }) => {
   };
 
   const onKakaoLogin = () => {
-    const url = "http://myplanit.co.kr/api/auth/social/login/kakao";
+    const url = "http://ec2-3-35-119-242.ap-northeast-2.compute.amazonaws.com:9000/api/auth/social/login/kakao";
     window.location.href = url;
     // axios.get(url);
   };
